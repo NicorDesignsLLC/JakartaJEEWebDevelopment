@@ -1,24 +1,33 @@
-## Creating a new JEE 8 Web Application using Maven Archetypes
+## Maven 3 - Eclipse Configuration and setup
+
+
+#### Starting with our Github created project that we imported into Eclipse in one of our previous lessons 
 
 ### 1. Create a new Eclipse project using parent-pom from mojo pom-root archetype
+[https://stackoverflow.com/questions/6328778/how-to-create-an-empty-multi-module-maven-project](https://stackoverflow.com/questions/6328778/how-to-create-an-empty-multi-module-maven-project)
+Move the generated POM to our original project and run mvn clean package
 
-#### Check in into Github using Eclipse (Understand Token Generation process)
+Convert to Maven Project
 
-#### [Github two factor Authentication with Eclipse](https://stackoverflow.com/questions/32527522/how-to-github-two-factor-authentication-with-eclipse)
+Use locally installed Maven version
+
+Update settings.xml according to your work-place requirements
+
  
-#### [JEE 8 Webapp Git Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-start)
+##### [JEE 8 Webapp Git Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-start)
 
-### 2. Create a child module inside the POM module using:
+##### [Github two factor Authentication with Eclipse](https://stackoverflow.com/questions/32527522/how-to-github-two-factor-authentication-with-eclipse) (Understand Token Generation process)
+
+#### 2. Create a new sub-module inside the POM-ROOT module using:
  
-#### [Maven Archetype Webapp 1.4](https://mvnrepository.com/artifact/org.apache.maven.archetypes/maven-archetype-webapp version 1.4)
+##### [Maven Archetype webapp-javaee7 ](https://mvnrepository.com/artifact/org.codehaus.mojo.archetypes/webapp-javaee7)
  
-##### Group Id :  com.nicordesigns
+## Maven 3 - Eclipse Configuration and setup - END
 
-##### Artifact Id : jee8webarchetype
+## Maven 3 - Eclipse Configuration and setup - END
 
-##### Package : com.nicordesigns.jee8webarchetype
 
-### 3. Update the generated module to JEE8 in Eclipse
+## Our Basic Jakarta JEE 8 Web Application Structure - START
 
 ##### Show Eclipse Problem View - Go through listed Problems and resolve them
 
