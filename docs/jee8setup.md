@@ -24,8 +24,6 @@ Update settings.xml according to your work-place requirements
  
 ## Maven 3 - Eclipse Configuration and setup - END
 
-## Maven 3 - Eclipse Configuration and setup - END
-
 
 ## Our Basic Jakarta JEE 8 Web Application Structure - START
 
