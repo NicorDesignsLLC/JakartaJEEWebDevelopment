@@ -1,4 +1,4 @@
-## Maven 3 - Eclipse Configuration and setup
+## Maven 3 - Eclipse Configuration and setup tutorial
 
 
 #### Starting with our Github created project that we imported into Eclipse in one of our previous lessons 
@@ -22,38 +22,8 @@ Update settings.xml according to your work-place requirements
  
 ##### [Maven Archetype webapp-javaee7 ](https://mvnrepository.com/artifact/org.codehaus.mojo.archetypes/webapp-javaee7)
  
-## Maven 3 - Eclipse Configuration and setup - END
-
-
-## Our Basic Jakarta JEE 8 Web Application Structure - START
-
-##### Show Eclipse Problem View - Go through listed Problems and resolve them
-
-##### Upgrade to Java 1.8
-
-##### Add the following Maven Dependency:
- 
-	<dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-    </dependency>
-
-##### Update the Maven Project using the Eclipse option
-
-### 4. Update web.xml and all related Eclipse Facets
-
-##### Add Tomcat 9 runtime in Facet
-
-##### Demonstrate that the JSP Hello Page Show
-
-### 5. Finally go through and resolve all the warnings in the Eclipse Problem View
-
-#### 6. Check in the end git branch of this slide show
 
 #### [JEE 8 Webapp Git Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-finish)
- 
 
 
     
