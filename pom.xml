@@ -18,7 +18,8 @@
   <modules>
       
     <module>sub-module</module>
-      
+
+    <module>jee8webarchetype</module>
   </modules>
   
    <build>
