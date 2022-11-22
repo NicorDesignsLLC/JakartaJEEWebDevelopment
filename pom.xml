@@ -12,6 +12,8 @@
   <packaging>pom</packaging>
     
   <name>JakartaJEEWebDevelopment</name>
+  <url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
+  
   
   <modules>
       
