@@ -1,34 +1,36 @@
 ## Our Basic Jakarta JEE 8 Web Application Structure
 
+#### [Jakarta JEE 8 Web app Git Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-jee8webapp-start)
 
-##### Upgrade to Java 8 for Jakarta JEE8 and Tomcat 9
+##### Update Maven Root POM project to use JEE 8
 
-#####  Update the Archetype we used to the the on that matches JEE8 and Tomcat 9
+#### 1. Create a new Jakarta JEE 8 Web App 
 
-	<dependencies>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+Using Maven JEE Web Archetype to create a new maven module
 
-to the latest version
+[https://maven.apache.org/archetypes/maven-archetype-webapp/index.html](https://maven.apache.org/archetypes/maven-archetype-webapp/index.html)
 
-#### Update the Maven Project using the Eclipse option
+*Notice the archetype is old and can be updated to the latest by open source volunteers*
 
-### 4. Update web.xml and all related Eclipse Facets
+Update generated Web App to use JEE 8
 
-##### Add Tomcat 9 runtime in Facet
+Update the Maven Project using the Eclipse option
+
+Update the Web App Natures and Facets in Eclipse
+
+#### 2. Update web.xml and all related Eclipse Facets
+
+#### 3. Add Tomcat 9 runtime in Facet
+
+Run the Web App on Tomcat 9
 
 ##### Demonstrate that the JSP Hello Page Show
 
-### 5. Finally go through and resolve any warnings in the Eclipse Problem View
+#### 4. Finally go through and resolve any warnings in the Eclipse Problem View
 
-#### 6. Check in the end git branch of this slide show
+##### 5. Check in the end git branch of this slide show
 
-#### [JEE 8 Webapp Git Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-finish)
+#### [Jakarta JEE 8 Web app Git Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/pom-root-jee8webapp-finish-try1)
 
 
 
