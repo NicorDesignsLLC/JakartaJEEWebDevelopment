@@ -10,7 +10,8 @@
   <artifactId>jee8webapp</artifactId>
   <packaging>war</packaging>
 
-  <name>jee8webapp Maven Webapp</name>
+  <name>jee8webapp Maven Webapp</name> 
+  
   <url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
   
   <properties>
