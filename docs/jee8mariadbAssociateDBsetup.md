@@ -1,11 +1,4 @@
-### Creating the CharityDB and seeding  it MariaDB in Eclipse
-
-### We create a new Eclipse-Maven sub-module that we will use to store all our SQL Scripts
-
-### Using the Eclipse DB Console
-
-
-### 1. Create Charity Associate Table and Relationship tables
+### 1. Creating the Charity Associate Table and Relationship tables
 
 #### CREATE 4-CREATE-CHARITY-ASSOCIATE-TABLE.SQL Script
 

@@ -1,6 +1,15 @@
 ### Creating the CharityDB and seeding  it MariaDB in Eclipse
 
-### We create a new Eclipse-Maven sub-module that we will use to store all our SQL Scripts
+### We create a new Eclipse-Maven sub-module that we will use to store all our SQL Scripts - No Archetype
+
+jee8mariadbsql
+
+In this module we create a subdirectory to stor all our SQL Scripts
+
+src/main/resources/sqlscripts
+
+We the use the Eclipse Data Source Explorer to run these scripts to create and populate our Charity Database
+
 
 ### Using the Eclipse DB Console
 
