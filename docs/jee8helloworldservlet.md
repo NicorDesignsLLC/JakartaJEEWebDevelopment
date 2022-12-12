@@ -1,6 +1,6 @@
 # Updating the JEE 8 Web Application Module with a Hello World Servlet
 
-#### [JEE 8 Hello World Servlet Start Branch](TODO)
+#### [JEE 8 Hello World Servlet Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/commits/hello-world-servlet-jee8-start)
 
 ### 1. Add the actual servlet code
 
@@ -54,5 +54,5 @@ destroy() runs when the servlet Container shuts down - use it to clean up resour
 
 
 Check in the end git branch of this slide show 
-#### [JEE 8 Hello World Servlet Finish Branch](TODO)
+#### [JEE 8 Hello World Servlet Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/commits/hello-world-servlet-jee8-end)
 
