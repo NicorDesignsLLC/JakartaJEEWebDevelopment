@@ -12,4 +12,6 @@ An introduction to Java Web Development with JEE 8:
 
 5. [Updating the JEE 8 Web Application Module with a Hello World Servlet](jee8helloworldservlet.md)
 
+6. [Debugging the JEE 8 Web App](jee8debug.md)
+
 		
