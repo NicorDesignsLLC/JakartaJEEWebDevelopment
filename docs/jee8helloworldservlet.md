@@ -1,6 +1,6 @@
 # Updating the JEE 8 Web Application Module with a Hello World Servlet
 
-#### [JEE 8 Hello World Servlet Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/commits/hello-world-servlet-jee8-start)
+###### [JEE 8 Hello World Servlet Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/commits/hello-world-servlet-jee8-start)
 
 ### 1. Add the actual servlet code
 
@@ -33,7 +33,15 @@ init() sometimes runs when the servlet container starts up the web app (can be c
 
 destroy() runs when the servlet Container shuts down - use it to clean up resource like database connections etc - important to use this and not the garbage collection code   
 
-### 2. Add the servlet config to web.xml
+### 2. Add the servlet config using Annotations
+
+	@WebServlet(
+	        name = "helloWorldServlet",
+	        urlPatterns = {"/hello-world"},
+	        loadOnStartup = 1
+	)
+
+and not in the web.xml as below....
 
 ##### com.nicordesigns.HelloWorldServlet
 
@@ -53,6 +61,6 @@ destroy() runs when the servlet Container shuts down - use it to clean up resour
 ### 4. Demonstrate that the Hello World Servlet works
 
 
-Check in the end git branch of this slide show 
-#### [JEE 8 Hello World Servlet Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/commits/hello-world-servlet-jee8-end)
+
+###### [JEE 8 Hello World Servlet Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/hello-world-servlet-jee8-finish-1)
 
