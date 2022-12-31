@@ -1,12 +1,33 @@
 ## Debugging the JEE 8 Web Hello World Servlet module
 
-#### [JEE 8 Hello World Debug Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-debug-start)
+#### [JEE 8 Hello World Debug Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/hello-world-debug-start)
 
 ### 1. In Eclipse select Window -> Preferences -> Server -> Runtime Environments -> Select Tomcat 9 and Edit
 
 ###### Ensure that your Tomcat 9 server is set up correctly
 
 ### 2. Now add in-line java code and a debug point to the JSP page
+
+		<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+		
+		<html>
+		
+		<head>
+		
+		<title>Hello, World Application Index File</title>
+		
+		</head>
+		
+		<body>
+		
+		<a href="hello-world">Present the Hello World Input Form...</a><br>
+		
+		Java runtime version: <%= System.getProperty("java.version") %>
+		
+		</body>
+		
+		</html>
+
 
 ##### Run the Web App in Debug mode
 
@@ -16,7 +37,7 @@
 
 ##### This will stop at the servlet line to debug and open the Eclipse Debug Perspective where you can track the stack 
 
-### 4. Add basic logging to the JEE 8 Web App
+### 5. Add basic logging to the JEE 8 Web App
 
 ##### [Apache Log4J 2](https://logging.apache.org/log4j/2.x/index.html)
 
@@ -25,12 +46,12 @@
 	<dependency>
     	<groupId>org.apache.logging.log4j</groupId>
     	<artifactId>log4j-api</artifactId>
-    	<version>2.17.0</version>
+    	<version>2.19.0</version>
 	</dependency>
 	<dependency>
 	    <groupId>org.apache.logging.log4j</groupId>
 	    <artifactId>log4j-core</artifactId>
-	    <version>2.17.0</version>
+	    <version>2.19.0</version>
 	</dependency>
 	
 ##### Add log4j.properties
@@ -57,8 +78,7 @@
 ##### This will allow you to log status and errors 
  
 
-Check in the end git branch of this slide show 
-#### [JEE 8 Hello World Servlet Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-servlet-finish)
+#### [JEE 8 Hello World Servlet Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/hello-world-servlet-jee8-finish-1)
 
     
 
