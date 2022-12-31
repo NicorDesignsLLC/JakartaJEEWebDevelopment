@@ -5,6 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +22,9 @@ public class HelloWorldServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String DEFAULT_USER = "Guest";
+	
+	private static Logger LOGGER = LogManager.getLogger(HelloWorldServlet.class);
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,8 +52,7 @@ public class HelloWorldServlet extends HttpServlet {
 	              .append("    </body>\r\n")
 	              .append("</html>\r\n");
 		}
-		
-		
+	
 	}
 	
 	@Override
@@ -59,12 +64,12 @@ public class HelloWorldServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		System.out.println("In init() method");
+		LOGGER.info("In init() method");
 	}
 
 	@Override
 	public void destroy() {
-		System.out.println("In destroy() method");
+		LOGGER.info("In destroy() method");
 	
 	}
 }
