@@ -14,4 +14,5 @@ An introduction to Java Web Development with JEE 8:
 
 6. [Debugging the JEE 8 Web App](jee8debug.md)
 
+7. [Using a Multiparameter Form in a JEE 8 Web App](jee8checkboxes.md)
 		
