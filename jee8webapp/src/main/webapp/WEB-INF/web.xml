@@ -13,14 +13,41 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
+	<context-param>
+		<param-name>databaseOne</param-name>
+		<param-value>sql-server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>cloudOne</param-name>
+		<param-value>google-cloud-platform</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>servletParameterServlet</servlet-name>
+		<servlet-class>com.nicordesigns.ServletParameterServlet</servlet-class>
+		<init-param>
+			<param-name>database</param-name>
+			<param-value>CharityAssociates</param-value>
+		</init-param>
+		<init-param>
+			<param-name>server</param-name>
+			<param-value>10.0.12.5</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>servletParameterServlet</servlet-name>
+		<url-pattern>/servletParameters</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>MultiValueParameterServlet</servlet-name>
 		<servlet-class>com.nicordesigns.MultiValueParameterServlet</servlet-class>
 	</servlet>
-	
-	 <servlet-mapping>
-        <servlet-name>MultiValueParameterServlet</servlet-name>
-        <url-pattern>/servletMultiValueParameters</url-pattern>
-    </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MultiValueParameterServlet</servlet-name>
+		<url-pattern>/servletMultiValueParameters</url-pattern>
+	</servlet-mapping>
 
 </web-app>
