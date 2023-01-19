@@ -1,6 +1,6 @@
 ## Using init parameters to configure the JEE 8 Web Hello World App Module
 
-##### [JEE 8 Init Param Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-init-param-start)
+##### [JEE 8 Init Param Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/context-paramters-jee8-web-start)
 
 ### 1. Using Context Init Parameters
 
@@ -95,14 +95,13 @@ public class ContextParameterServlet extends HttpServlet
 
 ##### This allows config values the be set up in running code:
 
-https://www.baeldung.com/context-servlet-initialization-param
 
 	@WebServlet(name = "UserServlet", urlPatterns = {"/userServlet"}, initParams={
 	@WebInitParam(name="name", value="Not provided"), 
 	@WebInitParam(name="email", value="Not provided")}))
 	 
 Check in the end git branch of this slide show 
-##### [JEE 8 Init Param Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-init-param-finish)
+##### [JEE 8 Init Param Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/context-parameter-jee8-web-finish)
 
     
 
