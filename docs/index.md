@@ -1,6 +1,6 @@
 The Java Web Development Course Index File
 
-An introduction to Java Web Development with JEE 8:
+An introduction to Java Web Development with Jakarta JEE 8:
 
 1. [Creating a basic JEE 8 Maven project structure](jee8setupmaven.md)
 
