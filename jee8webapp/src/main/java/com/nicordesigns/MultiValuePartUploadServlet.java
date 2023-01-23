@@ -57,7 +57,8 @@ public class MultiValuePartUploadServlet extends HttpServlet {
 				fileName = getFileName(part);
 				part.write(uploadPath + File.separator + fileName);
 			}
-			uploadSucces = "File " + fileName + " has uploaded successfully!";
+			uploadSucces = "File " + fileName + " has uploaded successfully!\n";
+			uploadSucces = uploadSucces + "File upload directory: " + uploadPath;
 		} catch (FileNotFoundException fne) {
 			uploadFailure = "There was an error: " + fne.getMessage();
 		}
