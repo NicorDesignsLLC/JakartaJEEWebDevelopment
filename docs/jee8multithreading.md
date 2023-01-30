@@ -2,9 +2,9 @@
 
 Relevant official Oracle Java tutorials:
 
-https://docs.oracle.com/javaee/7/tutorial/servlets012.htm
+[Servlets Tutorial](https://docs.oracle.com/javaee/7/tutorial/servlets012.htm)
 
-https://docs.oracle.com/javaee/7/tutorial/concurrency-utilities002.htm
+[Concurrency Utilities Tutorial](https://docs.oracle.com/javaee/7/tutorial/concurrency-utilities002.htm)
 
 ##### [JEE 8 Multi-threading Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-file-upload-start)
 
@@ -17,9 +17,9 @@ https://docs.oracle.com/javaee/7/tutorial/concurrency-utilities002.htm
 6. Once the Thread completes the Servlet Request it goes back into the Thread Pool ready to serve the next Servlet Request
 
 ### Securing variables and resources from concurrency issues such as deadlock in our code (Thread access protection)
-
-
 Using volatile and synchronized code blocks only allows one thread access and update at a time
+
+
 
 		//Ensure single thread access
 		
