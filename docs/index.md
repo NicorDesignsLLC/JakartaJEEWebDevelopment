@@ -16,7 +16,10 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 7. [Using a Multiparameter Form in a JEE 8 Web App](jee8checkboxes.md)
 
-5. [Using Init Params in the JEE 8 Web App](jee8initparams.md)
+8. [Using Init Params in the JEE 8 Web App](jee8initparams.md)
 
-6. [Uploading files via Servlet in the JEE 8 Web App](jee8fileupload.md)
+9. [Uploading files via Servlet in the JEE 8 Web App](jee8fileupload.md)
+
+10. [Multi-threading in the JEE 8 Web App](jee8multithreading.md)
+
 		
