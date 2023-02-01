@@ -6,7 +6,7 @@ Relevant official Oracle Java tutorials:
 
 [Concurrency Utilities Tutorial](https://docs.oracle.com/javaee/7/tutorial/concurrency-utilities002.htm)
 
-##### [JEE 8 Multi-threading Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-file-upload-start)
+##### [JEE 8 Multi-threading Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-tomcat-concurrency-start)
 
 ### 1. Consider that your Web Application is dependent on the Tomcat 9 Web Server Thread Model
 1. Your container maintains a Thread Pool
@@ -15,6 +15,22 @@ Relevant official Oracle Java tutorials:
 4.  The thread pool saves server resources by not having to create and destroy threads for every incoming request
 5. The thread pool size can be configured in Tomcat
 6. Once the Thread completes the Servlet Request it goes back into the Thread Pool ready to serve the next Servlet Request
+
+
+### Re-visiting our Sample User Story
+#### As an expatriate living abroad I want to create an online database of all charities (non-profits) that operate in my “home country”.
+
+1. Our example administration web-app will allow charities to "register" with our online DB  and send us their official tax registration forms
+2.  Charities should be able to register their information online and provide attached files such as non-profit tax registration status and address details
+3. Our specific example will have to use i8n and localization for specific language groups and regions
+Because we handle sensitive information our project will have to be really secure
+
+#### Our final Actionable Item
+
+* Design a database that conforms to User Story
+* Build this database with SQL Scripts 
+* <b>Build the Jakarta JEE 8 Web Application to allow the administration of the Charity Database</b>
+
 
 ### Securing variables and resources from concurrency issues such as deadlock in our code (Thread access protection)
 Using volatile and synchronized code blocks only allows one thread access and update at a time
@@ -39,4 +55,4 @@ Using volatile and synchronized code blocks only allows one thread access and up
 
 Check in the end git branch of this slide show
 
-##### [JEE 8 Multi-threading Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-multithreading-end)
+##### [JEE 8 Multi-threading Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-tomcat-concurrency-start)
