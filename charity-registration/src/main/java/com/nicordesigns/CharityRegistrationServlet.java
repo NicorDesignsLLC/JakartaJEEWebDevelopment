@@ -73,16 +73,16 @@ public class CharityRegistrationServlet extends HttpServlet {
 	private void showRegistrationForm(HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer = this.writeHeader(response);
 
-		writer.append("<h2>Create a Registration</h2>\r\n");
+		writer.append("<h2>Register a new Charity</h2>\r\n");
 		writer.append("<form method=\"POST\" action=\"charityRegistrationServlet\" ").append("enctype=\"multipart/form-data\">\r\n");
 		writer.append("<input type=\"hidden\" name=\"action\" ").append("value=\"create\"/>\r\n");
-		writer.append("Your Name<br/>\r\n");
+		writer.append("Charity Administrator Name<br/>\r\n");
 		writer.append("<input type=\"text\" name=\"userName\"/><br/><br/>\r\n");
-		writer.append("Subject<br/>\r\n");
-		writer.append("<input type=\"text\" name=\"subject\"/><br/><br/>\r\n");
-		writer.append("Body<br/>\r\n");
-		writer.append("<textarea name=\"body\" rows=\"5\" cols=\"30\">").append("</textarea><br/><br/>\r\n");
-		writer.append("<b>FileAttachments</b><br/>\r\n");
+		writer.append("Charity Name<br/>\r\n");
+		writer.append("<input type=\"text\" name=\"charityName\"/><br/><br/>\r\n");
+		writer.append("Charity Information<br/>\r\n");
+		writer.append("<textarea name=\"charityInfo\" rows=\"5\" cols=\"30\">").append("</textarea><br/><br/>\r\n");
+		writer.append("<b>Tax Documentation File</b><br/>\r\n");
 		writer.append("<input type=\"file\" name=\"file1\"/><br/><br/>\r\n");
 		writer.append("<input type=\"submit\" value=\"Submit\"/>\r\n");
 		writer.append("</form>\r\n");
@@ -152,7 +152,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 		PrintWriter writer = this.writeHeader(response);
 
 		writer.append("<h2>Registrations</h2>\r\n");
-		writer.append("<a href=\"charityRegistrationServlet?action=create\">Create Registration").append("</a><br/><br/>\r\n");
+		writer.append("<a href=\"charityRegistrationServlet?action=create\">Register a Charity").append("</a><br/><br/>\r\n");
 
 		if (this.charityRegistrationDatabase.size() == 0)
 			writer.append("<i>There are no registrations in the system.</i>\r\n");
@@ -174,8 +174,8 @@ public class CharityRegistrationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Registration registration = new Registration();
 		registration.setUserName(request.getParameter("userName"));
-		registration.setSubject(request.getParameter("subject"));
-		registration.setBody(request.getParameter("body"));
+		registration.setSubject(request.getParameter("charityName"));
+		registration.setBody(request.getParameter("charityInfo"));
 
 		Part filePart = request.getPart("file1");
 		if (filePart != null && filePart.getSize() > 0) {
@@ -237,14 +237,14 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 		PrintWriter writer = response.getWriter();
 		writer.append("<!DOCTYPE html>\r\n").append("<html>\r\n").append("    <head>\r\n")
-				.append("        <title>Customer Support</title>\r\n").append("    </head>\r\n")
-				.append("    <body>\r\n");
+				.append("        <title>Charity Registration</title>\r\n").append("    </head>\r\n")
+				.append("    <charityInfo>\r\n");
 
 		return writer;
 	}
 
 	private void writeFooter(PrintWriter writer) {
-		writer.append("    </body>\r\n").append("</html>\r\n");
+		writer.append("    </charityInfo>\r\n").append("</html>\r\n");
 	}
 
 }
