@@ -60,18 +60,10 @@ Add FileAttachment and Registration java pojo classes
 
 Add RegistrationServlet.java
 
-Add WEB-INF/jsp/view folder
-
-Add jsp(s), tags and tld defintion and update the web.xml
-
-Add webapp/css and webapp/resource folder and files 
-
-Add jsp/base.jspf file
-
 Add javax.servlet.jsp-api and javax.servlet.jsp.jstl to the maven pom.xml file
 
 
-Change index.jsp to redirect to /registrations
+Change index page to redirect to /registrations
 
 
 
