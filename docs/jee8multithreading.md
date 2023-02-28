@@ -62,13 +62,13 @@ Add RegistrationServlet.java
 
 Add javax.servlet.jsp-api and javax.servlet.jsp.jstl to the maven pom.xml file
 
-
-Change index page to redirect to /registrations
+Change index page to be able to redirect to /registrations
 
 
 
 ### Securing variables and resources from concurrency issues such as deadlock in our code (Thread access protection)
 
+[Synchronization](https://docs.oracle.com/javase/tutorial/essential/concurrency/sync.html)
 
 Using volatile and synchronized code blocks only allows one thread access and update at a time
 
