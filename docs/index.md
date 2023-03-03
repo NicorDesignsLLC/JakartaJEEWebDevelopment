@@ -20,6 +20,6 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 9. [Uploading files via Servlet in the JEE 8 Web App](jee8fileupload.md)
 
-10. [Multi-threading in the JEE 8 Web App](jee8multithreading.md)
+10. [Multi-threading in the Tomcat JEE 8 Web App](jee8multithreading.md)
 
 		
