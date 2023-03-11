@@ -24,4 +24,6 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 11. [JSP is HTML in the JEE 8 Web App](jee8jspishtml.md)
 
+12. [Expanding on our JSP knowledge in Jakarta JEE 8](jee8jspintro.md)
+
 		
