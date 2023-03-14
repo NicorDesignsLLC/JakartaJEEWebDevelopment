@@ -6,6 +6,8 @@
 
 ##### By comparing html with jsp - in our web archetype copy the index.jsp to sample.jsp and remove the first line
 
+From our previous lesson where we converted the Stream output of a Servlet to a JSP 
+
 (page directive)
 
 	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -32,7 +34,7 @@ in the MultivalueParameterServlet
 
 <!-- A directive such as "page" specifies an action -->
 
-	<%@ a directive looks like this %>
+	<%@ a directive looks like this %> 
 
 	<!-- A declaration are used to declare instance variables, methods, inner classes -->
 
