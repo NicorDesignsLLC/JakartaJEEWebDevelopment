@@ -62,7 +62,7 @@ and look at the *example.java file for a better understanding
 
 		<!-- HTML/XML Comments will be output to the page-->
 	
-		<!-- HTML/XML Comments will be show : <%= calculate.value() %>-->
+		<!-- HTML/XML Comments will be shown : <%= calculate.value() %>-->
 	
 		<%
 		
