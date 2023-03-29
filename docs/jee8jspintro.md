@@ -132,7 +132,6 @@ To demonstrate
 
 As a self exercise think about the pro's an cons of each case
 
-(Here I can incorporate an online quiz)
 
 #### 6. Including Tag Libraries
 
