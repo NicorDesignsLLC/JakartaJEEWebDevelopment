@@ -118,7 +118,7 @@ To demonstrate
 
 	<jsp:include page="/relative/file/path/index.jsp" >
 
-Here the included JSP is compiled separately and at run time the request is forwarded to the dymanically
+Here the included JSP is compiled separately and at run time the request is forwarded to the dynamically
 
 included JSP
 
@@ -131,7 +131,6 @@ To demonstrate
 3. Navigate to the translated JSP and investigate the line of code that demonstrates this
 
 As a self exercise think about the pro's an cons of each case
-
 
 #### 6. Including Tag Libraries
 
