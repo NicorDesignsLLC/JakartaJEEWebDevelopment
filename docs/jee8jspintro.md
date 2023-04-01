@@ -140,6 +140,4 @@ As in user.jsp here uri specifies the the URI namespace of the the tag library a
 
 alias you use to refer to the tags in the JSP
 
-Check in the end git branch of this slide show
-
-##### [JEE 8 JSP introduction Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jsp-is-html-end)
+##### [JEE 8 JSP introduction Finish Branch(https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-jsp-is-html-end2)
