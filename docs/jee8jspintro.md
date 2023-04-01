@@ -132,12 +132,4 @@ To demonstrate
 
 As a self exercise think about the pro's an cons of each case
 
-#### 6. Including Tag Libraries
-
-	<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
-
-As in user.jsp here uri specifies the the URI namespace of the the tag library and the prefix is an
-
-alias you use to refer to the tags in the JSP
-
 ##### [JEE 8 JSP introduction Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-jsp-is-html-end2)
