@@ -1,6 +1,6 @@
 # 12 - Expanding on our JSP knowledge in Jakarta JEE 8
 
-##### [JEE 8 JSP introduction Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jsp-is-html-start)
+##### [JEE 8 JSP introduction Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jsp-is-html-start2)
 
 #### 1. We learn about the JSP page directive at the top of the page
 
