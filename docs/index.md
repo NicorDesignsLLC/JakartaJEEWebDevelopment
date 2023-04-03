@@ -26,4 +26,6 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 12. [Expanding on our JSP knowledge in Jakarta JEE 8](jee8jspintro.md)
 
+13. [Embedding Java into JSP with JEE 8 Web App](jee8embeddedjava.md)
+
 		
