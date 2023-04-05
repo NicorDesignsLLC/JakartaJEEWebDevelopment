@@ -2,7 +2,7 @@
 
 We will explore how to use Java within JSP and find out why it is actually a bad idea
 
-##### [Embedding Java within JSP Start Branch]((https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-embedded-java-start)
+##### [Embedding Java within JSP Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-embedded-java-start)
 
 #### 1. Using the Implicit variables in JSP 
 
