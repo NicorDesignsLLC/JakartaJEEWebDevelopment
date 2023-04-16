@@ -192,8 +192,6 @@ There also seems to be a new flavor of the month JavaScript Framework ever so of
 on the web tier now that the web tier is now longer just browsers but also smart-phones and the Internet
 of things
 
-Check in the end git branch of this slide show 
-
 ##### [Embedding Java within JSP Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-embedded-java-finish)
 
     
