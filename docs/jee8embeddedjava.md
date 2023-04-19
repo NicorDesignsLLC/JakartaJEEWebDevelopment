@@ -176,10 +176,6 @@ with the context init parameters
         <param-value>google-cloud-platform</param-value>
     </context-param>
     
-We will debug and step through this JSP logic with the help of Eclipse.
-We will use the input form and the query string
-
-
 #### 4. The danger of using embedded JAVA in JSP
 
 This break the Model View Controller pattern of modern back-end Java Enterprise Applications,
