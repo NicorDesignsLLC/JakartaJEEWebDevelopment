@@ -13,6 +13,15 @@
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
+	<context-param>
+        <param-name>databaseOne</param-name>
+        <param-value>sql-server</param-value>
+    </context-param>
+    <context-param>
+        <param-name>cloudOne</param-name>
+        <param-value>google-cloud-platform</param-value>
+    </context-param>
+    
 	<servlet>
 		<servlet-name>MultiValueParameterServlet</servlet-name>
 		<servlet-class>com.nicordesigns.MultiValueParameterServlet</servlet-class>
