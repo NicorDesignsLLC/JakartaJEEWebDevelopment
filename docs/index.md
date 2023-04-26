@@ -28,4 +28,7 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 13. [Embedding Java into JSP with JEE 8 Web App](jee8embeddedjava.md)
 
+14. [Combining Java (C) and JSP(V) in our JEE 8 Web App MVC ](jee8jsjavacombo.md)
+
+
 		
