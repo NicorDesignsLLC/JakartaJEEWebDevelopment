@@ -3,7 +3,6 @@ package com.nicordesigns;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet(name = "CharityRegistrationServlet", urlPatterns = { "/charityRegistrationServlet" }, loadOnStartup = 1)
+@WebServlet(name = "charityRegistrationServlet", urlPatterns = { "/charityRegistrationServlet" }, loadOnStartup = 1)
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class CharityRegistrationServlet extends HttpServlet {
 
@@ -38,7 +37,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 			action = "list";
 		switch (action) {
 		case "create":
-			this.showRegistrationForm(response);
+			this.showRegistrationForm(request, response);
 			break;
 		case "view":
 			this.viewRegistration(request, response);
@@ -48,7 +47,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 			break;
 		case "list":
 		default:
-			this.listRegistrations(response);
+			this.listRegistrations(request, response);
 			break;
 		}
 	}
@@ -70,56 +69,71 @@ public class CharityRegistrationServlet extends HttpServlet {
 		}
 	}
 
-	private void showRegistrationForm(HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter writer = this.writeHeader(response);
+	private void showRegistrationForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		writer.append("<h2>Register a new Charity</h2>\r\n");
-		writer.append("<form method=\"POST\" action=\"charityRegistrationServlet\" ").append("enctype=\"multipart/form-data\">\r\n");
-		writer.append("<input type=\"hidden\" name=\"action\" ").append("value=\"create\"/>\r\n");
-		writer.append("Charity Administrator Name<br/>\r\n");
-		writer.append("<input type=\"text\" name=\"userName\"/><br/><br/>\r\n");
-		writer.append("Charity Name<br/>\r\n");
-		writer.append("<input type=\"text\" name=\"charityName\"/><br/><br/>\r\n");
-		writer.append("Charity Information<br/>\r\n");
-		writer.append("<textarea name=\"charityInfo\" rows=\"5\" cols=\"30\">").append("</textarea><br/><br/>\r\n");
-		writer.append("<b>Tax Documentation File</b><br/>\r\n");
-		writer.append("<input type=\"file\" name=\"file1\"/><br/><br/>\r\n");
-		writer.append("<input type=\"submit\" value=\"Submit\"/>\r\n");
-		writer.append("</form>\r\n");
+		request.getRequestDispatcher("/WEB-INF/jsp/view/registrationForm.jsp").forward(request, response);
 
-		this.writeFooter(writer);
+//		PrintWriter writer = this.writeHeader(response);
+//
+//		writer.append("<h2>Register a new Charity</h2>\r\n");
+//		writer.append("<form method=\"POST\" action=\"charityRegistrationServlet\" ").append("enctype=\"multipart/form-data\">\r\n");
+//		writer.append("<input type=\"hidden\" name=\"action\" ").append("value=\"create\"/>\r\n");
+//		writer.append("Charity Administrator Name<br/>\r\n");
+//		writer.append("<input type=\"text\" name=\"userName\"/><br/><br/>\r\n");
+//		writer.append("Charity Name<br/>\r\n");
+//		writer.append("<input type=\"text\" name=\"charityName\"/><br/><br/>\r\n");
+//		writer.append("Charity Information<br/>\r\n");
+//		writer.append("<textarea name=\"charityInfo\" rows=\"5\" cols=\"30\">").append("</textarea><br/><br/>\r\n");
+//		writer.append("<b>Tax Documentation File</b><br/>\r\n");
+//		writer.append("<input type=\"file\" name=\"file1\"/><br/><br/>\r\n");
+//		writer.append("<input type=\"submit\" value=\"Submit\"/>\r\n");
+//		writer.append("</form>\r\n");
+//
+//		this.writeFooter(writer);
 	}
 
 	private void viewRegistration(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String idString = request.getParameter("registrationId");
 		Registration registration = this.getRegistration(idString, response);
 		if (registration == null)
 			return;
 
-		PrintWriter writer = this.writeHeader(response);
+		request.setAttribute("registrationId", idString);
+		request.setAttribute("registration", registration);
 
-		writer.append("<h2>Registration #").append(idString).append(": ").append(registration.getSubject())
-				.append("</h2>\r\n");
-		writer.append("<i>Customer Name - ").append(registration.getUserName()).append("</i><br/><br/>\r\n");
-		writer.append(registration.getBody()).append("<br/><br/>\r\n");
+		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistration.jsp").forward(request, response);
 
-		if (registration.getNumberOfAttachments() > 0) {
-			writer.append("FileAttachments: ");
-			int i = 0;
-			for (FileAttachment attachment : registration.getAttachments()) {
-				if (i++ > 0)
-					writer.append(", ");
-				writer.append("<a href=\"charityRegistrationServlet?action=download&registrationId=").append(idString)
-						.append("&attachment=").append(attachment.getName()).append("\">").append(attachment.getName())
-						.append("</a>");
-			}
-			writer.append("<br/><br/>\r\n");
-		}
-
-		writer.append("<a href=\"charityRegistrationServlet\">Return to list registrations</a>\r\n");
-
-		this.writeFooter(writer);
+//		String idString = request.getParameter("registrationId");
+//		Registration registration = this.getRegistration(idString, response);
+//		if (registration == null)
+//			return;
+//
+//		PrintWriter writer = this.writeHeader(response);
+//
+//		writer.append("<h2>Registration #").append(idString).append(": ").append(registration.getSubject())
+//				.append("</h2>\r\n");
+//		writer.append("<i>Customer Name - ").append(registration.getUserName()).append("</i><br/><br/>\r\n");
+//		writer.append(registration.getBody()).append("<br/><br/>\r\n");
+//
+//		if (registration.getNumberOfAttachments() > 0) {
+//			writer.append("FileAttachments: ");
+//			int i = 0;
+//			for (FileAttachment attachment : registration.getAttachments()) {
+//				if (i++ > 0)
+//					writer.append(", ");
+//				writer.append("<a href=\"charityRegistrationServlet?action=download&registrationId=").append(idString)
+//						.append("&attachment=").append(attachment.getName()).append("\">").append(attachment.getName())
+//						.append("</a>");
+//			}
+//			writer.append("<br/><br/>\r\n");
+//		}
+//
+//		writer.append("<a href=\"charityRegistrationServlet\">Return to list registrations</a>\r\n");
+//
+//		this.writeFooter(writer);
 	}
 
 	private void downloadFileAttachment(HttpServletRequest request, HttpServletResponse response)
@@ -148,36 +162,43 @@ public class CharityRegistrationServlet extends HttpServlet {
 		stream.write(attachment.getContents());
 	}
 
-	private void listRegistrations(HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter writer = this.writeHeader(response);
+	private void listRegistrations(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		writer.append("<h2>Registrations</h2>\r\n");
-		writer.append("<a href=\"charityRegistrationServlet?action=create\">Register a Charity").append("</a><br/><br/>\r\n");
+		request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
 
-		if (this.charityRegistrationDatabase.size() == 0)
-			writer.append("<i>There are no registrations in the system.</i>\r\n");
-		else {
-			for (int id : this.charityRegistrationDatabase.keySet()) {
-				String idString = Integer.toString(id);
-				Registration registration = this.charityRegistrationDatabase.get(id);
-				writer.append("Registration #").append(idString)
-						.append(": <a href=\"charityRegistrationServlet?action=view&registrationId=").append(idString).append("\">")
-						.append(registration.getSubject()).append("</a> (user: ").append(registration.getUserName())
-						.append(")<br/>\r\n");
-			}
-		}
+		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrations.jsp").forward(request, response);
 
-		this.writeFooter(writer);
+//		PrintWriter writer = this.writeHeader(response);
+//
+//		writer.append("<h2>Registrations</h2>\r\n");
+//		writer.append("<a href=\"charityRegistrationServlet?action=create\">Register a Charity").append("</a><br/><br/>\r\n");
+//
+//		if (this.charityRegistrationDatabase.size() == 0)
+//			writer.append("<i>There are no registrations in the system.</i>\r\n");
+//		else {
+//			for (int id : this.charityRegistrationDatabase.keySet()) {
+//				String idString = Integer.toString(id);
+//				Registration registration = this.charityRegistrationDatabase.get(id);
+//				writer.append("Registration #").append(idString)
+//						.append(": <a href=\"charityRegistrationServlet?action=view&registrationId=").append(idString).append("\">")
+//						.append(registration.getSubject()).append("</a> (user: ").append(registration.getUserName())
+//						.append(")<br/>\r\n");
+//			}
+//		}
+//
+//		this.writeFooter(writer);
 	}
 
 	private void createRegistration(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Registration registration = new Registration();
 		registration.setUserName(request.getParameter("userName"));
-		registration.setSubject(request.getParameter("charityName"));
-		registration.setBody(request.getParameter("charityInfo"));
+		registration.setSubject(request.getParameter("charityInfo"));
+		
+		registration.setBody(request.getParameter("body"));
 
-		Part filePart = request.getPart("file1");
+		Part filePart = request.getPart("file");
 		if (filePart != null && filePart.getSize() > 0) {
 			FileAttachment attachment = this.processFileAttachment(filePart);
 			if (attachment != null)
@@ -231,20 +252,20 @@ public class CharityRegistrationServlet extends HttpServlet {
 		}
 	}
 
-	private PrintWriter writeHeader(HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		response.setCharacterEncoding("UTF-8");
-
-		PrintWriter writer = response.getWriter();
-		writer.append("<!DOCTYPE html>\r\n").append("<html>\r\n").append("    <head>\r\n")
-				.append("        <title>Charity Registration</title>\r\n").append("    </head>\r\n")
-				.append("    <charityInfo>\r\n");
-
-		return writer;
-	}
-
-	private void writeFooter(PrintWriter writer) {
-		writer.append("    </charityInfo>\r\n").append("</html>\r\n");
-	}
+//	private PrintWriter writeHeader(HttpServletResponse response) throws ServletException, IOException {
+//		response.setContentType("text/html");
+//		response.setCharacterEncoding("UTF-8");
+//
+//		PrintWriter writer = response.getWriter();
+//		writer.append("<!DOCTYPE html>\r\n").append("<html>\r\n").append("    <head>\r\n")
+//				.append("        <title>Charity Registration</title>\r\n").append("    </head>\r\n")
+//				.append("    <charityInfo>\r\n");
+//
+//		return writer;
+//	}
+//
+//	private void writeFooter(PrintWriter writer) {
+//		writer.append("    </charityInfo>\r\n").append("</html>\r\n");
+//	}
 
 }

@@ -21,7 +21,7 @@
                 {
                     if(i++ > 0)
                         out.print(", ");
-                    %><a href="<c:url value="/registrations">
+                    %><a href="<c:url value="charityRegistrationServlet">
                         <c:param name="action" value="download" />
                         <c:param name="registrationId" value="<%= registrationId %>" />
                         <c:param name="attachment" value="<%= a.getName() %>" />
@@ -30,6 +30,6 @@
                 %><br /><br /><%
             }
         %>
-        <a href="<c:url value="/registrations" />">Return to list Registrations</a>
+        <a href="<c:url value="/charityRegistrationServlet" />">Return to list Registrations</a>
     </body>
 </html>

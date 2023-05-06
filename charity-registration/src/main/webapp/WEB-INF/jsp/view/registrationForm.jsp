@@ -6,12 +6,12 @@
     </head>
     <body>
         <h2>Create a Registration</h2>
-        <form method="POST" action="registrations" enctype="multipart/form-data">
+        <form method="POST" action="charityRegistrationServlet" enctype="multipart/form-data">
             <input type="hidden" name="action" value="create"/>
             Your Name<br/>
-            <input type="text" name="customerName"><br/><br/>
+            <input type="text" name="userName"><br/><br/>
             Subject<br/>
-            <input type="text" name="subject"><br/><br/>
+            <input type="text" name="charityInfo"><br/><br/>
             Body<br/>
             <textarea name="body" rows="5" cols="30"></textarea><br/><br/>
             <b>Attachments</b><br/>
