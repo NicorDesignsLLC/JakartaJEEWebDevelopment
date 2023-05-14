@@ -5,31 +5,51 @@
 %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Customer Support</title>
-    </head>
-    <body>
-        <h2>Registration #<%= registrationId %>: <%= registration.getUserName() %></h2>
-        <i>Customer Name - <%= registration.getUserName() %></i><br /><br />
-        <%= registration.getBody() %><br /><br />
-        <%
-            if(registration.getNumberOfAttachments() > 0)
-            {
-                %>Attachments: <%
-                int i = 0;
-                for(FileAttachment a : registration.getAttachments())
-                {
-                    if(i++ > 0)
-                        out.print(", ");
-                    %><a href="<c:url value="charityRegistrationServlet">
-                        <c:param name="action" value="download" />
-                        <c:param name="registrationId" value="<%= registrationId %>" />
-                        <c:param name="attachment" value="<%= a.getName() %>" />
-                    </c:url>"><%= a.getName() %></a><%
-                }
-                %><br /><br /><%
-            }
-        %>
-        <a href="<c:url value="/charityRegistrationServlet" />">Return to list Registrations</a>
-    </body>
+<head>
+    <title>Customer Support</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Registration #<%= registrationId %>: <%= registration.getUserName() %></h2>
+    <div class="row">
+        <div class="col-xs-12">
+            <p><i>Customer Name - <%= registration.getUserName() %></i></p>
+            <p><%= registration.getBody() %></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <% if(registration.getNumberOfAttachments() > 0) { %>
+                <p>Attachments:</p>
+                <ul class="list-unstyled">
+                    <% int i = 0;
+                    for(FileAttachment a : registration.getAttachments()) {
+                        if(i++ > 0) { %>
+                            <li><a href="<c:url value="charityRegistrationServlet">
+                                    <c:param name="action" value="download" />
+                                    <c:param name="registrationId" value="<%= registrationId %>" />
+                                    <c:param name="attachment" value="<%= a.getName() %>" />
+                                </c:url>"><%= a.getName() %></a></li>
+                        <% }
+                    } %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="<c:url value="/charityRegistrationServlet" />">Return to list Registrations</a>
+        </div>
+    </div>
+</div>
+
+<script src="../js/bootstrap.min.js"></script>
+</body>
 </html>
+
