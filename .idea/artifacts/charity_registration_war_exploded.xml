@@ -1,0 +1,32 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="charity-registration:war exploded">
+    <output-path>$PROJECT_DIR$/charity-registration/target/charity-registration</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>charity-registration</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="charity-registration" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.glassfish.web:javax.servlet.jsp.jstl:1.2.5" />
+          <element id="library" level="project" name="Maven: xalan:xalan:2.7.2" />
+          <element id="library" level="project" name="Maven: xalan:serializer:2.7.2" />
+          <element id="library" level="project" name="Maven: xml-apis:xml-apis:1.3.04" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.19.0" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.19.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/charity-registration/target/charity-registration/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="charity-registration/web/Web" />
+    </root>
+  </artifact>
+</component>

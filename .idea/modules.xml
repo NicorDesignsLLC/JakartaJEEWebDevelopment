@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" filepath="$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/charity-registration/charity-registration.iml" filepath="$PROJECT_DIR$/charity-registration/charity-registration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jee8mariadbsql/jee8mariadbsql.iml" filepath="$PROJECT_DIR$/jee8mariadbsql/jee8mariadbsql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jee8webapp/jee8webapp.iml" filepath="$PROJECT_DIR$/jee8webapp/jee8webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sub-module/sub-module.iml" filepath="$PROJECT_DIR$/sub-module/sub-module.iml" />
+    </modules>
+  </component>
+</project>

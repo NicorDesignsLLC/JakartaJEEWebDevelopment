@@ -1,2 +1,2 @@
 <%@ page session="false" %>
-<c:redirect url="/employee" /> 
+<c:redirect url="/charityRegistrationServlet" /> 
