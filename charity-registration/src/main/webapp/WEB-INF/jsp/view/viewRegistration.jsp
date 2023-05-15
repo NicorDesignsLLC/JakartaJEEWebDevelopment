@@ -34,6 +34,7 @@
                             <li><a href="<c:url value="charityRegistrationServlet">
                                     <c:param name="action" value="download" />
                                     <c:param name="registrationId" value="<%= registrationId %>" />
+                                    <!-- TODO Get the Attachment submit and display working again -->
                                     <c:param name="attachment" value="<%= a.getName() %>" />
                                 </c:url>"><%= a.getName() %></a></li>
                         <% }

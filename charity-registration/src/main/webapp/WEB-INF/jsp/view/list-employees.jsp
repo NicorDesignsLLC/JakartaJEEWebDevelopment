@@ -79,6 +79,7 @@
                     </c:otherwise>
                 </c:choose>                        
             </form>
+            <!-- TODO Change this to submit to the Servlet -->
             <form action ="./WEB-INF/jsp/view/new-employee.jsp">            
                 <br></br>
                 <button type="submit" class="btn btn-primary  btn-md">New employee</button> 
