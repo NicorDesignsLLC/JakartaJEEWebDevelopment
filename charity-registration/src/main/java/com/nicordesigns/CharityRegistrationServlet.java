@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -183,6 +184,8 @@ public class CharityRegistrationServlet extends HttpServlet {
 				response.sendRedirect("charityRegistrationServlet");
 				return null;
 			}
+			Objects.requireNonNull(registration.getAttachments());
+			
 			return registration;
 		} catch (Exception e) {
 			response.sendRedirect("charityRegistrationServlet");

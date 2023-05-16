@@ -59,6 +59,10 @@
                     <td> 
                     (customer:	<%= registration.getUserName() %>)<br />
                     </td>
+                    <td> 
+                    (File Atttachment:	<%= registration.getAttachments() %>)<br />
+                    </td>
+                    
                     </tr>
                     <%
                 }
