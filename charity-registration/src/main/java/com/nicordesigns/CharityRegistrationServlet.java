@@ -3,6 +3,7 @@ package com.nicordesigns;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -133,6 +134,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 		registration.setSubject(request.getParameter("charityInfo"));
 		
 		registration.setBody(request.getParameter("body"));
+		registration.setDateCreated(Instant.now());
 
 		Part filePart = request.getPart("file");
 		if (filePart != null && filePart.getSize() > 0) {

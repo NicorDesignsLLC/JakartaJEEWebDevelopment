@@ -32,15 +32,6 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group text-right">
-          <label for="subject">Subject:</label>
-          <input type="text" name="subject" id="subject" class="form-control">
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group text-right">
           <label for="charityInfo">Charity Info:</label>
           <input type="text" name="charityInfo" class="form-control">
         </div>

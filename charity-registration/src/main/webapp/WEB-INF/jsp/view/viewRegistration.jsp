@@ -21,6 +21,8 @@
         <div class="col-xs-12">
             <p><i>Customer Name - <%= registration.getUserName() %></i></p>
             <p><%= registration.getBody() %></p>
+            <p><%= registration.getSubject() %></p>
+            <p><%= registration.getDateCreated() %></p>
         </div>
     </div>
     <div class="row">
