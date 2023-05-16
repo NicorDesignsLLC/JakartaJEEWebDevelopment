@@ -88,6 +88,10 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 		request.setAttribute("registrationId", idString);
 		request.setAttribute("registration", registration);
+		
+		if (!registration.getAttachments().isEmpty()) {
+			//Objects.requireNonNull(registration.getAttachment(idString));
+		}
 
 		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistration.jsp").forward(request, response);
 

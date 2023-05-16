@@ -1,9 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="false" import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration" %>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support</title>
+        <title>Charity Registration</title>
         <style>
             /* Add custom spacing between form elements */
             .form-group {
