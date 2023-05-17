@@ -1,6 +1,6 @@
 ## Using HTML and CSS with Bootstrap in our JSP's
 
-##### [JEE 8 HTML CSS Bootstrap Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/context-paramters-jee8-web-start)
+##### [JEE 8 HTML CSS Bootstrap Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jquery-bootstrap-start)
 
 ### 1. Go to : [https://getbootstrap.com/](https://getbootstrap.com/)
 
