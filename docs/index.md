@@ -30,5 +30,7 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 14. [Combining Java (C) and JSP(V) in our JEE 8 Web App MVC ](jee8jsjavacombo.md)
 
+15. [Using HTML and CSS with Bootstrap in our JSPs  ](jee8htmlcssbootstrap.md)
+
 
 		
