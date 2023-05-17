@@ -21,10 +21,21 @@
     <h2>Registration #<%= registrationId %>: <%= registration.getUserName() %></h2>
     <div class="row">
         <div class="col-xs-12">
-            <p><i>Customer Name - <%= registration.getUserName() %></i></p>
-            <p><%= registration.getBody() %></p>
-            <p><%= registration.getSubject() %></p>
-            <p><%= registration.getDateCreated() %></p>
+         <!-- TODO Add all Fields in the Create Form here -->
+            	 <table  class="table table-striped" border="1">
+                 <thead>
+                     <tr>
+                         <td><p><i>Customer Name - <%= registration.getUserName() %></i></p></td>
+                     </tr>
+                     <tr>
+                         <td><p><%= registration.getBody() %></p></td>
+                     </tr>
+                     <tr>    
+                         <td><p><%= registration.getSubject() %></p></td>
+                         <td><p><%= registration.getDateCreated() %></p></td>
+                     </tr>
+                 </thead>
+                 </table>
         </div>
     </div>
     <div class="row">
