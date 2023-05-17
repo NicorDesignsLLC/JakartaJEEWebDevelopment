@@ -14,11 +14,21 @@
 			
 ##### Update all the JSP page headers to include these Bootstrap files 
 	
-	http://localhost:8080/jee8webarchetype/contextParameters
+	<head>
+        <title>Charity Registration</title>
+        <style>
+            /* Add custom spacing between form elements */
+            .form-group {
+                margin-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <script src="../js/bootstrap.min.js"></script>
+    </head>
 
 	 
 Check in the end git branch of this slide show 
-##### [JEE 8 HTML CSS Bootstrap End Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/context-parameter-jee8-web-finish)
+##### [JEE 8 HTML CSS Bootstrap End Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jquery-bootstrap-end)
 
     
 
