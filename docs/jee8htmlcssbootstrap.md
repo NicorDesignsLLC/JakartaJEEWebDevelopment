@@ -26,6 +26,8 @@
         <script src="../js/bootstrap.min.js"></script>
     </head>
 
+##### Update the JSP pages with Bootstrap presentation elements and Style sheets 
+
 	 
 Check in the end git branch of this slide show 
 ##### [JEE 8 HTML CSS Bootstrap End Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jquery-bootstrap-end)
