@@ -1,9 +1,17 @@
-<%@ page session="false" import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration" %>
+<%@ page session="false" import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration, java.time.Instant, java.time.ZoneId, java.time.format.DateTimeFormatter" %>
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
     String registrationId = (String)request.getAttribute("registrationId");
     Registration registration = (Registration)request.getAttribute("registration");
+    final String PATTERN_FORMAT = "dd.MM.yyyy";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT)
+            .withZone(ZoneId.systemDefault());
+
+        String formattedInstantDate = formatter.format(registration.getDateCreated());
+
 %>
 <!DOCTYPE html>
 <html>
@@ -25,14 +33,14 @@
             	 <table  class="table table-striped" border="1">
                  <thead>
                      <tr>
-                         <td><p><i>Customer Name - <%= registration.getUserName() %></i></p></td>
+                         <td><i>Charity User Name - </i></td><td><%= registration.getUserName() %></td>
                      </tr>
                      <tr>
-                         <td><p><%= registration.getBody() %></p></td>
+                         <td><i>Charity Registration Body - </i></td><td><p><%= registration.getBody() %></p></td>
                      </tr>
                      <tr>    
-                         <td><p><%= registration.getSubject() %></p></td>
-                         <td><p><%= registration.getDateCreated() %></p></td>
+                         <td><i>Charity Registration Subject - </i></td><td><p><%= registration.getSubject() %></p></td>
+                         <td>Charity Registration Date</td><td><p><%= formattedInstantDate %></p></td>
                      </tr>
                  </thead>
                  </table>
