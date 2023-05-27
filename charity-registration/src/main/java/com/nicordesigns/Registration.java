@@ -14,7 +14,8 @@ public class Registration
     private String body;
     
     private Instant dateCreated;
-
+    
+    
     private Map<String, FileAttachment> fileAttachments = new LinkedHashMap<>();
 
     public String getUserName()
