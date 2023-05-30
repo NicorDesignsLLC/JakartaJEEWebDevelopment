@@ -5,7 +5,7 @@
 
 #### 1. Understanding Expression Language
 
-In order to properly separate the Front End Presentation Layer from the Back End Bussiness Layer it is strongly discouraged to use embedded Java code in JSPs. 
+In order to properly separate the Front End Presentation Layer from the Back End Business Layer it is strongly discouraged to use embedded Java code in JSPs. 
 For presentation layer logic such as iterating through a list we will use the Expression Language
 
 
