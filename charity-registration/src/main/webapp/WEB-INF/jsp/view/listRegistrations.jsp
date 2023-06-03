@@ -56,7 +56,33 @@ Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) r
 				<td><%=registration.getSubject()%></a></td>
 				<td>(customer: <%=registration.getUserName()%>)<br />
 				</td>
-				<td>(File Atttachment: <%=registration.getAttachments()%>)<br />
+				<td>
+			
+				<%
+				if (registration.getNumberOfAttachments() > 0) {
+				%>Attachments:
+				<%
+				int i = 0;
+				for (FileAttachment fileAttachment : registration.getAttachments()) {
+					if (i++ > 0)
+						out.print(", ");
+				%><a
+					href="<c:url value="/charityRegistrationServlet">
+                        <c:param name="action" value="download" />
+                        <c:param name="registrationId" value="<%=idString%>" />
+                        <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
+                    </c:url>"><%=fileAttachment.getName()%></a>
+				<%
+				}
+				%><br />
+				<br />
+				<%
+				}
+				%>
+				
+				
+				
+				<br />
 				</td>
 
 			</tr>
