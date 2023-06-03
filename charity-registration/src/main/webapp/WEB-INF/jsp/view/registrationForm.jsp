@@ -24,10 +24,9 @@
 				<!-- Using EL for registration.userName -->
 				<input type="text" name="userName" id="userName" class="form-control" value="${registration.userName}" required="true">
 				<label for="charityInfo">Charity Info:</label> 
-				<input type="text" name="charityInfo" class="form-control"> 
+				<input type="text" name="charityInfo" class="form-control" value="${registration.subject}"> 
 				<label for="body">Body:</label>
-				<textarea name="body" rows="5" class="form-control"></textarea>
-
+				<textarea name="body" rows="5" class="form-control" value="${registration.body}"></textarea>
 				<label for="file">Attachments:</label> 
 				<input type="file" name="file"> 
 				<br></br>
