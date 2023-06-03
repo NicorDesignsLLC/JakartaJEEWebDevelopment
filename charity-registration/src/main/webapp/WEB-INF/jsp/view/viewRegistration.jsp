@@ -1,3 +1,6 @@
+<%--@elvariable id="registration" type="com.nicordesigns.Registration"--%>
+<!-- Above comment is used to help out IDE's -->
+
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration, java.time.Instant, java.time.ZoneId, java.time.format.DateTimeFormatter"%>
 
