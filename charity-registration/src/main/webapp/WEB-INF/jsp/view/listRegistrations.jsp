@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration"%>
 <%

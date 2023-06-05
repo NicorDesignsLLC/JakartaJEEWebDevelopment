@@ -9,14 +9,11 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>pom-root-level</groupId>
 	<artifactId>charity-registration</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>charity-registration Maven Webapp</name>
 	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
