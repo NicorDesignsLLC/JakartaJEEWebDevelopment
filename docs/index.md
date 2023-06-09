@@ -32,7 +32,11 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 15. [Using HTML and CSS with Bootstrap in our JSPs  ](jee8htmlcssbootstrap.md)
 
-16. [Understanding Jakarta Expression Language 3.0](jee8expressionlanguage.md)
+16. [Understanding Jakarta Expression Language 3.0 - Part 1](jee8expressionlanguage1.md)
+
+17. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+
+18. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
 
 
 		

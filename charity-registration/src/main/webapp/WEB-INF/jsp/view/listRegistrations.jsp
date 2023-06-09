@@ -1,9 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration"%>
 <%
 @SuppressWarnings("unchecked")
 Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) request
 		.getAttribute("charityRegistrationDatabase");
+Registration registrationEL = (Registration) request.getAttribute("registration");
+
 %>
 <html>
 <head>
@@ -54,9 +57,37 @@ Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) r
                         <c:param name="registrationId" value="<%=idString%>" />
                     </c:url>"></td>
 				<td><%=registration.getSubject()%></a></td>
-				<td>(customer: <%=registration.getUserName()%>)<br />
+				<td>EL: ${registrationEL.subject}</td>
+				<td>(customer: <%=registration.getUserName()%>) <br />
 				</td>
-				<td>(File Atttachment: <%=registration.getAttachments()%>)<br />
+				<td>EL: ${registrationEL.userName}</td>
+				<td>
+			
+				<%
+				if (registration.getNumberOfAttachments() > 0) {
+				%>Attachments:
+				<%
+				int i = 0;
+				for (FileAttachment fileAttachment : registration.getAttachments()) {
+					if (i++ > 0)
+						out.print(", ");
+				%><a
+					href="<c:url value="/charityRegistrationServlet">
+                        <c:param name="action" value="download" />
+                        <c:param name="registrationId" value="<%=idString%>" />
+                        <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
+                    </c:url>"><%=fileAttachment.getName()%></a>EL: ${fileAttachment.name}
+				<%
+				}
+				%><br />
+				<br />
+				<%
+				}
+				%>
+				
+				
+				
+				<br />
 				</td>
 
 			</tr>
