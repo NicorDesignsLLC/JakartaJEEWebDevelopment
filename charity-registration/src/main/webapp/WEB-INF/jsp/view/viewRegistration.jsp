@@ -52,17 +52,9 @@ LocalDate localDate = LocalDate.ofInstant(instant, ZoneOffset.UTC);
 							<td>Charity Registration Date</td>
 							<td><p><%=formattedInstantDate%></p></td>
 							<td><p>EL:<!--TODO Function   ${formattedInstantDate}-->
-							<c:set var="now" value="<%= new java.util.Date()%>"/>
 							</p>
 							</td>
-							<td>
-							<fmt:formatDate type="time" value="${now}">${now}</fmt:formatDate>
-							</td>
-							<td>
-							<c:set var="localDate" value="<%= localDate%>"/>
-							<fmt:formatDate type="date" value="${localDate}" var="formattedDate" pattern="MM-dd-yyyy" >${localDate}</fmt:formatDate>
-							</p>
-							</td>
+							
 						</tr>
 					</thead>
 				</table>

@@ -23,6 +23,9 @@
 
 	<dependencies>
 		
+		<!-- This Stackoverflow Q&A explains the differences in EL javax vs jakarta JSTL between Tomcat 9 and Tomcat 10-->
+		<!--https://stackoverflow.com/questions/65703840/how-to-properly-configure-jakarta-ee-libraries-in-maven-pom-xml-for-tomcat--> 
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

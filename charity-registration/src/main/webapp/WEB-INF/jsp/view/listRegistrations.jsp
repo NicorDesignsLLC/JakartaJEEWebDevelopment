@@ -5,6 +5,8 @@
 @SuppressWarnings("unchecked")
 Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) request
 		.getAttribute("charityRegistrationDatabase");
+Registration registrationEL = (Registration) request.getAttribute("registration");
+
 %>
 <html>
 <head>
@@ -55,8 +57,10 @@ Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) r
                         <c:param name="registrationId" value="<%=idString%>" />
                     </c:url>"></td>
 				<td><%=registration.getSubject()%></a></td>
-				<td>(customer: <%=registration.getUserName()%>)<br />
+				<td>EL: ${registrationEL.subject}</td>
+				<td>(customer: <%=registration.getUserName()%>) <br />
 				</td>
+				<td>EL: ${registrationEL.userName}</td>
 				<td>
 			
 				<%
@@ -72,7 +76,7 @@ Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) r
                         <c:param name="action" value="download" />
                         <c:param name="registrationId" value="<%=idString%>" />
                         <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
-                    </c:url>"><%=fileAttachment.getName()%></a>
+                    </c:url>"><%=fileAttachment.getName()%></a>EL: ${fileAttachment.name}
 				<%
 				}
 				%><br />
