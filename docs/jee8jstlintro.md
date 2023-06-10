@@ -7,9 +7,15 @@
 ### 1. Working with Tags 
 
 [Jakarta 1.2 Tags Specification](https://jakarta.ee/specifications/tags/1.2/)  
-unfortunately there is not an official 1.2 specification available so we will be looking at the 2.0 specification : 
 
 [Jakarta 2.0 Specification Document](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html)
+
+[Oracle Taglibs Documentation](https://docs.oracle.com/cd/B10500_01/java.920/a96657/taglibs.htm)
+
+[Oracle JSTL Technologies](https://www.oracle.com/java/technologies/jstl.html)
+
+[Tomcat Standard Taglibs documentation](https://tomcat.apache.org/taglibs/standard/)
+
 
 JSP Tags are specified as Actions in the official Specification and each performs a specific action
 
@@ -24,12 +30,6 @@ We use the taglib directive at the top of our JSP to indicate that we will be us
 
 Note that this URL is not an actual working URL of the TLD but a type of naming convention that are used behind the scenes to locate the the correct TLD by the borwser and your IDE. The prefix also follows a convention rather than a configuration.
 
-[Oracle Taglibs Documentation](https://docs.oracle.com/cd/B10500_01/java.920/a96657/taglibs.htm)
-
-
-[Oracle JSTL Technologies](https://www.oracle.com/java/technologies/jstl.html)
-
-[Tomcat Standard Taglibs documentation](https://tomcat.apache.org/taglibs/standard/)
 
 The location of these TLD files are often a source of confusion and frustration as they can vary according to whatever JEE Compliant Web Server you use.  The order in which the JSP parser locates the TLD files are listed below:
 
