@@ -34,9 +34,11 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 16. [Understanding Jakarta Expression Language 3.0 - Part 1](jee8expressionlanguage1.md)
 
-17. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+17. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications](jee8jstl12.md)
 
-18. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
+18. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+
+19. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
 
 
 		
