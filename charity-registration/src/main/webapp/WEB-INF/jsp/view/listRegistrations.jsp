@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration"%>
 <%
@@ -6,7 +7,6 @@
 Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) request
 		.getAttribute("charityRegistrationDatabase");
 Registration registrationEL = (Registration) request.getAttribute("registration");
-
 %>
 <html>
 <head>
@@ -23,10 +23,7 @@ Registration registrationEL = (Registration) request.getAttribute("registration"
 <body>
 	<div class="container">
 		<h2>Registrations</h2>
-		<a
-			href="<c:url value="charityRegistrationServlet">
-            <c:param name="action" value="create" />
-        </c:url>">Create
+		<a href="<c:url value="charityRegistrationServlet"><c:param name="action" value="create" /></c:url>">Create
 			Registration</a><br />
 		<br />
 		<%
@@ -39,7 +36,7 @@ Registration registrationEL = (Registration) request.getAttribute("registration"
 		<table class="table table-striped" border="1">
 			<thead>
 				<tr>
-					<td>Registration #</td>
+					<td>Registration Number</td>
 					<td>Charity Subject</td>
 					<td>Charity Name</td>
 				</tr>
@@ -51,18 +48,14 @@ Registration registrationEL = (Registration) request.getAttribute("registration"
 			%>
 			<c:set var="classSucess" value="info" />
 			<tr class="${classSucess}">
-				<td>Registration #<%=idString%>: <a
+				<td>Number: <%=idString%>: <a
 					href="<c:url value="charityRegistrationServlet">
                         <c:param name="action" value="view" />
                         <c:param name="registrationId" value="<%=idString%>" />
                     </c:url>"></td>
-				<td><%=registration.getSubject()%></a></td>
-				<td>EL: ${registrationEL.subject}</td>
-				<td>(customer: <%=registration.getUserName()%>) <br />
-				</td>
-				<td>EL: ${registrationEL.userName}</td>
+				<td>${registrationEL.subject}</td>
+				<td>customer: ${registrationEL.userName}</td>
 				<td>
-			
 				<%
 				if (registration.getNumberOfAttachments() > 0) {
 				%>Attachments:

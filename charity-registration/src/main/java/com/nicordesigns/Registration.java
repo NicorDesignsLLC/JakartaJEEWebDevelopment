@@ -2,6 +2,7 @@ package com.nicordesigns;
 
 import java.time.Instant;
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ public class Registration
     private String body;
     
     private Instant dateCreated;
+    
+    private Date createdDate;
     
     
     private Map<String, FileAttachment> fileAttachments = new LinkedHashMap<>();
@@ -57,6 +60,7 @@ public class Registration
     
     {
         this.dateCreated = dateCreated;
+        this.createdDate = Date.from(dateCreated);
     }
 
     public FileAttachment getAttachment(String name)
@@ -78,4 +82,12 @@ public class Registration
     {
         return this.fileAttachments.size();
     }
+
+	public Date getCreatedDate() {
+		return Date.from(this.dateCreated);
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = Date.from(this.dateCreated);
+	}
 }
