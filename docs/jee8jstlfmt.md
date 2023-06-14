@@ -1,5 +1,8 @@
 # Formatting Tags
 
+##### [Jakarta Standard Tag Library Formatting Start Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jstl12-end)
+
+
 	<fmt:message>
 		
 [https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#fmtmessage](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#fmtmessage)
@@ -44,5 +47,9 @@ Explains and expands on how to use the optional bundle attribute that indicates 
 	<fmt:formatDate>
 
 [https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#fmtformatdate](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#fmtformatdate)
+
+
+##### [Jakarta Standard Tag Library Formatting Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jstl12-end)
+
 
 
