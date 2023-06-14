@@ -67,13 +67,14 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 				for (FileAttachment fileAttachment : registration.getAttachments()) {
 					if (i++ > 0)
 						out.print(", ");
+					 request.setAttribute("fileAttachment", fileAttachment);
 				%><a
 					href="<c:url value="/charityRegistrationServlet">
                         <c:param name="action" value="download" />
-                        <c:param name="registrationId" value="<%=registrationId%>" />
-                        <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
-                    </c:url>"><%=fileAttachment.getName()%></a>
-				<%
+                        <c:param name="registrationId" value="${registrationId}" />
+                        <c:param name="attachment" value="${fileAttachment.name}" />
+                    </c:url>">${fileAttachment.name}</a>
+              <%
 				}
 				%><br />
 				<br />

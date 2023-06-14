@@ -6,7 +6,6 @@
 @SuppressWarnings("unchecked")
 Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) request
 		.getAttribute("charityRegistrationDatabase");
-Registration registrationEL = (Registration) request.getAttribute("registration");
 %>
 <html>
 <head>
@@ -44,32 +43,35 @@ Registration registrationEL = (Registration) request.getAttribute("registration"
 			<%
 			for (int id : registrationDatabase.keySet()) {
 				String idString = Integer.toString(id);
-				Registration registration = registrationDatabase.get(id);
+				request.setAttribute("idString", idString);
+				Registration registrationDB = registrationDatabase.get(id);
+				request.setAttribute("registrationDB", registrationDB);
 			%>
-			<c:set var="classSucess" value="info" />
+			<c:set var="regRow" value="registration" />
 			<tr class="${classSucess}">
 				<td>Number: <%=idString%>: <a
 					href="<c:url value="charityRegistrationServlet">
                         <c:param name="action" value="view" />
-                        <c:param name="registrationId" value="<%=idString%>" />
+                        <c:param name="registrationId" value="${idString}" />
                     </c:url>"></td>
-				<td>${registrationEL.subject}</td>
-				<td>customer: ${registrationEL.userName}</td>
+				<td>${registrationDB.subject}<td>
+				<td>${registrationDB.userName}</td>
 				<td>
 				<%
-				if (registration.getNumberOfAttachments() > 0) {
+				if (registrationDB.getNumberOfAttachments() > 0) {
 				%>Attachments:
 				<%
 				int i = 0;
-				for (FileAttachment fileAttachment : registration.getAttachments()) {
+				for (FileAttachment fileAttachment : registrationDB.getAttachments()) {
 					if (i++ > 0)
 						out.print(", ");
+					request.setAttribute("fileAttachment", fileAttachment);
 				%><a
 					href="<c:url value="/charityRegistrationServlet">
                         <c:param name="action" value="download" />
-                        <c:param name="registrationId" value="<%=idString%>" />
-                        <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
-                    </c:url>"><%=fileAttachment.getName()%></a>EL: ${fileAttachment.name}
+                        <c:param name="registrationId" value="${idString}" />
+                        <c:param name="attachment" value="${fileAttachment.name}" />
+                    </c:url>">${fileAttachment.name}</a> 
 				<%
 				}
 				%><br />
