@@ -9,13 +9,6 @@
 <c:set var="registration" value="${requestScope.registration}" />
 <c:set var="PATTERN_FORMAT" value="dd.MM.yyyy" />
 
-<%
-String registrationId = (String) request.getAttribute("registrationId");
-Registration registration = (Registration) request.getAttribute("registration");
-final String PATTERN_FORMAT = "dd.MM.yyyy";
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT).withZone(ZoneId.systemDefault());
-String formattedInstantDate = formatter.format(registration.getDateCreated());
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,8 +41,7 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 							<td>${registration.userName}</td>
 							<td>${registration.body}</td>
 							<td>${registration.subject}</td>
-							<td><%=formattedInstantDate%><br>
-								${registration.dateCreated}<br> ${registration.createdDate}
+							<td>
 								<fmt:formatDate type="time" value="${registration.createdDate}" /><br>
 								<fmt:formatDate value="${registration.createdDate}"
 									pattern="${PATTERN_FORMAT}" /></td>
@@ -60,28 +52,25 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 			</div>
 		</div>
 		<div class="row">
+
 			<div class="col-xs-12">
-				<%
-				if (registration.getNumberOfAttachments() > 0) {
-				%>Attachments:
-				<%
-				int i = 0;
-				for (FileAttachment fileAttachment : registration.getAttachments()) {
-					if (i++ > 0)
-						out.print(", ");
-					request.setAttribute("fileAttachment", fileAttachment);
-				%><a
-					href="<c:url value="/charityRegistrationServlet">
-                        <c:param name="action" value="download" />
-                        <c:param name="registrationId" value="${registrationId}" />
-                        <c:param name="attachment" value="${fileAttachment.name}" />
-                    </c:url>">${fileAttachment.name}</a>
-				<%
-				} // end for loop
-				%><br /> <br />
-				<%
-				} // end if statement
-				%>
+				<c:if test="${registration.numberOfAttachments > 0}">
+		Attachments:
+		<c:forEach var="fileAttachment" items="${registration.attachments}"
+						varStatus="status">
+						<c:set var="attachmentName" value="${fileAttachment.name}" />
+						<c:url value="/charityRegistrationServlet" var="fileDownloadURL">
+							<c:param name="action" value="download" />
+							<c:param name="registrationId" value="${registrationId}" />
+							<c:param name="attachment" value="${attachmentName}" />
+						</c:url>
+						<a href="<c:out value="${fileDownloadURL}" />">${attachmentName}</a>
+
+						<c:if test="${not status.last}">, </c:if>
+		</c:forEach>
+					<br />
+					<br />
+				</c:if>
 			</div>
 		</div>
 		<div class="row">
