@@ -128,7 +128,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 		request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrations.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrationsJSTL.jsp").forward(request, response);
 
 	}
 

@@ -1,9 +1,14 @@
 <%--@elvariable id="registration" type="com.nicordesigns.Registration"--%>
 <!-- Above comment is used to help out IDE's -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration, java.time.Instant, java.time.LocalDate, java.time.ZoneOffset, java.time.ZoneId , java.time.format.DateTimeFormatter, java.util.Date"%>
+
+<c:set var="registrationId" value="${requestScope.registrationId}" />
+<c:set var="registration" value="${requestScope.registration}" />
+<c:set var="PATTERN_FORMAT" value="dd.MM.yyyy" />
+
 <%
 String registrationId = (String) request.getAttribute("registrationId");
 Registration registration = (Registration) request.getAttribute("registration");
@@ -25,14 +30,14 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 <body>
 	<div class="container">
 		<h2>
-			<b>Registration # ${registrationId}
-			User Name: ${registration.userName}</b>
+			<b>Registration # ${registrationId} User Name:
+				${registration.userName}</b>
 		</h2>
 		<div class="row">
 			<div class="col-xs-12">
 				<table class="table table-striped" border="1">
 					<thead>
-					    
+
 						<tr>
 							<td><i>Charity User Name</i></td>
 							<td><i>Charity Registration Body</i></td>
@@ -44,15 +49,12 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 							<td>${registration.body}</td>
 							<td>${registration.subject}</td>
 							<td><%=formattedInstantDate%><br>
-							${registration.dateCreated}<br>
-							${registration.createdDate}
-							<fmt:formatDate type="time" value="${registration.createdDate}"/><br>
-							<fmt:formatDate value="${registration.createdDate}" pattern="dd.MM.yyyy"/>
-							
-							
-							</td>
+								${registration.dateCreated}<br> ${registration.createdDate}
+								<fmt:formatDate type="time" value="${registration.createdDate}" /><br>
+								<fmt:formatDate value="${registration.createdDate}"
+									pattern="${PATTERN_FORMAT}" /></td>
 						</tr>
-						
+
 					</thead>
 				</table>
 			</div>
@@ -67,19 +69,18 @@ String formattedInstantDate = formatter.format(registration.getDateCreated());
 				for (FileAttachment fileAttachment : registration.getAttachments()) {
 					if (i++ > 0)
 						out.print(", ");
-					 request.setAttribute("fileAttachment", fileAttachment);
+					request.setAttribute("fileAttachment", fileAttachment);
 				%><a
 					href="<c:url value="/charityRegistrationServlet">
                         <c:param name="action" value="download" />
                         <c:param name="registrationId" value="${registrationId}" />
                         <c:param name="attachment" value="${fileAttachment.name}" />
                     </c:url>">${fileAttachment.name}</a>
-              <%
-				}
-				%><br />
-				<br />
 				<%
-				}
+				} // end for loop
+				%><br /> <br />
+				<%
+				} // end if statement
 				%>
 			</div>
 		</div>
