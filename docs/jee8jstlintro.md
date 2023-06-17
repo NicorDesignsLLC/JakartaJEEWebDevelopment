@@ -28,7 +28,7 @@ We use the taglib directive at the top of our JSP to indicate that we will be us
 
 		<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-Note that this URL is not an actual working URL of the TLD but a type of naming convention that are used behind the scenes to locate the the correct TLD by the borwser and your IDE. The prefix also follows a convention rather than a configuration.
+Note that this URL is not an actual working URL of the TLD but a type of naming convention that are used behind the scenes to locate the the correct TLD by the browser and your IDE. The prefix also follows a convention rather than a configuration.
 
 
 The location of these TLD files are often a source of confusion and frustration as they can vary according to whatever JEE Compliant Web Server you use.  The order in which the JSP parser locates the TLD files are listed below:

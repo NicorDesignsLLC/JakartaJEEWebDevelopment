@@ -42,43 +42,5 @@ same as forEach but used for delimited Strings and not a collection of Objects
 [<c:remove> tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#cremove)
 
 #### Putting Core Library Tags to Use 
-### Our Core Library Examples
-Charity Address book - we start of with generating a project using the JEE 8 Maven Web Application Archetype and all the infrastructure and dependencies that we have set up in our charity-registration web application :
 
-[https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book)
-
-Our index.jsp
-
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/index.jsp](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/index.jsp)
-
-
-Our base.jspf
-
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/jsp/base.jspf](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/jsp/base.jspf)
-
-We use the Charity Address POJO to list out the Address Book
-
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/java/com/nicordesigns/Address.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/java/com/nicordesigns/Address.java)
-
-
-The ListServlet
-
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/java/com/nicordesigns/ListServlet.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/java/com/nicordesigns/ListServlet.java)
-
-creates an in memory database of Charity Addresses
-
-and the list.jsp
-
-use the Core Tag Library to list out the Address Book
-
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/jsp/view/list.jsp](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/jsp/view/list.jsp)
-
-we will compile and run our app and have a look at
-
-[http://localhost:8080/charity-address-book/list](http://localhost:8080/charity-address-book/list)
-
-and
-
-[http://localhost:8080/charity-address-book/list?empty](http://localhost:8080/charity-address-book/list?empty)
-
-
+##### [Jakarta Standard Tag Library Core Finish Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jstl12-core-end)
