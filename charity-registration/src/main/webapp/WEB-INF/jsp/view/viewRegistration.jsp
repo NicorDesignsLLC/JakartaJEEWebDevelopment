@@ -69,7 +69,6 @@
 						<c:if test="${not status.last}">, </c:if>
 		</c:forEach>
 					<br />
-					<br />
 				</c:if>
 			</div>
 		</div>
