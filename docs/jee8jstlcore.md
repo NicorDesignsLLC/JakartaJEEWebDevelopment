@@ -2,7 +2,7 @@
 
 The Core library contains most of the elements we will use te replace embedded Java code in our JSPs with logic such as iteration loops and conditional statements.
 
-The basic core library taglib directive:
+The basic core library JSTL taglib directive :
 
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
