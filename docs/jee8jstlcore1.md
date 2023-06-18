@@ -6,7 +6,6 @@ The basic core library JSTL taglib directive :
 
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 # [General Purpose Actions Core Tag Library](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#general-purpose-actions-core-tag-library)
 
 	
@@ -14,7 +13,7 @@ The basic core library JSTL taglib directive :
 
 [`<c:url>` tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#c:url)
 
-Add a param name value example here to demonstrate this and the context relative URL paths, also replace all href tags with this action in a JSP web app for constincy and security reasons.
+Add a param name value example here to demonstrate this and the context relative URL paths, also replace all href tags with this action in a JSP web app for consistincy and security reasons.
 
 [ `<c:if>` tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#cif)
 
