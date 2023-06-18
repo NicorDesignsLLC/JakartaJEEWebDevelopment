@@ -10,9 +10,9 @@ The basic core library JSTL taglib directive :
 # [General Purpose Actions Core Tag Library](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#general-purpose-actions-core-tag-library)
 
 		For Each of these have a code sample ready that matches the Charity Database Example
-[`<c:out>` tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#c:out)
+`\[<c:out> tag\](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#c:out)`
 
-[ `<c:url>` tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#c:url)
+`[ <c:url> tag](https://jakarta.ee/specifications/tags/2.0/jakarta-tags-spec-2.0.html#c:url)`
 
 Add a param name value example here to demonstrate this and the context relative URL paths, also replace all href tags with this action in a JSP web app for constincy and security reasons.
 
