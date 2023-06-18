@@ -5,7 +5,7 @@
 
 ##### 2. [Using the Formatting Tag Library](jee8jstlfmt.md) 
 
-##### 3. [Using the Core Tag Library](jee8jstlcore.md)
+##### 3. [Using the Core Tag Library](jee8jstlcore1.md)
 
 
     
