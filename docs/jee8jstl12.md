@@ -8,7 +8,7 @@ The following resources are available to learn more about JSTL 1.2:
 
 2. [Using the Formatting Tag Library](jee8jstlfmt.md): The Formatting Tag Library provides tags for formatting and manipulating data, such as numbers, dates, and strings. This resource explores the different formatting options available in JSTL and demonstrates how to use the formatting tags effectively.
 
-##### 3. [Using the Core Tag Library](jee8jstlcore1.md)
+3. [Using the Core Tag Library](jee8jstlcore1.md)
 
 By leveraging JSTL 1.2 and its tag libraries, developers can enhance the functionality and readability of their JSP pages while reducing code complexity. These resources offer valuable insights into using JSTL effectively and efficiently in JSP development.
 
