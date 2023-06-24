@@ -36,7 +36,7 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 17. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications - Part 1](jee8jstl12.md)
 
-18. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 1](jee8sessions.md)
+18. [A short overview of Jakarta Server Faces](jee8jsf12.md)
 
 18. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 2](jee8sessionscontinued.md)
 
