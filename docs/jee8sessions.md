@@ -1,4 +1,4 @@
-### Maintaining State Using Sessions in our JEE 8 Web App Module
+### Maintaining State Using Sessions in our JEE 8 Web App Module - Part 1
 
 Use these (but for JEE8) to update these code examples:
 
