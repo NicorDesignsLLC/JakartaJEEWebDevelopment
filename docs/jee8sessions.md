@@ -1,17 +1,17 @@
-#### Maintaining State Using Sessions Part 1
+### Maintaining State Using Sessions Part 1
 
-#### 1. Why sessions are necessary 
+### 1. Why sessions are necessary 
 
-[Slide 1](https://docs.google.com/presentation/d/132vh08RQrLJzmMjAGCOXUawpuQcdTPzqfOEiKb92eKY/edit?pli=1#slide=id.g11856de3b86_0_35)
+#####[Slide 1]
 
 - HTTP is a stateless protocol, and HTTP sessions provide a way to track users, such as an Amazon shopping cart.
 - HTTP sessions are used to maintain state, such as the items in a shopping cart.
 - HTTP sessions are a way to remember users, for example, their Amazon user name.
 - HTTP sessions are used to manage workflow, as demonstrated in our example of registering a charity in an online database.
 
-#### 2. Working with cookies and URL parameters 
+### 2. Working with cookies and URL parameters 
 
-[Slide 2](https://docs.google.com/presentation/d/132vh08RQrLJzmMjAGCOXUawpuQcdTPzqfOEiKb92eKY/edit?pli=1#slide=id.g118723741ed_0_5)
+#####[Slide 2]
 
 - A session is a data object maintained by the server or web application, containing user-related information.
 - To enable the browser to "track" the session, the server generates a SessionID string that is sent back to the browser on every request.
@@ -39,14 +39,14 @@ HttpSession "1" --> "*" Enumeration : returns
 - HTTP sessions are a way to remember users, such as their Reddit user name.
 - HTTP sessions are used to manage workflow, as demonstrated in our example of registering a charity in an online database.
 
-[Slide 3](https://docs.google.com/presentation/d/132vh08RQrLJzmMjAGCOXUawpuQcdTPzqfOEiKb92eKY/edit?pli=1#slide=id.g11dafb0213e_0_0) 
+#####[Slide 3]
 
 1. HTTP 1.1 defines session cookies [HTTP Cookie](https://en.wikipedia.org/wiki/HTTP_cookie), which can be sent from the web server to the browser and stored locally by the browser to be sent back. This is how the JSESSIONID will be "persisted" on the client browser side during a session.
 2. SessionID is passed in the URL query string from the server to the client-side web browser after a session has been established on the web server. This process is called URL rewriting and can be used when cookies have been disabled on the client user browser. The JEE8 platform includes the API tools to handle sessions.
 3. Security is a major concern when using sessions. [OWASP Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/06-Session_Management_Testing/01-Testing_for_Session_Management_Schema) provides useful information on session management testing, including session hijacking attacks.
 4. The best way to secure your session in Tomcat 9 is with SSL. [SSL/TLS Configuration How-To](https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html) offers guidance on configuring SSL.
 
-#### 3. How to store data in a session 
+### 3. How to store data in a session 
 
 This is where we start adding session data in our charity-registration web application example.
 
