@@ -85,7 +85,7 @@ HttpSession session = request.getSession();
 session.setMaxInactiveInterval(10 * 60);
 ```
 
-We will be using the `charity-session` module to demonstrate this.
+We will be using the `charity-registration` module with the Session Servlet to demonstrate this.
 
 ```xml
 <session-config>
