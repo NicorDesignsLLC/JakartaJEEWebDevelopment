@@ -12,7 +12,8 @@
             @SuppressWarnings("unchecked")
             Map<Integer, String> categories =
                     (Map<Integer, String>)request.getAttribute("categories");
-            @SuppressWarnings("unchecked")
+            
+        	@SuppressWarnings("unchecked")
             Map<Integer, Integer> categoryHolder =
                     (Map<Integer, Integer>)session.getAttribute("categoryHolder");
 
