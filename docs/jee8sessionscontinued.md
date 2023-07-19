@@ -7,10 +7,10 @@ Use these (but for JEE8) to update these code examples:
 We will now add a Session Activity Example in order to learn more about Session Management. It has the same index.jsp and base.jspf file as our previous example
 but implements a different re-direct
 
-##### [More Maintaining State Using Sessions Start Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-more-session-management-start)
+##### [Maintaining State Using Sessions Part 2 Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-more-session-management-start)
 
 #### 1. Storing more Complex data in Session (Slide 1)
-##### You can store any class object in the Session however to satisfy requirements for clustering your we servers and deploying to cloud platforms the class needs to implement Serializable 
+##### You can store any class object in the Session however to satisfy requirements for clustering your web servers and deploying to cloud platforms the class needs to implement Serializable. 
 
 ###### We use the PageVisit Class to store our session
 
@@ -29,8 +29,8 @@ but implements a different re-direct
 
 
 	@WebServlet(
-        name = "storeServlet",
-        urlPatterns = "/do/*" //Answers to any request starting with /do/
+        name = "activitySessionServlet",
+        urlPatterns = "/activitySession"
 	)
 	public class ActivityServlet extends HttpServlet
 	{
