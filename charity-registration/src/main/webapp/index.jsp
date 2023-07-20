@@ -2,4 +2,5 @@
 <%@ page session="false" %>
 <!--  >c:redirect url="/charityRegistrationServlet" / -->
 <!--  >c:redirect url="/charitySession" /--> 
-<c:redirect url="/activitySession" /> 
+<!--  >c:redirect url="/activitySession" /-->
+<c:redirect url="/login" />  
