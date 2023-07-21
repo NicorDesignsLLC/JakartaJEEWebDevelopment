@@ -16,14 +16,14 @@ but implements a different re-direct
 
 	public class PageVisit implements Serializable
 	{
-	  	  private long enteredTimestamp; //Allow for null value
-	
-	     private Long leftTimestamp;
-	
-	     private String request;
-	
-	     private InetAddress ipAddress;
-	 }	
+      private long enteredTimestamp; //Allow for null value
+
+     private Long leftTimestamp;
+
+     private String request;
+
+     private InetAddress ipAddress;
+ }	
 
 ###### We use the ActivityServlet Class to update our session
 
@@ -32,52 +32,41 @@ but implements a different re-direct
         name = "activitySessionServlet",
         urlPatterns = "/activitySession"
 	)
-	public class ActivityServlet extends HttpServlet
-	{
-    
-		@Override
+	public class ActivityServlet extends HttpServlet {
+	    private static final long serialVersionUID = -6775967155118931064L;
+	
+	    @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	            throws ServletException, IOException
-	    {
+	            throws ServletException, IOException {
 	        this.recordSessionActivity(request);
 	
 	        this.viewSessionActivity(request, response);
 	    }
 	
-	    private void recordSessionActivity(HttpServletRequest request)
-	    {
-	        //Retrieve the session
+	    private void recordSessionActivity(HttpServletRequest request) {
 	        HttpSession session = request.getSession();
 	
-			 //Creates Activity Vector if it does not exist	
-	        if(session.getAttribute("activity") == null)
-	            session.setAttribute("activity", new Vector<PageVisit>());
-	        
-	        //Replace with https://www.baeldung.com/java-copy-on-write-arraylist
-	        //Updates the lefttimestamp of the last visit
-	        @SuppressWarnings("unchecked")
-	        Vector<PageVisit> visits =
-	                (Vector<PageVisit>)session.getAttribute("activity");
+	        if (session.getAttribute("activity") == null)
+	            session.setAttribute("activity", new ArrayList<PageVisit>());
 	
-	        if(!visits.isEmpty())
-	        {
-	            PageVisit last = visits.lastElement();
+	        @SuppressWarnings("unchecked")
+	        List<PageVisit> visits =
+	                (List<PageVisit>) session.getAttribute("activity");
+	
+	        if (!visits.isEmpty()) {
+	            PageVisit last = visits.get(visits.size() - 1);
 	            last.setLeftTimestamp(System.currentTimeMillis());
 	        }
 	
-	        //Adds more information to the current Vector
 	        PageVisit now = new PageVisit();
 	        now.setEnteredTimestamp(System.currentTimeMillis());
-	        if(request.getQueryString() == null)
+	        if (request.getQueryString() == null)
 	            now.setRequest(request.getRequestURL().toString());
 	        else
-	            now.setRequest(request.getRequestURL()+"?"+request.getQueryString());
-	        try
-	        {
+	            now.setRequest(request.getRequestURL() + "?" + request.getQueryString());
+	        try {
 	            now.setIpAddress(InetAddress.getByName(request.getRemoteAddr()));
-	        }
-	        catch (UnknownHostException e)
-	        {
+	        } catch (UnknownHostException e) {
 	            e.printStackTrace();
 	        }
 	        visits.add(now);
@@ -85,14 +74,12 @@ but implements a different re-direct
 	
 	    private void viewSessionActivity(HttpServletRequest request,
 	                                     HttpServletResponse response)
-	            throws ServletException, IOException
-	    {
-	    	 //forwards to a JSP	
+	            throws ServletException, IOException {
 	        request.getRequestDispatcher("/WEB-INF/jsp/view/viewSessionActivity.jsp")
-	               .forward(request, response);
+	                .forward(request, response);
 	    }
 	}
-			
+		
 ###### We use the viewSessionActivity.jsp to display our session
 
 	<%@ page import="java.util.Vector, com.nicordesigns.PageVisit, java.util.Date" %>
@@ -147,35 +134,5 @@ but implements a different re-direct
 	
 ##### 2. Compiling, testing and debugging our session-activity web application
 
-Add different paths and query parameters to the URL replace /home but leave do
-
-In a cluster of Tomcat 9 web servers, the "sticky session" approach is used to maintain session affinity, meaning that once a user's session is assigned to a specific Tomcat server, all subsequent requests from that user will be directed to the same server. This is achieved by ensuring that the session ID is stored in the user's browser, and the load balancer routes subsequent requests based on this session ID.
-
-Let's illustrate this with a brief example:
-
-Assume we have two Tomcat servers, Server A and Server B, and a load balancer distributing incoming requests between the two servers.
-
-Step 1: User's First Request
-- User sends a request to the load balancer.
-- The load balancer routes the request to Server A.
-- Server A generates a unique session ID (e.g., "ABC123") for this user and stores it in the user's browser as a cookie.
-- Server A processes the user's request and sends back the response.
-
-Step 2: User's Subsequent Requests
-- User sends another request to the load balancer.
-- The load balancer reads the session ID "ABC123" from the user's browser cookie.
-- The load balancer uses the session ID to determine that the user's session is associated with Server A.
-- The load balancer routes the request to Server A (the same server as before).
-- Server A retrieves the user's session data based on the session ID and processes the request.
-- This ensures that all subsequent requests from the same user are directed to Server A as long as the session is active.
-
-Step 3: User's Session Expiry
-- If the user's session expires (e.g., due to inactivity or a specific timeout), the session data is removed from Server A.
-- When the user sends a new request, the load balancer will choose either Server A or Server B, and the process starts over with a new session ID being generated.
-
-In this way, the "sticky session" approach ensures that the user's session remains on a single server, providing session continuity and preventing issues that might arise when session data is split across multiple servers in the cluster.
-
-Note: The term "sticky session" is commonly used, but it's worth noting that it can also be referred to as "session affinity" or "session persistence."
-
-
+We will demonstrate that different browsers each get assigned a different session id and associated session object by running our sample session object.
 
