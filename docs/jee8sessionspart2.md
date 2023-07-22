@@ -1,15 +1,14 @@
 ### Maintaining State Using Sessions in our JEE 8 Web App Module
 
-Use these (but for JEE8) to update these code examples:
-
 [Jakarta Servlet Specification - Sessions](https://jakarta.ee/specifications/servlet/5.0/jakarta-servlet-spec-5.0.html#sessions)
 
-We will now add a Session Activity Example in order to learn more about Session Management. It has the same index.jsp and base.jspf file as our previous example
-but implements a different re-direct
+We will now add a Session Activity Example in order to learn more about Session Management.
+ 
+It has the same index.jsp and base.jspf file as our previous example but implements a different re-direct
 
 ##### [Maintaining State Using Sessions Part 2 Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-more-session-management-start)
 
-#### 1. Storing more Complex data in Session (Slide 1)
+#### 1. Storing more Complex data in Session
 ##### You can store any class object in the Session however to satisfy requirements for clustering your web servers and deploying to cloud platforms the class needs to implement Serializable. 
 
 ###### We use the PageVisit Class to store our session
