@@ -6,6 +6,11 @@
 	id="WebApp_ID" version="4.0">
 
 	<display-name>Charity Registration Web Application</display-name>
+	
+	<context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>CharityAddressBook-messages</param-value>
+    </context-param>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

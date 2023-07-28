@@ -9,7 +9,7 @@ Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) r
 %>
 <html>
 <head>
-<title>Customer Support</title>
+<title>Charity Registration</title>
 <style>
 /* Add custom spacing between form elements */
 .form-group {
