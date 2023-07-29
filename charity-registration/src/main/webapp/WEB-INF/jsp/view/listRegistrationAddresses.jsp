@@ -1,4 +1,4 @@
-<!-- %@elvariable id="addresses" type="java.util.Set<com.nicordesigns.Address>"% -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -19,7 +19,9 @@
                     <b>
                         <c:out value="${charity.charityName}, ${charity.charityId}" />
                     </b><br />
-                    <c:out value="${charity.address}" /><br />
+                    <a href="<c:out value="${charity.webAddress}" />">
+                        <c:out value="${charity.webAddress}" />
+                    </a><br />
                     <c:out value="${charity.phoneNumber}" /><br />
                     <c:if test="${charity.registrationday != null}">
                         <fmt:message key="label.registrationday" />:
@@ -27,7 +29,7 @@
                     	<br />
                     </c:if>
                     <fmt:message key="label.creationDate" />:
-                    <fmt:parseDate  value="${charity.dateCreated}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" />
+                    <fmt:parseDate value="${charity.dateCreated}" type="date" pattern="yyyy-MM-dd" var="parsedDate" />
 					<fmt:formatDate value="${parsedDate}" type="date" pattern="dd.MM.yyyy" var="stdDatum" />	    
                     ${stdDatum}<br /><br />
                 </c:forEach>

@@ -48,25 +48,23 @@ Explains and expands on how to use the optional bundle attribute that indicates 
 
 #### Putting Internationalization  Library Tags to Use 
 ### Our FMT Library Examples
-Charity Address book - we expand on the Charity Address Book Sample that we introduced in our previous Core Tag Library Examples:
+Charity Address book - we expand on the Charity Registration Example that where we introduced Core Tag Library examples:
 
-[https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book)
-
-the we expand on our web.xml by adding the following context initialization parameter
+first we expand on our web.xml by adding the following context initialization parameter
 
 	<context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>CharityAddressBook-messages</param-value>
     </context-param>
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/web.xml](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/webapp/WEB-INF/web.xml)
+
+[https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/web.xml](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/web.xml)
 
 
 this helps to establish a resources bundle that will be used to store all the localized language messages    
 
 
-
-The container (Tomcat) in our case looks for the resource bundle anywhere on our Java Class Path of our web application
+The container (Tomcat 9) in our case looks for the resource bundle anywhere on our Java Class Path of our web application
 with the following name:
 
 	CharityAddressBook-messages_[language]_[region].properties
@@ -75,44 +73,40 @@ if it does not find that it looks for
 	
 	CharityAddressBook-messages_[language].properties
 	
-and finally if that is not found it switches to a fall back locale US English in my case 
+and finally if that is not found it switches to a fall back locale US English in my case  
  		
-
-[CharityAddressBook-messages_en_US.properties](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-jstl-finish/charity-address-book/src/main/resources/CharityAddressBook-messages_en_US.properties)
-
 
 In our case we will follow the option of Maven convention over configuration and place our resource bundle file
 in the src/main/resources directory
 
+[CharityAddressBook-messages_en_US.properties](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/resources/CharityAddressBook-messages_en_US.properties)
 
-[https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book/src/main/resources](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-finish/charity-address-book/src/main/resources)
 
 these files should then be copied to the class path locations during our Maven Build
 
-We change the ListServlet to account for a new language option as follows:
+We add the CharityRegistrationAddressListServlet to use the new language option as follows:
 
-[https://github.com/NicorDesigns/javawebdevcourse/commit/985eaae9ff3b466dc29ae2b5d69fb6c5a38ab686#diff-aa4158958031193c4f98f7459da1bfecb75124d211094361d785752a50cb545d](https://github.com/NicorDesigns/javawebdevcourse/commit/985eaae9ff3b466dc29ae2b5d69fb6c5a38ab686#diff-aa4158958031193c4f98f7459da1bfecb75124d211094361d785752a50cb545d)
-
-
-Then we update base.jspf with the new i8n taglib directive
-
-[https://github.com/NicorDesigns/javawebdevcourse/compare/master...jee8web-jstl-finish#diff-06cce8aedd0b0e920b201bec8be6d2cf86721b68d7996bbe56c34d02103b0d6b](https://github.com/NicorDesigns/javawebdevcourse/compare/master...jee8web-jstl-finish#diff-06cce8aedd0b0e920b201bec8be6d2cf86721b68d7996bbe56c34d02103b0d6b)
+[https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/java/com/nicordesigns/CharityRegistrationAddressListServlet.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/java/com/nicordesigns/CharityRegistrationAddressListServlet.java)
 
 
-and we update the list.jsp to enable internationalization and formatting of the dates
+Then we update the index.jsp with a new re-direct and the base.jspf with the new i8n taglib directive
 
-[https://github.com/NicorDesigns/javawebdevcourse/compare/master...jee8web-jstl-finish#diff-12550320c88c0c356aacf0b0b5bf0ae4879b12bbb9f5bec29f439c0922833510](https://github.com/NicorDesigns/javawebdevcourse/compare/master...jee8web-jstl-finish#diff-12550320c88c0c356aacf0b0b5bf0ae4879b12bbb9f5bec29f439c0922833510)
+[https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/jsp/base.jspf](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/jsp/base.jspf)
+
+and we add the listRegistrationAddresses.jsp for internationalization of text and formatting of the dates
+
+[https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/jsp/view/listRegistrationAddresses.jsp](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-jstl-part2/charity-registration/src/main/webapp/WEB-INF/jsp/view/listRegistrationAddresses.jsp)
 
 
-we will compile and run our app and have a look at
+we will compile and run our webapp and have a look at it:
 
-[http://localhost:8080/charity-address-book/list](http://localhost:8080/charity-address-book/list)
+[http://localhost:8080/charity-registration/charityRegistrationAddressListServlet](http://localhost:8080/charity-registration/charityRegistrationAddressListServlet)
 
 and
 
-[http://localhost:8080/charity-address-book/list?language=afrikaans](http://localhost:8080/charity-address-book/list?language=afrikaans)
+[http://localhost:8080/charity-registration/charityRegistrationAddressListServlet?language=afrikaans](http://localhost:8080/charity-registration/charityRegistrationAddressListServlet?language=afrikaans)
 
-[http://localhost:8080/charity-address-book/list?language=afrikaans&empty](http://localhost:8080/charity-address-book/list?language=afrikaans&empty)
+[http://localhost:8080/charity-registration/charityRegistrationAddressListServlet?language=afrikaans&empty](http://localhost:8080/charity-registration/charityRegistrationAddressListServlet?language=afrikaans&empty)
 
 
 
