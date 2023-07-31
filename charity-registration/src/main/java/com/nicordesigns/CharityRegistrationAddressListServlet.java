@@ -42,10 +42,18 @@ public class CharityRegistrationAddressListServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	// Register resource mapping for CSS files
+        String resourcesLocation = "/resources/";
+        String resourcesMapping = "/resources/*";
+
+        javax.servlet.ServletContext servletContext = getServletContext();
+        javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
+        defaultRegistration.addMapping(resourcesMapping);
 
         Locale locale = request.getLocale();
         String country = locale.getCountry();
