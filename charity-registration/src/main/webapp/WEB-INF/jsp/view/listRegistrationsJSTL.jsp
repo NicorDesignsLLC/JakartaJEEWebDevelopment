@@ -5,20 +5,18 @@
 <html>
 <head>
 <title>Charity Registration</title>
-<style>
-/* Add custom spacing between form elements */
-.form-group {
-	margin-bottom: 20px;
-}
-</style>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"/>
+    <!-- Custom CSS file for the color scheme -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/custom-style.css"/>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h2>Registrations</h2>
+		<h2 class="display-4 bg-primary custom-heading">Registrations</h2>
+		<div class="form-group">
 		<a href="<c:url value='charityRegistrationServlet'><c:param name='action' value='create' /></c:url>">Create Registration</a><br />
 		<br />
+		</div>
 		
 		<c:if test="${empty registrationDatabasejstl}">
 			<i>jstl - There are no Registrations in the system.</i>
@@ -26,12 +24,14 @@
 		<c:if test="${not empty registrationDatabasejstl}">
 		<i>jstl There are Registrations in the system.</i></br>
 		    <!-- TODO Add all Fields in the Create Form here -->
-			<table class="table table-striped" border="1">
+			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<td>Registration Number</td>
-						<td>Charity Subject</td>
-						<td>Charity Name</td>
+						<td><div class="custom-text">Registration Number</div></td>
+						<td><div class="custom-text">Charity Subject</div></td>
+						<td><div class="custom-text">Charity Name</div></td>
+						<td><div class="custom-text">Attachments:</div></td>
+						
 					</tr>
 				</thead>
 				<c:forEach var="id" items="${registrationDatabasejstl.keySet()}">
@@ -40,12 +40,15 @@
 					<c:set var="classSuccess" value="" />
 
 					<tr class="${classSuccess}">
-						<td>Number: <c:out value="${idString}" /> <a href="<c:url value='charityRegistrationServlet'><c:param name='action' value='view' /><c:param name='registrationId' value='${idString}' /></c:url>"></a></td>
-						<td><c:out value="${registrationDB.subject}" /></td>
-						<td><c:out value="${registrationDB.userName}" /></td>
-						<td>
+						<td> <div class="form-group">Number: <c:out value="${idString}" /> <a href="<c:url value='charityRegistrationServlet'><c:param name='action' value='view' /><c:param name='registrationId' value='${idString}' /></c:url>"></a></div></td>
+						
+						<td> <div class="form-group"><c:out value="${registrationDB.subject}" /></div></td>
+						
+						<td> <div class="form-group"><c:out value="${registrationDB.userName}" /></div></td>
+						
+						<td>  <div class="form-group">
 							<c:if test="${registrationDB.numberOfAttachments > 0}">
-								Attachments:
+								
 								<c:forEach var="fileAttachment" items="${registrationDB.attachments}" varStatus="status">
 									<c:set var="attachmentName" value="${fileAttachment.name}" />
 									<a href="<c:url value='/charityRegistrationServlet'><c:param name='action' value='download' /><c:param name='registrationId' value='${idString}' /><c:param name='attachment' value='${attachmentName}' /></c:url>"><c:out value="${attachmentName}" /></a>
@@ -53,7 +56,7 @@
 								</c:forEach>
 								<br /><br />
 							</c:if>
-							<br />
+							<br /></div>
 						</td>
 					</tr>
 				</c:forEach>

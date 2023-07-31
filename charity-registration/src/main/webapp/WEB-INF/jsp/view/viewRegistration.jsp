@@ -12,39 +12,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Charity Registration</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<style>
-.form-group {
-	margin-bottom: 20px;
-}
-</style>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"/>
+    <!-- Custom CSS file for the color scheme -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/custom-style.css"/>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h2>
-			<b>Registration # ${registrationId} User Name:
-				${registration.userName}</b>
+	    <h2 class="display-4 bg-primary custom-heading">Registration # ${registrationId}</h2>
+		<h2 class="display-4 bg-primary custom-heading">
+			User Name:
+				${registration.userName}
 		</h2>
 		<div class="row">
 			<div class="col-xs-12">
-				<table class="table table-striped" border="1">
+				<table class="table table-striped table-bordered">
 					<thead>
 
 						<tr>
-							<td><i>Charity User Name</i></td>
-							<td><i>Charity Registration Body</i></td>
-							<td><i>Charity Registration Subject</i></td>
-							<td><i>Charity Registration Date</i></td>
+							<td ><div class="custom-text">Charity User Name</div></td>
+							<td><div class="custom-text">Charity Registration Body</div></td>
+							<td><div class="custom-text">Charity Registration Subject</div></td>
+							<td><div class="custom-text">Charity Registration Date</div></td>
 						</tr>
 						<tr>
-							<td>${registration.userName}</td>
-							<td>${registration.body}</td>
-							<td>${registration.subject}</td>
-							<td>
+							<td><div class="form-group">${registration.userName}</div></td>
+							<td><div class="form-group">${registration.body}</div></td>
+							<td><div class="form-group">${registration.subject}</div></td>
+							<td><div class="form-group">
 								<fmt:formatDate type="time" value="${registration.createdDate}" /><br>
 								<fmt:formatDate value="${registration.createdDate}"
-									pattern="${PATTERN_FORMAT}" /></td>
+									pattern="${PATTERN_FORMAT}" />
+									</div>
+									</td>
 						</tr>
 
 					</thead>
@@ -53,7 +54,7 @@
 		</div>
 		<div class="row">
 
-			<div class="col-xs-12">
+			<div class="form-group">
 				<c:if test="${registration.numberOfAttachments > 0}">
 		Attachments:
 		<c:forEach var="fileAttachment" items="${registration.attachments}"
@@ -73,14 +74,12 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12">
+			<div class="form-group">
 				<a href="<c:url value="/charityRegistrationServlet" />">Return
 					to list Registrations</a>
 			</div>
 		</div>
 	</div>
-
-	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
 

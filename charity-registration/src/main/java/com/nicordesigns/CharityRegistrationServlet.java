@@ -34,6 +34,13 @@ public class CharityRegistrationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Register resource mapping for CSS files
+        String resourcesMapping = "/resources/*";
+
+        javax.servlet.ServletContext servletContext = getServletContext();
+        javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
+        defaultRegistration.addMapping(resourcesMapping);
+
 		String action = request.getParameter("action");
 		if (action == null)
 			action = "list";
