@@ -35,7 +35,6 @@ public class CharitySessionServlet extends HttpServlet
             throws ServletException, IOException
     {
     	// Register resource mapping for CSS files
-        String resourcesLocation = "/resources/";
         String resourcesMapping = "/resources/*";
 
         javax.servlet.ServletContext servletContext = getServletContext();
