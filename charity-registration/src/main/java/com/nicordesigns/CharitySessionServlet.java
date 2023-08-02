@@ -19,6 +19,8 @@ public class CharitySessionServlet extends HttpServlet
     private static final long serialVersionUID = 1L;
 	
 	private final Map<Integer, String> categories = new Hashtable<>();
+	
+	private final Map<Integer, Integer> categoryHolder = new Hashtable<Integer, Integer>();
 
     public CharitySessionServlet()
     {
@@ -78,20 +80,28 @@ public class CharitySessionServlet extends HttpServlet
         }
         catch(Exception e)
         {
+        	System.out.println("Exception " + e.toString());
             response.sendRedirect("charitySession");
             return;
         }
+        System.out.println("categoryId" + categoryId);
 
         HttpSession session = request.getSession();
         if(session.getAttribute("categoryHolder") == null)
-            session.setAttribute("categoryHolder", new Hashtable<Integer, Integer>());
+            session.setAttribute("categoryHolder", this.categoryHolder);
 
-        @SuppressWarnings("unchecked")
-        Map<Integer, Integer> categoryHolder =
-                (Map<Integer, Integer>)session.getAttribute("categoryHolder");
-        if(!categoryHolder.containsKey(categoryId))
-            categoryHolder.put(categoryId, 0);
-        categoryHolder.put(categoryId, categoryHolder.get(categoryId) + 1);
+//        @SuppressWarnings("unchecked")
+//        Map<Integer, Integer> categoryHolder =
+//                (Map<Integer, Integer>)session.getAttribute("categoryHolder");
+//        
+        
+        if(!this.categoryHolder.containsKey(categoryId))
+            this.categoryHolder.put(categoryId, 0);
+        
+        this.categoryHolder.put(categoryId, categoryHolder.get(categoryId) + 1);
+        
+        request.setAttribute("categoryHolder", categoryHolder);
+        
 
         response.sendRedirect("charitySession?action=viewCharitySession");
     }
@@ -108,6 +118,7 @@ public class CharitySessionServlet extends HttpServlet
             throws ServletException, IOException
     {
         request.setAttribute("categories", this.categories);
+        
         request.getRequestDispatcher("/WEB-INF/jsp/view/viewCharitySessionObject.jsp")
                 .forward(request, response);
     }

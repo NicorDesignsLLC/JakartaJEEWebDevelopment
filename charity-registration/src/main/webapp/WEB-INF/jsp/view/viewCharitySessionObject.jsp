@@ -22,50 +22,48 @@
 		<div class="form-group">
 			<div class="row">
 				<a href="<c:url value="/charitySession" />">Charity Category
-					List</a><br />
-				<br />
+					List</a><br /> <br />
 			</div>
 			<div class="row">
 				<a
 					href="<c:url value="/charitySession?action=emptyCharitySessionObject" />">Empty
-					Charity Session Object</a><br />
-				<br />
+					Charity Session Object</a><br /> <br />
 			</div>
 			<div class="row">
-                <div class="custom-text">JSTL CODE START</div> 
+				<div class="custom-text">JSTL CODE START</div>
 				<div class="form-group">
-					<c:choose>
-						<c:when
-							test="${categoryHolder == null || categoryHolder.size() == 0}">
-							<div class="custom-text">Your category holder is empty.</div>
-						</c:when>
-						<c:otherwise>
-							<!-- Your else section code goes here -->
-							<div class="custom-text">Your category holder is not empty.</div>
-						</c:otherwise>
-					</c:choose>
-				</div>
-				<div class="custom-text">JSTL CODE END</div> 
+					<!-- Check if categoryHolder is null or empty -->
+					<c:if test="${empty categoryHolder}">
+					    Your category holder is empty.
+					</c:if>
 					
+					<!-- Otherwise, loop through categoryHolder and display categories and quantities -->
+					<c:forEach items="${categoryHolder}" var="entry">
+					    <c:set var="id" value="${entry.key}" />
+					    <c:set var="quantity" value="${entry.value}" />
+					    ${categories[id]} (quantity: ${quantity})<br />
+					</c:forEach>
+				</div>
+				<div class="custom-text">JSTL CODE END</div>
+
 			</div>
 			<div class="row">
-			<%
-			@SuppressWarnings("unchecked")
-			Map<Integer, String> categories = (Map<Integer, String>) request.getAttribute("categories");
+				<%
+				@SuppressWarnings("unchecked")
+				Map<Integer, String> categories = (Map<Integer, String>) request.getAttribute("categories");
 
-			@SuppressWarnings("unchecked")
-			Map<Integer, Integer> categoryHolder = (Map<Integer, Integer>) session.getAttribute("categoryHolder");
+				@SuppressWarnings("unchecked")
+				Map<Integer, Integer> categoryHolder = (Map<Integer, Integer>) session.getAttribute("categoryHolder");
 
-			out.println("Embedded Java");
-			if (categoryHolder == null || categoryHolder.size() == 0)
-				out.println("Your category holder is empty.");
-			else {
-				for (int id : categoryHolder.keySet()) {
-					out.println(categories.get(id) + " (qty: " + categoryHolder.get(id) + ")<br />");
+				out.println("Embedded Java");
+				if (categoryHolder == null || categoryHolder.size() == 0)
+					out.println("Your category holder is empty.");
+				else {
+					for (int id : categoryHolder.keySet()) {
+						out.println(categories.get(id) + " (qty: " + categoryHolder.get(id) + ")<br />");
+					}
 				}
-			}
-			
-			%>
+				%>
 			</div>
 		</div>
 	</div>
