@@ -4,15 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Charity Registration</title>
-<style>
-/* Add custom spacing between form elements */
-.form-group {
-	margin-bottom: 20px;
-}
-</style>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"/>
+    <!-- Custom CSS file for the color scheme -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/custom-style.css"/>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
