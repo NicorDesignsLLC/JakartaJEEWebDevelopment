@@ -10,8 +10,14 @@
 	</head>
     
     <body>
-        <h2>View Charity Session Object</h2>
+    <!-- TODO Move this logic to JSTL as found in listRegistrationsJSTL.jsp -->
+    <div class="container">
+        <h2 class="display-4 bg-primary custom-heading">View Charity Session Object</h2>
+        <div class="form-group">
         <a href="<c:url value="/charitySession" />">Charity Category List</a><br /><br />
+        </div>
+        <div class="form-group">
+        </div>
         <a href="<c:url value="/charitySession?action=emptyCharitySessionObject" />">Empty Charity Session Object</a><br /><br />
         <%
             @SuppressWarnings("unchecked")
@@ -33,5 +39,6 @@
                 }
             }
         %>
+     </div>   
     </body>
 </html>
