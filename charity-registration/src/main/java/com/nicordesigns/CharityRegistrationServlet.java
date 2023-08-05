@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet(
-		name = "charityRegistrationServlet", 
-		urlPatterns = { "/charityRegistrationServlet" }, 
-		loadOnStartup = 1)
+@WebServlet(name = "charityRegistrationServlet", urlPatterns = { "/charityRegistrationServlet" }, loadOnStartup = 1)
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class CharityRegistrationServlet extends HttpServlet {
 
@@ -37,12 +34,12 @@ public class CharityRegistrationServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Register resource mapping for CSS files
-        String resourcesMapping = "/resources/*";
 
-        javax.servlet.ServletContext servletContext = getServletContext();
-        javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
-        defaultRegistration.addMapping(resourcesMapping);
+		String resourcesMapping = "/resources/*";
+
+		javax.servlet.ServletContext servletContext = getServletContext();
+		javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
+		defaultRegistration.addMapping(resourcesMapping);
 
 		String action = request.getParameter("action");
 		if (action == null)
@@ -98,9 +95,9 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 		request.setAttribute("registrationId", idString);
 		request.setAttribute("registration", registration);
-		
+
 		if (!registration.getAttachments().isEmpty()) {
-			//Objects.requireNonNull(registration.getAttachment(idString));
+			// Objects.requireNonNull(registration.getAttachment(idString));
 		}
 
 		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistration.jsp").forward(request, response);
@@ -147,7 +144,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 		Registration registration = new Registration();
 		registration.setUserName(request.getParameter("userName"));
 		registration.setSubject(request.getParameter("charityInfo"));
-		
+
 		registration.setBody(request.getParameter("body"));
 		registration.setDateCreated(Instant.now());
 
@@ -199,7 +196,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 				return null;
 			}
 			Objects.requireNonNull(registration.getAttachments());
-			
+
 			return registration;
 		} catch (Exception e) {
 			response.sendRedirect("charityRegistrationServlet");

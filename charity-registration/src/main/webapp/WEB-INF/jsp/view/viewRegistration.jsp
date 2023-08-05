@@ -5,10 +5,15 @@
 <%@ page session="false"
 	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration, java.time.Instant, java.time.LocalDate, java.time.ZoneOffset, java.time.ZoneId , java.time.format.DateTimeFormatter, java.util.Date"%>
 
-<c:set var="registrationId" value="${requestScope.registrationId}" />
-<c:set var="registration" value="${requestScope.registration}" />
-<c:set var="PATTERN_FORMAT" value="dd.MM.yyyy" />
 
+<%
+String registrationId = (String) request.getAttribute("registrationId");
+Registration registration = (Registration) request.getAttribute("registration");
+final String PATTERN_FORMAT = "dd.MM.yyyy";
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FORMAT).withZone(ZoneId.systemDefault());
+
+String formattedInstantDate = formatter.format(registration.getDateCreated());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,66 +25,68 @@
 </head>
 <body>
 	<div class="container">
-	    <h2 class="display-4 bg-primary custom-heading">Registration # ${registrationId}</h2>
-		<h2 class="display-4 bg-primary custom-heading">
-			User Name:
-				${registration.userName}
-		</h2>
+	
+	     <h2 class="display-4 bg-primary custom-heading">Registration #<%=registrationId%>:
+			<%=registration.getUserName()%></h2>  
 		<div class="row">
 			<div class="col-xs-12">
+				<!-- TODO Add all Fields in the Create Form here -->
 				<table class="table table-striped table-bordered">
 					<thead>
-
 						<tr>
-							<td ><div class="custom-text">Charity User Name</div></td>
-							<td><div class="custom-text">Charity Registration Body</div></td>
-							<td><div class="custom-text">Charity Registration Subject</div></td>
-							<td><div class="custom-text">Charity Registration Date</div></td>
+						    <td><div class="form-group">Charity User Name - </div></td>
+						    <td><div class="form-group"><%=registration.getUserName()%></div></td>
 						</tr>
 						<tr>
-							<td><div class="form-group">${registration.userName}</div></td>
-							<td><div class="form-group">${registration.body}</div></td>
-							<td><div class="form-group">${registration.subject}</div></td>
-							<td><div class="form-group">
-								<fmt:formatDate type="time" value="${registration.createdDate}" /><br>
-								<fmt:formatDate value="${registration.createdDate}"
-									pattern="${PATTERN_FORMAT}" />
-									</div>
-									</td>
+				   		    <td><div class="form-group">Charity Registration Body - </div></td>
+						    <td><div class="form-group"><%=registration.getBody()%></div></td>
 						</tr>
-
+						<tr>
+				   		    <td><div class="form-group">Charity Registration Body - </div></td>
+						    <td><div class="form-group"><%=registration.getSubject()%></div></td>
+				
+				   		    <td><div class="form-group">Charity Registration Date</div></td>
+						    <td><div class="form-group"><%=formattedInstantDate%></div></td>
+						</tr>
 					</thead>
 				</table>
 			</div>
 		</div>
 		<div class="row">
-
-			<div class="form-group">
-				<c:if test="${registration.numberOfAttachments > 0}">
-		Attachments:
-		<c:forEach var="fileAttachment" items="${registration.attachments}"
-						varStatus="status">
-						<c:set var="attachmentName" value="${fileAttachment.name}" />
-						<c:url value="/charityRegistrationServlet" var="fileDownloadURL">
-							<c:param name="action" value="download" />
-							<c:param name="registrationId" value="${registrationId}" />
-							<c:param name="attachment" value="${attachmentName}" />
-						</c:url>
-						<a href="<c:out value="${fileDownloadURL}" />">${attachmentName}</a>
-
-						<c:if test="${not status.last}">, </c:if>
-		</c:forEach>
-					<br />
-				</c:if>
+			<div class="col-xs-12">
+			    <div class="form-group">
+				<%
+				if (registration.getNumberOfAttachments() > 0) {
+				%>Attachments:
+				<%
+				int i = 0;
+				for (FileAttachment fileAttachment : registration.getAttachments()) {
+					if (i++ > 0)
+						out.print(", ");
+				%><a
+					href="<c:url value="/charityRegistrationServlet">
+                        <c:param name="action" value="download" />
+                        <c:param name="registrationId" value="<%=registrationId%>" />
+                        <c:param name="attachment" value="<%=fileAttachment.getName()%>" />
+                    </c:url>"><%=fileAttachment.getName()%></a>
+				<%
+				}
+				%><br />
+				<br />
+				<%
+				}
+				%>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group">
+			<div class="col-xs-12">
 				<a href="<c:url value="/charityRegistrationServlet" />">Return
 					to list Registrations</a>
 			</div>
 		</div>
 	</div>
+
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-
