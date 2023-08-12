@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><fmt:message key="title.browser" /></title>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"/>
     <!-- Custom CSS file for the color scheme -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/custom-style.css"/>
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+    <title><fmt:message key="title.browser" /></title>
 </head>
 <body>
     <div class="container">

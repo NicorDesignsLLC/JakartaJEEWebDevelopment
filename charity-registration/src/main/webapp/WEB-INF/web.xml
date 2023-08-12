@@ -11,7 +11,9 @@
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>CharityAddressBook-messages</param-value>
     </context-param>
-
+    <!-- 1. CharityAddressBook-messages_[language]_[region].properties
+	     2. CharityAddressBook-messages_[language].properties 
+	     3. Fall back to default -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
