@@ -44,13 +44,13 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 21. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications - Part 2](jee8jstl12b.md)
 
-22. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
-
 23. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications - Part 3](jee8jstl12c.md)
 
-24. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+24. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
 
-25. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
+25. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+
+26. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
 
 
 		
