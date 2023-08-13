@@ -56,12 +56,10 @@ public class CharityRegistrationAddressListServlet extends HttpServlet {
 
         Locale locale = request.getLocale();
         String country = locale.getCountry();
-        String language = locale.getLanguage();
-
-        language = request.getParameter("language");
+        String language = request.getParameter("language");
 
         System.out.println("locale = " + locale);
-        System.out.println("language = " + language);
+        System.out.println("language = " + locale.getLanguage());
         System.out.println("country = " + country);
 
         if ("afrikaans".equalsIgnoreCase(language)) {
