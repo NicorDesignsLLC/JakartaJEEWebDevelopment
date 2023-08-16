@@ -5,6 +5,6 @@
 
 #### 2. [Using the XML Processing Tag Library](jee8jstlxml.md)
 
-#### [Custom Jakarta Standard Tag Library - Part 3 Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-jstl-part3)
+#### [Custom Jakarta Standard Tag Library - Part 3 Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-jstl-part3)
     
 
