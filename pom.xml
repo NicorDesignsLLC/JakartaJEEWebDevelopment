@@ -22,6 +22,7 @@
 
 
 	<modules>
+		<module>charity-custom-tags</module>
 		<module>sub-module</module>
 		<module>jee8webapp</module>
 		<module>jee8mariadbsql</module>

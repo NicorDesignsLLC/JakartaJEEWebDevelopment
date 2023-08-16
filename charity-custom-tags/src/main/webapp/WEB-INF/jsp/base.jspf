@@ -1,9 +1,5 @@
-<%@ page import="com.nicordesigns.Registration, com.nicordesigns.FileAttachment" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="nicordesigns" uri="http://www.nicordesigns.com/jsp/tld/nicordesigns" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
-
-
-
