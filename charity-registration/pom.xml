@@ -14,7 +14,8 @@
 
 	<name>charity-registration Maven Webapp</name>
 	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-
+    <description>The Charity Registration Exmple</description>
+    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
@@ -36,7 +37,6 @@
 		<!-- This Stackoverflow Q&A explains why we have to add these so that we will be able to use the JSTL -->
 		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
 		
-		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
@@ -44,7 +44,6 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
 		<dependency>
 		    <groupId>javax.el</groupId>
 		    <artifactId>javax.el-api</artifactId>
@@ -52,11 +51,13 @@
 		</dependency>
 		
 		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
+		
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.5</version>
 			<scope>compile</scope>
+			<!-- We have to exclude these because we use later versions in our previous dependencies-->
 			<exclusions>
 				<exclusion>
 					<groupId>javax.servlet</groupId>
@@ -73,7 +74,6 @@
 			</exclusions>
 		</dependency>
 
-		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -102,7 +102,6 @@
 		</dependency>
 		
 		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
-		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -113,7 +112,8 @@
 
 	<build>
 		<finalName>charity-registration</finalName>
-		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
+		<pluginManagement>
+		<!-- lock down plugins versions to avoid using Maven 
 				defaults (may be moved to parent pom) -->
 			<plugins>
 				<plugin>
