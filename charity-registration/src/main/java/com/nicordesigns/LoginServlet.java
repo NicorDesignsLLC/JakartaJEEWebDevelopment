@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet
         }
         else if(session.getAttribute("username") != null)
         {
-            response.sendRedirect("registrations");
+            response.sendRedirect("charityRegistrationServlet");
             return;
         }
     	
@@ -96,7 +96,7 @@ public class LoginServlet extends HttpServlet
         {
             request.changeSessionId();
             session.setAttribute("username", username);
-            response.sendRedirect("registrations");
+            response.sendRedirect("charityRegistrationServlet");
         }
     }
 }

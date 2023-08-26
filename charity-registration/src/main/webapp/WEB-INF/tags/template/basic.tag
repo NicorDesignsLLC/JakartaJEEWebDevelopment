@@ -16,8 +16,8 @@
         <jsp:invoke fragment="extraHeadContent" />
     </jsp:attribute>
     <jsp:attribute name="navigationContent">
-        <a href="<c:url value="/registrations" />">List Registered Charities</a><br />
-        <a href="<c:url value="/registrations">
+        <a href="<c:url value="/charityRegistrationServlet" />">List Registered Charities</a><br />
+        <a href="<c:url value="/charityRegistrationServlet">
             <c:param name="action" value="create" />
         </c:url>">Register a Charity</a><br />
         <a href="<c:url value="/sessions" />">List Sessions</a><br />
