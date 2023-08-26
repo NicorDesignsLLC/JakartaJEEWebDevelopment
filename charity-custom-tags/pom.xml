@@ -10,7 +10,6 @@
 	</parent>
   
   	<artifactId>charity-custom-tags</artifactId>
-  	<version>1.0.0-SNAPSHOT</version>
   	<packaging>war</packaging>
   	
   	<name>charity-custom-tags</name>
@@ -75,14 +74,12 @@
 			<version>2.17.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.12.0</version>
 		    <scope>compile</scope>
 		</dependency>
-
         
         <dependency>
 			<groupId>javax.servlet</groupId>

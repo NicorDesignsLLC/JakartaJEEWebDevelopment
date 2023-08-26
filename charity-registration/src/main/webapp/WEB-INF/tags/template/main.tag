@@ -3,12 +3,18 @@
 <%@ attribute name="bodyTitle" type="java.lang.String" rtexprvalue="true" required="true" %>
 <%@ attribute name="headContent" fragment="true" required="false" %>
 <%@ attribute name="navigationContent" fragment="true" required="true" %>
-<%@ include file="/WEB-INF/jsp/base.jspf" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="nicordesigns" uri="http://www.nicordesigns.com/jsp/tld/nicordesigns" %>
+<%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
-        <link rel="stylesheet" href="<c:url value="/resource/stylesheet/main.css" />" />
+        <link rel="stylesheet" href="<c:url value='/resources/css/main.css' />" />
         <jsp:invoke fragment="headContent" />
     </head>
     <body>

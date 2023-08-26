@@ -24,9 +24,8 @@ public class LoginServlet extends HttpServlet
 	//Simple in memory DB to store users and passwords
     static {
         userDatabase.put("Nicolaas", "password");
-        userDatabase.put("Sarah", "drowssap");
-        userDatabase.put("Mike", "wordpass");
-        userDatabase.put("John", "green");
+        userDatabase.put("Danette", "wordpass");
+        userDatabase.put("Tom", "green");
     }
 
     @Override
@@ -47,7 +46,7 @@ public class LoginServlet extends HttpServlet
         {
         	//Send to application if logged in
         	session.setAttribute("username", session.getAttribute("username").toString());
-            response.sendRedirect("registrations");
+            response.sendRedirect("charityRegistrationServlet");
             return;
         }
 
