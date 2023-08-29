@@ -5,6 +5,20 @@ Use these (but for JEE8) to update these code examples:
 [Jakarta Servlet Specification - Sessions](https://jakarta.ee/specifications/servlet/5.0/jakarta-servlet-spec-5.0.html#sessions)
 
 
+## 5. Building Custom Tag Files
+
+We'll now create custom tag files that form the structure of our JSP pages:
+
+1. Design the `main.tag` file, including sections for `headContent` and `navigationContent`.
+2. Create `loggedout.tag` and `basic.tag` files, building upon the base structure and utilizing CSS files.
+
+## 6. Adapting the Java Code
+
+Update the Java code to integrate custom tags and improve the overall application:
+
+1. Expand the `Registration` class and `RegistrationServlet` with the updated tag functionality.
+
+
 ##### 1. Applying Sessions in our charity-registration module
 We add the <session-config> entry to our web.xml and and an in memory database to store Users and a login page and servlet
 
@@ -129,6 +143,12 @@ We remove session=false in all the JSP's and add the <session-config> to our web
 		</html>
 		
 We can now use the user name to populate our Registration object from the session after the User has logged in
+
+
+## Testing and Deployment
+
+1. Test your web application by accessing: `http://localhost:8080/charity-registration/login`
+2. Register a couple of charities to ensure everything functions as expected.
 
 ##### 2. Compiling, testing and debugging our session-registration web application
 

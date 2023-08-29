@@ -81,7 +81,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 	private void showRegistrationForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/registrationForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/view/registrationFormTemplate.jsp").forward(request, response);
 
 	}
 
@@ -100,7 +100,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 			// Objects.requireNonNull(registration.getAttachment(idString));
 		}
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistration.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistrationTemplate.jsp").forward(request, response);
 
 	}
 
@@ -135,7 +135,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 		request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrationsJSTL.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrationsTemplate.jsp").forward(request, response);
 
 	}
 

@@ -55,23 +55,6 @@ Let's extend the tag library by adding new functionality:
 2. Update the `nicordesigns.tld` file to include the new function.
 3. Update the necessary JSP files, like `base.jspf`, with the required taglib libraries.
 
-## 5. Building Custom Tag Files
-
-We'll now create custom tag files that form the structure of our JSP pages:
-
-1. Design the `main.tag` file, including sections for `headContent` and `navigationContent`.
-2. Create `loggedout.tag` and `basic.tag` files, building upon the base structure and utilizing CSS files.
-
-## 6. Adapting the Java Code
-
-Update the Java code to integrate custom tags and improve the overall application:
-
-1. Expand the `Registration` class and `RegistrationServlet` with the updated tag functionality.
-
-## Testing and Deployment
-
-1. Test your web application by accessing: `http://localhost:8080/charity-registration/login`
-2. Register a couple of charities to ensure everything functions as expected.
 
 ## Conclusion
 
