@@ -1,11 +1,11 @@
 <template:basic htmlTitle="Registered Charities" bodyTitle="Registered Charities">
         <c:choose>
-            <c:when test="${fn:length(registrationDatabase) == 0}">
+            <c:when test="${fn:length(charityRegistrationDatabase) == 0}">
                 <i>There are no registrations in the system.</i>
             </c:when>
             <c:otherwise>
-                <c:forEach items="${registrationDatabase}" var="entry">
-                    Registration ${entry.key}: <a href="<c:url value="/registrations">
+                <c:forEach items="${charityRegistrationDatabase}" var="entry">
+                    Registration ${entry.key}: <a href="<c:url value="/charityRegistrationServlet">
                         <c:param name="action" value="view" />
                         <c:param name="registrationId" value="${entry.key}" />
                     </c:url>">
