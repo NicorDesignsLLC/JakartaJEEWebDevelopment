@@ -1,7 +1,7 @@
 <%--@elvariable id="registrationId" type="java.lang.String"--%>
 <%--@elvariable id="registration" type="com.nicordesigns.Registration"--%>
 <template:basic htmlTitle="${registration.subject}"
-	bodyTitle="Ticket #${registrationId}: ${registration.subject}">
+	bodyTitle="Registration #${registrationId}: ${registration.subject}">
 
 
 	<i><c:out value="${registration.userName}" /></i>

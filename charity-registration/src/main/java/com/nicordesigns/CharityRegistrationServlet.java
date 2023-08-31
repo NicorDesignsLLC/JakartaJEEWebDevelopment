@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @WebServlet(name = "charityRegistrationServlet", urlPatterns = { "/charityRegistrationServlet" }, loadOnStartup = 1)
@@ -92,14 +93,18 @@ public class CharityRegistrationServlet extends HttpServlet {
 		Registration registration = this.getRegistration(idString, response);
 		if (registration == null)
 			return;
+		
+		HttpSession session = request.getSession(false); // Get the existing session if it exists
+		if (session != null) {
+		    String username = (String) session.getAttribute("username");
+		    
+		    request.setAttribute("registration.userName", username);
+		}
 
 		request.setAttribute("registrationId", idString);
 		request.setAttribute("registration", registration);
 
-		if (!registration.getAttachments().isEmpty()) {
-			// Objects.requireNonNull(registration.getAttachment(idString));
-		}
-
+		
 		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistrationTemplate.jsp").forward(request, response);
 
 	}
@@ -132,6 +137,13 @@ public class CharityRegistrationServlet extends HttpServlet {
 
 	private void listRegistrations(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession(false); // Get the existing session if it exists
+		if (session != null) {
+		    String username = (String) session.getAttribute("username");
+		    
+		    request.setAttribute("registration.userName", username);
+		}
 
 		request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
 
@@ -142,7 +154,13 @@ public class CharityRegistrationServlet extends HttpServlet {
 	private void createRegistration(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Registration registration = new Registration();
-		registration.setUserName(request.getParameter("userName"));
+		
+		HttpSession session = request.getSession(false); // Get the existing session if it exists
+		if (session != null) {
+		    String username = (String) session.getAttribute("username");
+		    registration.setUserName(username);
+		}
+
 		registration.setSubject(request.getParameter("charityInfo"));
 
 		registration.setBody(request.getParameter("body"));

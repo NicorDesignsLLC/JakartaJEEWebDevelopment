@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet
 	//Simple in memory DB to store users and passwords
     static {
         userDatabase.put("Nicolaas", "password");
-        userDatabase.put("Danette", "wordpass");
+        userDatabase.put("Danette", "White");
         userDatabase.put("Tom", "green");
     }
 
