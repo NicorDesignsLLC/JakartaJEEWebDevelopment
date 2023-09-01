@@ -22,7 +22,7 @@
 			var="attachment" varStatus="status">
 			<c:if test="${!status.first}">, </c:if>
 			<a
-				href="<c:url value="/registrations">
+				href="<c:url value="/charityRegistrationServlet">
                     <c:param name="action" value="download" />
                     <c:param name="registrationId" value="${registrationId}" />
                     <c:param name="attachment" value="${attachment.name}" />

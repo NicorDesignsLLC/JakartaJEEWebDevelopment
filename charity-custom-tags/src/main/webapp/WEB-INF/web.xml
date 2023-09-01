@@ -27,6 +27,15 @@
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 
+    <!-- Define default locale and fallback locale -->
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-value>en_US</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+        <param-value>en_US</param-value>
+    </context-param> 
     <distributable />
 
 </web-app>
