@@ -161,3 +161,5 @@ Add a logout link at the top of the JSPs
 
 ###### Repeat the testing and debugging steps as above
 
+[JEE8 Custom Login with JSTL Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-login-jstl)
+
