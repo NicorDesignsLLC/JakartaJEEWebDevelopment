@@ -1,11 +1,10 @@
-### Maintaining State Using Sessions in our JEE 8 Web App Module
-
-Use these (but for JEE8) to update these code examples:
-
-[Jakarta Servlet Specification - Sessions](https://jakarta.ee/specifications/servlet/5.0/jakarta-servlet-spec-5.0.html#sessions)
+### Adding custom login to our JEE 8 Web App Module
 
 
-##### 1. Applying Sessions in our charity-registration module
+[Jakarta Servlet Specification - Authentication Logins](https://jakarta.ee/specifications/servlet/5.0/jakarta-servlet-spec-5.0.html#form-based-authentication)
+
+
+##### 1. Adding User Authentication to our charity-registration module
 We add the <session-config> entry to our web.xml and and an in memory database to store Users and a login page and servlet
 
 ###### We add a login to the charity-registration app:
