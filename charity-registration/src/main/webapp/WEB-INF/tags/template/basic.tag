@@ -20,7 +20,7 @@
         <a href="<c:url value="/charityRegistrationServlet">
             <c:param name="action" value="create" />
         </c:url>">Register a Charity</a><br />
-        <!--a href="<c:url value="/sessions" />">List Sessions</a><br /-->
+        <a href="<c:url value="/sessions" />">List Sessions</a><br />
         <a href="<c:url value="/login?logout" />">Log Out</a><br />
         <jsp:invoke fragment="extraNavigationContent" />
     </jsp:attribute>

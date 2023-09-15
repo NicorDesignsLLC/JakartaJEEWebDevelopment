@@ -1,10 +1,7 @@
 ### Maintaining State Using Sessions in our Charity Registration JEE 8 Web App Module
 
-Use these (but for JEE8) to update these code examples:
 
 [Jakarta Servlet Specification - Sessions](https://jakarta.ee/specifications/servlet/5.0/jakarta-servlet-spec-5.0.html#sessions)
-
-
 
 ##### 1. Detecting Changes to Sessions Using Listeners
 
