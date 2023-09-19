@@ -67,29 +67,29 @@ methods in the class above.
 We use our own implementation of the  
 
 [httpsessionlistener](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpsessionlistener) and [httpsessionidlistener](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpsessionidlistener) classes, in order to implement a Listener Interface class: 
-[SessionListener.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-more-session-management-finish/charity-registration/src/main/java/com/nicordesigns/SessionListener.java)
+[SessionListener.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-session-part3a/charity-registration/src/main/java/com/nicordesigns/SessionListener.java)
 
 To keep an in memory database in our Charity Registration Application:
 
 We create the following class:
-[InMemorySessionDB.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-more-session-management-finish/charity-registration/src/main/java/com/nicordesigns/InMemorySessionDB.java)
+[InMemorySessionDB.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-session-part3a/charity-registration/src/main/java/com/nicordesigns/InMemorySessionDB.java)
 This class stores all the Heap References to all the created Session Objects
 
 
 In our SessionListener Class we add, remove and update the Session References to the In Memory Database when the Sessions are created, destroyed or updated.
-[SessionListener.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-more-session-management-finish/charity-registration/src/main/java/com/nicordesigns/SessionListener.java)
+[SessionListener.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-session-part3a/charity-registration/src/main/java/com/nicordesigns/SessionListener.java)
 
 We create a Servlet to display the list of Sessions:
 
-[SessionListServlet.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-more-session-management-finish/charity-registration/src/main/java/com/nicordesigns/SessionListServlet.java)
+[SessionListServlet.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-session-part3a/charity-registration/src/main/java/com/nicordesigns/SessionListServlet.java)
 
-and a sessions.jsp to display these Sessions.
+and a sessionsTemplate.jsp to display these Sessions.
 
-[sessions.jsp](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-more-session-management-finish/charity-registration/src/main/webapp/WEB-INF/jsp/view/sessions.jsp)
+[sessionsTemplate.jsp](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-session-part3a/charity-registration/src/main/webapp/WEB-INF/jsp/view/sessionsTemplate.jsp)
 
 Check in the end Git branch of this slide show 
 
-##### [More Maintaining State Using Sessions Finish Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-more-session-management-finish)
+##### [More Maintaining State Using Sessions Part 3 Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-session-part3a)
 
     
 
