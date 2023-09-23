@@ -1,5 +1,3 @@
-The Java Web Development Course Index File
-
 An introduction to Java Web Development with Jakarta JEE 8:
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
