@@ -1,7 +1,5 @@
 An introduction to Java Web Development with Jakarta JEE 8:
 
-[![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
-
 
 1. [Creating a basic JEE 8 Maven project structure](jee8setupmaven.md)
 
@@ -56,6 +54,9 @@ An introduction to Java Web Development with Jakarta JEE 8:
 30. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
 
 31. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
+
+[![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
+
 
 
 		
