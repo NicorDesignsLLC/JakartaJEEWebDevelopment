@@ -51,12 +51,13 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 23. [Using custom JSTL 1.2 files for enabling login to our JEE 8 Web Applications](jee8JSTLLogin.md)
 
-23. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
+24. [Maintaining State using SessionListereners in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
 
+25. [Clustering and Session Replication in Tomcat 9 in our JEE 8 Web Applications](jee8clustering.md)
 
-24. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+30. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
 
-25. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
+31. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
 
 
 		
