@@ -2,6 +2,9 @@ The Java Web Development Course Index File
 
 An introduction to Java Web Development with Jakarta JEE 8:
 
+[![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
+
+
 1. [Creating a basic JEE 8 Maven project structure](jee8setupmaven.md)
 
 2. [Our Basic Jakarta JEE 8 Web Application Structure](jee8setupwebarch.md)
