@@ -1,1 +1,11 @@
 theme: jekyll-theme-hacker
+title: Jakarta JEE8 Web Development Tutorial Documentation
+email: nicordesigns@gmail.com
+description: Jakarta JEE8 Web Development Tutorial Documentation
+baseurl: ""
+url: ""
+twitter_username: KockDino
+github_username: NicorDesigns
+show_excerpts: true
+permalink: /:title/
+google_analytics: G-4MTRKC537Z
