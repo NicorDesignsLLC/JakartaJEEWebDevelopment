@@ -35,3 +35,5 @@ Session replication is a critical aspect of clustering in Tomcat. It ensures tha
 For more detailed information on setting up clustering in Tomcat, you can refer to the [official documentation](https://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html).
 
 This document provides an overview of clustering in Tomcat, the role of session IDs, and how session replication ensures high availability and fault tolerance in a clustered environment.
+
+[Clustering Demo Steps](jee8clusteringdemo.md)

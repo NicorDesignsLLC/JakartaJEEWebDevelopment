@@ -41,19 +41,20 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 20. [Maintaining State using Sessions in our JEE 8 Web Applications - Part 2](jee8sessionspart2.md)
 
-21. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications - Part 2](jee8jstl12b.md)
+21. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
 
-22. [Using custom Java Standard Tag Library 1.2 files in our JEE 8 Web Applications - Part 3](jee8jstl12c.md)
+22. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
 
-23. [Using custom JSTL 1.2 files for enabling login to our JEE 8 Web Applications](jee8JSTLLogin.md)
+23. [Using the Java Standard Tag Library 1.2 in our JEE 8 Web Applications - Part 2](jee8jstl12b.md)
 
-24. [Maintaining State using SessionListereners in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
+24. [Using custom Java Standard Tag Library 1.2 files in our JEE 8 Web Applications - Part 3](jee8jstl12c.md)
 
-25. [Clustering and Session Replication in Tomcat 9 in our JEE 8 Web Applications](jee8clustering.md)
+25. [Using custom JSTL 1.2 files for enabling login to our JEE 8 Web Applications](jee8JSTLLogin.md)
 
-30. [Understanding Jakarta Expression Language 3.0 - Part 2](jee8expressionlanguage2.md)
+26. [Maintaining State using SessionListereners in our JEE 8 Web Applications - Part 3](jee8sessionspart3.md)
 
-31. [Understanding Jakarta Expression Language 3.0 - Part 3](jee8expressionlanguage3.md)
+27. [Clustering and Session Replication in Tomcat 9 in our JEE 8 Web Applications](jee8clustering.md)
+
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
 [![What is the Jakarta Java Platform Enterprise Edition 8 ?](https://img.youtube.com/vi/Qrc6fWsvRAs/0.jpg)](https://youtu.be/Qrc6fWsvRAs)
