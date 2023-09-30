@@ -1,12 +1,13 @@
 package com.nicordesigns;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Registration
+public class Registration implements Serializable
 {
     private String userName;
 

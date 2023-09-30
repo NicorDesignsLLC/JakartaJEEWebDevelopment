@@ -1,8 +1,7 @@
 package com.nicordesigns;
 
 import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +18,13 @@ public class LoginServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 	
-	private static final Map<String, String> userDatabase = new Hashtable<>();
+	private static final HashMap<String, String> userDatabase = new HashMap<>();
 
 	//Simple in memory DB to store users and passwords
     static {
-        userDatabase.put("Nicolaas", "password");
+        userDatabase.put("Nicolaas", "Black");
         userDatabase.put("Danette", "White");
-        userDatabase.put("Tom", "green");
+        userDatabase.put("Tom", "Green");
     }
 
     @Override
