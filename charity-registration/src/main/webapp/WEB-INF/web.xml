@@ -44,12 +44,6 @@
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 	
-	<!--  
-	<listener>
-    	<listener-class>org.apache.catalina.session.PersistentManagerListener</listener-class>
-	</listener>
-	-->
-	
 	<!-- Enable Clustering -->
 	<distributable/>
 
