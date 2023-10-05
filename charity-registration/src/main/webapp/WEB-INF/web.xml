@@ -43,6 +43,9 @@
 		</cookie-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
+	
+	<!-- Enable Clustering -->
+	<distributable/>
 
 
 </web-app>
