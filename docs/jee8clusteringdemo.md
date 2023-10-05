@@ -57,4 +57,4 @@ To demonstrate Tomcat 9 clustering to your students on a Windows 10/11 machine w
 12. **FAQ and Troubleshooting (Optional):**
      - Refer to the FAQ section in the documentation for answers to common questions and troubleshooting tips.
 
-This step-by-step guide should help you demonstrate Tomcat 9 clustering to your students using Windows 10/11 and Eclipse. Be sure to adjust the instructions based on your specific environment and requirements.
+This step-by-step guide should help you better understand Tomcat 9 clustering when using Windows 10/11 and Eclipse. 
