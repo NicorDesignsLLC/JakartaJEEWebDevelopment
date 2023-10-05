@@ -1,4 +1,4 @@
-To demonstrate Tomcat 9 clustering to your students on a Windows 10/11 machine with Tomcat 9 installed and launched from within Eclipse, you can follow the official documentation provided in the "Clustering/Session Replication How-To" guide. Here's a step-by-step guide based on the information you've provided:
+To demonstrate Tomcat 9 clustering on a Windows 10/11 machine with Tomcat 9 installed and launched from within Eclipse, you can follow the official documentation provided in the "Clustering/Session Replication How-To" guide. Here's a step-by-step guide based on this document for our set up:
 
 1. **Prepare Your Environment:**
 
