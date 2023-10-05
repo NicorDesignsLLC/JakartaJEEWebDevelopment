@@ -1,43 +1,50 @@
-# 3. Ordering your Filters Properly
+# Properly Ordering Your Filters in Web Development
 
-Filter Order is important when considering the logical steps that you apply to an incoming request as in for instance authenticating and authorizing an incoming request you will obviously authenticate first before you authorize when using filters.
+In the world of web development, the order in which filters are applied to incoming requests is crucial. It determines the logical sequence of actions taken on each request. For instance, when handling authentication and authorization, it's clear that authentication must come before authorization in the processing pipeline. In this document, we'll explore how to properly order your filters.
 
-As far as we know we can not set up Filter Orders using annotations in the Servlet 4.0 Specification which is part of the overall Jakarta JEE 8 framework release (let us know if you know how to do this). Therefore we will need to use the deployment descriptor in web.xml and programmatic configuration.
+## Setting Filter Order
 
-### URL Pattern Mapping versus Servlet Name Mapping
+As of the Servlet 4.0 Specification, which is part of the Jakarta EE 8 framework release, setting filter order using annotations is not directly supported. If you have information to the contrary, we'd appreciate you sharing it with us. Consequently, you can establish filter order using two primary methods: the deployment descriptor in `web.xml` and programmatic configuration.
 
-Filters are ordered in the order they appear in the configuration web.xml file or in the way they are ordered programmatically for a specific incoming request.
-You can also do both and us the addMapping* methods. 
+### URL Pattern Mapping vs. Servlet Name Mapping
+
+Filters are executed in the order they are defined in the configuration, either in `web.xml` or programmatically. It's important to understand the distinction between URL pattern mapping and servlet name mapping, as they affect the filter execution order.
+
+#### URL Pattern Mapping
+
+URL pattern mappings define which filters should be applied based on the URL patterns of incoming requests. Filters mapped to URL patterns will execute before those mapped to servlet names. Here's a visual representation:
 
 ![Filter Flow Chart 1](FilterFlowChart1.png)
 
+In the figure above, different requests to different servlets are mapped to different filters, but they share the same high-level order. URL mappings take precedence over servlet name mappings.
 
-The above figure displays filter order, it shows different requests to different servlets maps to different filters but in the same high level order.
+#### Servlet Name Mapping
 
-URL mappings are given precedence above servlet name mappings, which means if a filter is mapped to both the URL name filter always execute first. 
+Servlet name mappings specify filters based on the servlets to which they should be applied. Here's an example:
 
+```xml
+<filter-mapping>
+    <filter-name>servletFilter</filter-name>
+    <servlet-name>myServlet</servlet-name>
+</filter-mapping>
 
+<filter-mapping>
+    <filter-name>myFilter</filter-name>
+    <servlet-name>/foo*</servlet-name>
+</filter-mapping>
 
-![Filter Flow Chart 2](FilterFlowChart2.png)
+<filter-mapping>
+    <filter-name>anotherFilter</filter-name>
+    <servlet-name>/foo/bar</servlet-name>
+</filter-mapping>
+```
 
-		<filter-mapping>
-			<filter-name>servletFilter</filter-name>
-			<servlet-name>myServlet</servlet-name>
-		</filter-mapping>
+Suppose a request matches all three filter mappings above with the URL */foo/bar*. In that case, the filters will execute in the following order:
 
-		<filter-mapping>
-			<filter-name>myFilter</filter-name>
-			<servlet-name>/foo*</servlet-name>
-		</filter-mapping>
-		
-		<filter-mapping>
-			<filter-name>anotherFilter</filter-name>
-			<servlet-name>/foo/bar</servlet-name>
-		</filter-mapping>
+1. `myFilter`
+2. `anotherFilter`
+3. `servletFilter`
 
-A request comes in that matches all 3 filters above. With the URL */foo/bar* so myFilter, anotherFilter  executes in this order first and then servletFilter will execute because URL takes precedence over name.
+This sequence is determined by the fact that URL pattern mappings take precedence over servlet name mappings.
 
-Order of execution is 
-1) myFilter
-2) anotherFilter
-3) servletFilter
+In conclusion, properly ordering your filters is crucial for defining the logic and sequence of actions on incoming requests. Understanding the distinction between URL pattern and servlet name mapping is vital to ensure that filters execute in the desired order. While annotations may not directly support filter ordering, using the deployment descriptor in `web.xml` and programmatic configuration methods provide the necessary control over filter order in your web application.
