@@ -13,5 +13,15 @@
 #### 6. [Simplifying Authentication with a Filter](jee8filterauthentication.md)
 
 ##### [Jakarta JEE8 Filters Git Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-filters)
+
+The Role of Filters : Understand the fundamental purpose of filters in web applications.
+ Creating and Configuring Filters: Learn how to create and configure filters to intercept
+and process requests and responses.
+Proper Filter Ordering: Discover the importance of ordering filters correctly to 
+ensure desired behavior.
+Filter Ordering Example: Gain insight into filter order through a code example.
+Practical Filter Applications: Explore real-world scenarios where filters 
+simplify tasks, such as streamlining authentication.
+
     
 
