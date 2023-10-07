@@ -14,7 +14,8 @@ In most cases, you will use the [HttpFilter](https://jakarta.ee/specifications/p
 
 ## Understanding the Filter Chain
 
-Filters operate in a sequence known as the "Filter Chain." This chain determines how each filter processes requests. You can visualize this concept through a [Filter Chain Example](https://o7planning.org/10395/java-servlet-filter), as well as view it in slides like the [Filter Chain Slide Example](https://docs.google.com/presentation/d/14oqweqUjTYBnBvfSrKBhi3RtVVhcMXRL7RZPZeMszD8/edit#slide=id.g41c9f0eb7b_2_466).
+Filters operate in a sequence known as the "Filter Chain." This chain determines how each filter processes requests. 
+You can visualize this concept through a [Filter Chain Example](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-filters/charity-registration) which are mapped to our "How to Order Your Filters" slide. 
 
 The Filter Chain passes requests from filter to filter until all filters have processed the request, ultimately reaching the servlet. If this chain is interrupted, the request may not reach its destination.
 
@@ -43,19 +44,37 @@ Filters can be configured using various approaches:
 Inside the `web.xml` deployment descriptor, you can define filters and their mappings. Here's an example:
 
 ```xml
-<filter>
-    <filter-name>myFilter</filter-name>
-    <filter-class>com.nicordesigns.MyFilter</filter-class>
-</filter>
+<!-- Filter Ordering -->
+	<filter>
+        <filter-name>filterA</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterA</filter-class>
+    </filter>
 
-<filter-mapping>
-    <filter-name>myFilter</filter-name>
-    <url-pattern>/foo</url-pattern>
-    <url-pattern>/bar/*</url-pattern>
-    <servlet-name>myServlet</servlet-name>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>ASYNC</dispatcher>
-</filter-mapping>
+    <filter-mapping>
+        <filter-name>filterA</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>filterB</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterB</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterB</filter-name>
+        <url-pattern>/servletTwo</url-pattern>
+        <url-pattern>/servletThree</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>filterC</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterC</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterC</filter-name>
+        <url-pattern>/servletTwo</url-pattern>
+    </filter-mapping>
 ```
 
 #### Using Annotations

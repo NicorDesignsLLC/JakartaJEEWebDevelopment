@@ -23,28 +23,47 @@ In the figure above, different requests to different servlets are mapped to diff
 Servlet name mappings specify filters based on the servlets to which they should be applied. Here's an example:
 
 ```xml
-<filter-mapping>
-    <filter-name>servletFilter</filter-name>
-    <servlet-name>myServlet</servlet-name>
-</filter-mapping>
+<!-- Filter Ordering -->
+	<filter>
+        <filter-name>filterA</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterA</filter-class>
+    </filter>
 
-<filter-mapping>
-    <filter-name>myFilter</filter-name>
-    <servlet-name>/foo*</servlet-name>
-</filter-mapping>
+    <filter-mapping>
+        <filter-name>filterA</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-<filter-mapping>
-    <filter-name>anotherFilter</filter-name>
-    <servlet-name>/foo/bar</servlet-name>
-</filter-mapping>
+    <filter>
+        <filter-name>filterB</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterB</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterB</filter-name>
+        <url-pattern>/servletTwo</url-pattern>
+        <url-pattern>/servletThree</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>filterC</filter-name>
+        <filter-class>com.nicordesigns.filters.FilterC</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterC</filter-name>
+        <url-pattern>/servletTwo</url-pattern>
+    </filter-mapping>
 ```
 
-Suppose a request matches all three filter mappings above with the URL */foo/bar*. In that case, the filters will execute in the following order:
+Suppose a request matches all three filter mappings above with the URL */servletTwo*. In that case, the filters will execute in the following order:
 
-1. `myFilter`
-2. `anotherFilter`
-3. `servletFilter`
+1. `FilterA`
+2. `FilterB`
+3. `FilterC`
 
 This sequence is determined by the fact that URL pattern mappings take precedence over servlet name mappings.
 
-In conclusion, properly ordering your filters is crucial for defining the logic and sequence of actions on incoming requests. Understanding the distinction between URL pattern and servlet name mapping is vital to ensure that filters execute in the desired order. While annotations may not directly support filter ordering, using the deployment descriptor in `web.xml` and programmatic configuration methods provide the necessary control over filter order in your web application.
+In conclusion, properly ordering your filters is crucial for defining the logic and sequence of actions on incoming requests. 
+Understanding the distinction between URL pattern and servlet name mapping is vital to ensure that filters execute in the desired order. 
+While annotations may not directly support filter ordering, using the deployment descriptor in `web.xml` and programmatic configuration methods provide the necessary control over filter order in your web application.
