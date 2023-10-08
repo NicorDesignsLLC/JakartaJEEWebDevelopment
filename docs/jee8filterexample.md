@@ -1,40 +1,37 @@
 # 4. Exploring Filter Order with a Simple Example
 
-Have a look at the following code:
+Have a look at the following Servlet code:
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletOne.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletOne.java)
+[ServletOne.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/ServletOne.java)
 
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletTwo.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletTwo.java)
+[ServletTwo.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/ServletTwo.java)
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletThree.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/ServletThree.java)
+[ServletThree.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/ServletThree.java)
 
-The same for:
+Filter code as well:
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterA.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterA.java)
+[FilterA.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/FilterA.java)
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterB.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterB.java)
+[FilterB.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/FilterB.java)
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterC.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/java/com/nicordesigns/FilterC.java)
+[FilterC.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/FilterC.java)
 
 We see how the filters are mapped in the deployment descriptor here:
 
-[https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/webapp/WEB-INF/web.xml](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-filter-order/src/main/webapp/WEB-INF/web.xml)
+[web.xml](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/webapp/WEB-INF/web.xml)
 
 We will now compile and run this web app example: 
 
 Go to:
 
-[http://localhost:8080/charity-charity-filter-order/ServletOne](http://localhost:8080/charity-charity-filter-order/ServletOne)
+[http://localhost:8080/charity-registration/ServletOne](http://localhost:8080/charity-charity-filter-order/ServletOne)
 
-Tomcat Console Log Output:
 
+[http://localhost:8080/charity-registration/ServletTwo](http://localhost:8080/charity-charity-filter-order/ServletTwo)
 ?
 
-[http://localhost:8080/charity-charity-filter-order/ServletTwo](http://localhost:8080/charity-charity-filter-order/ServletTwo)
-?
-
-[http://localhost:8080/charity-charity-filter-order/ServletThree](http://localhost:8080/charity-charity-filter-order/ServletThree)
+[http://localhost:8080/charity-registration/ServletThree](http://localhost:8080/charity-charity-filter-order/ServletThree)
 ?
 
 Play around with the order to find out how it works
