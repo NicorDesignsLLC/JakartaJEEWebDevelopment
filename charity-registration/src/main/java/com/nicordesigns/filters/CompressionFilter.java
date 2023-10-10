@@ -17,16 +17,17 @@ import java.io.PrintWriter;
 import java.util.zip.GZIPOutputStream;
 
 public class CompressionFilter implements Filter {
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
+
+		System.out.println("Entering CompressionFilter.doFilter().");
 		// Check if the incoming Request is for Gzip
 		if (((HttpServletRequest) request).getHeader("Accept-Encoding").contains("gzip")) {
 			System.out.println("Encoding requested.");
-			((HttpServletResponse) response).setHeader("Content-Encoding", "gzip"); //Set Response Header
-			//Wrap the Servlet Response
+			((HttpServletResponse) response).setHeader("Content-Encoding", "gzip"); // Set Response Header
+			// Wrap the Servlet Response
 			ResponseWrapper wrapper = new ResponseWrapper((HttpServletResponse) response);
 			try {
 				chain.doFilter(request, wrapper);
@@ -41,6 +42,8 @@ public class CompressionFilter implements Filter {
 			System.out.println("Encoding not requested.");
 			chain.doFilter(request, response);
 		}
+
+		System.out.println("Leaving CompressionFilter.doFilter().");
 	}
 
 	@Override
@@ -51,7 +54,8 @@ public class CompressionFilter implements Filter {
 	public void destroy() {
 	}
 
-	//Private Static Wrapper class using java.util.zip.GZIPOutputStream outputStream
+	// Private Static Wrapper class using java.util.zip.GZIPOutputStream
+	// outputStream
 	private static class ResponseWrapper extends HttpServletResponseWrapper {
 		private GZIPServletOutputStream outputStream;
 		private PrintWriter writer;
@@ -60,7 +64,7 @@ public class CompressionFilter implements Filter {
 			super(request);
 		}
 
-		//Wraps the ServletOutputStream in a GZIPServletOutputStream
+		// Wraps the ServletOutputStream in a GZIPServletOutputStream
 		@Override
 		public synchronized ServletOutputStream getOutputStream() throws IOException {
 			if (this.writer != null)
@@ -70,7 +74,8 @@ public class CompressionFilter implements Filter {
 			return this.outputStream;
 		}
 
-		//Wraps the outputStream in a GZIPServletOutputStream and in a Printwriter in turn   
+		// Wraps the outputStream in a GZIPServletOutputStream and in a Printwriter in
+		// turn
 		@Override
 		public synchronized PrintWriter getWriter() throws IOException {
 			if (this.writer == null && this.outputStream != null)
@@ -131,7 +136,7 @@ public class CompressionFilter implements Filter {
 		}
 	}
 
-	//Inner class uses java.util.GZIPOutputStream
+	// Inner class uses java.util.GZIPOutputStream
 	private static class GZIPServletOutputStream extends ServletOutputStream {
 		private final ServletOutputStream servletOutputStream;
 		private final GZIPOutputStream gzipStream;
