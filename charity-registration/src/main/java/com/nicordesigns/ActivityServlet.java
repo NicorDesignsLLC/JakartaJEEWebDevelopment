@@ -22,9 +22,11 @@ public class ActivityServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	System.out.println("Entering ActivityServlet.doGet().");
         this.recordSessionActivity(request);
 
         this.viewSessionActivity(request, response);
+        System.out.println("Leaving ActivityServlet.doGet().");
     }
 
     private void recordSessionActivity(HttpServletRequest request) {

@@ -1,44 +1,40 @@
 # 5. Investigating Practical Uses For Filters
 
-Here we will be looking at another example: 
+In this section, we will explore practical use cases for filters in web development. We'll focus on two specific filters:
 
-[charity-compression-filter](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-filters-end/charity-compression-filter)
+- **Charity Compression-Filter & Charity Logging-Filter** ([GitHub Repo](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8web-filters))
 
-which shows a logging filter and a compression filter.
+These filters serve the purpose of logging and compression in web applications. Let's delve into each of them:
 
-The [CompressedServlet.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-compression-filter/src/main/java/com/nicordesigns/CompressedServlet.java) 
-are mapped to /servlet and a doGet() response output.
+## 1. The Compression Filter
+The [CompressionFilter.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/CompressionFilter.java) is a critical component of this system. It is responsible for compressing the response data for efficient data transfer.
 
-It also has an [index.jsp](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-compression-filter/src/main/webapp/index.jsp) file
+## 2. The Logging Filter
+On the other hand, we have the [RequestLogFilter.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/RequestLogFilter.java). This filter plays a crucial role in logging various aspects of incoming requests and responses. It is the first filter in the filter chain and is designed to capture valuable information such as IP addresses, request methods, and any errors that may occur during the process.
 
+However, it's important to note that this logging filter may not work with asynchronous processes.
 
-This is how the filters are programmatically set up in the app:
-[Configurator.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-compression-filter/src/main/java/com/nicordesigns/Configurator.java)
+## Implementation Details
+To understand how these filters are set up in the application, we refer to [Configurator.java](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/blob/jee8web-filters/charity-registration/src/main/java/com/nicordesigns/filters/Configurator.java). This component manages the integration of these filters into the system.
 
+### Response Wrapping
+One notable technique used is response wrapping. This approach involves encapsulating the response object to manage the flow of data efficiently. Response data is initially written to a GZipOutputStream for compression. When the request is complete, the compression is finalized, and the compressed output is written to the wrapped ServletOutputStream. The Responsewrapper also overrides methods like `setContentLength()` and `setContentLengthLong()` since the content length can't be determined in advance due to compression.
 
-## The logging filter:
-[RequestLogFilter.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-compression-filter/src/main/java/com/nicordesigns/RequestLogFilter.java)
-Is the first filter in the filter chain?  It times the request process and captures a bunch of information to log: IP Address, Request Method etc. The finally are used to ensure it can also log errors being thrown. A note here this won't work for ASync processes
+This wrapper pattern is commonly used in Java Web Filters, particularly for responses like the compression example we're discussing.
 
-## The compression filter:
+## Practical Applications of Filters
+Filters like these are widely employed in web development for a variety of purposes, including:
 
-[CompressionFilter.java](https://github.com/NicorDesigns/javawebdevcourse/blob/jee8web-filters-end/charity-compression-filter/src/main/java/com/nicordesigns/CompressionFilter.java)
+- **Request Encryption and Decryption:** Filters can be used to secure data during transmission.
+- **Authentication and Authorization:** Filters are essential for controlling access to resources and services based on user permissions.
+- **Logging and Debugging:** Filters, like the RequestLogFilter, provide valuable insights for monitoring and troubleshooting web applications, especially in cloud-based microservices environments.
 
-We wrap the Response Object passed because the Response Data can start flowing back before the Servlet completed the servicing the Request or it can start flowing back after the the Servlet has complted Servicing the Request (Async Request handling).
-Response data is first written to a GZipOutputStream and then when the requests completes it finishes the compression and writes the compressed output to the wrapped ServletOutputStream.
+## Running the Web Application
+To experience these filters in action, you can launch and run the web application on Tomcat 9. Access it through the following URLs:
 
-The Responsewrapper also overwrites setContentLength() and setContentLengthLong() to prevent the Content Length to be set, because the length can obviously not be known before it is compressed.
+- [http://localhost:8080/charity-charity-registration/](http://localhost:8080/charity-compression-filter/)
+- [http://localhost:8080/charity-charity-registration/servlet](http://localhost:8080/charity-compression-filter/servlet)
 
-The wrapper pattern is commonly used in Java Web Filters more so for Resonses as in our Compression example than for Requests. The common application for filters are for encrypting and decrypting request, for authentication and authorization of access to resources and services and also of cause logging and debugging for an extended set of cloud based micro services.
+For a more in-depth analysis, you can use your browser's development tools to inspect content headers and other relevant information.
 
-We launch and run our web application in Tomcat 9
-
-http://localhost:8080/charity-compression-filter/
-
-http://localhost:8080/charity-compression-filter/servlet
-
-now we will use our browsers development tools to look at the Content headers and so forth
-
-
-
-
+This document provides an overview of how filters can be used in web development to enhance functionality and security.

@@ -13,16 +13,16 @@ public class Configurator implements ServletContextListener {
 
 		ServletContext context = event.getServletContext();
 
-//		FilterRegistration.Dynamic registration = context.addFilter("requestLogFilter", new RequestLogFilter());
-//		registration.addMappingForUrlPatterns(null, false, "/*");
-//
-//		registration = context.addFilter("compressionFilter", new CompressionFilter());
-//		registration.setAsyncSupported(true);
-//		registration.addMappingForUrlPatterns(null, false, "/*");
+		FilterRegistration.Dynamic registration = context.addFilter("requestLogFilter", new RequestLogFilter());
+		registration.addMappingForUrlPatterns(null, false, "/*");
 
-		FilterRegistration.Dynamic registration = context.addFilter("authenticationFilter", new AuthenticationFilter());
+		registration = context.addFilter("compressionFilter", new CompressionFilter());
 		registration.setAsyncSupported(true);
-		registration.addMappingForUrlPatterns(null, false, "/registrations", "/sessions");
+		registration.addMappingForUrlPatterns(null, false, "/*");
+
+//		FilterRegistration.Dynamic registration = context.addFilter("authenticationFilter", new AuthenticationFilter());
+//		registration.setAsyncSupported(true);
+//		registration.addMappingForUrlPatterns(null, false, "/registrations", "/sessions");
 
 	}
 
