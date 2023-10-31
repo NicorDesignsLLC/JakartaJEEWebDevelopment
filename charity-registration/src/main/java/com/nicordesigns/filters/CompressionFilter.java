@@ -28,6 +28,7 @@ public class CompressionFilter implements Filter {
 			System.out.println("Encoding requested.");
 			((HttpServletResponse) response).setHeader("Content-Encoding", "gzip"); // Set Response Header
 			// Wrap the Servlet Response
+			System.out.println("Encoding : Wrap the Servlet Response.");
 			ResponseWrapper wrapper = new ResponseWrapper((HttpServletResponse) response);
 			try {
 				chain.doFilter(request, wrapper);

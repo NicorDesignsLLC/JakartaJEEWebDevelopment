@@ -48,6 +48,7 @@
 	<distributable/>
 	
 	<!-- Filter Ordering -->
+	<!--  
 	<filter>
         <filter-name>filterA</filter-name>
         <filter-class>com.nicordesigns.filters.FilterA</filter-class>
@@ -78,6 +79,7 @@
         <filter-name>filterC</filter-name>
         <url-pattern>/servletTwo</url-pattern>
     </filter-mapping>
+    -->
     
     
 </web-app>
