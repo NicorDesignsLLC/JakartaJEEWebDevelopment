@@ -36,6 +36,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
 		String resourcesMapping = "/resources/*";
 
 		javax.servlet.ServletContext servletContext = getServletContext();

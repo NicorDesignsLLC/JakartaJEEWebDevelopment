@@ -17,15 +17,11 @@ public class AuthenticationFilter implements Filter
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException
     {
-    	System.out.println("Entering AuthenticationFilter.doFilter().");
-    	
         HttpSession session = ((HttpServletRequest)request).getSession(false);
         if(session == null || session.getAttribute("username") == null)
             ((HttpServletResponse)response).sendRedirect("login");
         else
             chain.doFilter(request, response);
-        
-        System.out.println("Leaving AuthenticationFilter.doFilter().");
     }
 
     @Override
