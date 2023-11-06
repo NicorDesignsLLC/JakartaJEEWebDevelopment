@@ -11,9 +11,7 @@ In the world of web development, understanding the evolution from Ajax to WebSoc
 
    - [Jakarta EE WebSocket Specification](https://jakarta.ee/specifications/websocket/)
    - [Jakarta EE 8 WebSocket Documentation](https://jakarta.ee/specifications/websocket/1.1/)
-   - [Jakarta EE 2.0 WebSocket Specification](https://jakarta.ee/specifications/websocket/2.0/websocket-spec-
-   	2.0.html)
-
+   
 ### Maven Coordinates
 
 For your project, you can use the following Maven coordinates to access the necessary WebSocket libraries:
