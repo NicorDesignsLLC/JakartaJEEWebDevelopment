@@ -57,6 +57,9 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 28. [Improving our Jakarta JEE 8 Web Application using Filters](jee8filters.md)
 
+29. [Making your Application Interactive with WebSockets](jee8websockets.md)
+
+
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
 [![What is the Jakarta Java Platform Enterprise Edition 8 ?](https://img.youtube.com/vi/Qrc6fWsvRAs/0.jpg)](https://youtu.be/Qrc6fWsvRAs)
