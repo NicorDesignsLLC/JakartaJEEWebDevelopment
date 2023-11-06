@@ -1,5 +1,3 @@
-Certainly, I can help you improve your course markdown document on the topic of "Evolution from Ajax to WebSockets." Here's an improved version of your document with added structure and clarifications:
-
 # 1. Evolution from Ajax to WebSockets
 
 ## Introduction
@@ -70,5 +68,3 @@ WebSockets offer numerous advantages over traditional Ajax-based communication:
 To dive deeper into understanding the WebSocket protocol, you can refer to the following resource that provides step-by-step insights:
 
 [WebSockets Demystified - Part 1](https://levelup.gitconnected.com/websockets-demystified-part-1-understanding-the-protocol-fccca2ca75eb)
-
-Feel free to create your own diagrams using the tool you used for previous diagrams to enhance your understanding of this topic.

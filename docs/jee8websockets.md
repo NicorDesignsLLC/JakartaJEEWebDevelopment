@@ -20,5 +20,5 @@
 
    - Enhance your Charity Registration Web App with WebSocket-powered chat support.
 
-##### [Jakarta JEE8 WeSockets Branch](https://github.com/NicorDesigns/javawebdevcourse/tree/jee8web-websockets-end)
+##### [Jakarta JEE8 WeSockets Branch](https://github.com/NicorDesignsLLC/JakartaJEEWebDevelopment/tree/jee8-websockets)
 
