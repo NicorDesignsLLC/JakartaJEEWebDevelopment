@@ -6,17 +6,13 @@ In this section, we will delve into the WebSocket APIs, focusing on both JavaScr
 
 To start, let's explore the HTML5 JavaScript WebSocket Client API. We aim to create an informative and comprehensive tutorial that combines the valuable resources from Mozilla and other references.
 
-### Creating a WebSocket
+### Creating and Using WebSockets
 
-To create a WebSocket connection in your JavaScript application, you can refer to the following online documentation from Mozilla:
+To create a WebSocket connection in your JavaScript application, you can refer to the following online documentation from Mozilla.
+Here you can learn how to send and close WebSocket connections with practical examples. 
+Explore this section to understand the WebSocket API's core functionality:
 
 [Mozilla WebSocket Client Documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications)
-
-### Using the WebSocket Object
-
-Learn how to send and close WebSocket connections with practical examples. Explore this section to understand the WebSocket API's core functionality:
-
-[Mozilla WebSocket Usage Guide](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications)
 
 ### WebSocket Closure Definitions
 
