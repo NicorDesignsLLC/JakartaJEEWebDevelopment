@@ -66,7 +66,7 @@ The Eclipse Foundation is a valuable resource for WebSocket development within t
 
 [Eclipse Foundation WebSocket Page](https://projects.eclipse.org/projects/ee4j.websocket/developer)
 
-Finally, consider reviewing the following chapters from Wrox books, as they require attention to align with the latest WebSocket APIs:
+Finally, where in the Maven Repository can we find the WebSocket APIs:
 
 - **The Client API**: Updates are needed for the javax.websocket.** package. You can find the relevant resources here:
 
