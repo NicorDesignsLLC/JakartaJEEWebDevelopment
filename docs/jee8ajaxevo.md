@@ -59,6 +59,6 @@ WebSockets offer numerous advantages over traditional Ajax-based communication:
 
 6. **Cross-Domain Capability:** WebSockets can facilitate cross-domain connections, as they are not based on HTTP.
 
-7. **Support for New Protocols:** Enabling the use of newer protocols like STOMP for applications requiring high connectivity and data throughput (e.g., IoT, gaming, and data-intensive applications like Smart Grids).
+7. **Support for New Protocols:** Enabling the use of newer protocols like [STOMP](https://stomp.github.io/) for applications requiring high connectivity and data throughput (e.g., IoT, gaming, and data-intensive applications like Smart Grids).
 
 
