@@ -61,8 +61,4 @@ WebSockets offer numerous advantages over traditional Ajax-based communication:
 
 7. **Support for New Protocols:** Enabling the use of newer protocols like STOMP for applications requiring high connectivity and data throughput (e.g., IoT, gaming, and data-intensive applications like Smart Grids).
 
-## Additional Resources
 
-To dive deeper into understanding the WebSocket protocol, you can refer to the following resource that provides step-by-step insights:
-
-[WebSockets Demystified - Part 1](https://levelup.gitconnected.com/websockets-demystified-part-1-understanding-the-protocol-fccca2ca75eb)
