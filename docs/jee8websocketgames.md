@@ -1,6 +1,6 @@
 # 2. Creating Multi-player Games with WebSockets
 
-Welcome to "Creating Multi-player Games with WebSockets." In this course, we'll explore the fascinating world of WebSockets and learn how to build multi-player games using these real-time communication tools. We'll begin by delving into practical examples provided by Tomcat 9, covering WebSocket applications like Echo, Chat, Multiplayer Snake, and Multiplayer Drawboard.
+Welcome to "Creating Multi-player Games with WebSockets." In this course module, we'll explore the fascinating world of WebSockets and learn how to build multi-player games using these real-time communication tools. We'll begin by delving into practical examples provided by Tomcat 9, covering WebSocket applications like Echo, Chat, Multiplayer Snake, and Multiplayer Drawboard.
 
 ## Getting Started
 
@@ -12,8 +12,10 @@ To get started, follow these steps:
 
 3. **Local Tomcat 9 Location:** The local instance of Tomcat 9 is located at `C:\apache-tomcat-9.0.68\webapps\examples`. You can refer to this directory for your local WebSocket development.
 
-4. **Source Code on GitHub:** For in-depth understanding and exploration of the source code, check out the WebSocket examples on [GitHub](https://github.com/apache/tomcat/tree/9.0.x/webapps/examples).
-
+4. **Source Code on GitHub:** For in-depth understanding and exploration of the source code, check out the WebSocket examples on
+ [GitHub Tomcat 9](https://github.com/apache/tomcat/tree/9.0.x/webapps/examples) & 
+ [GitHub Tomcat Master](https://github.com/BitMindLab/tomcat-example/tree/master)
+ 
 ## WebSocket Examples
 
 We'll dive into the following Apache Tomcat WebSocket examples:
