@@ -11,9 +11,12 @@
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>CharityAddressBook-messages</param-value>
     </context-param>
+    
     <!-- 1. CharityAddressBook-messages_[language]_[region].properties
 	     2. CharityAddressBook-messages_[language].properties 
 	     3. Fall back to default -->
+	
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -22,6 +25,34 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
+
+	<servlet>
+        <servlet-name>clusterNodeA</servlet-name>
+        <servlet-class>com.nicordesigns.servlets.ClusterNodeServlet</servlet-class>
+        <init-param>
+            <param-name>nodeId</param-name>
+            <param-value>A</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>clusterNodeA</servlet-name>
+        <url-pattern>/clusterNodeA</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>clusterNodeB</servlet-name>
+        <servlet-class>com.nicordesigns.servlets.ClusterNodeServlet</servlet-class>
+        <init-param>
+            <param-name>nodeId</param-name>
+            <param-value>B</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>clusterNodeB</servlet-name>
+        <url-pattern>/clusterNodeB</url-pattern>
+    </servlet-mapping>
 
 	<jsp-config>
 		<jsp-property-group>
