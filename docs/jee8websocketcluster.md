@@ -45,24 +45,75 @@ Next, let's examine the WebSocket endpoint implementation in the `ClusteredChatS
 ```java
 @ServerEndpoint("/chat/{nodeId}")
 public class ClusteredChatServerNodeEndPoint {
-    // ... (existing code)
+   private static final List<Session> nodes = new ArrayList<>(2);
 
     @OnOpen
     public void onOpen(Session session, @PathParam("nodeId") String nodeId) {
-        // ... (existing code)
+        System.out.println("INFO: Node [" + nodeId + "] connected to cluster.");
+        ClusterMessage message = new ClusterMessage(nodeId, "Joined the cluster.");
+        try
+        {
+            byte[] bytes = ClusteredChatServerNodeEndPoint.toByteArray(message);
+            for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+                node.getBasicRemote().sendBinary(ByteBuffer.wrap(bytes));
+        }
+        catch(IOException e)
+        {
+            System.err.println("ERROR: Exception when notifying of new node");
+            e.printStackTrace();
+        }
+        ClusteredChatServerNodeEndPoint.nodes.add(session);
+
     }
 
     @OnClose
-    public void onClose(Session session, @PathParam("nodeId") String nodeId) {
-        // ... (existing code)
+    public void onClose(Session session, @PathParam("nodeId") String nodeId)
+    {
+    	 System.out.println("INFO: Node [" + nodeId + "] disconnected.");
+
+    	 ClusteredChatServerNodeEndPoint.nodes.remove(session);
+
+         ClusterMessage message = new ClusterMessage(nodeId, "Left the cluster.");
+         try
+         {
+             byte[] bytes = ClusteredChatServerNodeEndPoint.toByteArray(message);
+             for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+                 node.getBasicRemote().sendBinary(ByteBuffer.wrap(bytes));
+         }
+         catch(IOException e)
+         {
+             System.err.println("ERROR: Exception when notifying of left node");
+             e.printStackTrace();
+         }
     }
 
     @OnMessage
-    public void onMessage(Session session, byte[] message) {
-        // ... (existing code)
+    public void onMessage(Session session, byte[] message)
+    {
+        try
+        {
+            for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+            {
+                if(node != session)
+                    node.getBasicRemote().sendBinary(ByteBuffer.wrap(message));
+            }
+        }
+        catch(IOException e)
+        {
+            System.err.println("ERROR: Exception when handling message on server");
+            e.printStackTrace();
+        }
     }
 
-    // ... (existing code)
+    private static byte[] toByteArray(ClusterMessage message) throws IOException
+    {
+        try(ByteArrayOutputStream output = new ByteArrayOutputStream();
+            ObjectOutputStream stream = new ObjectOutputStream(output))
+        {
+            stream.writeObject(message);
+            return output.toByteArray();
+        }
+    }
 }
 ```
 
@@ -75,25 +126,145 @@ Now, let's review the `ClusterNodeServlet` class, which acts as a WebSocket clie
 ```java
 @ClientEndpoint
 public class ClusterNodeServlet extends HttpServlet {
-    // ... (existing code)
-
+     private Session session;
+    private String nodeId;
+    @Override
+    public void init() throws ServletException
+    {
+        this.nodeId = this.getInitParameter("nodeId");
+        String path = this.getServletContext().getContextPath() +
+                "/chat/" + this.nodeId;
+        try
+        {
+            URI uri = new URI("ws", "localhost:8080", path, null, null);
+            this.session = ContainerProvider.getWebSocketContainer()
+                    .connectToServer(this, uri);
+        }
+        catch(URISyntaxException | IOException | DeploymentException e)
+        {
+            throw new ServletException("Cannot connect to " + path + ".", e);
+        }
+    }
+    @Override
+    public void destroy()
+    {
+        try
+        {
+            this.session.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // ... (existing code)
-    }
+            throws ServletException, IOException
+    {
+        ClusterMessage message = new ClusterMessage(this.nodeId,
+                "request:{ip:\"" + request.getRemoteAddr() +
+                "\",queryString:\"" + request.getQueryString() + "\"}");
 
+        try(OutputStream output = this.session.getBasicRemote().getSendStream();
+            ObjectOutputStream stream = new ObjectOutputStream(output))
+        {
+            stream.writeObject(message);
+        }
+        response.getWriter().append("OK");
+    }
     @OnMessage
-    public void onMessage(InputStream input) {
-        // ... (existing code)
+    public void onMessage(InputStream input)
+    {
+        try(ObjectInputStream stream = new ObjectInputStream(input))
+        {
+            ClusterMessage message = (ClusterMessage)stream.readObject();
+            System.out.println("INFO (Node " + this.nodeId +
+                    "): Message received from cluster; node = " +
+                    message.getNodeId() + ", message = " + message.getMessage());
+        }
+        catch(IOException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+private static final List<Session> nodes = new ArrayList<>(2);
+
+    @OnOpen
+    public void onOpen(Session session, @PathParam("nodeId") String nodeId) {
+        System.out.println("INFO: Node [" + nodeId + "] connected to cluster.");
+        ClusterMessage message = new ClusterMessage(nodeId, "Joined the cluster.");
+        try
+        {
+            byte[] bytes = ClusteredChatServerNodeEndPoint.toByteArray(message);
+            for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+                node.getBasicRemote().sendBinary(ByteBuffer.wrap(bytes));
+        }
+        catch(IOException e)
+        {
+            System.err.println("ERROR: Exception when notifying of new node");
+            e.printStackTrace();
+        }
+        ClusteredChatServerNodeEndPoint.nodes.add(session);
+
     }
 
     @OnClose
-    public void onClose(CloseReason reason) {
-        // ... (existing code)
+    public void onClose(Session session, @PathParam("nodeId") String nodeId)
+    {
+    	 System.out.println("INFO: Node [" + nodeId + "] disconnected.");
+
+    	 ClusteredChatServerNodeEndPoint.nodes.remove(session);
+
+         ClusterMessage message = new ClusterMessage(nodeId, "Left the cluster.");
+         try
+         {
+             byte[] bytes = ClusteredChatServerNodeEndPoint.toByteArray(message);
+             for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+                 node.getBasicRemote().sendBinary(ByteBuffer.wrap(bytes));
+         }
+         catch(IOException e)
+         {
+             System.err.println("ERROR: Exception when notifying of left node");
+             e.printStackTrace();
+         }
     }
 
-    // ... (existing code)
+    @OnMessage
+    public void onMessage(Session session, byte[] message)
+    {
+        try
+        {
+            for(Session node : ClusteredChatServerNodeEndPoint.nodes)
+            {
+                if(node != session)
+                    node.getBasicRemote().sendBinary(ByteBuffer.wrap(message));
+            }
+        }
+        catch(IOException e)
+        {
+            System.err.println("ERROR: Exception when handling message on server");
+            e.printStackTrace();
+        }
+    }
+
+    private static byte[] toByteArray(ClusterMessage message) throws IOException
+    {
+        try(ByteArrayOutputStream output = new ByteArrayOutputStream();
+            ObjectOutputStream stream = new ObjectOutputStream(output))
+        {
+            stream.writeObject(message);
+            return output.toByteArray();
+        }
+    }    @OnClose
+    public void onClose(CloseReason reason)
+    {
+        CloseReason.CloseCode code = reason.getCloseCode();
+        if(code != CloseReason.CloseCodes.NORMAL_CLOSURE)
+        {
+            System.err.println("ERROR: WebSocket connection closed unexpectedly;" +
+                    " code = " + code + ", reason = " + reason.getReasonPhrase());
+        }
+    }
 }
 ```
 
@@ -105,7 +276,33 @@ The `ClusterMessage` class represents the messages exchanged between nodes:
 
 ```java
 public class ClusterMessage implements Serializable {
-    // ... (existing code)
+     private String nodeId;
+    private String message;
+
+    public ClusterMessage()
+    {
+    }
+    public ClusterMessage(String nodeId, String message)
+    {
+        this.nodeId = nodeId;
+        this.message = message;
+    }
+    public String getNodeId()
+    {
+        return nodeId;
+    }
+    public void setNodeId(String nodeId)
+    {
+        this.nodeId = nodeId;
+    }
+    public String getMessage()
+    {
+        return message;
+    }
+    public void setMessage(String message)
+    {
+        this.message = message;
+    }
 }
 ```
 
