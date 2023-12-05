@@ -25,14 +25,16 @@
 	<dependencies>
 		
 
+		<!-- Jakarta JEE8 still uses 1.1 of the WebSocket API-->
+		<!-- Jakarta JEE9 is where we upgrade to jakarta WebSocket API-->
 		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+		
 		<dependency>
 		    <groupId>javax.websocket</groupId>
 		    <artifactId>javax.websocket-api</artifactId>
 		    <version>1.1</version>
 		    <scope>provided</scope>
 		</dependency>
-
 
 		<!-- This Stackoverflow Q&A explains the differences in EL javax vs jakarta JSTL between Tomcat 9 and Tomcat 10-->
 		<!--https://stackoverflow.com/questions/65703840/how-to-properly-configure-jakarta-ee-libraries-in-maven-pom-xml-for-tomcat--> 
