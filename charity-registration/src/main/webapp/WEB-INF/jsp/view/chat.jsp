@@ -2,7 +2,7 @@
 <template:basic htmlTitle="Support Chat" bodyTitle="Support Chat">
     <jsp:attribute name="extraHeadContent">
         <link rel="stylesheet"
-              href="<c:url value="/resource/stylesheet/chat.css" />" />
+              href="<c:url value="/resource/css/chat.css" />" />
         <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     </jsp:attribute>
     <jsp:body>

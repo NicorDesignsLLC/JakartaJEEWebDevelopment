@@ -281,16 +281,17 @@ public class ChatEndpoint implements HttpSessionListener
     public static class EndpointConfigurator
             extends ServerEndpointConfig.Configurator
     {
-        @Override
+    	@Override
         public void modifyHandshake(ServerEndpointConfig config,
                                     HandshakeRequest request,
-                                    HandshakeResponse response)
-        {
+                                    HandshakeResponse response) {
             super.modifyHandshake(config, request, response);
 
-            config.getUserProperties().put(
-                    ChatEndpoint.HTTP_SESSION_PROPERTY, request.getHttpSession()
-            );
+            synchronized (config.getUserProperties()) {
+                config.getUserProperties().put(
+                        ChatEndpoint.HTTP_SESSION_PROPERTY, request.getHttpSession()
+                );
+            }
         }
     }
 }

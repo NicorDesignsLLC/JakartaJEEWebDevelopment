@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "chatServlet", urlPatterns = "/chat")
+@WebServlet(name = "chatServlet", urlPatterns = "/charityRegistrationChat")
 public class ChatServlet extends HttpServlet
 {
     @Override
@@ -21,7 +21,7 @@ public class ChatServlet extends HttpServlet
         if("list".equals(action))
         {
             request.setAttribute("sessions", ChatEndpoint.pendingSessions);
-            request.getRequestDispatcher("/WEB-INF/jsp/view/charityRegistrationChat/list.jsp")
+            request.getRequestDispatcher("/WEB-INF/jsp/view/list.jsp")
                    .forward(request, response);
         }
         else
@@ -59,7 +59,7 @@ public class ChatServlet extends HttpServlet
         }
 
         if(view != null)
-            request.getRequestDispatcher("/WEB-INF/jsp/view/charityRegistrationChat/" + view + ".jsp")
+            request.getRequestDispatcher("/WEB-INF/jsp/view/" + view + ".jsp")
                     .forward(request, response);
     }
 }
