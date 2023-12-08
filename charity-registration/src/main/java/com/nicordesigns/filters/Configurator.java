@@ -22,7 +22,7 @@ public class Configurator implements ServletContextListener {
 
 		FilterRegistration.Dynamic registration = context.addFilter("authenticationFilter", new AuthenticationFilter());
 		registration.setAsyncSupported(true);
-		registration.addMappingForUrlPatterns(null, false, "/charityRegistrationServlet", "/charitySession");
+		registration.addMappingForUrlPatterns(null, false, "/charityRegistrationServlet", "/charitySession", "/charityRegistrationChat");
 
 	}
 

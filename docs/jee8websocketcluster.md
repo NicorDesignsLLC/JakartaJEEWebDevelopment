@@ -43,7 +43,7 @@ This configuration defines two servlets (`clusterNodeA` and `clusterNodeB`) mapp
 Next, let's examine the WebSocket endpoint implementation in the `ClusteredChatServerNodeEndPoint` class. This class manages WebSocket connections and facilitates communication between cluster nodes.
 
 ```java
-@ServerEndpoint("/chat/{nodeId}")
+@ServerEndpoint("/charityChat/{nodeId}")
 public class ClusteredChatServerNodeEndPoint {
    private static final List<Session> nodes = new ArrayList<>(2);
 
@@ -117,7 +117,7 @@ public class ClusteredChatServerNodeEndPoint {
 }
 ```
 
-This class utilizes the `@ServerEndpoint` annotation to define a WebSocket endpoint at the specified path ("/chat/{nodeId}"). The `onOpen`, `onClose`, and `onMessage` methods handle various WebSocket events.
+This class utilizes the `@ServerEndpoint` annotation to define a WebSocket endpoint at the specified path ("/charityChat/{nodeId}"). The `onOpen`, `onClose`, and `onMessage` methods handle various WebSocket events.
 
 ## Servlet Implementation for Communication
 
@@ -133,7 +133,7 @@ public class ClusterNodeServlet extends HttpServlet {
     {
         this.nodeId = this.getInitParameter("nodeId");
         String path = this.getServletContext().getContextPath() +
-                "/chat/" + this.nodeId;
+                "/charityChat/" + this.nodeId;
         try
         {
             URI uri = new URI("ws", "localhost:8080", path, null, null);

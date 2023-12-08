@@ -13,7 +13,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/chat/{nodeId}")
+@ServerEndpoint("/charityChat/{nodeId}")
 public class ClusteredChatServerNodeEndPoint {
     private static final List<Session> nodes = new ArrayList<>(2);
 

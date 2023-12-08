@@ -7,7 +7,7 @@
 
         function connect() {
             const nodeId = prompt("Enter your node ID:");
-            webSocket = new WebSocket("ws://your-websocket-server-address/chat/" + nodeId);
+            webSocket = new WebSocket("ws://your-websocket-server-address/charityRegistrationChat/" + nodeId);
 
             webSocket.onopen = function (event) {
                 console.log("WebSocket connection opened.");

@@ -31,7 +31,7 @@ public class ClusterNodeServlet extends HttpServlet
     {
         this.nodeId = this.getInitParameter("nodeId");
         String path = this.getServletContext().getContextPath() +
-                "/chat/" + this.nodeId;
+                "/charityChat/" + this.nodeId;
         try
         {
             URI uri = new URI("ws", "localhost:8080", path, null, null);
