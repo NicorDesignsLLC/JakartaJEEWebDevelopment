@@ -15,7 +15,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Customer Support :: <c:out value="${fn:trim(htmlTitle)}" /></title>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
         <link rel="stylesheet" href="<c:url value='/resources/css/main.css' />" />
         

@@ -22,7 +22,7 @@
         </c:url>">Register a Charity</a><br />
         <a href="javascript:void 0;"
            onclick="newChat();">Launch Chat Window</a><br />
-        <a href="<c:url value="/chat">
+        <a href="<c:url value="/charityRegistrationChat">
             <c:param name="action" value="list" />
         </c:url>">View Chat Requests</a><br />
         

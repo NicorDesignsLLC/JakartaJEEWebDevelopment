@@ -14,7 +14,7 @@
     </c:choose>
     <script type="text/javascript" language="javascript">
         var join = function(id) {
-            postInvisibleForm('<c:url value="/chat" />', {
+            postInvisibleForm('<c:url value="charityRegistrationChat" />', {
                 action: 'join', chatSessionId: id
             });
         };
