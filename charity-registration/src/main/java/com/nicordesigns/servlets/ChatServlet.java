@@ -25,7 +25,7 @@ public class ChatServlet extends HttpServlet
                    .forward(request, response);
         }
         else
-            response.sendRedirect("tickets");
+            response.sendRedirect("charityRegistrationServlet");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ChatServlet extends HttpServlet
                 }
                 break;
             default:
-                response.sendRedirect("tickets");
+                response.sendRedirect("charityRegistrationServlet");
                 break;
         }
 
