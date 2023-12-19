@@ -59,6 +59,8 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 29. [Making your Application Interactive with WebSockets](jee8websockets.md)
 
+30. [Logging with log4j and slf4j in our Jakarta JEE8 Web Application](jee8logging.md)
+
 
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
