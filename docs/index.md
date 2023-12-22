@@ -62,7 +62,6 @@ An introduction to Java Web Development with Jakarta JEE 8:
 30. [Logging with log4j and slf4j in our Jakarta JEE8 Web Application](jee8logging.md)
 
 
-
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
 [![What is the Jakarta Java Platform Enterprise Edition 8 ?](https://img.youtube.com/vi/Qrc6fWsvRAs/0.jpg)](https://youtu.be/Qrc6fWsvRAs)
 

@@ -60,3 +60,5 @@ An introduction to Java Web Development with Jakarta JEE 8:
 28. [Improving our Jakarta JEE 8 Web Application using Filters](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8filters.html)
 
 29. [Making your Application Interactive with WebSockets](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8websockets.html)
+
+30. [Logging with log4j and slf4j in our Jakarta JEE8 Web Application](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8logging.html)
