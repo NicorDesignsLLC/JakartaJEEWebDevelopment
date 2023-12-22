@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet(
         name = "loginServlet",
         urlPatterns = "/login"
@@ -18,6 +21,7 @@ public class LoginServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 	
+    private static final Logger log = LogManager.getLogger();
 	private static final HashMap<String, String> userDatabase = new HashMap<>();
 
 	//Simple in memory DB to store users and passwords
@@ -36,6 +40,8 @@ public class LoginServlet extends HttpServlet
       //Check if the User is already logged in
         if(request.getParameter("logout") != null)
         {
+        	if(log.isDebugEnabled())
+                log.debug("User {} logged out.", session.getAttribute("username"));
         	//Send to login page if not
             session.invalidate();
             response.sendRedirect("login");
@@ -85,7 +91,7 @@ public class LoginServlet extends HttpServlet
                 !LoginServlet.userDatabase.containsKey(username) ||
                 !password.equals(LoginServlet.userDatabase.get(username)))
         {
-            
+        	log.warn("Login failed for user {}.", username);
         	request.setAttribute("loginFailed", true); //Use this attribute to indicate login failure
             
             request.getRequestDispatcher("/WEB-INF/jsp/view/login.jsp")
@@ -93,6 +99,7 @@ public class LoginServlet extends HttpServlet
         }
         else
         {
+        	log.info("User {} successfully logged in.", username);
             request.changeSessionId();
             session.setAttribute("username", username);
             response.sendRedirect("charityRegistrationServlet");

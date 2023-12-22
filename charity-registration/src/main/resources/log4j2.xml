@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <!-- Configuration status set to WARN -->
+    
+    <appenders>
+        <!-- Appenders configuration section -->
+        
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        
+        <!-- Rolling File Appender -->
+        <RollingFile name="logFileAppender" fileName="../logs/registration.log"
+                     filePattern="../logs/registration-%d{MM-dd-yyyy}-%i.log">
+            <PatternLayout>
+                <!-- Pattern for the Rolling File Appender -->
+                <pattern>%d{HH:mm:ss.SSS} [%t] %X{id} %X{username} %-5level %c{36} %l: %msg%n</pattern>
+            </PatternLayout>
+            
+            <!-- Policies for log rolling -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            
+            <!-- Rollover strategy -->
+            <DefaultRolloverStrategy min="1" max="4" />
+        </RollingFile>
+    </appenders>
+    
+    <loggers>
+        <!-- Loggers configuration section -->
+        
+        <!-- Root Logger -->
+        <root level="warn">
+            <!-- Appender reference for the root logger -->
+            <appender-ref ref="Console" />
+        </root>
+        
+        <!-- Logger for com.nicordesigns -->
+        <logger name="com.nicordesigns" level="info">
+            <!-- Appender reference for the com.nicordesigns logger -->
+            <appender-ref ref="logFileAppender" />
+        </logger>
+        
+        <!-- Logger for org.apache -->
+        <logger name="org.apache" level="info">
+            <!-- Appender reference for the org.apache logger -->
+            <appender-ref ref="logFileAppender" />
+        </logger>
+    </loggers>
+</configuration>
+

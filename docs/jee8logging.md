@@ -8,6 +8,46 @@ Logging is a crucial aspect of software development, providing a means to record
 
 Logging serves as a vital tool in the development and maintenance of software applications. It helps in debugging, troubleshooting, and monitoring application performance in production environments. Whether it's tracking errors, monitoring system behavior, or gaining insights into application flow, logs are a valuable resource.
 
+### Key Reasons for Logging
+
+1. **Application Crashes**
+   - Logging helps identify and trace unexpected application crashes, providing crucial insights into the root causes.
+
+2. **Errors and Exceptions**
+   - Capture and log errors and exceptions, with a special mention to the notorious Null Pointer Exception (NPE) in Java.
+
+3. **Problems with External Resources**
+   - Log issues related to external resources, such as message queues (MQs) or databases (DBs) being unavailable or inaccessible.
+
+4. **Authentication, Authorization, and Transactional Steps**
+   - Confirm and log the success of critical steps like authentication, authorization, and transactions. Legal requirements may mandate documentation of these processes.
+
+5. **Scaling Verbosity in Production**
+   - Logging can be adjusted in production to provide varying levels of detail, aiding in diagnosing and resolving issues efficiently.
+
+### How Logs are Written
+
+1. **Console or System.out**
+   - Traditional method used since the beginning of the course. Note: restarting web applications results in the loss of previous console entries.
+
+2. **Flat Files (.log extension)**
+   - Quick accumulation of log entries, but poses challenges:
+     - Requires substantial drive space.
+     - Needs configuration and management for compression and long-term storage.
+     - Improvement: Transitioning from basic text to XML or JSON format enhances file management.
+  
+3. **Network Sockets, SMS, and SMTP**
+   - Crucial for logs in distributed cloud-based deployments (e.g., Amazon AWS, Google Kubernetes, Microsoft Azure).
+   - Orchestration of logging is handled by cloud tools in such deployments.
+
+4. **OS Tools (SysLog in Linux, Windows Event Log)**
+   - Useful for managing log files efficiently.
+
+5. **Database Logging**
+   - Enables easy querying for specific incidents or timeframes.
+   - Many logging stacks utilize NoSQL databases for efficient storage and retrieval.
+
+
 ## Log4j and SLF4J Overview
 
 We've chosen to use the latest Apache Log4j framework, compatible with JDK 11 and Jakarta EE 8, in conjunction with the log4j-slf4j-impl package. Before diving into the integration process, let's understand the key differences between Log4j and SLF4J.
