@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%--@elvariable id="sessions" type="java.util.List<com.nicordesigns.chat.ChatSession>"--%>
 <template:basic htmlTitle="Support Chat" bodyTitle="Support Chat Requests">
     <c:choose>

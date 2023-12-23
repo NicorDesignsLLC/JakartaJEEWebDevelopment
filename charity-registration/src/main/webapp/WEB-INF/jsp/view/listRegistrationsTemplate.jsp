@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <template:basic htmlTitle="Registered Charities" bodyTitle="Registered Charities">
         <c:choose>
             <c:when test="${fn:length(charityRegistrationDatabase) == 0}">
