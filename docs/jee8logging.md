@@ -47,7 +47,6 @@ Logging serves as a vital tool in the development and maintenance of software ap
    - Enables easy querying for specific incidents or timeframes.
    - Many logging stacks utilize NoSQL databases for efficient storage and retrieval.
 
-
 ## Log4j and SLF4J Overview
 
 We've chosen to use the latest Apache Log4j framework, compatible with JDK 11 and Jakarta EE 8, in conjunction with the log4j-slf4j-impl package. Before diving into the integration process, let's understand the key differences between Log4j and SLF4J.
@@ -86,11 +85,17 @@ We've chosen to use the latest Apache Log4j framework, compatible with JDK 11 an
 
 Now that we have an understanding of the differences between Log4j and SLF4J, let's explore how we can integrate logging into our Jakarta EE 8 web application.
 
-## Logging Levels and Facilities
+## Logging Levels and Categories
+
+In general, the levels indicate the seriousness and the impact of the expected problem of our code.
 
 ### Using Logging Levels
 
-Before we delve into the integration process, it's essential to understand the various logging levels commonly used in both Log4j and SLF4J. These levels include DEBUG, INFO, WARN, ERROR, and more. Each level corresponds to a specific severity of the log statement.
+Before we delve into the integration process, it's essential to understand the various logging levels commonly used in both Log4j and SLF4J. 
+
+[Logging Levels Table](https://logging.apache.org/log4j/2.x/manual/architecture.html)
+
+Each level corresponds to a specific severity of the log statement.
 
 ### Choosing the Right Logging Facility
 
