@@ -91,7 +91,11 @@ public class CharityRegistrationServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String idString = request.getParameter("registrationId");
+		
+		//TODO if registration is null see if it already exist in the DB
+		// and if it does get it
 		Registration registration = this.getRegistration(idString, response);
+		
 		if (registration == null)
 			return;
 		
@@ -105,7 +109,6 @@ public class CharityRegistrationServlet extends HttpServlet {
 		request.setAttribute("registrationId", idString);
 		request.setAttribute("registration", registration);
 
-		
 		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistrationTemplate.jsp").forward(request, response);
 
 	}

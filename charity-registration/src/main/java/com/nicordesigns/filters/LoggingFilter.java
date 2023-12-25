@@ -1,6 +1,7 @@
 package com.nicordesigns.filters;
 
 import org.apache.logging.log4j.ThreadContext;
+import org.apache.logging.log4j.CloseableThreadContext;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,23 +20,14 @@ public class LoggingFilter implements Filter
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException
     {
-        boolean clear = false;
-        if(!ThreadContext.containsKey("id")) {
-            clear = true;
-            ThreadContext.put("id", UUID.randomUUID().toString());
-            HttpSession session = ((HttpServletRequest)request).getSession(false);
-            if(session != null)
-                ThreadContext.put("username",
-                        (String)session.getAttribute("username"));
-        }
+        try (CloseableThreadContext.Instance ctc = CloseableThreadContext.push("id", UUID.randomUUID().toString())) {
+            HttpSession session = ((HttpServletRequest) request).getSession(false);
+            if (session != null) {
+                ctc.put("username", (String) session.getAttribute("username"));
+            }
 
-        try {
             chain.doFilter(request, response);
-        } finally {
-            if(clear)
-                ThreadContext.clearAll();
         }
-
     }
 
     @Override

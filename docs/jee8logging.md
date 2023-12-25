@@ -122,3 +122,17 @@ To include logging in our Charity Registration Application, we'll follow these g
 Logging is a critical aspect of application development, providing invaluable insights into an application's behavior. By integrating Log4j and SLF4J into our Jakarta EE 8 web application, we enhance our ability to monitor, debug, and troubleshoot effectively.
 
 In the next sections, we'll dive into the specifics of logging levels, facility selection, integration steps, and demonstrate the inclusion of logging in our Charity Registration Application.
+
+The use of `log.atDebug().log()` instead of `log.debug()` in this example code is related to the structured logging capabilities provided by the Log4j 2 library. The `log.atDebug()` syntax is a part of Log4j 2's fluent logging API, and it's particularly useful when you want to include additional structured information in your log messages.
+
+With `log.atDebug()`, you can chain additional attributes or context information using the `withAttribute` method before invoking `log()`. For example:
+
+```java
+log.atDebug().withAttribute("key", value).log("Your log message");
+```
+
+This allows you to attach structured data to your log messages, providing more context or information that might be valuable for debugging or analysis.
+
+In the provided example code, the use of `CloseableThreadContext` is another part of Log4j 2's feature set. It allows you to add context data to the logging context for the duration of the try-with-resources block. This is particularly useful for tracking the context of log messages, especially in multi-threaded applications.
+
+In summary, the use of `log.atDebug().log()` in this code is a way to take advantage of Log4j 2's structured logging capabilities and the fluent API, providing a more flexible and extensible approach to logging with additional context information. If you don't require structured logging or additional context, using `log.debug()` directly is also a valid and more concise option.
