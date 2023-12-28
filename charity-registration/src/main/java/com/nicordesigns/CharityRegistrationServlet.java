@@ -18,211 +18,230 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet(name = "charityRegistrationServlet", urlPatterns = { "/charityRegistrationServlet" }, loadOnStartup = 1)
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class CharityRegistrationServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final Logger log = LogManager.getLogger();
 
-	private volatile int CHARITY_ID_SEQUENCE = 1;
+    private static final long serialVersionUID = 1L;
 
-	private Map<Integer, Registration> charityRegistrationDatabase = new LinkedHashMap<>();
+    private volatile int CHARITY_ID_SEQUENCE = 1;
 
-	public CharityRegistrationServlet() {
-		// TODO Auto-generated constructor stub
-	}
+    private Map<Integer, Registration> charityRegistrationDatabase = new LinkedHashMap<>();
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    public CharityRegistrationServlet() {
+        // TODO Auto-generated constructor stub
+    }
 
-		
-		String resourcesMapping = "/resources/*";
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		javax.servlet.ServletContext servletContext = getServletContext();
-		javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
-		defaultRegistration.addMapping(resourcesMapping);
+        log.debug("GET request received.");
+        String resourcesMapping = "/resources/*";
 
-		String action = request.getParameter("action");
-		if (action == null)
-			action = "list";
-		switch (action) {
-		case "create":
-			this.showRegistrationForm(request, response);
-			break;
-		case "view":
-			this.viewRegistration(request, response);
-			break;
-		case "download":
-			this.downloadFileAttachment(request, response);
-			break;
-		case "list":
-		default:
-			this.listRegistrations(request, response);
-			break;
-		}
-	}
+        javax.servlet.ServletContext servletContext = getServletContext();
+        javax.servlet.ServletRegistration defaultRegistration = servletContext.getServletRegistration("default");
+        defaultRegistration.addMapping(resourcesMapping);
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String action = request.getParameter("action");
-		if (action == null)
-			action = "list";
-		switch (action) {
-		case "create":
-			this.createRegistration(request, response);
-			break;
-		case "list":
-		default:
-			response.sendRedirect("charityRegistrationServlet");
-			break;
-		}
-	}
+        String action = request.getParameter("action");
+        if (action == null)
+            action = "list";
+        switch (action) {
+        case "create":
+            showRegistrationForm(request, response);
+            break;
+        case "view":
+            viewRegistration(request, response);
+            break;
+        case "download":
+            downloadFileAttachment(request, response);
+            break;
+        case "list":
+        default:
+            listRegistrations(request, response);
+            break;
+        }
+    }
 
-	private void showRegistrationForm(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        log.debug("POST request received.");
+        String action = request.getParameter("action");
+        if (action == null)
+            action = "list";
+        switch (action) {
+        case "create":
+            createRegistration(request, response);
+            break;
+        case "list":
+        default:
+            response.sendRedirect("charityRegistrationServlet");
+            break;
+        }
+    }
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/registrationFormTemplate.jsp").forward(request, response);
+    private void showRegistrationForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	}
+        request.getRequestDispatcher("/WEB-INF/jsp/view/registrationFormTemplate.jsp").forward(request, response);
 
-	private void viewRegistration(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    }
 
-		String idString = request.getParameter("registrationId");
-		
-		//TODO if registration is null see if it already exist in the DB
-		// and if it does get it
-		Registration registration = this.getRegistration(idString, response);
-		
-		if (registration == null)
-			return;
-		
-		HttpSession session = request.getSession(false); // Get the existing session if it exists
-		if (session != null) {
-		    String username = (String) session.getAttribute("username");
-		    
-		    request.setAttribute("registration.userName", username);
-		}
+    private void viewRegistration(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		request.setAttribute("registrationId", idString);
-		request.setAttribute("registration", registration);
+        String idString = request.getParameter("registrationId");
+        log.traceEntry(idString);
+        // TODO if registration is null see if it already exists in the DB
+        // and if it does get it
+        Registration registration = getRegistration(idString, response);
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistrationTemplate.jsp").forward(request, response);
+        if (registration == null)
+            return;
 
-	}
+        HttpSession session = request.getSession(false); // Get the existing session if it exists
+        if (session != null) {
+            String username = (String) session.getAttribute("username");
 
-	private void downloadFileAttachment(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String idString = request.getParameter("registrationId");
-		Registration registration = this.getRegistration(idString, response);
-		if (registration == null)
-			return;
+            request.setAttribute("registration.userName", username);
+        }
 
-		String name = request.getParameter("attachment");
-		if (name == null) {
-			response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + idString);
-			return;
-		}
+        request.setAttribute("registrationId", idString);
+        request.setAttribute("registration", registration);
 
-		FileAttachment attachment = registration.getAttachment(name);
-		if (attachment == null) {
-			response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + idString);
-			return;
-		}
+        request.getRequestDispatcher("/WEB-INF/jsp/view/viewRegistrationTemplate.jsp").forward(request, response);
+        log.traceExit();
+    }
 
-		response.setHeader("Content-Disposition", "attachment; filename=" + attachment.getName());
-		response.setContentType("application/octet-stream");
+    private void downloadFileAttachment(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String idString = request.getParameter("registrationId");
+        log.traceEntry(idString);
+        Registration registration = getRegistration(idString, response);
+        if (registration == null)
+            return;
 
-		ServletOutputStream stream = response.getOutputStream();
-		stream.write(attachment.getContents());
-	}
+        String name = request.getParameter("attachment");
+        if (name == null) {
+            response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + idString);
+            return;
+        }
 
-	private void listRegistrations(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		HttpSession session = request.getSession(false); // Get the existing session if it exists
-		if (session != null) {
-		    String username = (String) session.getAttribute("username");
-		    
-		    request.setAttribute("registration.userName", username);
-		}
+        FileAttachment attachment = registration.getAttachment(name);
+        if (attachment == null) {
+            log.info("Requested attachment {} not found on ticket {}.", name, idString);
+            response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + idString);
+            return;
+        }
 
-		request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
+        response.setHeader("Content-Disposition", "attachment; filename=" + attachment.getName());
+        response.setContentType("application/octet-stream");
 
-		request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrationsTemplate.jsp").forward(request, response);
+        ServletOutputStream stream = response.getOutputStream();
+        stream.write(attachment.getContents());
+        log.traceExit();
+    }
 
-	}
+    private void listRegistrations(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	private void createRegistration(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		Registration registration = new Registration();
-		
-		HttpSession session = request.getSession(false); // Get the existing session if it exists
-		if (session != null) {
-		    String username = (String) session.getAttribute("username");
-		    registration.setUserName(username);
-		}
+    	log.debug("Listing Registrations.");
+        HttpSession session = request.getSession(false); // Get the existing session if it exists
+        if (session != null) {
+            String username = (String) session.getAttribute("username");
 
-		registration.setSubject(request.getParameter("charityInfo"));
+            request.setAttribute("registration.userName", username);
+        }
 
-		registration.setBody(request.getParameter("body"));
-		registration.setDateCreated(Instant.now());
+        request.setAttribute("charityRegistrationDatabase", this.charityRegistrationDatabase);
 
-		Part filePart = request.getPart("file");
-		if (filePart != null && filePart.getSize() > 0) {
-			FileAttachment attachment = this.processFileAttachment(filePart);
-			if (attachment != null)
-				registration.addAttachment(attachment);
-		}
+        request.getRequestDispatcher("/WEB-INF/jsp/view/listRegistrationsTemplate.jsp").forward(request, response);
 
-		int id;
-		synchronized (this) {
-			id = this.CHARITY_ID_SEQUENCE++;
-			this.charityRegistrationDatabase.put(id, registration);
-		}
+    }
 
-		response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + id);
-	}
+    private void createRegistration(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	private FileAttachment processFileAttachment(Part filePart) throws IOException {
-		InputStream inputStream = filePart.getInputStream();
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        log.traceEntry();
+        Registration registration = new Registration();
 
-		int read;
-		final byte[] bytes = new byte[1024];
+        HttpSession session = request.getSession(false); // Get the existing session if it exists
+        if (session != null) {
+            String username = (String) session.getAttribute("username");
+            registration.setUserName(username);
+        }
 
-		while ((read = inputStream.read(bytes)) != -1) {
-			outputStream.write(bytes, 0, read);
-		}
+        registration.setSubject(request.getParameter("charityInfo"));
 
-		FileAttachment attachment = new FileAttachment();
-		attachment.setName(filePart.getSubmittedFileName());
-		attachment.setContents(outputStream.toByteArray());
+        registration.setBody(request.getParameter("body"));
+        registration.setDateCreated(Instant.now());
 
-		return attachment;
-	}
+        Part filePart = request.getPart("file");
+        if (filePart != null && filePart.getSize() > 0) {
+            log.debug("Processing file attachment for Registration.");
+            FileAttachment attachment = processFileAttachment(filePart);
+            if (attachment != null)
+                registration.addAttachment(attachment);
+        }
 
-	private Registration getRegistration(String idString, HttpServletResponse response)
-			throws ServletException, IOException {
-		if (idString == null || idString.length() == 0) {
-			response.sendRedirect("charityRegistrationServlet");
-			return null;
-		}
+        int id;
+        synchronized (this) {
+            id = CHARITY_ID_SEQUENCE++;
+            this.charityRegistrationDatabase.put(id, registration);
+        }
 
-		try {
-			Registration registration = this.charityRegistrationDatabase.get(Integer.parseInt(idString));
-			if (registration == null) {
-				response.sendRedirect("charityRegistrationServlet");
-				return null;
-			}
-			Objects.requireNonNull(registration.getAttachments());
+        response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + id);
+        log.traceExit();
+    }
 
-			return registration;
-		} catch (Exception e) {
-			response.sendRedirect("charityRegistrationServlet");
-			return null;
-		}
-	}
+    private FileAttachment processFileAttachment(Part filePart) throws IOException {
+        log.traceEntry();
+        InputStream inputStream = filePart.getInputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        int read;
+        final byte[] bytes = new byte[1024];
+
+        while ((read = inputStream.read(bytes)) != -1) {
+            outputStream.write(bytes, 0, read);
+        }
+
+        FileAttachment attachment = new FileAttachment();
+        attachment.setName(filePart.getSubmittedFileName());
+        attachment.setContents(outputStream.toByteArray());
+
+        // return attachment;
+        return log.traceExit(attachment);
+    }
+
+    private Registration getRegistration(String idString, HttpServletResponse response)
+            throws ServletException, IOException {
+        log.traceEntry(idString);
+        if (idString == null || idString.length() == 0) {
+            response.sendRedirect("charityRegistrationServlet");
+            return null;
+        }
+
+        try {
+            Registration registration = this.charityRegistrationDatabase.get(Integer.parseInt(idString));
+            if (registration == null) {
+                response.sendRedirect("charityRegistrationServlet");
+                log.traceExit();
+                return null;
+            }
+            Objects.requireNonNull(registration.getAttachments());
+
+            return registration;
+        } catch (Exception e) {
+            response.sendRedirect("charityRegistrationServlet");
+            
+            return null;
+        }
+    }
 }
