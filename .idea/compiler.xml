@@ -9,15 +9,9 @@
         <module name="jee8webapp" />
         <module name="jee8mariadbsql" />
         <module name="sub-module" />
+        <module name="charity-custom-tags" />
         <module name="charity-registration" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="charity-registration" target="11" />
-      <module name="JakartaJEEWebDevelopment" target="11" />
-      <module name="jee8mariadbsql" target="11" />
-      <module name="jee8webapp" target="11" />
-      <module name="sub-module" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
