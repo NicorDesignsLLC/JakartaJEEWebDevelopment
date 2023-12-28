@@ -72,6 +72,7 @@ public class LoginServlet extends HttpServlet
         
     	if(request.getParameter("logout") != null) // Add logout functionality
         {
+    		log.debug("User about to be logged out.");
             session.invalidate();
             response.sendRedirect("login");
             return;
