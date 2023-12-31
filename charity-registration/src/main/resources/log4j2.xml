@@ -12,8 +12,8 @@
         </Console>
 
         <!-- Rolling File Appender -->
-        <RollingFile name="logFileAppender" fileName="${catalina.base}/logs/registration.log"
-                     filePattern="${catalina.base}/logs/registration-%d{MM-dd-yyyy}-%i.log">
+        <RollingFile name="logFileAppender" fileName="../logs/registration.log"
+                     filePattern="../logs/registration-%d{MM-dd-yyyy}-%i.log">
             <PatternLayout>
                 <!-- Pattern for the Rolling File Appender -->
                 <pattern>%d{HH:mm:ss.SSS} [%t] %X{id} %X{username} %-5level %c{36} %l: %msg%n</pattern>
