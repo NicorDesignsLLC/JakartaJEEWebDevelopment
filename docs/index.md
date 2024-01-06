@@ -63,8 +63,9 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 31. [Spring Framework Review with Jakarta JEE8](jee8springreview.md)
 
-	32. [Spring Application Context with Jakarta JEE8](jee8springapplicationcontext.md)
-
+32. [Spring Application Context with Jakarta JEE8](jee8springapplicationcontext.md)
+	
+33. [Spring Dispatcher Servlet with Jakarta JEE8](jee8springdispatcherservlet.md)
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
 [![What is the Jakarta Java Platform Enterprise Edition 8 ?](https://img.youtube.com/vi/Qrc6fWsvRAs/0.jpg)](https://youtu.be/Qrc6fWsvRAs)
