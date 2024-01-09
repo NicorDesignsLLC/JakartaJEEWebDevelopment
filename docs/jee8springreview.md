@@ -8,6 +8,6 @@
 
 5. [Configuring a Spring Application in Jakarta JEE8](jee8springconfigure.md)
 
-6. [Using Bean Definition Profiles Spring Application in Jakarta JEE8](jee8springbeanprofiles.md)
+6. [Using Bean Definition Profiles in a Spring Application in Jakarta JEE8](jee8springbeanprofiles.md)
 
 
