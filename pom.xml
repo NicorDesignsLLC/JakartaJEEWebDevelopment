@@ -52,8 +52,6 @@
 
 		<module>charity-registration</module>
 
-		<module>my-spring-mvc</module>
-
 	</modules>
 
 
