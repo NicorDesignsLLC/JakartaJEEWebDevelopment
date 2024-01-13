@@ -1,0 +1,133 @@
+### Prerequisites:
+- [Eclipse IDE](https://www.eclipse.org/downloads/)
+- [Maven](https://maven.apache.org/download.cgi) installed on your system.
+
+### Step 1: Set Up a Maven Project in Eclipse
+1. Open Eclipse IDE.
+2. Go to `File` -> `New` -> `Other...`.
+3. Select `Maven` -> `Maven Project` and click `Next`.
+4. Choose `Create a simple project` and click `Next`.
+5. Enter the `Group ID` and `Artifact ID` for your project. Click `Finish`. 
+
+		  <parent>
+		    <groupId>pom-root-level</groupId>
+		    <artifactId>JakartaJEEWebDevelopment</artifactId>
+		    <version>1.0.0-SNAPSHOT</version>
+		  </parent>
+		  
+		  <artifactId>my-spring-mvc</artifactId>
+		  <packaging>war</packaging>
+		  <name>my-spring-mvc</name>
+		  <description>my-spring-mvc</description>
+
+### Step 2: Add Spring MVC Dependencies
+1. Open the `pom.xml` file in the project.
+2. Add the following dependencies for Spring MVC (we will use all dependencies from our charity-registration module):
+
+	   ```xml
+	   <dependencies>
+	       <!-- Spring MVC -->
+	       <dependency>
+	           <groupId>org.springframework</groupId>
+	           <artifactId>spring-webmvc</artifactId>
+	           <version>5.3.10.RELEASE</version> <!-- Use the latest version -->
+	       </dependency>
+	       
+	       <!-- Servlet API -->
+	       <dependency>
+	           <groupId>javax.servlet</groupId>
+	           <artifactId>javax.servlet-api</artifactId>
+	           <version>4.0.1</version> <!-- Use the version compatible with your	servlet container -->
+	           <scope>provided</scope>
+	       </dependency>
+	   </dependencies>
+	   ```
+
+   Adjust versions based on the latest available versions.
+
+### Step 3(a): Create the Spring MVC Configuration context
+1. Create a `webapp/WEB-INF` folder in the `src/main` directory.
+2. Inside the `WEB-INF` folder, create an `spring-config.xml` file for your Spring MVC configuration:
+
+	   ```xml
+	   <!-- spring-config.xml -->
+	   <beans xmlns="http://www.springframework.org/schema/beans"
+	          xmlns:mvc="http://www.springframework.org/schema/mvc"
+	          xmlns:context="http://www.springframework.org/schema/context"
+	          xsi:schemaLocation="http://www.springframework.org/schema/beans
+	            http://www.springframework.org/schema/beans/spring-beans.xsd
+	            http://www.springframework.org/schema/mvc
+	            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	            http://www.springframework.org/schema/context
+	            http://www.springframework.org/schema/context/spring-context.xsd"
+	          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	       <!-- Component scanning for beans -->
+	       <context:component-scan base-package="com.nicordesigns" />
+	
+	       <!-- Enable Spring MVC -->
+	       <mvc:annotation-driven />
+	
+	       <!-- View resolver for JSP views -->
+	       <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	           <property name="prefix" value="/WEB-INF/views/" />
+	           <property name="suffix" value=".jsp" />
+	       </bean>
+	       
+	   </beans>
+	   ```
+
+3. Create a `webapp/WEB-INF/views` folder for your JSP views.
+
+### Step 3(b): Create the Spring Servlet Context Configuration
+
+### Step 4: Create a Controller
+1. Create a package (e.g., `com.nicordesigns`) in `src/main/java`.
+2. Inside the package, create a "Hello World" controller class:
+
+	   ```java
+	   	package com.nicordesigns;
+	
+		import org.springframework.stereotype.Controller;
+		import org.springframework.ui.Model;
+		import org.springframework.web.bind.annotation.GetMapping;
+		
+		@Controller
+		public class HelloController {
+		
+		    @GetMapping(value = "/")
+		    public String hello(Model model) {
+		        model.addAttribute("message", "Hello, Spring MVC!");
+		        return "hello";
+		    }
+		}
+	
+	   ```
+
+### Step 5: Create a JSP View
+1. Inside `webapp/WEB-INF/views`, create a `hello.jsp` file:
+
+	   ```jsp
+	   	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+		<html>
+		<head>
+		    <title>Hello Spring MVC</title>
+		</head>
+		<body>
+		    <h2>${message}</h2>
+		</body>
+		</html>
+	
+	   ```
+
+### Step 6: Run the Project
+1. Right-click on the project -> `Run As` -> `Maven Build...`.
+2. Set `clean install` as Goals and click `Run`.
+
+### Step 7: Deploy to a Servlet Container
+1. Deploy the generated WAR file (usually found in the `target` folder) to a servlet container like Apache Tomcat 9 in our case.
+
+### Step 8: Access the Application
+1. Once deployed, access the application at `http://localhost:8080/my-spring-mvc/hello`.
+
+Adjust package names, URLs, and configurations based on your preferences.
