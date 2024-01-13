@@ -5,7 +5,7 @@
             <PatternLayout
                     pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="WroxFileAppender" fileName="../logs/application.log"
+        <RollingFile name="logFileAppender" fileName="../logs/application.log"
                      filePattern="../logs/application-%d{MM-dd-yyyy}-%i.log">
             <PatternLayout>
                 <pattern>%d{HH:mm:ss.SSS} [%t] %X{id} %X{username} %-5level %c{36} %l: %msg%n</pattern>
@@ -19,7 +19,7 @@
     <loggers>
         <root level="warn">
             <appender-ref ref="Console" />
-            <appender-ref ref="WroxFileAppender" />
+            <appender-ref ref="logFileAppender" />
         </root>
         <logger name="com.nicordesigns" level="info" />
         <logger name="org.apache" level="info" />
