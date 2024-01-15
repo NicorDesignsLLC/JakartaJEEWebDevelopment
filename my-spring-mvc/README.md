@@ -79,7 +79,7 @@
 
 3. Create a `webapp/WEB-INF/views` folder for your JSP views.
 
-### Step 3(b): Create the Spring Servlet Context Configuration
+### Step 3(b): Update the web.xml configuration file to include the Spring and Spring Servlet Context Configuration as well as the dispatcher servlet defintion
 
 		<!-- src/main/webapp/WEB-INF/web.xml -->
 		<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -135,7 +135,62 @@
 		</web-app>
 
 
-### Step 3(c): Update the web.xml configuration file to include the Spring and Spring Servlet Context Configuration as well as the dispatcher servlet defintion
+### Step 3(c): Create the Spring Servlet Context Configuration
+
+		<!-- src/main/webapp/WEB-INF/web.xml -->
+		<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+		         version="4.0">
+		
+		    <context-param>
+		        <param-name>contextConfigLocation</param-name>
+		        <param-value>/WEB-INF/spring-config.xml</param-value>
+		    </context-param>
+		
+		    <listener>
+		        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		    </listener>
+		    
+		    <servlet>
+		        <servlet-name>dispatcher</servlet-name>
+		        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		        <init-param>
+		            <param-name>contextConfigLocation</param-name>
+		             <param-value>/WEB-INF/servletContext.xml</param-value>
+		        </init-param>
+		        <load-on-startup>1</load-on-startup>
+		    </servlet>
+		
+		    <servlet-mapping>
+		        <servlet-name>dispatcher</servlet-name>
+		        <url-pattern>/</url-pattern>
+		    </servlet-mapping>
+		    
+		    <jsp-config>
+		        <jsp-property-group>
+		            <url-pattern>*.jsp</url-pattern>
+		            <url-pattern>*.jspf</url-pattern>
+		            <page-encoding>UTF-8</page-encoding>
+		            <scripting-invalid>true</scripting-invalid>
+		            <include-prelude>/WEB-INF/jsp/base.jspf</include-prelude>
+		            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+		            <default-content-type>text/html</default-content-type>
+		        </jsp-property-group>
+		    </jsp-config>
+		    
+		    <session-config>
+		        <session-timeout>30</session-timeout>
+		        <cookie-config>
+		            <http-only>true</http-only>
+		        </cookie-config>
+		        <tracking-mode>COOKIE</tracking-mode>
+		    </session-config>
+		
+		    <distributable />
+		
+		</web-app>
+
+
 
 
 ### Step 4: Create a Controller
