@@ -27,6 +27,7 @@
 		<module>jee8mariadbsql</module>
 		<module>charity-registration</module>
 		<module>my-spring-mvc</module>
+		<module>my-spring-bootstrap</module>
 	</modules>
 
 	<build>
