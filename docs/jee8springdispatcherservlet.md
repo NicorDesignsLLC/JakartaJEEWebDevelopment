@@ -30,7 +30,7 @@ In a Spring web application, the `DispatcherServlet` plays a crucial role in han
 ```java
 // Root application context configuration (loaded by ContextLoaderListener)
 @Configuration
-@ComponentScan(basePackages = "com.example")
+@ComponentScan(basePackages = "com.nicordesigns")
 public class RootConfig {
     // Root context configuration
 }
@@ -38,7 +38,7 @@ public class RootConfig {
 // Web application context configuration (loaded by DispatcherServlet)
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.example.web")
+@ComponentScan(basePackages = "com.nicordesigns.web")
 public class WebConfig implements WebMvcConfigurer {
     // Web context configuration
 }
