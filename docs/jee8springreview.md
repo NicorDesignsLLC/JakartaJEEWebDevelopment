@@ -4,10 +4,8 @@
 	
 3. [Spring Dispatcher Servlet with Jakarta JEE8](jee8springdispatcherservlet.md)
 
-4. [Bootstrapping a Spring Application in Jakarta JEE8](jee8springbootstrapping.md)
+4. [Configuring a Spring Application in Jakarta JEE8](jee8springconfigure.md)
 
-5. [Configuring a Spring Application in Jakarta JEE8](jee8springconfigure.md)
-
-6. [Using Bean Definition Profiles in a Spring Application in Jakarta JEE8](jee8springbeanprofiles.md)
+5. [Using Bean Definition Profiles in a Spring Application in Jakarta JEE8](jee8springbeanprofiles.md)
 
 
