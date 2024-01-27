@@ -30,12 +30,11 @@ Developers use Bean Definition Profiles in an Enterprise Spring Framework Applic
 10. **Security Configuration:**
     - Security-related settings often vary between environments. With profiles, developers can tailor security configurations based on the specific requirements of each environment.
 
-Using Bean Definition Profiles in the Spring Framework provides a powerful mechanism for handling diverse configuration needs across different environments in a flexible and maintainable manner.
 
-Using Bean Definition Profiles in a Spring application allows you to define different sets of beans for different environments or scenarios. Profiles help in managing configuration variations in a flexible and modular way. Here's a detailed explanation of how to use Bean Definition Profiles in a Spring application:
+Using Bean Definition Profiles in a Spring application allows you to define different sets of beans for various environments or scenarios, aiding in the management of configuration variations in a flexible and modular way. Here's a detailed guide on how to use Bean Definition Profiles in a Spring application without *Spring Boot*:
 
 1. **Define Profiles:**
-   - In your Spring configuration, annotate classes or methods with `@Profile("profileName")`. This indicates that the beans defined within these components are specific to the given profile.
+   - In your Spring configuration, annotate classes or methods with `@Profile("profileName")`. This annotation signifies that the beans defined within these components are specific to the given profile.
 
    ```java
    @Configuration
@@ -54,69 +53,7 @@ Using Bean Definition Profiles in a Spring application allows you to define diff
    ```
 
 2. **Activate Profiles:**
-   - Profiles can be activated in various ways:
-     - **In XML Configuration:**
-       ```xml
-       <beans profile="development">
-           <!-- Beans for development profile -->
-       </beans>
-       ```
-     - **In Java Configuration:**
-       ```java
-       @Configuration
-       @Profile("development")
-       public class DevelopmentConfig {
-           // Beans specific to the development profile
-       }
-       ```
-
-   - You can also activate profiles programmatically in the `ApplicationContext` during application startup:
-
-     ```java
-     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-     context.getEnvironment().setActiveProfiles("development");
-     context.register(DevelopmentConfig.class, OtherConfig.class);
-     context.refresh();
-     ```
-
-3. **Default Profile:**
-   - You can specify a default profile using `@Profile("default")` or by not specifying any profile. Beans defined without a profile or with the default profile will be registered regardless of the active profiles.
-
-   ```java
-   @Configuration
-   public class DefaultConfig {
-       // Beans for the default profile
-   }
-   ```
-
-4. **Properties-Based Profile Activation:**
-   - Profiles can be activated based on properties. In your `application.properties` or `application.yml` file, specify the active profiles:
-
-     ```properties
-     spring.profiles.active=development
-     ```Using Bean Definition Profiles in a Spring application allows you to define different sets of beans for different environments or scenarios. Profiles help in managing configuration variations in a flexible and modular way. Here's a detailed explanation of how to use Bean Definition Profiles in a Spring application:
-
-1. **Define Profiles:**
-   - In your Spring configuration, annotate classes or methods with `@Profile("profileName")`. This indicates that the beans defined within these components are specific to the given profile.
-
-   ```java
-   @Configuration
-   @Profile("development")
-   public class DevelopmentConfig {
-       // Beans specific to the development profile
-   }
-   ```
-
-   ```java
-   @Configuration
-   @Profile("production")
-   public class ProductionConfig {
-       // Beans specific to the production profile
-   }
-   ```
-
-2. **Activate Profiles:**
-   - Profiles can be activated in various ways:
+   - Profiles can be activated in different ways:
      - **In XML Configuration:**
        ```xml
        <beans profile="development">
@@ -174,36 +111,11 @@ Using Bean Definition Profiles in a Spring application allows you to define diff
 
    ```java
    @RunWith(SpringRunner.class)
-   @SpringBootTest
+   @ContextConfiguration(classes = {TestConfig.class})
    @ActiveProfiles("test")
    public class MyTest {
        // Test-specific configuration for the "test" profile
    }
    ```
 
-Using Bean Definition Profiles provides a clean and modular way to manage configuration differences across various environments or scenarios in your Spring application. This flexibility is particularly valuable for handling configuration variations in development, testing, and production environments.
-
-5. **Conditional Bean Creation:**
-   - Use the `@ConditionalOnProfile` annotation to conditionally create beans based on the active profiles. This is particularly useful when a bean should only be created for specific profiles.
-
-   ```java
-   @Configuration
-   @ConditionalOnProfile("development")
-   public class ConditionalBeanConfig {
-       // This bean will only be created if the "development" profile is active
-   }
-   ```
-
-6. **Testing with Profiles:**
-   - When testing, you can activate profiles specifically for tests. In JUnit, you can use the `@ActiveProfiles` annotation:
-
-   ```java
-   @RunWith(SpringRunner.class)
-   @SpringBootTest
-   @ActiveProfiles("test")
-   public class MyTest {
-       // Test-specific configuration for the "test" profile
-   }
-   ```
-
-Using Bean Definition Profiles provides a clean and modular way to manage configuration differences across various environments or scenarios in your Spring application. This flexibility is particularly valuable for handling configuration variations in development, testing, and production environments.
+Using Bean Definition Profiles provides a clean and modular way to manage configuration differences across various environments or scenarios in your Spring application, even without the use of Spring Boot. This flexibility is particularly valuable for handling configuration variations in development, testing, and production environments.
