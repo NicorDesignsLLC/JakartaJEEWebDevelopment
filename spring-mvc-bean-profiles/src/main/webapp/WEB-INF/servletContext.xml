@@ -9,5 +9,6 @@
 
     <mvc:annotation-driven />
 
-    <bean name="helloController" class="com.nicordesigns.controller.Greetingtroller">
+    <bean name="greetingController" class="com.nicordesigns.controller.Greetingtroller">
     </bean>
+</beans>
