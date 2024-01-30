@@ -28,7 +28,7 @@
 		<module>charity-registration</module>
 		<module>my-spring-mvc</module>
 		<module>my-spring-bootstrap</module>
-		<module>spring-mvc-bean-profiles</module>
+		<module>spring-bean-profiles</module>
 	</modules>
 
 	<build>

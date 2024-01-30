@@ -1,32 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- src/main/webapp/WEB-INF/web.xml -->
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <display-name>Spring Application</display-name>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring-config.xml</param-value>
+        <param-value>/WEB-INF/rootContext.xml</param-value>
     </context-param>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/resource/*</url-pattern>
+    </servlet-mapping>
+
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>springDispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-             <param-value>/WEB-INF/servletContext.xml</param-value>
+            <param-value>/WEB-INF/servletContext.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>springDispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
@@ -38,7 +44,7 @@
             <default-content-type>text/html</default-content-type>
         </jsp-property-group>
     </jsp-config>
-    
+
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>
