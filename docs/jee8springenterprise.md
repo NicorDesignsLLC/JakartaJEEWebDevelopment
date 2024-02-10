@@ -4,4 +4,6 @@
 
 3. [Using Spring Controller Method Parameters](jee8springcontrollermethods.md)
 
+3. [Using Spring MVC](jee8springmvc.md)
+
 
