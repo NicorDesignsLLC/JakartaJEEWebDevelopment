@@ -1,0 +1,33 @@
+/* custom-style.css */
+
+/* Primary color */
+.btn-primary,
+.bg-primary,
+.custom-heading {
+    background-color: #007bff; /* Change to your desired primary color */
+    border-color: #007bff; /* Change to your desired primary color */
+}
+
+/* Secondary color */
+.btn-secondary,
+.bg-secondary {
+    background-color: #6c757d; /* Change to your desired secondary color */
+    border-color: #6c757d; /* Change to your desired secondary color */
+}
+
+/* Accent color */
+.btn-accent,
+.bg-accent {
+    background-color: #ffc107; /* Change to your desired accent color */
+    border-color: #ffc107; /* Change to your desired accent color */
+}
+
+/* Custom text color */
+.custom-text {
+    color: #333; /* Change to your desired text color */
+}
+
+/* Custom link color */
+.custom-link {
+    color: #009688; /* Change to your desired link color */
+}
