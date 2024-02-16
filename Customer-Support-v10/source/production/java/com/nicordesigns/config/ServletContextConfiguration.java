@@ -33,7 +33,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan(
-        basePackages = "com.nicordesigns",
+        basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
         includeFilters = @ComponentScan.Filter(Controller.class)
 )

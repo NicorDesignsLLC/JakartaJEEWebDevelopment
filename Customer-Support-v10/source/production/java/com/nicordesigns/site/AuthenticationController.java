@@ -1,4 +1,4 @@
-package com.nicordesigns;
+package com.nicordesigns.site;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,16 +15,16 @@ import java.util.Hashtable;
 import java.util.Map;
 
 @Controller
-public class LoginController
+public class AuthenticationController
 {
     private static final Logger log = LogManager.getLogger();
     private static final Map<String, String> userDatabase = new Hashtable<>();
 
-  //Simple in memory DB to store users and passwords
     static {
-        userDatabase.put("Nicolaas", "Black");
-        userDatabase.put("Danette", "White");
-        userDatabase.put("Tom", "Green");
+        userDatabase.put("Nicholas", "password");
+        userDatabase.put("Sarah", "drowssap");
+        userDatabase.put("Mike", "wordpass");
+        userDatabase.put("John", "green");
     }
 
     @RequestMapping("logout")
@@ -41,7 +41,7 @@ public class LoginController
     public ModelAndView login(Map<String, Object> model, HttpSession session)
     {
         if(session.getAttribute("username") != null)
-            return this.getRegistrationRedirect();
+            return this.getTicketRedirect();
 
         model.put("loginFailed", false);
         model.put("loginForm", new Form());
@@ -54,7 +54,7 @@ public class LoginController
                               HttpServletRequest request, Form form)
     {
         if(session.getAttribute("username") != null)
-            return this.getRegistrationRedirect();
+            return this.getTicketRedirect();
 
         if(form.getUsername() == null || form.getPassword() == null ||
                 !userDatabase.containsKey(form.getUsername()) ||
@@ -70,12 +70,12 @@ public class LoginController
         log.debug("User {} successfully logged in.", form.getUsername());
         session.setAttribute("username", form.getUsername());
         request.changeSessionId();
-        return this.getRegistrationRedirect();
+        return this.getTicketRedirect();
     }
 
-    private ModelAndView getRegistrationRedirect()
+    private ModelAndView getTicketRedirect()
     {
-        return new ModelAndView(new RedirectView("/registration/list", true, false));
+        return new ModelAndView(new RedirectView("/ticket/list", true, false));
     }
 
     public static class Form
