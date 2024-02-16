@@ -10,10 +10,10 @@
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
                         
         
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/source/production/java"/>
-                        
-        
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/source/production/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
                         
         
         <property name="java-output-path" value="/customer-support/target/classes"/>
