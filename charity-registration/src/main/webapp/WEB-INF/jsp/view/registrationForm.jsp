@@ -1,5 +1,5 @@
 <%@ page session="false"
-	import="java.util.Map, com.nicordesigns.FileAttachment, com.nicordesigns.Registration"%>
+	import="java.util.Map,com.nicordesigns.site.FileAttachment,com.nicordesigns.site.Registration"%>
 <!DOCTYPE html>
 <html>
 <head>

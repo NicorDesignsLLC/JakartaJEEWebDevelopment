@@ -7,10 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jee8webapp" />
-        <module name="jee8mariadbsql" />
         <module name="sub-module" />
-        <module name="charity-custom-tags" />
+        <module name="customer-support-v10" />
+        <module name="my-spring-bootstrap" />
+        <module name="my-spring-mvc" />
+        <module name="spring-bean-profiles" />
         <module name="charity-registration" />
+        <module name="charity-registration-springmvc" />
+        <module name="jee8mariadbsql" />
+        <module name="charity-custom-tags" />
       </profile>
     </annotationProcessing>
   </component>

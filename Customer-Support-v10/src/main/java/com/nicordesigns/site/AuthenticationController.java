@@ -21,10 +21,9 @@ public class AuthenticationController
     private static final Map<String, String> userDatabase = new Hashtable<>();
 
     static {
-        userDatabase.put("Nicholas", "password");
-        userDatabase.put("Sarah", "drowssap");
-        userDatabase.put("Mike", "wordpass");
-        userDatabase.put("John", "green");
+    	 userDatabase.put("Nicolaas", "Black");
+         userDatabase.put("Danette", "White");
+         userDatabase.put("Tom", "Green");
     }
 
     @RequestMapping("logout")

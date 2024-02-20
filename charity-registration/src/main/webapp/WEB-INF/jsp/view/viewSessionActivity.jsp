@@ -1,4 +1,4 @@
-<%@ page import="java.util.ArrayList,com.nicordesigns.PageVisit, java.util.Date" %>
+<%@ page import="java.util.ArrayList,com.nicordesigns.site.PageVisit, java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%!
     private static String toString(long timeInterval)
