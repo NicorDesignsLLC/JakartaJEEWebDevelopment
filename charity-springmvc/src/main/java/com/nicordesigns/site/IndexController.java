@@ -11,6 +11,6 @@ public class IndexController
     @RequestMapping("/")
     public View index()
     {
-        return new RedirectView("/charity-springmvc/list", true, false);
+        return new RedirectView("/registration/list", true, false);
     }
 }

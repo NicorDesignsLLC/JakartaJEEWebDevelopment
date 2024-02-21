@@ -9,14 +9,17 @@
         <module name="jee8webapp" />
         <module name="sub-module" />
         <module name="customer-support-v10" />
+        <module name="charity-springmvc" />
         <module name="my-spring-bootstrap" />
         <module name="my-spring-mvc" />
         <module name="spring-bean-profiles" />
         <module name="charity-registration" />
-        <module name="charity-registration-springmvc" />
         <module name="jee8mariadbsql" />
         <module name="charity-custom-tags" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="charity-registration-springmvc" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

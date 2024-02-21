@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="charity-registration-springmvc:war" />
+      <artifact name="customer-support-v10:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,21 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Customer-Support-v10/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/Customer-Support-v10/.settings/org.eclipse.wst.common.component" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration-springmvc/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/ActivityServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/CharityRegistrationAddressListServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/CharityRegistrationServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/CharitySessionServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/SessionListServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/config/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/config/Bootstrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration-springmvc/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration-springmvc/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration-springmvc/src/main/webapp/index.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/view.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +28,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="KubernetesApiProvider">{
   &quot;contexts&quot;: [
@@ -63,28 +61,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.Tomcat 9.0.68 JavaScript.executor": "Debug",
-    "Maven.JakartaJEEWebDevelopment [clean,install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Tomcat Server.Tomcat 9.0.56.executor": "Debug",
-    "Tomcat Server.Tomcat 9.0.68.executor": "Debug",
-    "WebServerToolWindowFactoryState": "false",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/nicok/Dropbox/JavaWebDevUdemu",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.Tomcat 9.0.68 JavaScript.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.JakartaJEEWebDevelopment [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.56.executor&quot;: &quot;Debug&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.68.executor&quot;: &quot;Debug&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nicok/Dropbox/JavaWebDevUdemu&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.nicordesigns" />
@@ -92,13 +90,14 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.68" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.68" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/charity-springmvc" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="charity-registration-springmvc:war">
+        <artifact name="customer-support-v10:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/charity-registration" />
+            <option name="CONTEXT_PATH" value="/customer_support_v10_war" />
           </settings>
         </artifact>
       </deployment>
@@ -177,6 +176,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="charity-registration-springmvc:war" />
+          <artifact name="customer-support-v10:war" />
         </option>
       </method>
     </configuration>
@@ -206,6 +206,8 @@
       <workItem from="1704543222130" duration="44000" />
       <workItem from="1708269636470" duration="2116000" />
       <workItem from="1708340259564" duration="394000" />
+      <workItem from="1708444222270" duration="63000" />
+      <workItem from="1708444347037" duration="366000" />
     </task>
     <servers />
   </component>
@@ -244,31 +246,6 @@
           <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/IndexController.java</url>
           <line>13</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/RegistrationController.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/RegistrationController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/RegistrationController.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/RegistrationController.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/charity-registration-springmvc/src/main/java/com/nicordesigns/RegistrationController.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

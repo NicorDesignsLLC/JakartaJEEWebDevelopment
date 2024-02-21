@@ -48,7 +48,7 @@ public class Bootstrap implements WebApplicationInitializer
                 "authenticationFilter", new AuthenticationFilter()
         );
         registration.addMappingForUrlPatterns(
-                null, false, "/charity-springmvc", "/charity-springmvc/*", "/chat", "/chat/*",
+                null, false, "/registration", "/registration/*", "/chat", "/chat/*",
                 "/session", "/session/*"
         );
     }

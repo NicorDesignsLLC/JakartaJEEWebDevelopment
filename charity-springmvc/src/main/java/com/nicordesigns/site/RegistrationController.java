@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("charity-springmvc")
+@RequestMapping("registration")
 public class RegistrationController
 {
     private static final Logger log = LogManager.getLogger();

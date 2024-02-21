@@ -7,15 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.stereotype.Controller;
 
 @Configuration
-@ComponentScan(
-        basePackages = "com.nicordesigns.site",
-        excludeFilters = @ComponentScan.Filter(Controller.class)
-)
-public class RootContextConfiguration
-{
+@ComponentScan(basePackages = "com.nicordesigns.site", 
+               useDefaultFilters = false, 
+               includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+public class RootContextConfiguration {
     @Bean
     public ObjectMapper objectMapper()
     {

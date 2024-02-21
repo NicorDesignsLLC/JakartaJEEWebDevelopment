@@ -75,7 +75,7 @@ public class LoginController
 
     private ModelAndView getRegistrationRedirect()
     {
-        return new ModelAndView(new RedirectView("/registration/list", true, false));
+        return new ModelAndView(new RedirectView("/registration-test/list", true, false));
     }
 
     public static class Form

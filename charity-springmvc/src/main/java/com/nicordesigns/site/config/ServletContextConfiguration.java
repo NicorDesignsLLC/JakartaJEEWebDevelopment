@@ -1,6 +1,10 @@
 package com.nicordesigns.site.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,36 +21,37 @@ import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-import org.springframework.web.servlet.RequestToViewNameTranslator;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import javax.inject.Inject;
-import java.util.Arrays;
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(
         basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
-        includeFilters = @ComponentScan.Filter(Controller.class)
+        includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class)
 )
-public class ServletContextConfiguration extends WebMvcConfigurerAdapter
-{
-    @Inject ObjectMapper objectMapper;
-    @Inject Marshaller marshaller;
-    @Inject Unmarshaller unmarshaller;
+public class ServletContextConfiguration implements WebMvcConfigurer {
+
+    @Inject
+    private ObjectMapper objectMapper;
+
+    @Inject
+    private Marshaller marshaller;
+
+    @Inject
+    private Unmarshaller unmarshaller;
 
     @Override
-    public void configureMessageConverters(
-            List<HttpMessageConverter<?>> converters
-    ) {
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new ByteArrayHttpMessageConverter());
         converters.add(new StringHttpMessageConverter());
         converters.add(new FormHttpMessageConverter());
@@ -73,21 +78,20 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
     }
 
     @Override
-    public void configureContentNegotiation(
-            ContentNegotiationConfigurer configurer)
-    {
-        configurer.favorPathExtension(true).favorParameter(false)
-                .parameterName("mediaType").ignoreAcceptHeader(false)
-                .useJaf(false).defaultContentType(MediaType.APPLICATION_XML)
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.favorPathExtension(true)
+                .favorParameter(false)
+                .parameterName("mediaType")
+                .ignoreAcceptHeader(false)
+                .useJaf(false)
+                .defaultContentType(MediaType.APPLICATION_XML)
                 .mediaType("xml", MediaType.APPLICATION_XML)
                 .mediaType("json", MediaType.APPLICATION_JSON);
     }
 
     @Bean
-    public ViewResolver viewResolver()
-    {
-        InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setViewClass(JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/view/");
         resolver.setSuffix(".jsp");
@@ -95,14 +99,12 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
     }
 
     @Bean
-    public RequestToViewNameTranslator viewNameTranslator()
-    {
+    public DefaultRequestToViewNameTranslator viewNameTranslator() {
         return new DefaultRequestToViewNameTranslator();
     }
 
     @Bean
-    public MultipartResolver multipartResolver()
-    {
+    public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
 }

@@ -5,58 +5,8 @@
 	http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 
-	<display-name>Charity Registration Web Application</display-name>
-	
-	<!-- 
-	<context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-        <param-value>CharityAddressBook-messages</param-value>
-    </context-param>
-    
-    1. CharityAddressBook-messages_[language]_[region].properties
-	     2. CharityAddressBook-messages_[language].properties 
-	     3. Fall back to default 
-	
-	
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-	</welcome-file-list>
-
-    <servlet>
-        <servlet-name>clusterNodeA</servlet-name>
-        <servlet-class>com.nicordesigns.site.servlets.ClusterNodeServlet</servlet-class>
-        <init-param>
-            <param-name>nodeId</param-name>
-            <param-value>A</param-value>
-        </init-param>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>clusterNodeA</servlet-name>
-        <url-pattern>/clusterNodeA</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>clusterNodeB</servlet-name>
-        <servlet-class>com.nicordesigns.site.servlets.ClusterNodeServlet</servlet-class>
-        <init-param>
-            <param-name>nodeId</param-name>
-            <param-value>B</param-value>
-        </init-param>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>clusterNodeB</servlet-name>
-        <url-pattern>/clusterNodeB</url-pattern>
-    </servlet-mapping>
-    
-     -->
-
+	<display-name>Charity Spring MVC Web Application</display-name>
+		
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
@@ -78,44 +28,6 @@
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 	
-	<!-- Enable Clustering -->
-	<!--  
-	<distributable/>
-	-->
-	
-	<!-- Filter Ordering -->
-	<!--  
-	<filter>
-        <filter-name>filterA</filter-name>
-        <filter-class>com.nicordesigns.site.filters.FilterA</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>filterA</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>filterB</filter-name>
-        <filter-class>com.nicordesigns.site.filters.FilterB</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>filterB</filter-name>
-        <url-pattern>/servletTwo</url-pattern>
-        <url-pattern>/servletThree</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>filterC</filter-name>
-        <filter-class>com.nicordesigns.site.filters.FilterC</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>filterC</filter-name>
-        <url-pattern>/servletTwo</url-pattern>
-    </filter-mapping>
-    -->
-    
+	    
     
 </web-app>
