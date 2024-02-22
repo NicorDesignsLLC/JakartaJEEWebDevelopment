@@ -15,7 +15,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 @Controller
-public class LoginController
+public class AuthenticationController
 {
     private static final Logger log = LogManager.getLogger();
     private static final Map<String, String> userDatabase = new Hashtable<>();
@@ -75,7 +75,7 @@ public class LoginController
 
     private ModelAndView getRegistrationRedirect()
     {
-        return new ModelAndView(new RedirectView("/registration-test/list", true, false));
+        return new ModelAndView(new RedirectView("/registration/list", true, false));
     }
 
     public static class Form
