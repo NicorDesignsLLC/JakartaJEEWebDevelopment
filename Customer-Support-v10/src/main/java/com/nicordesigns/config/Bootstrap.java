@@ -47,13 +47,13 @@ public class Bootstrap implements WebApplicationInitializer
                 "authenticationFilter", new AuthenticationFilter()
         );
         
-        registration.addMappingForUrlPatterns(
-                null, false, "/registration", "/registration/*", "/chat", "/chat/*",
-                "/session", "/session/*"
+//        registration.addMappingForUrlPatterns(
+//                null, false, "/registration", "/registration/*", "/chat", "/chat/*",
+//                "/session", "/session/*"
 
-//      registration.addMappingForUrlPatterns(
-//      null, false, "/ticket", "/ticket/*", "/chat", "/chat/*",
-//      "/session", "/session/*"
+      registration.addMappingForUrlPatterns(
+      null, false, "/ticket", "/ticket/*", "/chat", "/chat/*",
+      "/session", "/session/*"
 
     );
     }
