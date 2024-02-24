@@ -33,7 +33,6 @@ public class AuthenticationController
         if(log.isDebugEnabled())
             log.debug("User {} logged out.", session.getAttribute("username"));
         session.invalidate();
-
         return new RedirectView("/login", true, false);
     }
 

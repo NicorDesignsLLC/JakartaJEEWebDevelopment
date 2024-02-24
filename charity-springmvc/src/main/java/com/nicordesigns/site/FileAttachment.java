@@ -3,6 +3,9 @@ package com.nicordesigns.site;
 public class FileAttachment
 {
     private String name;
+    
+    private String mimeContentType;
+
 
     private byte[] contents;
 
@@ -25,4 +28,12 @@ public class FileAttachment
     {
         this.contents = contents;
     }
+
+	public String getMimeContentType() {
+		return mimeContentType;
+	}
+
+	public void setMimeContentType(String mimeContentType) {
+		this.mimeContentType = mimeContentType;
+	}
 }

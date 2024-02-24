@@ -10,21 +10,21 @@ import java.util.Map;
 public class DownloadingView implements View
 {
     private final String filename;
-    //private final String contentType;
+    private final String contentType;
     private final byte[] contents;
 
-    public DownloadingView(String filename, byte[] contents)
+    public DownloadingView(String filename, String contentType, byte[] contents)
     {
         this.filename = filename;
-        //this.contentType = contentType;
+        this.contentType = contentType;
         this.contents = contents;
     }
 
-//    @Override
-//    public String getContentType()
-//    {
-//        return this.contentType;
-//    }
+    @Override
+    public String getContentType()
+    {
+        return this.contentType;
+    }
 
     @Override
     public void render(Map<String, ?> model, HttpServletRequest request,

@@ -34,7 +34,7 @@ public class RegistrationController
         log.debug("Listing registrations.");
         model.put("registrationDatabase", this.registrationDatabase);
 
-        return "charity-springmvc/list";
+        return "registration/list";
     }
 
     @RequestMapping(value = "view/{registrationId}", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class RegistrationController
             return this.getListRedirectModelAndView();
         model.put("registrationId", Long.toString(registrationId));
         model.put("registration", registration);
-        return new ModelAndView("charity-springmvc/view");
+        return new ModelAndView("registration/view");
     }
 
     @RequestMapping(
@@ -60,22 +60,22 @@ public class RegistrationController
         if(registration == null)
             return this.getListRedirectView();
 
-        FileAttachment attachment = registration.getAttachment(name);
-        if(attachment == null)
+        FileAttachment fileAttachment = registration.getAttachment(name);
+        if(fileAttachment == null)
         {
             log.info("Requested attachment {} not found on registration {}.", name, registration);
             return this.getListRedirectView();
         }
 
-        return new DownloadingView(attachment.getName(),
-                attachment.getContents());
+        return new DownloadingView(fileAttachment.getName(), fileAttachment.getMimeContentType(),
+        		fileAttachment.getContents());
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String create(Map<String, Object> model)
     {
         model.put("registrationForm", new Form());
-        return "charity-springmvc/add";
+        return "registration/add";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
@@ -103,7 +103,7 @@ public class RegistrationController
         long nextId = getNextregistrationId();
         this.registrationDatabase.put(nextId , registration);
 
-        return new RedirectView("/charity-springmvc/view/" + nextId, true, false);
+        return new RedirectView("/registration/view/" + nextId, true, false);
     }
 
     private ModelAndView getListRedirectModelAndView()
@@ -113,7 +113,7 @@ public class RegistrationController
 
     private View getListRedirectView()
     {
-        return new RedirectView("/charity-springmvc/list", true, false);
+        return new RedirectView("/registration/list", true, false);
     }
 
     private synchronized long getNextregistrationId()
