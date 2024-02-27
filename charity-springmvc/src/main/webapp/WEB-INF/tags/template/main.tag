@@ -1,6 +1,8 @@
 <%@ tag body-content="scriptless" trimDirectiveWhitespaces="true" %>
-<%@ attribute name="htmlTitle" type="java.lang.String" rtexprvalue="true" required="true" %>
-<%@ attribute name="bodyTitle" type="java.lang.String" rtexprvalue="true" required="true" %>
+<%@ attribute name="htmlTitle" type="java.lang.String" rtexprvalue="true"
+              required="true" %>
+<%@ attribute name="bodyTitle" type="java.lang.String" rtexprvalue="true"
+              required="true" %>
 <%@ attribute name="headContent" fragment="true" required="false" %>
 <%@ attribute name="navigationContent" fragment="true" required="true" %>
 <%@ include file="/WEB-INF/jsp/base.jspf" %>
@@ -9,8 +11,8 @@
 <html>
     <head>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
-        <link rel="stylesheet" href="<c:url value='/resources/css/main.css' />" />
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="<c:url value='/resources/css/main.css' />" />
         <link rel="stylesheet"
               href="<c:url value="/resource/stylesheet/main.css" />">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>

@@ -6,11 +6,11 @@
             <b>The user name and password you entered are not correct. Please try
                 again.</b><br /><br />
         </c:if>
-        <form method="POST" modelAttribute="loginForm" />">
-            User name<br />
-            <input type="text" name="username" /><br /><br />
-            Password<br />
-            <input type="password" name="password" /><br /><br />
-            <input type="submit" value="Log In" />
-        </form>
+        <form:form method="post" modelAttribute="loginForm">
+        <form:label path="username">User Name</form:label><br />
+        <form:input path="username" /><br /><br />
+        <form:label path="password">Password</form:label><br />
+        <form:password path="password" /><br /><br />
+        <input type="submit" value="Log In" />
+    </form:form>
 </template:loggedOut>
