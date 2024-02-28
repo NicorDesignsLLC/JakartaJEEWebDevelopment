@@ -1,7 +1,7 @@
 <%--@elvariable id="chatSessionId" type="long"--%>
 <template:basic htmlTitle="Support Chat" bodyTitle="Support Chat">
     <jsp:attribute name="extraHeadContent">
-        <link rel="stylesheet" href="<c:url value='/resources/css/chat.css' />" />
+	<link rel="stylesheet" href="<c:url value='/resources/css/chat.css' />" />
         <script src="/resources/js/bootstrap.min.js"></script>
     </jsp:attribute>
     <jsp:body>
@@ -71,7 +71,7 @@
                 var server;
                 try {
                     server = new WebSocket('ws://' + window.location.host +
-                            '<c:url value="/charityRegistrationChat/${chatSessionId}" />');
+                            '<c:url value="/chat/${chatSessionId}" />');
                     server.binaryType = 'arraybuffer';
                 } catch(error) {
                     modalErrorBody.text(error);

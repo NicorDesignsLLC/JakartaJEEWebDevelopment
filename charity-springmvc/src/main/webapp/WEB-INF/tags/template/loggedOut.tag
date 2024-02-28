@@ -7,7 +7,7 @@
 <template:main htmlTitle="${htmlTitle}" bodyTitle="${bodyTitle}">
     <jsp:attribute name="headContent">
         <link rel="stylesheet"
-              href="<c:url value="/resource/stylesheet/login.css" />" />
+              href="<c:url value="/resources/css/login.css" />" />
     </jsp:attribute>
     <jsp:attribute name="navigationContent" />
     <jsp:body>

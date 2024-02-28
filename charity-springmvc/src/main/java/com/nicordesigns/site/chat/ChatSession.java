@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.websocket.Session;
 import java.io.File;
@@ -14,6 +16,8 @@ import java.util.List;
 
 public class ChatSession
 {
+    private static final Logger log = LogManager.getLogger();
+
     private long sessionId;
     private String customerUsername;
     private Session customer;
@@ -85,12 +89,14 @@ public class ChatSession
     @JsonIgnore
     public void log(ChatMessage message)
     {
+        log.trace("Chat message logged for session {}.", this.sessionId);
         this.chatLog.add(message);
     }
 
     @JsonIgnore
     public void writeChatLog(File file) throws IOException
     {
+        log.debug("Writing chat log to file {}.", file);
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
         mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
@@ -100,5 +106,6 @@ public class ChatSession
         {
             mapper.writeValue(stream, this.chatLog);
         }
+        log.exit();
     }
 }

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
@@ -20,6 +22,7 @@ public class ChatMessageCodec
         implements Encoder.BinaryStream<ChatMessage>,
                     Decoder.BinaryStream<ChatMessage>
 {
+    private static final Logger log = LogManager.getLogger();
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     static {
@@ -31,6 +34,7 @@ public class ChatMessageCodec
     public void encode(ChatMessage chatMessage, OutputStream outputStream)
             throws EncodeException, IOException
     {
+        log.entry();
         try
         {
             ChatMessageCodec.MAPPER.writeValue(outputStream, chatMessage);
@@ -39,12 +43,17 @@ public class ChatMessageCodec
         {
             throw new EncodeException(chatMessage, e.getMessage(), e);
         }
+        finally
+        {
+            log.exit();
+        }
     }
 
     @Override
     public ChatMessage decode(InputStream inputStream)
             throws DecodeException, IOException
     {
+        log.entry();
         try
         {
             return ChatMessageCodec.MAPPER.readValue(
@@ -54,6 +63,10 @@ public class ChatMessageCodec
         catch(JsonParseException | JsonMappingException e)
         {
             throw new DecodeException((ByteBuffer)null, e.getMessage(), e);
+        }
+        finally
+        {
+            log.exit();
         }
     }
 

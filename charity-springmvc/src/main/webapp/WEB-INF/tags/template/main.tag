@@ -6,17 +6,17 @@
 <%@ attribute name="headContent" fragment="true" required="false" %>
 <%@ attribute name="navigationContent" fragment="true" required="true" %>
 <%@ include file="/WEB-INF/jsp/base.jspf" %>
-<c:set var="registrationDatabase" value="${empty requestScope.charityRegistrationDatabase ? null : requestScope.charityRegistrationDatabase}" />
 <!DOCTYPE html>
 <html>
     <head>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<c:url value='/resources/css/main.css' />" />
-        <link rel="stylesheet"
-              href="<c:url value="/resource/stylesheet/main.css" />">
+        <!-- Custom CSS file for the color scheme -->
+	    <link rel="stylesheet" href="/resources/css/main.css"/>
+	    
+	    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+        
         <script type="text/javascript" lang="javascript">
             var postInvisibleForm = function(url, fields) {
                 var form = $('<form id="mapForm" method="post"></form>')
@@ -31,14 +31,14 @@
                 form.submit();
             };
             var newChat = function() {
-                postInvisibleForm('<c:url value="/charityRegistrationChat" />', { action: 'new' });
+                postInvisibleForm('<c:url value="/chat/new" />', { });
             };
         </script>
         <jsp:invoke fragment="headContent" />
     </head>
     <body>
         <h1>Charity Registration Web Application</h1>
-        <table border="0" id="bodyTable">
+        <table border="1" id="bodyTable">
             <tbody>
                 <tr>
                     <td class="sidebarCell">
