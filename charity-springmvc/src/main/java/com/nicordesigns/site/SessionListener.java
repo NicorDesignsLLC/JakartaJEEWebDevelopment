@@ -18,7 +18,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
     {
         System.out.println(this.date() + ": Session " + e.getSession().getId() +
                 " created.");
-        InMemorySessionDB.addSession(e.getSession());
+        SessionRegistry.addSession(e.getSession());
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
     {
         System.out.println(this.date() + ": Session " + e.getSession().getId() +
                 " destroyed.");
-        InMemorySessionDB.removeSession(e.getSession());
+        SessionRegistry.removeSession(e.getSession());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
     {
         System.out.println(this.date() + ": Session ID " + oldSessionId +
                 " changed to " + e.getSession().getId());
-        InMemorySessionDB.updateSessionId(e.getSession(), oldSessionId);
+        SessionRegistry.updateSessionId(e.getSession(), oldSessionId);
     }
 
     private String date()
