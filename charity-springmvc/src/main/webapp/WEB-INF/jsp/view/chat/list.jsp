@@ -9,6 +9,7 @@
             <c:forEach items="${sessions}" var="s">
                 <a href="javascript:void 0;"
                    onclick="join(${s.sessionId});">${s.customerUsername}</a><br />
+                   
             </c:forEach>
         </c:otherwise>
     </c:choose>

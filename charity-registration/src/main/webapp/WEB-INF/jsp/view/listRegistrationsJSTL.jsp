@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page session="false" import="java.util.Map,com.nicordesigns.site.FileAttachment,com.nicordesigns.site.Registration" %>
+<%@ page session="false" import="java.util.Map,com.nicordesigns.FileAttachment,com.nicordesigns.Registration" %>
 <c:set var="registrationDatabasejstl" value="${empty requestScope.charityRegistrationDatabase ? null : requestScope.charityRegistrationDatabase}" />
 <html>
 <head>

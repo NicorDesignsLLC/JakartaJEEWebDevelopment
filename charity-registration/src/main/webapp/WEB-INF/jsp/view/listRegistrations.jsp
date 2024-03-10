@@ -1,5 +1,5 @@
 <%@ page session="false"
-	import="java.util.Map,com.nicordesigns.site.FileAttachment,com.nicordesigns.site.Registration"%>
+	import="java.util.Map,com.nicordesigns.FileAttachment,com.nicordesigns.Registration"%>
 <%
 @SuppressWarnings("unchecked")
 Map<Integer, Registration> registrationDatabase = (Map<Integer, Registration>) request
