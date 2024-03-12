@@ -37,26 +37,26 @@
 1. Create a com.nicordesigns.site.config package folder in the src/main directory.
 2. Inside the package folder, create your Java-based Spring MVC configuration classes:
 
-	@Configuration
-	@ComponentScan(basePackages = "com.nicordesigns.site", 
-	               useDefaultFilters = false, 
-	               includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
-	public class RootContextConfiguration {
-	}
-	
-	@SuppressWarnings("unused")
-	public class Bootstrap implements WebApplicationInitializer {
-	}
-	
-	@Configuration
-	@EnableWebMvc
-	@ComponentScan(
-	    basePackages = "com.nicordesigns.site",
-	    useDefaultFilters = false,
-	    includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
-	public class ServletContextConfiguration implements WebMvcConfigurer {
-	}
-	
+		@Configuration
+		@ComponentScan(basePackages = "com.nicordesigns.site", 
+		               useDefaultFilters = false, 
+		               includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+		public class RootContextConfiguration {
+		}
+		
+		@SuppressWarnings("unused")
+		public class Bootstrap implements WebApplicationInitializer {
+		}
+		
+		@Configuration
+		@EnableWebMvc
+		@ComponentScan(
+		    basePackages = "com.nicordesigns.site",
+		    useDefaultFilters = false,
+		    includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+		public class ServletContextConfiguration implements WebMvcConfigurer {
+		}
+		
 	
 ## Step 3: Convert Servlets to Spring Controllers
 1. Replace Command Pattern with @RequestMapping.
