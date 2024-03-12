@@ -9,18 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/charity-registration/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/jsp/view/registration/view.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-    </list>
+    <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,6 +197,7 @@
       <workItem from="1708340259564" duration="394000" />
       <workItem from="1708444222270" duration="63000" />
       <workItem from="1708444347037" duration="366000" />
+      <workItem from="1710084227512" duration="10000" />
     </task>
     <servers />
   </component>

@@ -1,243 +1,93 @@
-### Prerequisites:
+# Migrating Jakarta EE 8 Servlets to Spring Controllers with `@RequestMapping`
+
+## Prerequisites
 - [Eclipse IDE](https://www.eclipse.org/downloads/)
 - [Maven](https://maven.apache.org/download.cgi) installed on your system.
 
-### Step 1: Set Up a Maven Project in Eclipse
-1. Open Eclipse IDE.
-2. Go to `File` -> `New` -> `Other...`.
-3. Select `Maven` -> `Maven Project` and click `Next`.
-4. Choose `Create a simple project` and click `Next`.
-5. Enter the `Group ID` and `Artifact ID` for your project. Click `Finish`. 
-
-		  <parent>
-		    <groupId>pom-root-level</groupId>
-		    <artifactId>JakartaJEEWebDevelopment</artifactId>
-		    <version>1.0.0-SNAPSHOT</version>
-		  </parent>
-		  
-		  <artifactId>charity-springmvc</artifactId>
-		  <packaging>war</packaging>
-		  <name>charity-springmvc</name>
-		  <description>charity-springmvc</description>
-
-### Step 2: Add Spring MVC Dependencies
+## Step 1: Set Up the Spring Framework in our Maven Project in Eclipse
 1. Open the `pom.xml` file in the project.
-2. Add the following dependencies for Spring MVC (we will use all dependencies from our charity-registration module):
+2. Add the following dependencies for Spring MVC:
 
-	   ```xml
-	   <dependencies>
-	       <!-- Spring MVC -->
-	       <dependency>
-	           <groupId>org.springframework</groupId>
-	           <artifactId>spring-webmvc</artifactId>
-	           <version>5.3.10.RELEASE</version> <!-- Use the latest version -->
-	       </dependency>
-	       
-	       <!-- Servlet API -->
-	       <dependency>
-	           <groupId>javax.servlet</groupId>
-	           <artifactId>javax.servlet-api</artifactId>
-	           <version>4.0.1</version> <!-- Use the version compatible with your servlet container -->
-	           <scope>provided</scope>
-	       </dependency>
-	   </dependencies>
-	   ```
-
-   Adjust versions based on the latest available versions.
-
-### Step 3(a): Create the Spring MVC Configuration context
-1. Create a `webapp/WEB-INF` folder in the `src/main` directory.
-2. Inside the `WEB-INF` folder, create an `spring-config.xml` file for your Spring MVC configuration:
-
-	   ```xml
-	   <!-- spring-config.xml -->
-	   <beans xmlns="http://www.springframework.org/schema/beans"
-	          xmlns:mvc="http://www.springframework.org/schema/mvc"
-	          xmlns:context="http://www.springframework.org/schema/context"
-	          xsi:schemaLocation="http://www.springframework.org/schema/beans
-	            http://www.springframework.org/schema/beans/spring-beans.xsd
-	            http://www.springframework.org/schema/mvc
-	            http://www.springframework.org/schema/mvc/spring-mvc.xsd
-	            http://www.springframework.org/schema/context
-	            http://www.springframework.org/schema/context/spring-context.xsd"
-	          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	```xml
+	<dependencies>
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-webmvc</artifactId>
+	        <version>${spring.framework.version}</version>
+	        <scope>compile</scope>
+	    </dependency>
 	
-	       <!-- Component scanning for beans -->
-	       <context:component-scan base-package="com.nicordesigns" />
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-oxm</artifactId>
+	        <version>${spring.framework.version}</version>
+	        <scope>compile</scope>
+	    </dependency>
 	
-	       <!-- Enable Spring MVC -->
-	       <mvc:annotation-driven />
+	    <!-- Servlet API -->
+	    <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>4.0.1</version>
+	        <scope>provided</scope>
+	    </dependency>
+	</dependencies>
+
+## Step 2: Create the Spring MVC Java based Configuration context
+1. Create a com.nicordesigns.site.config package folder in the src/main directory.
+2. Inside the package folder, create your Java-based Spring MVC configuration classes:
+
+	@Configuration
+	@ComponentScan(basePackages = "com.nicordesigns.site", 
+	               useDefaultFilters = false, 
+	               includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+	public class RootContextConfiguration {
+	}
 	
-	       <!-- View resolver for JSP views -->
-	       <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	           <property name="prefix" value="/WEB-INF/views/" />
-	           <property name="suffix" value=".jsp" />
-	       </bean>
-	       
-	   </beans>
-	   ```
-
-3. Create a `webapp/WEB-INF/views` folder for your JSP views.
-
-### Step 3(b): Update the web.xml configuration file to include the Spring and Spring Servlet Context Configuration as well as the dispatcher servlet defintion
-
-		<!-- src/main/webapp/WEB-INF/web.xml -->
-		<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-		         version="4.0">
-		
-		    <context-param>
-		        <param-name>contextConfigLocation</param-name>
-		        <param-value>/WEB-INF/spring-config.xml</param-value>
-		    </context-param>
-		
-		    <listener>
-		        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-		    </listener>
-		    
-		    <servlet>
-		        <servlet-name>dispatcher</servlet-name>
-		        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		        <init-param>
-		            <param-name>contextConfigLocation</param-name>
-		             <param-value>/WEB-INF/servletContext.xml</param-value>
-		        </init-param>
-		        <load-on-startup>1</load-on-startup>
-		    </servlet>
-		
-		    <servlet-mapping>
-		        <servlet-name>dispatcher</servlet-name>
-		        <url-pattern>/</url-pattern>
-		    </servlet-mapping>
-		    
-		    <jsp-config>
-		        <jsp-property-group>
-		            <url-pattern>*.jsp</url-pattern>
-		            <url-pattern>*.jspf</url-pattern>
-		            <page-encoding>UTF-8</page-encoding>
-		            <scripting-invalid>true</scripting-invalid>
-		            <include-prelude>/WEB-INF/jsp/base.jspf</include-prelude>
-		            <trim-directive-whitespaces>true</trim-directive-whitespaces>
-		            <default-content-type>text/html</default-content-type>
-		        </jsp-property-group>
-		    </jsp-config>
-		    
-		    <session-config>
-		        <session-timeout>30</session-timeout>
-		        <cookie-config>
-		            <http-only>true</http-only>
-		        </cookie-config>
-		        <tracking-mode>COOKIE</tracking-mode>
-		    </session-config>
-		
-		    <distributable />
-		
-		</web-app>
-
-
-### Step 3(c): Create the Spring Servlet Context Configuration
-
-		<!-- src/main/webapp/WEB-INF/web.xml -->
-		<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-		         version="4.0">
-		
-		    <context-param>
-		        <param-name>contextConfigLocation</param-name>
-		        <param-value>/WEB-INF/spring-config.xml</param-value>
-		    </context-param>
-		
-		    <listener>
-		        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-		    </listener>
-		    
-		    <servlet>
-		        <servlet-name>dispatcher</servlet-name>
-		        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		        <init-param>
-		            <param-name>contextConfigLocation</param-name>
-		             <param-value>/WEB-INF/servletContext.xml</param-value>
-		        </init-param>
-		        <load-on-startup>1</load-on-startup>
-		    </servlet>
-		
-		    <servlet-mapping>
-		        <servlet-name>dispatcher</servlet-name>
-		        <url-pattern>/</url-pattern>
-		    </servlet-mapping>
-		    
-		    <jsp-config>
-		        <jsp-property-group>
-		            <url-pattern>*.jsp</url-pattern>
-		            <url-pattern>*.jspf</url-pattern>
-		            <page-encoding>UTF-8</page-encoding>
-		            <scripting-invalid>true</scripting-invalid>
-		            <include-prelude>/WEB-INF/jsp/base.jspf</include-prelude>
-		            <trim-directive-whitespaces>true</trim-directive-whitespaces>
-		            <default-content-type>text/html</default-content-type>
-		        </jsp-property-group>
-		    </jsp-config>
-		    
-		    <session-config>
-		        <session-timeout>30</session-timeout>
-		        <cookie-config>
-		            <http-only>true</http-only>
-		        </cookie-config>
-		        <tracking-mode>COOKIE</tracking-mode>
-		    </session-config>
-		
-		    <distributable />
-		
-		</web-app>
-
-
-### Step 4: Create a Controller
-1. Create a package (e.g., `com.nicordesigns`) in `src/main/java`.
-2. Inside the package, create a "Hello World" controller class:
-
-	   ```java
-	   	package com.nicordesigns;
+	@SuppressWarnings("unused")
+	public class Bootstrap implements WebApplicationInitializer {
+	}
 	
-		import org.springframework.stereotype.Controller;
-		import org.springframework.ui.Model;
-		import org.springframework.web.bind.annotation.GetMapping;
-		
-		@Controller
-		public class HelloController {
-		
-		    @GetMapping(value = "/")
-		    public String hello(Model model) {
-		        model.addAttribute("message", "Hello, Spring MVC!");
-		        return "hello";
-		    }
-		}
+	@Configuration
+	@EnableWebMvc
+	@ComponentScan(
+	    basePackages = "com.nicordesigns.site",
+	    useDefaultFilters = false,
+	    includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+	public class ServletContextConfiguration implements WebMvcConfigurer {
+	}
 	
-	   ```
-
-### Step 5: Create a JSP View
-1. Inside `webapp/WEB-INF/views`, create a `hello.jsp` file:
-
-	   ```jsp
-	   	<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-		<html>
-		<head>
-		    <title>Hello Spring MVC</title>
-		</head>
-		<body>
-		    <h2>${message}</h2>
-		</body>
-		</html>
 	
-	   ```
+## Step 3: Convert Servlets to Spring Controllers
+1. Replace Command Pattern with @RequestMapping.
+2. Handle Request Parameters.
+3. Refactor Switch Statements.
+4. Handle Request and Response Objects.
+5. Dependency Injection.
+6. Update View Resolution.
+## Example Controller Classes:
 
-### Step 6: Run the Project
-1. Right-click on the project -> `Run As` -> `Maven Build...`.
-2. Set `clean install` as Goals and click `Run`.
+	@Controller
+	@RequestMapping("registration")
+	public class RegistrationController {
+	}
+	
+	@Controller
+	public class IndexController {
+	}
+	
+	@Controller
+	@RequestMapping("session")
+	public class SessionListController {
+	}
 
-### Step 7: Deploy to a Servlet Container
-1. Deploy the generated WAR file (usually found in the `target` folder) to a servlet container like Apache Tomcat 9 in our case.
+## Step 6: Run the Project
+1. Right-click on the project -> Run As -> Maven Build...
+2. Set clean install as Goals and click Run
+## Step 7: Deploy to a Servlet Container
+1. Deploy the generated WAR file (usually found in the target folder) to a servlet container like Apache Tomcat 9.
+## Step 8: Access the Application
+1. Once deployed, access the application at http://localhost:8080/charity-springmvc/
+2. Adjust package names, URLs, and configurations based on your preferences.
 
-### Step 8: Access the Application
-1. Once deployed, access the application at `http://localhost:8080/charity-springmvc/hello`.
 
-Adjust package names, URLs, and configurations based on your preferences.
