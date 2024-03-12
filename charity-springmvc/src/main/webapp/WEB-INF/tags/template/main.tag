@@ -38,7 +38,7 @@
     </head>
     <body>
         <h1>Charity Registration Web Application</h1>
-        <table border="1" id="bodyTable">
+        <table id="bodyTable">
             <tbody>
                 <tr>
                     <td class="sidebarCell">
