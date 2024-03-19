@@ -4,6 +4,13 @@
 
 3. [Using Spring Controller Method Parameters](jee8springcontrollermethods.md)
 
-3. [Using Spring MVC](jee8springmvc.md)
+4. [Using Spring MVC](jee8springmvc.md)
 
+5. [Using Spring MVC with a Service & Persistence Layer](jee8springmvcservice.md)
+
+6. [The root application context vs the web application context with the Service & Persistence Layer](jee8springmvccontext.md)
+
+7. [Spring's support for asynchronous and scheduled tasks in the Service Layer](jee8springmvctasks.md)
+
+8. [SpringMVC with WebSockets and service layer separation](jee8springmvcwebsockets.md)
 

@@ -1,0 +1,21 @@
+@startuml
+package "Spring MVC Web App" {
+    [Controller]
+    [Service]
+    [Scheduled Task]
+    [Async Task]
+
+    [Controller] --> [Service] : Invoke
+    [Service] --> [Async Task] : performAsyncTask()
+    [Service] --> [Scheduled Task] : performScheduledTask()
+}
+
+package "Spring Configuration" {
+    [ThreadPoolTaskExecutor]
+    [ThreadPoolTaskScheduler]
+    
+    [ThreadPoolTaskExecutor] --> [Async Task] : Configure
+    [ThreadPoolTaskScheduler] --> [Scheduled Task] : Configure
+}
+
+@enduml
