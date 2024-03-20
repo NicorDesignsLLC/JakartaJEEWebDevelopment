@@ -30,7 +30,7 @@ Now, let's introduce the Controller-Service-Repository pattern:
    We can use it for:
    - Validating our data and sending out alerts via E-mail or text if we run into unexpected problems.
    - Adding metadata to our incoming data such as time data country and region. 
-   - Currently persisting to an in-memory "database" but eventually wanting to persist to MariaDB or any other database. By factoring out this business logic into service layers, it will make it easier to re-use the service persistence layer with other client-side input interfaces such as REST or SOAP Services.
+   - We are currently persisting to an in-memory "database" but eventually wanting to persist to MariaDB or any other database. By factoring out this business logic into service layers, it will make it easier to re-use the service persistence layer with other client-side input interfaces such as REST or SOAP Services.
 
 5. **Repository**: 
    - The repository layer is responsible for data access and persistence. 
