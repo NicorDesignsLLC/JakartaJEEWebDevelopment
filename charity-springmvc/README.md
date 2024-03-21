@@ -23,6 +23,13 @@
 	        <version>${spring.framework.version}</version>
 	        <scope>compile</scope>
 	    </dependency>
+	    
+	    <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.framework.version}</version>
+            <scope>compile</scope>
+        </dependency>
 	
 	    <!-- Servlet API -->
 	    <dependency>
