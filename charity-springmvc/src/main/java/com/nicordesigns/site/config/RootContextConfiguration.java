@@ -7,11 +7,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.stereotype.Controller;
 
 @Configuration
+@EnableAsync(proxyTargetClass = true)
+@EnableScheduling
 @ComponentScan(basePackages = "com.nicordesigns.site", 
-               useDefaultFilters = false, 
-               includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class))
+excludeFilters = @ComponentScan.Filter(Controller.class)	
+               //useDefaultFilters = false, 
+               //includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class)
+)
 public class RootContextConfiguration {
     @Bean
     public ObjectMapper objectMapper()

@@ -9,37 +9,35 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Hashtable;
+
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
 public class AuthenticationController
 {
     private static final Logger log = LogManager.getLogger();
-    private static final Map<String, String> userDatabase = new Hashtable<>();
 
-  //Simple in memory DB to store users and passwords
-    static {
-        userDatabase.put("Nicolaas", "Black");
-        userDatabase.put("Danette", "White");
-        userDatabase.put("Tom", "Green");
-    }
+    @Inject AuthenticationService authenticationService;
 
     @RequestMapping("logout")
-    public View logout(HttpSession session)
+    public View logout(HttpServletRequest request, HttpSession session)
     {
-        if(log.isDebugEnabled())
-            log.debug("User {} logged out.", session.getAttribute("username"));
+        if(log.isDebugEnabled() && request.getUserPrincipal() != null)
+            log.debug("User {} logged out.", request.getUserPrincipal().getName());
         session.invalidate();
+
         return new RedirectView("/login", true, false);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public ModelAndView login(Map<String, Object> model, HttpSession session)
     {
-        if(session.getAttribute("username") != null)
+    	log.info("login GET");
+        if(UserAdminPrincipal.getPrincipal(session) != null)
             return this.getRegistrationRedirect();
 
         model.put("loginFailed", false);
@@ -52,25 +50,26 @@ public class AuthenticationController
     public ModelAndView login(Map<String, Object> model, HttpSession session,
                               HttpServletRequest request, Form form)
     {
-        if(session.getAttribute("username") != null)
+    	log.info("login POST");
+        if(UserAdminPrincipal.getPrincipal(session) != null)
             return this.getRegistrationRedirect();
 
-        if(form.getUsername() == null || form.getPassword() == null ||
-                !userDatabase.containsKey(form.getUsername()) ||
-                !form.getPassword().equals(userDatabase.get(form.getUsername())))
+        Principal principal = this.authenticationService.authenticate(
+                form.getUsername(), form.getPassword()
+        );
+        if(principal == null)
         {
-            log.warn("Login failed for user {}.", form.getUsername());
             form.setPassword(null);
             model.put("loginFailed", true);
             model.put("loginForm", form);
             return new ModelAndView("login");
         }
 
-        log.debug("User {} successfully logged in.", form.getUsername());
-        session.setAttribute("username", form.getUsername());
+        UserAdminPrincipal.setPrincipal(session, principal);
         request.changeSessionId();
         return this.getRegistrationRedirect();
     }
+
 
     private ModelAndView getRegistrationRedirect()
     {

@@ -7,6 +7,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
+import com.nicordesigns.site.SessionListener;
+
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.MultipartConfigElement;
@@ -24,8 +26,11 @@ public class Bootstrap implements WebApplicationInitializer
 
         AnnotationConfigWebApplicationContext rootContext =
                 new AnnotationConfigWebApplicationContext();
+        
+        
         rootContext.register(RootContextConfiguration.class);
         container.addListener(new ContextLoaderListener(rootContext));
+        container.addListener(SessionListener.class);
 
         AnnotationConfigWebApplicationContext servletContext =
                 new AnnotationConfigWebApplicationContext();
