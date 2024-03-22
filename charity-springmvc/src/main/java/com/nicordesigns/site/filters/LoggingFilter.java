@@ -1,10 +1,8 @@
 package com.nicordesigns.site.filters;
 
-import org.apache.logging.log4j.ThreadContext;
-
-import com.nicordesigns.site.UserAdminPrincipal;
-
-import org.apache.logging.log4j.CloseableThreadContext;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.UUID;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,10 +12,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.security.Principal;
-import java.util.UUID;
+
+import org.apache.logging.log4j.ThreadContext;
+
+import com.nicordesigns.site.UserAdminPrincipal;
 
 public class LoggingFilter implements Filter
 {

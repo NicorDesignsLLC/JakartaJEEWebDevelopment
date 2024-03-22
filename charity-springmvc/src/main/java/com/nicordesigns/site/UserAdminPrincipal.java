@@ -57,6 +57,6 @@ public class UserAdminPrincipal implements Principal, Cloneable, Serializable
 
     public static void setPrincipal(HttpSession session, Principal principal)
     {
-        session.setAttribute("com.wrox.nicordesigns.principal", principal);
+        session.setAttribute("com.nicordesigns.user.principal", principal);
     }
 }
