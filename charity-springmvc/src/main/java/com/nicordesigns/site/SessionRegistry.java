@@ -1,46 +1,17 @@
 package com.nicordesigns.site;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
+import java.util.function.Consumer;
 
-public final class SessionRegistry
+import javax.servlet.http.HttpSession;
+
+public interface SessionRegistry
 {
-    private static final Map<String, HttpSession> SESSIONS = new Hashtable<>();
-
-    public static void addSession(HttpSession session)
-    {
-        SESSIONS.put(session.getId(), session);
-    }
-
-    public static void updateSessionId(HttpSession session, String oldSessionId)
-    {
-        synchronized(SESSIONS)
-        {
-            SESSIONS.remove(oldSessionId);
-            addSession(session);
-        }
-    }
-
-    public static void removeSession(HttpSession session)
-    {
-        SESSIONS.remove(session.getId());
-    }
-
-    public static List<HttpSession> getAllSessions()
-    {
-        return new ArrayList<>(SESSIONS.values());
-    }
-
-    public static int getNumberOfSessions()
-    {
-        return SESSIONS.size();
-    }
-
-    private SessionRegistry()
-    {
-
-    }
+	   void addSession(HttpSession session);
+	    void updateSessionId(HttpSession session, String oldSessionId);
+	    void removeSession(HttpSession session);
+	    List<HttpSession> getAllSessions();
+	    int getNumberOfSessions();
+	    void registerOnRemoveCallback(Consumer<HttpSession> callback);
+	    void deregisterOnRemoveCallback(Consumer<HttpSession> callback);
 }
