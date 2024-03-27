@@ -1,8 +1,8 @@
 <%--@elvariable id="registrationId" type="java.lang.String"--%>
 <%--@elvariable id="registration" type="com.nicordesigns.site.Registration"--%>
 <template:basic htmlTitle="${registration.subject}"
-                bodyTitle="Registration #${RegistrationId}: ${registration.subject}">
-    <i>Registration Customer Name - <c:out value="${registration.userName}" /><br />
+                bodyTitle="Registration #{$RegistrationId}:">
+    <i>Registration User Name - <c:out value="${registration.userName}" /><br />
     Created <nicordesigns:formatDate value="${registration.dateCreated}" type="both"
                              timeStyle="long" dateStyle="full" /></i><br /><br />
     <c:out value="${registration.body}" /><br /><br />

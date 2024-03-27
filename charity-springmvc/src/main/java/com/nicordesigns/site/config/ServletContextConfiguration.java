@@ -18,6 +18,7 @@ import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -36,7 +37,7 @@ import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 @ComponentScan(
         basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
-        includeFilters = @ComponentScan.Filter(org.springframework.stereotype.Controller.class)
+        includeFilters = @ComponentScan.Filter(Controller.class)
 )
 public class ServletContextConfiguration implements WebMvcConfigurer {
 
@@ -76,13 +77,24 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         converters.add(jsonConverter);
     }
 
+//    @Override
+//    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//        configurer.favorPathExtension(true)
+//                .favorParameter(false)
+//                .parameterName("mediaType")
+//                .ignoreAcceptHeader(false)
+//                .useJaf(false)
+//                .defaultContentType(MediaType.APPLICATION_XML)
+//                .mediaType("xml", MediaType.APPLICATION_XML)
+//                .mediaType("json", MediaType.APPLICATION_JSON);
+//    }
+
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.favorPathExtension(true)
-                .favorParameter(false)
+        configurer.favorParameter(false)
                 .parameterName("mediaType")
                 .ignoreAcceptHeader(false)
-                .useJaf(false)
+                .useRegisteredExtensionsOnly(false)
                 .defaultContentType(MediaType.APPLICATION_XML)
                 .mediaType("xml", MediaType.APPLICATION_XML)
                 .mediaType("json", MediaType.APPLICATION_JSON);
