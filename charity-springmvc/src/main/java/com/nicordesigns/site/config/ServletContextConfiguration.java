@@ -77,18 +77,6 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         converters.add(jsonConverter);
     }
 
-//    @Override
-//    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//        configurer.favorPathExtension(true)
-//                .favorParameter(false)
-//                .parameterName("mediaType")
-//                .ignoreAcceptHeader(false)
-//                .useJaf(false)
-//                .defaultContentType(MediaType.APPLICATION_XML)
-//                .mediaType("xml", MediaType.APPLICATION_XML)
-//                .mediaType("json", MediaType.APPLICATION_JSON);
-//    }
-
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorParameter(false)

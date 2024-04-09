@@ -11,7 +11,7 @@ public class Registration {
 
 	private String userName;
 
-	private long subject;
+	private String subject;
 
 	private String body;
 
@@ -27,11 +27,11 @@ public class Registration {
 		this.userName = userName;
 	}
 
-	public long getSubject() {
+	public String getSubject() {
 		return subject;
 	}
 
-	public void setSubject(long subject) {
+	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 
