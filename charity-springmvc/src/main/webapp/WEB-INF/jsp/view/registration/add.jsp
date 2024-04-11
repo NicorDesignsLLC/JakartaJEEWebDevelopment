@@ -1,4 +1,5 @@
 <%--@elvariable id="registrationForm" type="com.nicordesigns.site.RegistrationController.Form"--%>
+<%--@elvariable id="registration" type="com.nicordesigns.site.Registration"--%>
 <template:basic htmlTitle="Create a Registration" bodyTitle="Create a Registration">
     <form:form method="post" enctype="multipart/form-data"
                modelAttribute="registrationForm">
