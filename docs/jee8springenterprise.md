@@ -14,3 +14,5 @@
 
 8. [SpringMVC with WebSockets and service layer separation](jee8springmvcwebsockets.md)
 
+9. [Using Spring I8N in our JEE8 Web App](jee8springi8n.md)
+
