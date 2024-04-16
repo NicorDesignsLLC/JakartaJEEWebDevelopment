@@ -52,12 +52,15 @@ public class AuthenticationController
                               HttpServletRequest request, Form form)
     {
     	log.info("login POST");
-        if(UserAdminPrincipal.getPrincipal(session) != null)
+        
+    	if(UserAdminPrincipal.getPrincipal(session) != null)
             return this.getRegistrationRedirect();
 
         Principal principal = this.authenticationService.authenticate(
                 form.getUsername(), form.getPassword()
         );
+        
+        
         if(principal == null)
         {
             form.setPassword(null);
