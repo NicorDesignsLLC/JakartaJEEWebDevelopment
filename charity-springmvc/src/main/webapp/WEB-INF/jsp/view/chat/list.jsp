@@ -1,11 +1,12 @@
 <%--@elvariable id="sessions" type="java.util.List<com.nicordesigns.site.chat.ChatSession>"--%>
-<template:basic htmlTitle="Support Chat" bodyTitle="Support Chat Requests">
+<spring:message code="title.chatList" var="chatTitle" />
+<template:basic htmlTitle="${chatTitle}" bodyTitle="${chatTitle}">
     <c:choose>
         <c:when test="${fn:length(sessions) == 0}">
-            <i>There are no pending support chat requests.</i>
+            <i><spring:message code="message.chatList.none" /></i> 
         </c:when>
         <c:otherwise>
-            Click on a chat request to accept it:<br /><br />
+            <spring:message code="message.chatList.instruction" />:<br /><br />
             <c:forEach items="${sessions}" var="s">
                 <a href="javascript:void 0;"
                    onclick="join(${s.sessionId});">${s.customerUsername}</a><br />
