@@ -4,6 +4,8 @@ import com.nicordesigns.site.SessionRegistry;
 import com.nicordesigns.site.UserAdminPrincipal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
@@ -29,6 +31,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
 import java.util.function.Consumer;
 
@@ -51,9 +54,12 @@ public class ChatEndpoint
     private ChatSession chatSession;
     private Principal principal;
     private ScheduledFuture<?> pingFuture;
+    private Locale locale;
+    private Locale otherLocale;
 
     @Inject SessionRegistry sessionRegistry;
     @Inject ChatService chatService;
+    @Inject MessageSource messageSource;
     @Inject TaskScheduler taskScheduler;
 
     @OnOpen
@@ -62,6 +68,7 @@ public class ChatEndpoint
         log.entry(sessionId);
         this.httpSession = EndpointConfigurator.getExposedSession(session);
         this.principal = EndpointConfigurator.getExposedPrincipal(session);
+        this.locale = EndpointConfigurator.getExposedLocale(session);
 
         try
         {
@@ -70,7 +77,8 @@ public class ChatEndpoint
                 log.warn("Unauthorized attempt to access chat server.");
                 session.close(new CloseReason(
                         CloseReason.CloseCodes.VIOLATED_POLICY,
-                        "You are not logged in!"
+                        this.messageSource.getMessage(
+                                "error.chat.not.logged.in", null, this.locale)
                 ));
                 return;
             }
@@ -84,7 +92,9 @@ public class ChatEndpoint
                 this.chatSession.setOnRepresentativeJoin(
                         s -> this.otherWsSession = s
                 );
-                session.getBasicRemote().sendObject(result.getCreateMessage());
+                session.getBasicRemote().sendObject(this.cloneAndLocalize(
+                        result.getCreateMessage(), this.locale
+                ));
             }
             else
             {
@@ -96,18 +106,27 @@ public class ChatEndpoint
                             sessionId);
                     session.close(new CloseReason(
                             CloseReason.CloseCodes.UNEXPECTED_CONDITION,
-                            "The chat session does not exist!"
+                            this.messageSource.getMessage(
+                                    "error.chat.no.session", null, this.locale)
                     ));
                     return;
                 }
                 this.chatSession = result.getChatSession();
                 this.chatSession.setRepresentative(session);
                 this.otherWsSession = this.chatSession.getCustomer();
-                session.getBasicRemote()
-                        .sendObject(this.chatSession.getCreationMessage());
-                session.getBasicRemote().sendObject(result.getJoinMessage());
+                this.otherLocale = EndpointConfigurator
+                        .getExposedLocale(this.otherWsSession);
+
+                session.getBasicRemote().sendObject(this.cloneAndLocalize(
+                        this.chatSession.getCreationMessage(), this.locale
+                ));
+                session.getBasicRemote().sendObject(this.cloneAndLocalize(
+                        result.getJoinMessage(), this.locale
+                ));
                 this.otherWsSession.getBasicRemote()
-                        .sendObject(result.getJoinMessage());
+                        .sendObject(this.cloneAndLocalize(
+                                result.getJoinMessage(), this.otherLocale
+                        ));
             }
 
             this.wsSession = session;
@@ -173,7 +192,8 @@ public class ChatEndpoint
         {
             if(this.closed)
                 return;
-            this.close(ChatService.ReasonForLeaving.ERROR, e.toString());
+            this.close(ChatService.ReasonForLeaving.ERROR,
+                    "error.chat.closed.exception");
         }
     }
 
@@ -236,14 +256,25 @@ public class ChatEndpoint
         if(!this.pingFuture.isCancelled())
             this.pingFuture.cancel(true);
         this.sessionRegistry.deregisterOnRemoveCallback(this.callback);
-        ChatMessage message = this.chatService.leaveSession(this.chatSession,
+        ChatMessage message = null;
+        if(this.chatSession != null)
+            message = this.chatService.leaveSession(this.chatSession,
                 this.principal.getName(), reason);
 
         if(message != null)
         {
-            CloseReason closeReason = reason == ChatService.ReasonForLeaving.ERROR ?
-                    new CloseReason(CloseReason.CloseCodes.UNEXPECTED_CONDITION, unexpected) :
-                    new CloseReason(CloseReason.CloseCodes.NORMAL_CLOSURE, "Chat Ended");
+            CloseReason.CloseCode closeCode;
+            String reasonCode;
+            if(reason == ChatService.ReasonForLeaving.ERROR)
+            {
+                closeCode = CloseReason.CloseCodes.UNEXPECTED_CONDITION;
+                reasonCode = unexpected;
+            }
+            else
+            {
+                closeCode = CloseReason.CloseCodes.NORMAL_CLOSURE;
+                reasonCode = "message.chat.ended";
+            }
 
             //noinspection SynchronizeOnNonFinalField
             synchronized(this.wsSession)
@@ -252,8 +283,14 @@ public class ChatEndpoint
                 {
                     try
                     {
-                        this.wsSession.getBasicRemote().sendObject(message);
-                        this.wsSession.close(closeReason);
+                        this.wsSession.getBasicRemote()
+                                .sendObject(this.cloneAndLocalize(
+                                        message, this.locale
+                                ));
+                        this.wsSession.close(new CloseReason(
+                                closeCode, this.messageSource.getMessage(
+                                reasonCode, null, this.locale)
+                        ));
                     }
                     catch(IOException | EncodeException e)
                     {
@@ -271,8 +308,14 @@ public class ChatEndpoint
                     {
                         try
                         {
-                            this.otherWsSession.getBasicRemote().sendObject(message);
-                            this.otherWsSession.close(closeReason);
+                            this.otherWsSession.getBasicRemote()
+                                    .sendObject(this.cloneAndLocalize(
+                                            message, this.otherLocale
+                                    ));
+                            this.otherWsSession.close(new CloseReason(
+                                    closeCode, this.messageSource.getMessage(
+                                    reasonCode, null, this.otherLocale)
+                            ));
                         }
                         catch(IOException | EncodeException e)
                         {
@@ -284,10 +327,20 @@ public class ChatEndpoint
         }
     }
 
+    private ChatMessage cloneAndLocalize(ChatMessage message, Locale locale)
+    {
+        message = message.clone();
+        message.setLocalizedContent(this.messageSource.getMessage(
+                message.getContentCode(), message.getContentArguments(), locale
+        ));
+        return message;
+    }
+
     public static class EndpointConfigurator extends SpringConfigurator
     {
-        private static final String HTTP_SESSION_KEY = "com.wrox.ws.http.session";
-        private static final String PRINCIPAL_KEY = "com.wrox.ws.user.principal";
+        private static final String HTTP_SESSION_KEY = "com.nicordesigns.ws.http.session";
+        private static final String PRINCIPAL_KEY = "com.nicordesigns.ws.user.principal";
+        private static final String LOCALE_KEY = "com.nicordesigns.ws.user.locale";
 
         @Override
         public void modifyHandshake(ServerEndpointConfig config,
@@ -301,6 +354,8 @@ public class ChatEndpoint
             config.getUserProperties().put(HTTP_SESSION_KEY, httpSession);
             config.getUserProperties()
                     .put(PRINCIPAL_KEY, UserAdminPrincipal.getPrincipal(httpSession));
+            config.getUserProperties().put(LOCALE_KEY,
+                    LocaleContextHolder.getLocale());
 
             log.exit();
         }
@@ -313,6 +368,11 @@ public class ChatEndpoint
         private static Principal getExposedPrincipal(Session session)
         {
             return (Principal)session.getUserProperties().get(PRINCIPAL_KEY);
+        }
+
+        private static Locale getExposedLocale(Session session)
+        {
+            return (Locale)session.getUserProperties().get(LOCALE_KEY);
         }
     }
 }

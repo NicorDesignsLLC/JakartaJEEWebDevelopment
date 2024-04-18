@@ -35,7 +35,8 @@
                 var modalErrorBody = $("#modalErrorBody");
                 var chatLog = $('#chatLog');
                 var messageArea = $('#messageArea');
-                var username = '${sessionScope.username}';
+                //var username = '${sessionScope.username}';
+                var username = '${pageContext.request.userPrincipal.name}';
                 var otherJoined = false;
 
                 if(!("WebSocket" in window)) {
@@ -58,11 +59,11 @@
                         var c = message.user == username ? 'user-me' : 'user-you';
                         log.append($('<span>').addClass(c)
                                         .text(date+' '+message.user+':\xA0'))
-                                .append($('<span>').text(message.content));
+                                .append($('<span>').text(message.userContent));
                     } else {
                         log.addClass(message.type == 'ERROR' ? 'error' :
                                 'informational')
-                                .text(date + ' ' + message.content);
+                                .text(date + ' ' + message.userContent);
                     }
                     chatLog.append(log);
                 };
@@ -128,7 +129,7 @@
                     } else if(messageArea.get(0).value.trim().length > 0) {
                         var message = {
                             timestamp: new Date(), type: 'TEXT', user: username,
-                            content: messageArea.get(0).value
+                            userContent: messageArea.get(0).value
                         };
                         try {
                             var json = JSON.stringify(message);

@@ -1,13 +1,18 @@
 package com.nicordesigns.site.chat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.Instant;
 
-public class ChatMessage
+public class ChatMessage implements Cloneable
 {
     private Instant timestamp;
     private Type type;
     private String user;
-    private String content;
+    private String contentCode;
+    private Object[] contentArguments;
+    private String localizedContent;
+    private String userContent;
 
     public Instant getTimestamp()
     {
@@ -39,18 +44,72 @@ public class ChatMessage
         this.user = user;
     }
 
-    public String getContent()
+    public String getContentCode()
     {
-        return content;
+        return contentCode;
     }
 
-    public void setContent(String content)
+    public void setContentCode(String contentCode)
     {
-        this.content = content;
+        this.contentCode = contentCode;
+    }
+
+    public Object[] getContentArguments()
+    {
+        return contentArguments;
+    }
+
+    public void setContentArguments(Object... contentArguments)
+    {
+        this.contentArguments = contentArguments;
+    }
+
+    public String getLocalizedContent()
+    {
+        return localizedContent;
+    }
+
+    public void setLocalizedContent(String localizedContent)
+    {
+        this.localizedContent = localizedContent;
+    }
+
+    public String getUserContent()
+    {
+        return userContent;
+    }
+
+    public void setUserContent(String userContent)
+    {
+        this.userContent = userContent;
+    }
+
+    @Override
+    @SuppressWarnings("CloneDoesntDeclareCloneNotSupportedException")
+    protected ChatMessage clone() {
+        try {
+            return (ChatMessage)super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Impossible clone not supported.", e);
+        }
     }
 
     public static enum Type
     {
         STARTED, JOINED, ERROR, LEFT, TEXT
+    }
+
+    static abstract class MixInForLogWrite
+    {
+        @JsonIgnore public abstract String getLocalizedContent();
+        @JsonIgnore public abstract void setLocalizedContent(String l);
+    }
+
+    static abstract class MixInForWebSocket
+    {
+        @JsonIgnore public abstract String getContentCode();
+        @JsonIgnore public abstract void setContentCode(String c);
+        @JsonIgnore public abstract Object[] getContentArguments();
+        @JsonIgnore public abstract void setContentArguments(Object... c);
     }
 }

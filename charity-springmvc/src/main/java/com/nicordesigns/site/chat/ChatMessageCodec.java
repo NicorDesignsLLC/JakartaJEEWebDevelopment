@@ -28,13 +28,15 @@ public class ChatMessageCodec
     static {
         MAPPER.findAndRegisterModules();
         MAPPER.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
+        MAPPER.addMixInAnnotations(ChatMessage.class,
+                ChatMessage.MixInForWebSocket.class);
     }
 
     @Override
     public void encode(ChatMessage chatMessage, OutputStream outputStream)
             throws EncodeException, IOException
     {
-        log.entry();
+        log.debug("encode start");
         try
         {
             ChatMessageCodec.MAPPER.writeValue(outputStream, chatMessage);
@@ -45,7 +47,7 @@ public class ChatMessageCodec
         }
         finally
         {
-            log.exit();
+            log.debug("encode exit");
         }
     }
 
@@ -53,7 +55,7 @@ public class ChatMessageCodec
     public ChatMessage decode(InputStream inputStream)
             throws DecodeException, IOException
     {
-        log.entry();
+        log.debug("decode enter");
         try
         {
             return ChatMessageCodec.MAPPER.readValue(
@@ -66,7 +68,7 @@ public class ChatMessageCodec
         }
         finally
         {
-            log.exit();
+            log.debug("decode exit");
         }
     }
 
