@@ -1,4 +1,4 @@
-# Spring Framework 5 Internationalization in Jakarta EE 8. 
+# Spring Framework 5 Internationalization in Jakarta EE 8
 
 ## 1. Why would you want to use Spring i18n in a Jakarta EE 8 web app?
 - **Spring i18n:**
@@ -34,10 +34,34 @@
     - Place resource bundles in appropriate locations (e.g., `src/main/resources`).
     - Use JSTL `fmt` tags in JSPs to format dates, numbers, and messages based on the locale.
 
-## 4. How to internationalize an existing Jakarta EE 8 web app with Spring i18n?
-- **Convert Resource Bundles**: If you have existing resource bundles in your Jakarta EE 8 app, you can continue to use them in Spring by ensuring the `ResourceBundleMessageSource` points to the same base names.
-- **Configure Spring**: Add Spring dependencies and configure the i18n beans (`MessageSource`, `LocaleResolver`, `LocaleChangeInterceptor`) in your Spring context.
-- **Update Controllers and Services**: Modify your controllers and services to use Spring's `MessageSource` to retrieve messages instead of using JSP or JSTL tags.
-- **Adapt JSPs**: If your application uses JSPs, you may still use JSTL tags for localization, but you might consider transitioning to Spring's templating solutions, such as Thymeleaf, which offer better integration with Spring.
+## 4. How to add Spring i18n to an existing Jakarta EE 8 web app with no prior Internationalization present?
 
----
+### Assess Current Internationalization:
+Before integrating Spring i18n into your existing Jakarta EE 8 web app, it's essential to evaluate the current state of internationalization. Identify any existing mechanisms for localization, such as resource bundles, and understand how they are currently utilized within the application.
+
+### Integrate Spring Dependencies:
+Begin by adding the necessary Spring dependencies to your Jakarta EE project. These dependencies include the Spring i18n module along with the Spring context module. Ensure that you update your project's build configuration (e.g., Maven or Gradle) to include these dependencies.
+
+### Configure Spring Beans:
+Define the required Spring beans for internationalization in your Spring configuration. This includes configuring a `ResourceBundleMessageSource` bean, which serves as the central repository for message bundles containing locale-specific messages. Specify the base names of the resource bundles and any additional configurations, such as file encoding.
+
+Next, configure a `LocaleResolver` bean to manage the current locale for each user session. Depending on your application's requirements, you can choose from various implementations of `LocaleResolver`, such as `SessionLocaleResolver` or `CookieLocaleResolver`. Customize the locale resolver to suit your application's locale determination strategy.
+
+### Update Controllers and Services:
+Modify existing controllers and services within your application to leverage Spring's `MessageSource` for retrieving localized messages. Instead of directly accessing message bundles or using JSTL tags for localization, inject the `MessageSource` bean into your controllers and services. Utilize the `getMessage()` method provided by the `MessageSource` interface to retrieve localized messages based on the current locale.
+
+### Implement Localization for Multi-Languages:
+For countries or regions where multiple languages are prevalent, such as South Africa with English and Afrikaans, extend your internationalization setup to support these languages. Create separate message bundles for each language, organized by locale-specific folders within your application's resource directory (e.g., `messages_en`, `messages_af`). Ensure that each message bundle contains translations for the corresponding language.
+
+In your Spring configuration, configure the `ResourceBundleMessageSource` bean to scan multiple base names corresponding to each language's message bundles. This allows Spring to resolve messages based on the user's locale, fetching the appropriate translations for the selected language.
+
+### Adapt Views for Multi-Languages:
+Update your application's views, such as JSPs or Thymeleaf templates, to support multi-languages. Incorporate mechanisms for users to select their preferred language, such as dropdown menus or language toggles. When rendering views, dynamically generate content based on the user's selected locale, ensuring that text, labels, and other UI elements are displayed in the appropriate language.
+
+For example, in a bilingual context like South Africa, provide options for users to switch between English and Afrikaans languages. Update view templates to retrieve localized messages using Spring's internationalization features, ensuring seamless language switching based on user preferences.
+
+### Test and Refine:
+Thoroughly test the internationalization functionality to validate that localized messages are displayed correctly for each supported language. Test scenarios with different locales to ensure proper localization across all language options, including English South African and Afrikaans South African. Iterate on your implementation as needed, addressing any issues or discrepancies in the localization process.
+
+### Documentation and Training:
+Document the changes made to incorporate Spring i18n and multi-language capabilities into your Jakarta EE 8 web app. Provide comprehensive documentation outlining the configuration steps, usage guidelines, and best practices for internationalization. Additionally, offer training sessions for developers to familiarize them with the Spring i18n features and how to effectively implement multi-language support within the application.
