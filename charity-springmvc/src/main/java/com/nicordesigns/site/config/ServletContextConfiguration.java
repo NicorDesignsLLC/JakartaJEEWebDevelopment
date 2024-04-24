@@ -21,10 +21,14 @@ import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -86,6 +90,18 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
                 .defaultContentType(MediaType.APPLICATION_XML)
                 .mediaType("xml", MediaType.APPLICATION_XML)
                 .mediaType("json", MediaType.APPLICATION_JSON);
+    }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LocaleChangeInterceptor());
+    }
+
+    
+    @Bean
+    public LocaleResolver localeResolver()
+    {
+        return new SessionLocaleResolver();
     }
 
     @Bean

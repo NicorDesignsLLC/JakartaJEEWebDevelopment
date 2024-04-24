@@ -38,18 +38,18 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 	
 	
 	 @Bean
-	    public MessageSource messageSource()
-	    {
-	        ReloadableResourceBundleMessageSource messageSource =
-	                new ReloadableResourceBundleMessageSource();
-	        messageSource.setCacheSeconds(-1);
-	        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
-	        messageSource.setBasenames(
-	                "/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages",
-	                "/WEB-INF/i18n/errors"
-	        );
-	        return messageSource;
-	    }
+    public MessageSource messageSource()
+    {
+        ReloadableResourceBundleMessageSource messageSource =
+                new ReloadableResourceBundleMessageSource();
+        messageSource.setCacheSeconds(-1);
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        messageSource.setBasenames(
+                "/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages",
+                "/WEB-INF/i18n/errors"
+        );
+        return messageSource;
+    }
 	
     @Bean
     public ObjectMapper objectMapper()
