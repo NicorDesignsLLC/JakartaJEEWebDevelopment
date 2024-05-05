@@ -16,5 +16,5 @@
 
 9. [Using Spring I8N in our JEE8 Web App](jee8springi8n.md)
 
-10. [ Using JSR 349, Spring Framework and Hibernate Validator](jee8springjsr349.md)
+10. [Using JSR 349, Spring Framework and Hibernate Validator](jee8springhibernatevalidator.md)
 
