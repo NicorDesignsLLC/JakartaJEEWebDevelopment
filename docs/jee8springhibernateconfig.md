@@ -1,4 +1,4 @@
-3. How to Configure Hibernate Bean Validation in a Spring 5 MVC with Service Layer JEE8 Web App
+##### How to Configure Hibernate Bean Validation in a Spring 5 MVC with Service Layer JEE8 Web App
 
 Configuring Hibernate Bean Validation in a Spring 5 MVC with a service layer in a JEE8 web application involves several steps. Here's a basic guide on how to set it up:
 

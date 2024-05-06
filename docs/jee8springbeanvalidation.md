@@ -1,4 +1,4 @@
-What is Bean Validation?
+##### What is Bean Validation?
 
 In the context of Java EE (now Jakarta EE) and Spring Framework, Bean Validation is a mechanism for validating data within Java beans (POJOs - Plain Old Java Objects). It's a declarative way to express validation constraints on the fields of your beans.
 

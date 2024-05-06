@@ -1,4 +1,4 @@
-2. Why use Hibernator Validator with Spring 5
+##### Why use Hibernator Validator with Spring 5
 
 Using Hibernate Validator as the Bean Validator implementation reference with Spring 5 offers several advantages:
 
