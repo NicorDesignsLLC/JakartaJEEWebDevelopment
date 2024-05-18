@@ -73,10 +73,13 @@ public class RegistrationController {
 	@PostMapping(value = "create")
 	public String create(Principal principal, @Valid Form form, BindingResult bindingResult, Map<String, Object> model)
 			throws IOException {
+		
 		if (bindingResult.hasErrors()) {
-			model.put("registrationForm", form);
-			return "registration/add";
+		    bindingResult.getAllErrors().forEach(error -> log.error(error.toString()));
+		    model.put("registrationForm", form);
+		    return "registration/add";
 		}
+
 
 		Registration registration = new Registration();
 		registration.setUserName(principal.getName());

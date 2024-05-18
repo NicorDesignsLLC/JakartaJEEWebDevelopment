@@ -11,13 +11,14 @@
     <head>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
         <!-- Custom CSS file for the color scheme -->
-	    <link rel="stylesheet" href="/resources/css/main.css"/>
-	    
-	    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/resources/css/main.css"/>
+
+        <!-- Use Bootstrap 2.3.1 -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
         
-        <script type="text/javascript" lang="javascript">
+        <script type="text/javascript">
             var postInvisibleForm = function(url, fields) {
                 var form = $('<form id="mapForm" method="post"></form>')
                         .attr({ action: url, style: 'display: none;' });
@@ -37,19 +38,17 @@
         <jsp:invoke fragment="headContent" />
     </head>
     <body>
-        <h1>Charity Registration Web Application</h1>
-        <table id="bodyTable">
-            <tbody>
-                <tr>
-                    <td class="sidebarCell">
-                        <jsp:invoke fragment="navigationContent" />
-                    </td>
-                    <td class="contentCell">
-                        <h2><c:out value="${fn:trim(bodyTitle)}" /></h2>
-                        <jsp:doBody />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container">
+            <h1>Charity Registration Web Application</h1>
+            <div class="row">
+                <div class="span3">
+                    <jsp:invoke fragment="navigationContent" />
+                </div>
+                <div class="span9">
+                    <h2><c:out value="${fn:trim(bodyTitle)}" /></h2>
+                    <jsp:doBody />
+                </div>
+            </div>
+        </div>
     </body>
 </html>
