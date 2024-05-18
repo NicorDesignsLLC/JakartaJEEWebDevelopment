@@ -31,7 +31,6 @@ public class RegistrationController {
 	public String list(Map<String, Object> model) {
 		log.debug("Listing registrations.");
 		model.put("registrations", this.registrationService.getAllRegistrations());
-
 		return "registration/list";
 	}
 

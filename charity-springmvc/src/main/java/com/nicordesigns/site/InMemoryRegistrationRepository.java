@@ -3,44 +3,39 @@ package com.nicordesigns.site;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
-public class InMemoryRegistrationRepository implements RegistrationRepository
-{
-    private volatile long REGISTRATION_ID_SEQUENCE = 1L;
+public class InMemoryRegistrationRepository implements RegistrationRepository {
+    private final AtomicLong REGISTRATION_ID_SEQUENCE = new AtomicLong(1);
 
-    private final Map<Long, Registration> registrationDatabase = new LinkedHashMap<>();
+    private final Map<Long, Registration> registrationDatabase = new ConcurrentHashMap<>();
 
     @Override
-    public List<Registration> getAll()
-    {
+    public List<Registration> getAll() {
         return new ArrayList<>(this.registrationDatabase.values());
     }
 
     @Override
-    public Registration get(long id)
-    {
+    public Registration get(long id) {
         return this.registrationDatabase.get(id);
     }
 
     @Override
-    public void add(Registration registration)
-    {
+    public void add(Registration registration) {
         registration.setId(this.getNextRegistrationId());
         this.registrationDatabase.put(registration.getId(), registration);
     }
 
     @Override
-    public void update(Registration Registration)
-    {
-        this.registrationDatabase.put(Registration.getId(), Registration);
+    public void update(Registration registration) {
+        this.registrationDatabase.put(registration.getId(), registration);
     }
 
-    private synchronized long getNextRegistrationId()
-    {
-        return this.REGISTRATION_ID_SEQUENCE++;
+    private long getNextRegistrationId() {
+        return this.REGISTRATION_ID_SEQUENCE.getAndIncrement();
     }
 }
