@@ -19,6 +19,7 @@ import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -54,6 +55,12 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
     @Inject
     private Unmarshaller unmarshaller;
 
+    @Bean
+    @Override
+    public org.springframework.validation.Validator getValidator() {
+        return new LocalValidatorFactoryBean();
+    }
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new ByteArrayHttpMessageConverter());
@@ -61,8 +68,7 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         converters.add(new FormHttpMessageConverter());
         converters.add(new SourceHttpMessageConverter<>());
 
-        MarshallingHttpMessageConverter xmlConverter =
-                new MarshallingHttpMessageConverter();
+        MarshallingHttpMessageConverter xmlConverter = new MarshallingHttpMessageConverter();
         xmlConverter.setSupportedMediaTypes(Arrays.asList(
                 new MediaType("application", "xml"),
                 new MediaType("text", "xml")
@@ -71,8 +77,7 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         xmlConverter.setUnmarshaller(this.unmarshaller);
         converters.add(xmlConverter);
 
-        MappingJackson2HttpMessageConverter jsonConverter =
-                new MappingJackson2HttpMessageConverter();
+        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         jsonConverter.setSupportedMediaTypes(Arrays.asList(
                 new MediaType("application", "json"),
                 new MediaType("text", "json")
@@ -91,16 +96,14 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
                 .mediaType("xml", MediaType.APPLICATION_XML)
                 .mediaType("json", MediaType.APPLICATION_JSON);
     }
-    
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LocaleChangeInterceptor());
     }
 
-    
     @Bean
-    public LocaleResolver localeResolver()
-    {
+    public LocaleResolver localeResolver() {
         return new SessionLocaleResolver();
     }
 

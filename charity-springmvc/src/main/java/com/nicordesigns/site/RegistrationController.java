@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Controller
 @RequestMapping("registration")
@@ -45,23 +50,19 @@ public class RegistrationController {
 	}
 
 	@GetMapping(value = "/{registrationId}/attachment/{attachment:.+}")
-    public View download(@PathVariable("registrationId") long registrationId,
-                         @PathVariable("attachment") String name)
-    {
-        Registration registration = this.registrationService.getRegistration(registrationId);
-        if(registration == null)
-            return this.getListRedirectView();
+	public View download(@PathVariable("registrationId") long registrationId, @PathVariable("attachment") String name) {
+		Registration registration = this.registrationService.getRegistration(registrationId);
+		if (registration == null)
+			return this.getListRedirectView();
 
-        FileAttachment attachment = registration.getAttachment(name);
-        if(attachment == null)
-        {
-            log.info("Requested attachment {} not found on Registration {}.", name, registration);
-            return this.getListRedirectView();
-        }
+		FileAttachment attachment = registration.getAttachment(name);
+		if (attachment == null) {
+			log.info("Requested attachment {} not found on Registration {}.", name, registration);
+			return this.getListRedirectView();
+		}
 
-        return new DownloadingView(attachment.getName(),
-                attachment.getMimeContentType(), attachment.getContents());
-    }
+		return new DownloadingView(attachment.getName(), attachment.getMimeContentType(), attachment.getContents());
+	}
 
 	@GetMapping(value = "create")
 	public String create(Map<String, Object> model) {
@@ -70,30 +71,34 @@ public class RegistrationController {
 	}
 
 	@PostMapping(value = "create")
-    public View create(Principal principal, Form form) throws IOException
-    {
-        Registration registration = new Registration();
-        registration.setUserName(principal.getName());
-        registration.setSubject(form.getSubject());
-        registration.setBody(form.getBody());
+	public String create(Principal principal, @Valid Form form, BindingResult bindingResult, Map<String, Object> model)
+			throws IOException {
+		if (bindingResult.hasErrors()) {
+			model.put("registrationForm", form);
+			return "registration/add";
+		}
 
-        for(MultipartFile filePart : form.getAttachments())
-        {
-            log.debug("Processing attachment for new Registration.");
-            FileAttachment attachment = new FileAttachment();
-            attachment.setName(filePart.getOriginalFilename());
-            attachment.setMimeContentType(filePart.getContentType());
-            attachment.setContents(filePart.getBytes());
-            if((attachment.getName() != null && attachment.getName().length() > 0) ||
-                    (attachment.getContents() != null && attachment.getContents().length > 0))
-            	registration.addAttachment(attachment);
-        }
+		Registration registration = new Registration();
+		registration.setUserName(principal.getName());
+		registration.setSubject(form.getSubject());
+		registration.setBody(form.getBody());
 
-        this.registrationService.save(registration);
+		for (MultipartFile filePart : form.getAttachments()) {
+			log.debug("Processing attachment for new Registration.");
+			FileAttachment attachment = new FileAttachment();
+			attachment.setName(filePart.getOriginalFilename());
+			attachment.setMimeContentType(filePart.getContentType());
+			attachment.setContents(filePart.getBytes());
+			if ((attachment.getName() != null && attachment.getName().length() > 0)
+					|| (attachment.getContents() != null && attachment.getContents().length > 0))
+				registration.addAttachment(attachment);
+		}
 
-        return new RedirectView("/registration/view/" + registration.getId(), true, false);
-    }
-	 
+		this.registrationService.save(registration);
+
+		return "redirect:/registration/view/" + registration.getId();
+	}
+
 	private ModelAndView getListRedirectModelAndView() {
 		return new ModelAndView(this.getListRedirectView());
 	}
@@ -103,8 +108,14 @@ public class RegistrationController {
 	}
 
 	public static class Form {
+
+		@NotEmpty(message = "Subject cannot be empty")
+		@Size(max = 100, message = "Subject cannot be longer than 100 characters")
 		private String subject;
+
+		@NotEmpty(message = "Body cannot be empty")
 		private String body;
+
 		private List<MultipartFile> attachments;
 
 		public String getSubject() {

@@ -9,15 +9,14 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-    <groupId>com.nicordesigns</groupId>
-   <artifactId>charity-springmvc</artifactId>
-    <packaging>war</packaging>
+	<groupId>com.nicordesigns</groupId>
+	<artifactId>charity-springmvc</artifactId>
+	<packaging>war</packaging>
 
-	
-	
+
 	<name>charity-springmvc</name>
 	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-    <description>The Charity Registration Example with Spring MVC</description>
+	<description>The Charity Registration Example with Spring MVC</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,15 +32,17 @@
 
 		<!-- Jakarta JEE8 still uses 1.1 of the WebSocket API-->
 		<!-- Jakarta JEE9 is where we upgrade to jakarta WebSocket API-->
-		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+		<!--
+		https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
 		<dependency>
-		    <groupId>javax.websocket</groupId>
-		    <artifactId>javax.websocket-api</artifactId>
-		    <version>1.1</version>
-		    <scope>provided</scope>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
 		</dependency>
 
-		<!-- This Stackoverflow Q&A explains the differences in EL javax vs jakarta JSTL between Tomcat 9 and Tomcat 10-->
+		<!-- This Stackoverflow Q&A explains the differences in EL javax vs
+		jakarta JSTL between Tomcat 9 and Tomcat 10-->
 		<!--https://stackoverflow.com/questions/65703840/how-to-properly-configure-jakarta-ee-libraries-in-maven-pom-xml-for-tomcat-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -50,8 +51,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- This Stackoverflow Q&A explains why we have to add these so that we will be able to use the JSTL -->
-		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
+		<!-- This Stackoverflow Q&A explains why we have to add these so that we
+		will be able to use the JSTL -->
+		<!--
+		https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -61,19 +64,21 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>javax.el</groupId>
-		    <artifactId>javax.el-api</artifactId>
-		    <version>3.0.1-b06</version>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.1-b06</version>
 		</dependency>
 
-		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
+		<!--
+		https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
 
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>javax.servlet.jsp.jstl</artifactId>
 			<version>1.2.5</version>
 			<scope>compile</scope>
-			<!-- We have to exclude these because we use later versions in our previous dependencies-->
+			<!-- We have to exclude these because we use later versions in our
+			previous dependencies-->
 			<exclusions>
 				<exclusion>
 					<groupId>javax.servlet</groupId>
@@ -103,56 +108,55 @@
 		</dependency>
 
 		<dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-jcl</artifactId>
-            <version>${log4j.version}</version>
-            <scope>runtime</scope>
-        </dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>${log4j.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-taglib</artifactId>
-            <version>${log4j.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- Added for the creation of Custom TLD Tags-->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.12.0</version>
-		    <scope>compile</scope>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-taglib</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Added for the creation of Custom TLD Tags-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Added for XML Json manipulation -->
 		<dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-		<dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.13.4.2</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-		    <groupId>com.fasterxml.jackson.datatype</groupId>
-		    <artifactId>jackson-datatype-jsr310</artifactId>
-		    <version>${jackson.version}</version>
-			<!-- Use the latest version available -->
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.4.2</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+			<!-- Use the latest version available -->
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -160,8 +164,8 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
+		<!--
+		https://stackoverflow.com/questions/4928271/how-to-install-jstl-the-absolute-uri-http-java-sun-com-jstl-core-cannot-be-r-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -169,73 +173,87 @@
 		</dependency>
 
 		<dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-		    <groupId>javax.annotation</groupId>
-		    <artifactId>javax.annotation-api</artifactId>
-		    <version>1.3.2</version>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context</artifactId>
-		    <version>${spring.framework.version}</version>
-		    <scope>compile</scope>
-		</dependency>
-		
-		 <dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-webmvc</artifactId>
-		    <version>${spring.framework.version}</version>
-		    <scope>compile</scope>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
 		</dependency>
 
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${spring.framework.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        
-         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>${spring.framework.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-		<dependency>
-		    <groupId>javax.xml.bind</groupId>
-		    <artifactId>jaxb-api</artifactId>
-		    <version>2.3.1</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.framework.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>org.glassfish.jaxb</groupId>
-		    <artifactId>jaxb-runtime</artifactId>
-		    <version>2.3.3</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.framework.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${spring.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.5.Final</version>
+		</dependency>
+
+		<!-- Bean Validation API -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<finalName>charity-springmvc</finalName>
 		<pluginManagement>
-		<!-- lock down plugins versions to avoid using Maven
+			<!-- lock down plugins versions to avoid using Maven
 				defaults (may be moved to parent pom) -->
 			<plugins>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>3.2.0</version>
 				</plugin>
-				<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+				<!-- see
+				http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>3.2.0</version>
@@ -244,21 +262,21 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.10.1</version>
 					<configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
+						<source>11</source>
+						<target>11</target>
+					</configuration>
 				</plugin>
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>3.0.0-M7</version>
 				</plugin>
 				<plugin>
-				    <groupId>org.apache.maven.plugins</groupId>
-                	<artifactId>maven-war-plugin</artifactId>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
 					<version>3.3.2</version>
 					<configuration>
-                    <warSourceDirectory>web</warSourceDirectory>
-                </configuration>
+						<warSourceDirectory>web</warSourceDirectory>
+					</configuration>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
