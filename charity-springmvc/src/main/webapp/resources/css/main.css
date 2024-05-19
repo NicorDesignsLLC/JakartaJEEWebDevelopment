@@ -61,6 +61,11 @@ h3 {
     padding: 0 0 0 12px;
 }
 
+.errors {
+    color: #CC0000;
+    display: block;
+}
+
 .help-inline.text-error {
     color: red;
     font-weight: bold;
