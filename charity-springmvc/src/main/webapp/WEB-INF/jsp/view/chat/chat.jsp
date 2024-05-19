@@ -2,13 +2,11 @@
 <spring:message code="title.chat" var="chatTitle" />
 <template:basic htmlTitle="${chatTitle}" bodyTitle="${chatTitle}">
     <jsp:attribute name="extraHeadContent">
-	<link rel="stylesheet" href="<c:url value='/resources/css/chat.css' />" />
-        <script src="/resources/js/bootstrap.min.js"></script>
-    </jsp:attribute>
+	<link rel="stylesheet" href="<c:url value='/resources/css/chat.css'/>" />
+	</jsp:attribute>
     <jsp:body>
         <div id="chatContainer">
             <div id="chatLog">
-
             </div>
             <div id="messageContainer">
                 <textarea id="messageArea"></textarea>
