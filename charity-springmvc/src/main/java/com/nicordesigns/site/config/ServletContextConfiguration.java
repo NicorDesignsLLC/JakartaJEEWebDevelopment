@@ -19,7 +19,8 @@ import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -30,12 +31,11 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
 @Configuration
 @EnableWebMvc
@@ -54,11 +54,13 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
 
     @Inject
     private Unmarshaller unmarshaller;
+    
+    @Inject SpringValidatorAdapter validator;
 
-    @Bean
     @Override
-    public org.springframework.validation.Validator getValidator() {
-        return new LocalValidatorFactoryBean();
+    public Validator getValidator()
+    {
+        return this.validator;
     }
 
     @Override

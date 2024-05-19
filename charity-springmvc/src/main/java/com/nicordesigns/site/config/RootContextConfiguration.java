@@ -34,20 +34,29 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 	private static final Logger log = LogManager.getLogger();
 	private static final Logger schedulingLogger = LogManager.getLogger(log.getName() + ".[scheduling]");
 
+	
 	@Bean
-	public LocalValidatorFactoryBean validator() {
-		return new LocalValidatorFactoryBean();
-	}
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setCacheSeconds(-1);
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        messageSource.setBasenames(
+            "/WEB-INF/i18n/titles", 
+            "/WEB-INF/i18n/messages",
+            "/WEB-INF/i18n/errors", 
+            "/WEB-INF/i18n/validation"
+        );
+        return messageSource;
+    }
 
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setCacheSeconds(-1);
-		messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
-		messageSource.setBasenames("/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages", "/WEB-INF/i18n/errors");
-		return messageSource;
-	}
-
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactoryBean() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(this.messageSource());
+        return validator;
+    }
+    
+	
 	@Bean
 	public ObjectMapper objectMapper() {
 		ObjectMapper mapper = new ObjectMapper();
