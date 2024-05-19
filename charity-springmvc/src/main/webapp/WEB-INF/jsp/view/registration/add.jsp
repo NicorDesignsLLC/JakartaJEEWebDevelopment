@@ -1,11 +1,12 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page isELIgnored="false" %>
-
 <%-- @elvariable id="registrationForm" type="com.nicordesigns.site.RegistrationController.Form" --%>
 <%-- @elvariable id="registration" type="com.nicordesigns.site.Registration" --%>
 
 <template:basic htmlTitle="Create a Registration" bodyTitle="Create a Registration">
     <form:form method="post" enctype="multipart/form-data" modelAttribute="registrationForm" class="form-horizontal">
+        <!-- Global errors -->
+        <form:errors path="*" cssClass="alert alert-error"/>
+        
         <div class="control-group">
             <form:label path="subject" cssClass="control-label">Subject</form:label>
             <div class="controls">

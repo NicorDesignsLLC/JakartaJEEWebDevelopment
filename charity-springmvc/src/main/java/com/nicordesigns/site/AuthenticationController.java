@@ -6,10 +6,14 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,91 +22,91 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-public class AuthenticationController
-{
-    private static final Logger log = LogManager.getLogger();
+public class AuthenticationController {
+	private static final Logger log = LogManager.getLogger();
 
-    @Inject AuthenticationService authenticationService;
+	@Inject
+	AuthenticationService authenticationService;
 
-    @RequestMapping("logout")
-    public View logout(HttpServletRequest request, HttpSession session)
-    {
-        if(log.isDebugEnabled() && request.getUserPrincipal() != null)
-            log.debug("User {} logged out.", request.getUserPrincipal().getName());
-        session.invalidate();
+	@RequestMapping("logout")
+	public View logout(HttpServletRequest request, HttpSession session) {
+		if (log.isDebugEnabled() && request.getUserPrincipal() != null)
+			log.debug("User {} logged out.", request.getUserPrincipal().getName());
+		session.invalidate();
 
-        return new RedirectView("/login", true, false);
-    }
+		return new RedirectView("/login", true, false);
+	}
 
-    @GetMapping(value = "login")
-    public ModelAndView login(Map<String, Object> model, HttpSession session)
-    {
-    	log.info("login GET");
-        if(UserAdminPrincipal.getPrincipal(session) != null)
-            return this.getRegistrationRedirect();
+	@GetMapping(value = "login")
+	public ModelAndView login(Map<String, Object> model, HttpSession session) {
+		log.info("login GET");
+		if (UserAdminPrincipal.getPrincipal(session) != null)
+			return this.getRegistrationRedirect();
 
-        model.put("loginFailed", false);
-        model.put("loginForm", new Form());
+		model.put("loginFailed", false);
+		model.put("loginForm", new LoginForm());
 
-        return new ModelAndView("login");
-    }
+		return new ModelAndView("login");
+	}
 
-    @PostMapping(value = "login")
-    public ModelAndView login(Map<String, Object> model, HttpSession session,
-                              HttpServletRequest request, Form form)
-    {
-    	log.info("login POST");
-        
-    	if(UserAdminPrincipal.getPrincipal(session) != null)
-            return this.getRegistrationRedirect();
+	@PostMapping(value = "login")
+	public ModelAndView login(Map<String, Object> model, HttpSession session, HttpServletRequest request,
+			@Valid LoginForm form, Errors errors) {
+		log.info("login POST");
 
-        Principal principal = this.authenticationService.authenticate(
-                form.getUsername(), form.getPassword()
-        );
-        
-        
-        if(principal == null)
-        {
-            form.setPassword(null);
-            model.put("loginFailed", true);
-            model.put("loginForm", form);
-            return new ModelAndView("login");
-        }
+		if (UserAdminPrincipal.getPrincipal(session) != null)
+			return this.getRegistrationRedirect();
 
-        UserAdminPrincipal.setPrincipal(session, principal);
-        request.changeSessionId();
-        return this.getRegistrationRedirect();
-    }
+		if (errors.hasErrors()) {
+			form.setPassword(null);
+			return new ModelAndView("login");
+		}
 
+		Principal principal;
+		try {
+			principal = this.authenticationService.authenticate(form.getUsername(), form.getPassword());
+		} catch (ConstraintViolationException e) {
+			form.setPassword(null);
+			model.put("validationErrors", e.getConstraintViolations());
+			return new ModelAndView("login");
+		}
 
-    private ModelAndView getRegistrationRedirect()
-    {
-        return new ModelAndView(new RedirectView("/registration/list", true, false));
-    }
+		if (principal == null) {
+			form.setPassword(null);
+			model.put("loginFailed", true);
+			model.put("loginForm", form);
+			return new ModelAndView("login");
+		}
 
-    public static class Form
-    {
-        private String username;
-        private String password;
+		UserAdminPrincipal.setPrincipal(session, principal);
+		request.changeSessionId();
+		return this.getRegistrationRedirect();
+	}
 
-        public String getUsername()
-        {
-            return username;
-        }
+	private ModelAndView getRegistrationRedirect() {
+		return new ModelAndView(new RedirectView("/registration/list", true, false));
+	}
 
-        public void setUsername(String username)
-        {
-            this.username = username;
-        }
+	public static class LoginForm {
+		@NotBlank(message = "{validate.authenticate.username}")
+		private String username;
+		@NotBlank(message = "{validate.authenticate.password}")
+		private String password;
 
-        public String getPassword()
-        {
-            return password;
-        }
+		public String getUsername() {
+			return username;
+		}
 
-        public void setPassword(String password)
-        {
-            this.password = password;
-        }
-    }
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+	}
 }
