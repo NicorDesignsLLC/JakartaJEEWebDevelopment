@@ -1,4 +1,8 @@
 /* General page styles */
+.test-style {
+    border: 2px solid red; /* Distinctive border for testing */
+}
+
 html, body {
     height: 100%;
     font-family: Verdana, Helvetica, Arial, sans-serif;
@@ -6,6 +10,7 @@ html, body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background-color: #f0f0f0; /* Light gray background to easily see if the stylesheet is applied */
 }
 
 /* Link styles */
