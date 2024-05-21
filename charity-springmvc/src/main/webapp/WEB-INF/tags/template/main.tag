@@ -9,14 +9,16 @@
     <head>
         <title>Charity Registration :: <c:out value="${fn:trim(htmlTitle)}" /></title>
         
-        <!-- Use Bootstrap 2.3.1 -->
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
+        <!-- Upgrade Bootstrap -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" />
+        
         <!-- Custom CSS file for the color scheme -->
         <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css"/>
-        
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
-        
+        <!-- Upgrade jQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
         <script type="text/javascript">
             var postInvisibleForm = function(url, fields) {
                 var form = $('<form id="mapForm" method="post"></form>')
@@ -40,10 +42,10 @@
         <div class="container test-style">
             <h1>Charity Registration Web Application</h1>
             <div class="row">
-                <div class="span3">
+                <div class="col-md-3">
                     <jsp:invoke fragment="navigationContent" />
                 </div>
-                <div class="span9">
+                <div class="col-md-9">
                     <h2><c:out value="${fn:trim(bodyTitle)}" /></h2>
                     <jsp:doBody />
                 </div>
