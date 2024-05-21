@@ -5,18 +5,25 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 public class Registration {
 
 	private long id;
 
+	@NotBlank(message = "{validate.registration.userName}")
 	private String userName;
 
+	@NotBlank(message = "{validate.registration.subject}")
 	private String subject;
 
+	@NotBlank(message = "{validate.registration.body}")
 	private String body;
 
 	private Instant createdDate;
 
+	@Valid
 	private Map<String, FileAttachment> fileAttachments = new LinkedHashMap<>();
 
 	public String getUserName() {

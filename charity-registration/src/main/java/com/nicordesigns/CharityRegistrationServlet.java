@@ -135,7 +135,7 @@ public class CharityRegistrationServlet extends HttpServlet {
 
         FileAttachment attachment = registration.getAttachment(name);
         if (attachment == null) {
-            log.info("Requested attachment {} not found on ticket {}.", name, idString);
+            log.info("Requested attachment {} not found on registration {}.", name, idString);
             response.sendRedirect("charityRegistrationServlet?action=view&registrationId=" + idString);
             return;
         }
