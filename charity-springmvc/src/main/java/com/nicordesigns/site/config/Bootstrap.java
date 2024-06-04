@@ -1,20 +1,20 @@
 package com.nicordesigns.site.config;
 
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
-
-import com.nicordesigns.site.filters.AuthenticationFilter;
-import com.nicordesigns.site.filters.LoggingFilter;
-import com.nicordesigns.site.SessionListener;
-
-
 import javax.servlet.FilterRegistration;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.ws.transport.http.MessageDispatcherServlet;
+
+import com.nicordesigns.site.filters.AuthenticationFilter;
+import com.nicordesigns.site.filters.LoggingFilter;
+import com.nicordesigns.site.SessionListener;
 
 @SuppressWarnings("unused")
 public class Bootstrap implements WebApplicationInitializer
@@ -44,6 +44,19 @@ public class Bootstrap implements WebApplicationInitializer
                 null, 20_971_520L, 41_943_040L, 512_000
         ));
         dispatcher.addMapping("/");
+        
+        //Config context for our SOAP Endpoint
+        AnnotationConfigWebApplicationContext soapContext =
+                new AnnotationConfigWebApplicationContext();
+        soapContext.register(SoapServletContextConfiguration.class);
+        MessageDispatcherServlet soapServlet =
+                new MessageDispatcherServlet(soapContext);
+        soapServlet.setTransformWsdlLocations(true);
+        dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
+        dispatcher.setLoadOnStartup(3);
+        dispatcher.addMapping("/services/Soap/*");
+        
+        
 
         FilterRegistration.Dynamic registration = container.addFilter(
                 "loggingFilter", new LoggingFilter()
