@@ -11,11 +11,11 @@ import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 @Configuration
 @ComponentScan(
-        basePackages = "com.wrox.site",
+        basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
         includeFilters = @ComponentScan.Filter(Endpoint.class)
 )
-@ImportResource("classpath:com/wrox/config/soapServletContext.xml")
+@ImportResource("classpath:com/nicordesigns/config/soapServletContext.xml")
 public class SoapServletContextConfiguration
 {
     @Bean
