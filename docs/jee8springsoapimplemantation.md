@@ -1,8 +1,8 @@
-#3. Implementing Spring Web Services for SOAP
+# 3. Implementing Spring Web Services for SOAP
 
 ## Spring Web Services Introduction
 
-The topic of Spring Web Services is vast and can easily fill an entire book. In this guide, we'll provide a concise introduction and practical example to get you started. For more comprehensive information, refer to the [official Spring Web Services documentation](https://docs.spring.io/spring-ws/docs/current/reference/).
+The topic of Spring Web Services is vast and can easily fill an entire book. In this guide, we'll provide a concise introduction and practical example to get you started. For more comprehensive information, refer to the [official Spring Web Services documentation](https://docs.spring.io/spring-ws/docs/current/reference/html).
 
 ## Required Maven Dependencies
 
@@ -82,55 +82,23 @@ We also need a Charity Registration Form XML document. Additionally, we want to 
 </deleteRegistration>
 ```
 
-We will use Eclipse or other open-source tools to generate the XSD schema for us from these XML documents.
+We will use an open-source tool to generate the XSD schema for us from these XML documents.
 
-### Necessary Plugins for XML and XSD Support in Eclipse
+### Generating XSD from XML Using FreeFormatter.com
 
-To work with XML and XSD in Eclipse, you need to have the Web Tools Platform (WTP) installed. The WTP includes tools for developing Java EE and Web applications, including XML and XSD editors.
+FreeFormatter.com provides an easy-to-use, online tool for generating an XML Schema (XSD) from an XML document. Here’s how you can use it:
 
-#### Installing Web Tools Platform (WTP) in Eclipse
+1. **Visit FreeFormatter.com:**
+   - Open your web browser and go to [FreeFormatter XML to XSD Generator](https://www.freeformatter.com/xsd-generator.html#before-output).
 
-1. **Open Eclipse IDE:**
-   - Start your Eclipse IDE.
+2. **Input Your XML Content:**
+   - Copy and paste your XML content into the text box provided on the website.
 
-2. **Open the Eclipse Marketplace:**
-   - Go to `Help` -> `Eclipse Marketplace...`.
+3. **Generate the XSD:**
+   - Click the "Generate XSD" button. The tool will process your XML and produce an XSD schema.
 
-3. **Search for Web Tools Platform:**
-   - In the Eclipse Marketplace dialog, enter `Web Tools Platform` in the `Find:` field and click `Go`.
-
-4. **Install the Web Tools Platform:**
-   - Locate the `Eclipse Web Tools Platform (WTP)` in the search results.
-   - Click the `Install` button next to the Web Tools Platform entry.
-   - Follow the prompts to complete the installation. You may need to restart Eclipse after the installation is complete.
-
-### Generating XSD from XML in Eclipse IDE
-
-Here are the step-by-step instructions to generate an XSD document from XML in Eclipse IDE:
-
-1. **Open Eclipse IDE:**
-   - Start your Eclipse IDE. Ensure you have the Web Tools Platform (WTP) installed for XML and XSD support.
-
-2. **Create a New XML File:**
-   - Go to `File` -> `New` -> `Other...`.
-   - Select `XML` -> `XML File` and click `Next`.
-   - Choose a project or create a new project, name your XML file (e.g., `CharityRegistration.xml`), and click `Finish`.
-
-3. **Input Your XML Content:**
-   - Open the newly created XML file in the Eclipse editor.
-   - Copy and paste the XML content from the examples provided above into the XML file.
-
-4. **Generate XSD from XML:**
-   - With the XML file open in the editor, right-click on the editor window and select `Generate` -> `XML Schema File...`.
-   - The `Generate XML Schema` dialog will open. Ensure the correct XML file is selected.
-   - Click `Finish`. Eclipse will generate an XSD file based on the XML structure.
-
-5. **Review and Edit the Generated XSD:**
-   - Eclipse will generate an XSD file in the same directory as your XML file. Open the XSD file to review and make any necessary adjustments.
-   - You might need to add or modify elements to better match your requirements.
-
-6. **Save the XSD File:**
-   - Save the XSD file with a meaningful name, such as `CharityRegistration.xsd`.
+4. **Download or Copy the XSD:**
+   - You can either download the generated XSD file or copy the content directly from the website.
 
 ### Example of Generated XSD
 
@@ -238,7 +206,7 @@ public class AppConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("CharitiesPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://example.com/charities");
+        wsdl11Definition.setTargetNamespace("http://nicordesigns.com/charities");
         wsdl11Definition.setSchema(charitiesSchema);
         return wsdl11Definition;
     }
@@ -258,7 +226,7 @@ Create the SOAP endpoint in a class named `RegistrationEndpoint.java`:
 @Endpoint
 public class RegistrationEndpoint {
 
-    private static final String NAMESPACE_URI = "http://example.com/charities";
+    private static final String NAMESPACE_URI = "http://nicordesigns.com/charities";
 
     private final CharityRepository charityRepository;
 
@@ -284,9 +252,11 @@ public class RegistrationEndpoint {
     }
 }
 ```
+
 ### References
 
 1. [Spring Web Services Documentation](https://docs.spring.io/spring-ws/docs/current/reference/)
 2. [Spring Framework Reference Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
 3. [Jakarta EE Documentation](https://jakarta.ee/specifications/)
 
+---

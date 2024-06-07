@@ -13,7 +13,6 @@
 	<artifactId>charity-springmvc</artifactId>
 	<packaging>war</packaging>
 
-
 	<name>charity-springmvc</name>
 	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
 	<description>The Charity Registration Example with Spring MVC</description>
@@ -28,8 +27,6 @@
 	</properties>
 
 	<dependencies>
-
-
 		<!-- Jakarta JEE8 still uses 1.1 of the WebSocket API-->
 		<!-- Jakarta JEE9 is where we upgrade to jakarta WebSocket API-->
 		<!--
@@ -242,7 +239,7 @@
         <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
-            <version>2.1.4.RELEASE</version>
+            <version>3.1.1</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
