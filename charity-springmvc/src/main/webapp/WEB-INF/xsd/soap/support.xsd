@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.nicordesigns.com/spring-ws-insurance"
+           xmlns:spr="http://www.nicordesigns.com/spring-ws-insurance"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- SOAP IN -->
+
+    <xs:simpleType name="ssnType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}|\d{9}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="InsuranceRequest" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="spr:ApplicantType" name="Applicant" />
+                <xs:element type="spr:InsuranceInfoType" name="InsuranceInfo"/>
+                <xs:element type="spr:WidgetInfoType" name="WidgetInfo" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="ApplicantType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="SSN"/>
+            <xs:element type="xs:string" name="FirstName"/>
+            <xs:element type="xs:string" name="MiddleName"/>
+            <xs:element type="xs:string" name="LastName"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="InsuranceInfoType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="product"/>
+            <xs:element type="xs:string" name="coverageType"/>
+            <xs:element type="xs:string" name="coverageOption"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WidgetInfoType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="wgtAmount"/>
+            <xs:element type="xs:string" name="wgtContractNumber"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- SOAP OUT -->
+    <xs:element name="InsuranceResponse">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="amount"/>
+                    <xs:attribute type="xs:string" name="confirmationId"/>
+                    <xs:attribute type="xs:string" name="orderDate"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>
