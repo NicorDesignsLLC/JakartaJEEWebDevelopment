@@ -30,6 +30,7 @@
 		<module>my-spring-mvc</module>
 		<module>my-spring-bootstrap</module>
 		<module>spring-bean-profiles</module>
+		<module>spring-ws-charityregistration-udemy</module>
 	</modules>
 
 	<build>
