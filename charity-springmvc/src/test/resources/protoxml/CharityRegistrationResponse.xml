@@ -1,0 +1,6 @@
+<CharityRegistrationResponse 
+registrationId="12345" 
+statusCode="200" 
+statusMessage="Registration successful"
+xmlns="http://www.nicordesigns.com/charityregistration">
+</CharityRegistrationResponse>

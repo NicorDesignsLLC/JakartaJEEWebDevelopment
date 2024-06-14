@@ -18,6 +18,21 @@
 			<default-content-type>text/html</default-content-type>
 		</jsp-property-group>
 	</jsp-config>
+	
+	<servlet>
+        <servlet-name>messageDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/soap-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>messageDispatcherServlet</servlet-name>
+        <url-pattern>/ws/*</url-pattern>
+    </servlet-mapping>
 
 	<!-- Part 1 Session Configuration -->
 	<session-config>

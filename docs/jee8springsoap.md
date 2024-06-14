@@ -2,6 +2,10 @@
 
 2. [SOAP Web Services Overview](jee8springsoapoverview.md)
 
-3. [Using Spring Spring Web Services for SOAP](jee8springsoapimplemantation.md)
+3. [Using Spring Spring Web Services for SOAP - Part 1](jee8springsoapimplemantation.md)
 
-4. [Testing our Spring SOAP Endpoints](jee8springsoaptesting.md)
+4. [Using Spring Spring Web Services for SOAP - Part 2](jee8springsoapimplemantation2.md)
+
+5. [Using Spring Spring Web Services for SOAP - Part 3](jee8springsoapimplemantation3.md)
+
+6. [Testing our Spring SOAP Endpoints](jee8springsoaptesting.md)
