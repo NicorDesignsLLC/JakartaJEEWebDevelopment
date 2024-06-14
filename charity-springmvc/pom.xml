@@ -24,6 +24,7 @@
 		<jackson.version>2.13.4</jackson.version>
 		<log4j.version>2.19.0</log4j.version>
 		<spring.framework.version>5.3.31</spring.framework.version>
+		<cxf.xjc.plugin.version>3.3.1</cxf.xjc.plugin.version>
 	</properties>
 
 	<dependencies>
@@ -287,22 +288,28 @@
 			</plugin>
         	<plugin>
 				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-xjc-plugin</artifactId>
-				<version>3.3.0</version>
+                    <artifactId>cxf-xjc-plugin</artifactId>
+                    <version>${cxf.xjc.plugin.version}</version>
+                    <configuration>
+                        <extensions>
+                            <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc.plugin.version}</extension>
+                        </extensions>
+                    </configuration>
+				
+				
 				<executions>
 					<execution>
-						<id>xjc</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>xsdtojava</goal>
-						</goals>
+						  <id>generate-sources</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>xsdtojava</goal>
+                            </goals>
 						<configuration>
-							<sourceRoot>
-								${project.build.directory}/generated-sources/xjc</sourceRoot>
+							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
 							<xsdOptions>
 								<xsdOption>
 									<xsd>
-										${basedir}/src/main/webapp/WEB-INF/xsd/*.xsd</xsd>
+										${project.basedir}/src/main/webapp/WEB-INF/xsd/soap/charity-registration.xsd</xsd>
 									<packagename>com.nicordesigns.ws</packagename>
 								</xsdOption>
 							</xsdOptions>
