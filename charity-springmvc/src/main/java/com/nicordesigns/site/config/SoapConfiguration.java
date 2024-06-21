@@ -33,6 +33,6 @@ public class SoapConfiguration extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema charitySchema() {
-        return new SimpleXsdSchema(new ClassPathResource("/WEB-INF/xsd/soap/charity-registration.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("WEB-INF/xsd/soap/charity-registration.xsd"));
     }
 }
