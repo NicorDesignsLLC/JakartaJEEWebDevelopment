@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.example.org/charity"
+           xmlns:tns="http://www.example.org/charity"
+           elementFormDefault="qualified">
+
+    <!-- Element for the charity registration request -->
+    <xs:element name="RegisterCharityRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="registrationNumber" type="xs:string"/>
+                <xs:element name="address" type="xs:string"/>
+                <xs:element name="contactEmail" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the charity registration response -->
+    <xs:element name="RegisterCharityResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the get charity details request -->
+    <xs:element name="GetCharityDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="registrationNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the get charity details response -->
+    <xs:element name="GetCharityDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="registrationNumber" type="xs:string"/>
+                <xs:element name="address" type="xs:string"/>
+                <xs:element name="contactEmail" type="xs:string"/>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the update charity request -->
+    <xs:element name="UpdateCharityRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="registrationNumber" type="xs:string"/>
+                <xs:element name="name" type="xs:string" minOccurs="0"/>
+                <xs:element name="address" type="xs:string" minOccurs="0"/>
+                <xs:element name="contactEmail" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the update charity response -->
+    <xs:element name="UpdateCharityResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the delete charity request -->
+    <xs:element name="DeleteCharityRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="registrationNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Element for the delete charity response -->
+    <xs:element name="DeleteCharityResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
