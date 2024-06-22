@@ -52,20 +52,10 @@ Here is an example of a Charity Registration XML document:
 </CharityRegistration>
 ```
 
-We also need a Charity Registration Form XML document. Additionally, we want to be able to add or delete a charity registration, so we need a `registrationRequest` and a `deleteRegistration` XML element.
+We also need to be able to add  a charity registration, so we need a `registrationRequest` 
 
-#### Charity Registration Form XML Document Example
 
-```xml
-<CharityRegistrationForm>
-    <CharityName></CharityName>
-    <CharityAddress></CharityAddress>
-    <CharityPhone></CharityPhone>
-    <CharityEmail></CharityEmail>
-</CharityRegistrationForm>
-```
-
-#### Registration Request and Delete Registration XML Elements
+#### Registration Request XML Elements
 
 ```xml
 <registrationRequest>
@@ -77,9 +67,6 @@ We also need a Charity Registration Form XML document. Additionally, we want to 
     </CharityRegistration>
 </registrationRequest>
 
-<deleteRegistration>
-    <CharityId>123</CharityId>
-</deleteRegistration>
 ```
 
 We will use an open-source tool to generate the XSD schema for us from these XML documents.
