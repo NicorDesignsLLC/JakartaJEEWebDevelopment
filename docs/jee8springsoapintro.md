@@ -1,4 +1,4 @@
-##### Understanding SOAP Web Services
+# Understanding SOAP Web Services
 
 Web services provide a means for third-party clients to interact with our Spring Web MVC service layer to execute business logic and perform data retrieval or persistence. In the following  lesson, we will explore SOAP web services. Our focus will be on providing and implementing web services, rather than client implementations.
 
