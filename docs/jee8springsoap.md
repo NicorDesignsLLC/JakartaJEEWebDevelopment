@@ -8,6 +8,6 @@
 
 5. [Using Spring Spring Web Services for SOAP - Maven Dependencies](jee8springsoapimplemantation.md)
 
-6. [Using Spring Spring Web Services for SOAP - Part 3](jee8springsoapimplemantation3.md)
+6. [Using Spring Spring Web Services for SOAP - Spring Configuration](jee8springsoapimplemantation3.md)
 
 7. [Testing our Spring SOAP Endpoints](jee8springsoaptesting.md)
