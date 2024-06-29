@@ -1,0 +1,18 @@
+<xs:schema attributeFormDefault="unqualified" 
+			elementFormDefault="qualified" 
+			targetNamespace="http://www.nicordesigns.com/charityregistration" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <!-- SOAP OUT -->
+  <xs:element name="CharityRegistrationResponse">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:short" name="registrationId"/>
+          <xs:attribute type="xs:short" name="statusCode"/>
+          <xs:attribute type="xs:string" name="statusMessage"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
