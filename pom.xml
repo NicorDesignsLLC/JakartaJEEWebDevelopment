@@ -1,50 +1,80 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>pom-root-level</groupId>
-
-	<artifactId>JakartaJEEWebDevelopment</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-
-	<packaging>pom</packaging>
-
-	<name>JakartaJEEWebDevelopment</name>
-	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
-	</properties>
-
-	<modules>
-		<module>charity-custom-tags</module>
-		<module>sub-module</module>
-		<module>jee8webapp</module>
-		<module>jee8mariadbsql</module>
-		<module>charity-registration</module>
-		<module>charity-springmvc</module>
-		<module>my-spring-mvc</module>
-		<module>my-spring-bootstrap</module>
-		<module>spring-bean-profiles</module>
-	</modules>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M9</version>
-			</plugin>
-		</plugins>
-	</build>
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	
+  <modelVersion>4.0.0</modelVersion>
+  	
+  <groupId>pom-root-level</groupId>
+  	
+  <artifactId>JakartaJEEWebDevelopment</artifactId>
+  	
+  <version>1.0.0-SNAPSHOT</version>
+  	
+  <packaging>pom</packaging>
+  	
+  <name>JakartaJEEWebDevelopment</name>
+  	
+  <url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
+  	
+  <properties>
+    		
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    		
+    <maven.compiler.source>11</maven.compiler.source>
+    		
+    <maven.compiler.target>11</maven.compiler.target>
+    	
+  </properties>
+  	
+  <modules>
+    		
+    <module>charity-custom-tags</module>
+    		
+    <module>sub-module</module>
+    		
+    <module>jee8webapp</module>
+    		
+    <module>jee8mariadbsql</module>
+    		
+    <module>charity-registration</module>
+    		
+    <module>charity-springmvc</module>
+    		
+    <module>my-spring-mvc</module>
+    		
+    <module>my-spring-bootstrap</module>
+    		
+    <module>spring-bean-profiles</module>
+    	  
+    <module>spring-ws-charityregistration</module>
+      
+  </modules>
+  	
+  <build>
+    		
+    <plugins>
+      			
+      <plugin>
+        				
+        <groupId>org.apache.maven.plugins</groupId>
+        				
+        <artifactId>maven-compiler-plugin</artifactId>
+        				
+        <version>3.10.1</version>
+        			
+      </plugin>
+      			
+      <plugin>
+        				
+        <groupId>org.apache.maven.plugins</groupId>
+        				
+        <artifactId>maven-surefire-plugin</artifactId>
+        				
+        <version>3.0.0-M9</version>
+        			
+      </plugin>
+      		
+    </plugins>
+    	
+  </build>
+  
 </project>
