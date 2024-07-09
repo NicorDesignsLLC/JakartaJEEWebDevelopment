@@ -1,85 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	
-  <modelVersion>4.0.0</modelVersion>
-  	
-  <groupId>pom-root-level</groupId>
-  	
-  <artifactId>JakartaJEEWebDevelopment</artifactId>
-  	
-  <version>1.0.0-SNAPSHOT</version>
-  	
-  <packaging>pom</packaging>
-  	
-  <name>JakartaJEEWebDevelopment</name>
-  	
-  <url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-  	
-  <properties>
-    		
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    		
-    <maven.compiler.source>11</maven.compiler.source>
-    		
-    <maven.compiler.target>11</maven.compiler.target>
-    	
-  </properties>
-  
-    <modules>
-    		
-    <module>charity-custom-tags</module>
-    		
-    <module>sub-module</module>
-    		
-    <module>jee8webapp</module>
-    		
-    <module>jee8mariadbsql</module>
-    		
-    <module>charity-registration</module>
-    		
-    <module>charity-springmvc</module>
-    		
-    <module>my-spring-mvc</module>
-    		
-    <module>my-spring-bootstrap</module>
-    		
-    <module>spring-bean-profiles</module>
-    	  
-    <module>spring-ws-charityregistration</module>
-      
-  </modules>
-  	
-  <build>
-    		
-    <plugins>
-      			
-      <plugin>
-        				
-        <groupId>org.apache.maven.plugins</groupId>
-        				
-        <artifactId>maven-compiler-plugin</artifactId>
-        				
-        <version>3.10.1</version>
-        
-        <configuration>
-        <source>11</source>
-        <target>11</target>
-      </configuration>
-        			
-      </plugin>
-      			
-      <plugin>
-        				
-        <groupId>org.apache.maven.plugins</groupId>
-        				
-        <artifactId>maven-surefire-plugin</artifactId>
-        				
-        <version>3.0.0-M9</version>
-        			
-      </plugin>
-      		
-    </plugins>
-    	
-  </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pom-root-level</groupId>
+
+	<artifactId>JakartaJEEWebDevelopment</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<name>JakartaJEEWebDevelopment</name>
+	<url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+
+	<modules>
+		<module>charity-custom-tags</module>
+		<module>sub-module</module>
+		<module>jee8webapp</module>
+		<module>jee8mariadbsql</module>
+		<module>charity-registration</module>
+		<module>charity-springmvc</module>
+		<module>my-spring-mvc</module>
+		<module>my-spring-bootstrap</module>
+		<module>spring-bean-profiles</module>
+		<module>spring-ws-charityregistration-udemy</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<!-- Lock down plugins versions to avoid using Maven defaults (may
+			be moved to parent POM) -->
+			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.2.0</version>
+				</plugin>
+				<!-- See
+				http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.2.0</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.10.1</version>
+					<configuration>
+						<source>11</source>
+						<target>11</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M7</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
   
 </project>

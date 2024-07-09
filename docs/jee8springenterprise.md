@@ -18,3 +18,6 @@
 
 10. [ Using JSR 349, Spring Framework and Hibernate Validator](jee8springjsr349.md)
 
+11. [ Creating SOAP Web Services with the Spring Framework](jee8springsoap.md)
+
+
