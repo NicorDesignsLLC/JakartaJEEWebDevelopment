@@ -1,0 +1,20 @@
+<CharityRegistrationRequest xmlns="http://www.nicordesigns.com/charityregistration">
+    <CharityRegistrationInfo>
+            <id>12345</id>
+            <userName>JohnDoe</userName>
+            <subject>Charity Event</subject>
+            <body>We are organizing a charity event to help local communities.</body>
+            <createdDate>2024-06-09T12:00:00Z</createdDate>
+            <fileAttachments>
+               <attachment>
+                  <name>brochure.pdf</name>
+                  <content>JVBERi0xLjQKJaqrrK0KNCAwIG9iago8PC9MaW5lYXJpemVkIDEvTCA...</content>
+               </attachment>
+               <attachment>
+                  <name>flyer.jpg</name>
+                  <content>/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUTEhIVFRUVFRUVFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0mICYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAMIBAwMBIgACEQEDEQH/...==</content>
+               </attachment>
+            </fileAttachments>
+      </CharityRegistrationInfo>
+</CharityRegistrationRequest>
+

@@ -1,0 +1,51 @@
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.nicordesigns.com/charityregistration"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- SOAP IN -->
+    <xs:element name="CharityRegistrationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CharityRegistrationInfo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:short" name="id"/>
+                            <xs:element type="xs:string" name="userName"/>
+                            <xs:element type="xs:string" name="subject"/>
+                            <xs:element type="xs:string" name="body"/>
+                            <xs:element type="xs:dateTime" name="createdDate"/>
+                            <xs:element name="fileAttachments">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="attachment" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:string" name="name"/>
+                                                    <xs:element type="xs:string" name="content"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- SOAP OUT -->
+    <xs:element name="CharityRegistrationResponse">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:short" name="registrationId"/>
+                    <xs:attribute type="xs:short" name="statusCode"/>
+                    <xs:attribute type="xs:string" name="statusMessage"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
