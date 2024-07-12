@@ -55,15 +55,15 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
 
     @Inject
     private Unmarshaller unmarshaller;
-    
-    @Inject SpringValidatorAdapter validator;
+
+    @Inject
+    private SpringValidatorAdapter validator;
 
     @Override
-    public Validator getValidator()
-    {
+    public Validator getValidator() {
         return this.validator;
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")

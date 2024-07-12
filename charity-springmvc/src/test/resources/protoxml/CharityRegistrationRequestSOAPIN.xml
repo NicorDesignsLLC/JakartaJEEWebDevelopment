@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://www.nicordesigns.com/site">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:RegisterRequest>
+         <tns:registration>
+            <tns:id>12345</tns:id>
+            <tns:userName>JohnDoe</tns:userName>
+            <tns:subject>Charity Event</tns:subject>
+            <tns:body>We are organizing a charity event to help local communities.</tns:body>
+            <tns:createdDate>2024-06-09T12:00:00Z</tns:createdDate>
+            <tns:fileAttachments>
+               <tns:attachment>
+                  <tns:name>brochure.pdf</tns:name>
+                  <tns:content>JVBERi0xLjQKJaqrrK0KNCAwIG9iago8PC9MaW5lYXJpemVkIDEvTCA...</tns:content>
+               </tns:attachment>
+               <tns:attachment>
+                  <tns:name>flyer.jpg</tns:name>
+                  <tns:content>/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUTEhIVFRUVFRUVFRUVFRUVFRUVFRUWFhUVFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0mICYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAMIBAwMBIgACEQEDEQH/...==</tns:content>
+               </tns:attachment>
+            </tns:fileAttachments>
+         </tns:registration>
+      </tns:RegisterRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
