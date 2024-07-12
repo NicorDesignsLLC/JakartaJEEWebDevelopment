@@ -2,8 +2,6 @@
 
 ## Spring Web Services Introduction
 
----
-
 ### Adding the SOAP Dispatcher Servlet Configuration
 
 To configure the SOAP dispatcher servlet in a Jakarta JEE8 environment, we need to set up the `Bootstrap` class and related configuration.
@@ -112,5 +110,3 @@ public class RegistrationEndpoint {
 1. [Spring Web Services Documentation](https://docs.spring.io/spring-ws/docs/current/reference/)
 2. [Spring Framework Reference Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
 3. [Jakarta EE Documentation](https://jakarta.ee/specifications/)
-
----

@@ -1,5 +1,3 @@
----
-
 # 3. Implementing Spring Web Services for SOAP - Maven Archetype
 
 ## Using a Spring Web Services Archetype
@@ -61,5 +59,3 @@ In this section, you will create a boilerplate Spring Web Services project in **
 1. [Spring Web Services Documentation](https://docs.spring.io/spring-ws/docs/current/reference/)
 2. [Spring Framework Reference Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html)
 3. [Jakarta EE Documentation](https://jakarta.ee/specifications/)
-
----
