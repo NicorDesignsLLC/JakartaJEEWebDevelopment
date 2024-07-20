@@ -24,8 +24,8 @@ public class SoapConfiguration extends WsConfigurerAdapter {
     @Bean(name = "charity")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema charitySchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("CharityPort");
-        wsdl11Definition.setLocationUri("/services/Soap");
+        wsdl11Definition.setPortTypeName("CharityRegistrationService");
+        wsdl11Definition.setLocationUri("/charityRegistrationService");
         wsdl11Definition.setTargetNamespace("http://www.nicordesigns.com/charity");
         wsdl11Definition.setSchema(charitySchema);
         return wsdl11Definition;
@@ -33,6 +33,7 @@ public class SoapConfiguration extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema charitySchema() {
-        return new SimpleXsdSchema(new ClassPathResource("WEB-INF/xsd/soap/charity-registration.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("xsd/CharityRegistration.xsd"));
     }
+
 }
