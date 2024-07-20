@@ -34,14 +34,14 @@ In this section, you will create a boilerplate Spring Web Services project in **
 
 2. **Configuration**
    - **Step 1: Open Spring Configuration File**
-     - Navigate to `src/main/resources` and open the Spring configuration file (`applicationContext.xml` or equivalent).
+     - Navigate to `src/main/resources` and open the Spring configuration file 		(`applicationContext.xml` or in our case `web.xml`  and `spring-ws-servlet.xml` ).
 
    - **Step 2: Enable WSDL Generation**
      - Add the necessary configurations to generate the SOAP WSDL file automatically. This typically involves defining beans for `DefaultWsdl11Definition` and `XsdSchema`.
 
 3. **Service Layer Development**
    - **Step 1: Create Service Interface**
-     - In the `src/main/java` directory, create a new package and a Java Interface for your service.
+     - In the `src/main/java` directory, create a new package and a Java Interface for 		your service. Interface name to align with generated WSDL wsdl:portType
 
    - **Step 2: Implement Service Interface**
      - Create an implementation class for the service interface.
