@@ -15,7 +15,7 @@
     <sws:annotation-driven />
 
     <bean id="charitySchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
-        <constructor-arg value="/WEB-INF/xsd/soap/charity-registration.xsd" />
+        <constructor-arg value="/WEB-INF/xsd/charity-registration.xsd" />
     </bean>
 
     <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">

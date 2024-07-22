@@ -37,11 +37,21 @@ public class Bootstrap implements WebApplicationInitializer {
         dispatcher.addMapping("/");
 
         // Message Dispatcher Servlet for SOAP services
-        MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet(servletContext);
-        messageDispatcherServlet.setTransformWsdlLocations(true);
-        ServletRegistration.Dynamic soapDispatcher = container.addServlet("springSoapDispatcher", messageDispatcherServlet);
+        MessageDispatcherServlet soapServlet = new MessageDispatcherServlet(servletContext);
+        soapServlet.setTransformWsdlLocations(true);
+        ServletRegistration.Dynamic soapDispatcher = container.addServlet("springSoapDispatcher", soapServlet);
         soapDispatcher.setLoadOnStartup(2);
         soapDispatcher.addMapping("/ws/*");
+        
+//        AnnotationConfigWebApplicationContext soapContext =
+//                new AnnotationConfigWebApplicationContext();
+//        soapContext.register(SoapServletContextConfiguration.class);
+//        MessageDispatcherServlet soapServlet =
+//                new MessageDispatcherServlet(soapContext);
+//        soapServlet.setTransformWsdlLocations(true);
+//        dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
+//        dispatcher.setLoadOnStartup(2);
+//        dispatcher.addMapping("/ws/*");
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
