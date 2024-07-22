@@ -1,4 +1,4 @@
-package com.nicordesigns.site.ws;
+package com.nicordesigns.ws;
 
 import org.springframework.stereotype.Service;
 

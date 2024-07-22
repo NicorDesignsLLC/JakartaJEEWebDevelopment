@@ -1,4 +1,4 @@
-package com.nicordesigns.site.ws;
+package com.nicordesigns.ws;
 
 import com.nicordesigns.ws.CharityRegistrationRequest;
 import com.nicordesigns.ws.CharityRegistrationResponse;
