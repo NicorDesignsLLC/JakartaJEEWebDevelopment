@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -32,26 +33,15 @@ public class Bootstrap implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext servletContext = new AnnotationConfigWebApplicationContext();
         servletContext.register(ServletContextConfiguration.class);
         ServletRegistration.Dynamic dispatcher = container.addServlet("springDispatcher", new DispatcherServlet(servletContext));
+        
         dispatcher.setLoadOnStartup(1);
         dispatcher.setMultipartConfig(new MultipartConfigElement(null, 20971520L, 41943040L, 512000));
         dispatcher.addMapping("/");
 
-        // Message Dispatcher Servlet for SOAP services
-        MessageDispatcherServlet soapServlet = new MessageDispatcherServlet(servletContext);
-        soapServlet.setTransformWsdlLocations(true);
-        ServletRegistration.Dynamic soapDispatcher = container.addServlet("springSoapDispatcher", soapServlet);
-        soapDispatcher.setLoadOnStartup(2);
-        soapDispatcher.addMapping("/ws/*");
-        
-//        AnnotationConfigWebApplicationContext soapContext =
-//                new AnnotationConfigWebApplicationContext();
-//        soapContext.register(SoapServletContextConfiguration.class);
-//        MessageDispatcherServlet soapServlet =
-//                new MessageDispatcherServlet(soapContext);
-//        soapServlet.setTransformWsdlLocations(true);
-//        dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
-//        dispatcher.setLoadOnStartup(2);
-//        dispatcher.addMapping("/ws/*");
+        // CXF Servlet for SOAP services
+        ServletRegistration.Dynamic cxfServlet = container.addServlet("cxfServlet", new CXFServlet());
+        cxfServlet.setLoadOnStartup(2);
+        cxfServlet.addMapping("/services/*");
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());

@@ -29,6 +29,7 @@
     
     
 	<dependencies>
+	    
 	    <!--1. Here we match to the version that works with Java 11-->
 		<dependency>
 			<groupId>org.springframework.ws</groupId>

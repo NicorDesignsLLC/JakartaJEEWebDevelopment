@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <artifactId>JakartaJEEWebDevelopment</artifactId>
         <groupId>pom-root-level</groupId>
@@ -28,6 +28,19 @@
     </properties>
 
     <dependencies>
+    
+    	 <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>3.4.3</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>3.4.3</version>
+    </dependency>
+    
+    
         <!-- Jakarta JEE8 WebSocket API -->
         <dependency>
             <groupId>javax.websocket</groupId>
@@ -321,7 +334,10 @@
                             <xsdOptions>
                                 <xsdOption>
                                     <xsd>${basedir}/src/main/webapp/WEB-INF/xsd/CharityRegistration.xsd</xsd>
-                                    <packagename>com.nicordesigns.ws</packagename>
+                                    <packagename>com.nicordesigns.ws.generated</packagename>
+                                    <bindingFiles>
+                                        <bindingFile>${basedir}/src/main/resources/your-binding.xjb</bindingFile>
+                                    </bindingFiles>
                                 </xsdOption>
                             </xsdOptions>
                         </configuration>
