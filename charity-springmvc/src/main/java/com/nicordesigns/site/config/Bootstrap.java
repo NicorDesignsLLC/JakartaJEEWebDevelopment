@@ -11,7 +11,6 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
@@ -25,7 +24,7 @@ public class Bootstrap implements WebApplicationInitializer {
 
         // Root context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(RootContextConfiguration.class);
+        rootContext.register(RootContextConfiguration.class, CxfConfiguration.class);
         container.addListener(new ContextLoaderListener(rootContext));
         container.addListener(SessionListener.class);
 

@@ -1,10 +1,10 @@
 package com.nicordesigns.ws;
 
-import com.nicordesigns.ws.CharityRegistrationRequest;
-import com.nicordesigns.ws.CharityRegistrationResponse;
+import com.nicordesigns.ws.generated.CharityRegistrationRequestType;
+import com.nicordesigns.ws.generated.CharityRegistrationResponseType;
 
 public interface CharityRegistrationService { //name to align with generated WSDL wsdl:portType
 	
-	    CharityRegistrationResponse charityRegistration(CharityRegistrationRequest request);
+	    CharityRegistrationResponseType charityRegistration(CharityRegistrationRequestType request);
 
 }

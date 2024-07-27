@@ -3,14 +3,15 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <!-- Customize the package name for generated classes -->
-    <jxb:bindings schemaLocation="CharityRegistration.xsd" node="/xs:schema">
+    <!-- C:\Users\nicok\Dropbox\JakartaJEEWebDevelopment\JakartaJEEWebDevelopment\charity-springmvc\src\main\webapp\WEB-INF\xsd -->
+    <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd" node="/xs:schema">
         <jxb:schemaBindings>
             <jxb:package name="com.nicordesigns.ws.generated"/>
         </jxb:schemaBindings>
     </jxb:bindings>
 
     <!-- Customize individual elements and types -->
-    <jxb:bindings schemaLocation="CharityRegistration.xsd">
+    <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd">
         <!-- Example of renaming a class -->
         <jxb:bindings node="//xs:element[@name='CharityRegistrationRequest']">
             <jxb:class name="CharityRegistrationRequestType"/>
