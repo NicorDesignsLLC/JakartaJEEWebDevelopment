@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+          xmlns:annox="http://annox.dev.java.net"
+          version="2.1">
+
+    <bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd"
+              node="/xs:schema">
+
+        <!-- Package name for generated classes -->
+        <schemaBindings>
+            <package name="com.nicordesigns.ws.generated"/>
+        </schemaBindings>
+
+        <!-- Customizations for CharityRegistrationRequest -->
+        <bindings node="xs:element[@name='CharityRegistrationRequest']">
+            <class name="CharityRegistrationRequest"/>
+        </bindings>
+
+        <!-- Customizations for CharityRegistrationResponse -->
+        <bindings node="xs:element[@name='CharityRegistrationResponse']">
+            <class name="CharityRegistrationResponse"/>
+        </bindings>
+
+        <!-- Customizations for GetCharityRegistrationDetailsRequest -->
+        <bindings node="xs:element[@name='GetCharityRegistrationDetailsRequest']">
+            <class name="GetCharityRegistrationDetailsRequest"/>
+        </bindings>
+
+        <!-- Customizations for GetCharityRegistrationDetailsResponse -->
+        <bindings node="xs:element[@name='GetCharityRegistrationDetailsResponse']">
+            <class name="GetCharityRegistrationDetailsResponse"/>
+        </bindings>
+
+        <!-- Customizations for UpdateCharityRegistrationRequest -->
+        <bindings node="xs:element[@name='UpdateCharityRegistrationRequest']">
+            <class name="UpdateCharityRegistrationRequest"/>
+        </bindings>
+
+        <!-- Customizations for UpdateCharityRegistrationResponse -->
+        <bindings node="xs:element[@name='UpdateCharityRegistrationResponse']">
+            <class name="UpdateCharityRegistrationResponse"/>
+        </bindings>
+
+        <!-- Customizations for DeleteCharityRegistrationRequest -->
+        <bindings node="xs:element[@name='DeleteCharityRegistrationRequest']">
+            <class name="DeleteCharityRegistrationRequest"/>
+        </bindings>
+
+        <!-- Customizations for DeleteCharityRegistrationResponse -->
+        <bindings node="xs:element[@name='DeleteCharityRegistrationResponse']">
+            <class name="DeleteCharityRegistrationResponse"/>
+        </bindings>
+
+    </bindings>
+</bindings>

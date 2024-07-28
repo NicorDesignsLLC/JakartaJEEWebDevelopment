@@ -14,7 +14,7 @@
     <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd">
         <!-- Example of renaming a class -->
         <jxb:bindings node="//xs:element[@name='CharityRegistrationRequest']">
-            <jxb:class name="CharityRegistrationRequestType"/>
+            <jxb:class name="CharityRegistrationRequest"/>
         </jxb:bindings>
         
         <!-- Example of renaming a property -->
@@ -24,7 +24,7 @@
         
         <!-- Example of customizing the type for a specific element -->
         <jxb:bindings node="//xs:element[@name='CharityRegistrationResponse']">
-            <jxb:class name="CharityRegistrationResponseType"/>
+            <jxb:class name="CharityRegistrationResponse"/>
         </jxb:bindings>
     </jxb:bindings>
 </jxb:bindings>

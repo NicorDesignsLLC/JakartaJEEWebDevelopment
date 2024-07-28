@@ -6,8 +6,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.nicordesigns.ws.generated.CharityRegistrationRequestType;
-import com.nicordesigns.ws.generated.CharityRegistrationResponseType;
+import com.nicordesigns.ws.generated.CharityRegistrationRequest;
+import com.nicordesigns.ws.generated.CharityRegistrationResponse;
 
 @Endpoint
 public class CharityRegistrationServiceEndpoint {
@@ -21,9 +21,9 @@ public class CharityRegistrationServiceEndpoint {
 		this.charityRegistrationService = charityRegistrationService;
 	}
 	
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CharityRegistrationRequestType")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CharityRegistrationRequest")
 	@ResponsePayload
-	public CharityRegistrationResponseType charityRegistration(@RequestPayload CharityRegistrationRequestType request) {
+	public CharityRegistrationResponse charityRegistration(@RequestPayload CharityRegistrationRequest request) {
 		
 		return charityRegistrationService.charityRegistration(request);
 	}

@@ -14,6 +14,7 @@
               <xs:element type="xs:string" name="userName"/>
               <xs:element type="xs:string" name="subject"/>
               <xs:element type="xs:string" name="body"/>
+              <xs:element type="xs:dateTime" name="createdDate"/>
               <xs:element name="fileAttachments">
                 <xs:complexType>
                   <xs:sequence>
