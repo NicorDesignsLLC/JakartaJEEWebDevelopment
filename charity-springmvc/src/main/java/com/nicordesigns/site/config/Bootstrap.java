@@ -11,6 +11,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
@@ -37,10 +38,20 @@ public class Bootstrap implements WebApplicationInitializer {
         dispatcher.setMultipartConfig(new MultipartConfigElement(null, 20971520L, 41943040L, 512000));
         dispatcher.addMapping("/");
 
+        AnnotationConfigWebApplicationContext soapContext =
+                new AnnotationConfigWebApplicationContext();
+        soapContext.register(SoapServletContextConfiguration.class);
+        MessageDispatcherServlet soapServlet =
+                new MessageDispatcherServlet(soapContext);
+        soapServlet.setTransformWsdlLocations(true);
+        dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
+        dispatcher.setLoadOnStartup(2);
+        dispatcher.addMapping("/services/*");
+
         // CXF Servlet for SOAP services
-        ServletRegistration.Dynamic cxfServlet = container.addServlet("cxfServlet", new CXFServlet());
-        cxfServlet.setLoadOnStartup(2);
-        cxfServlet.addMapping("/services/*");
+//        ServletRegistration.Dynamic cxfServlet = container.addServlet("cxfServlet", new CXFServlet());
+//        cxfServlet.setLoadOnStartup(2);
+//        cxfServlet.addMapping("/services/*");
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());

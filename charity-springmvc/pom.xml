@@ -341,40 +341,15 @@
 							<xsdOptions>
 								<xsdOption>
 									<xsd>
-										${basedir}/src/main/resources/xsd/CharityRegistration.xsd</xsd>
-									<packagename>com.nicordesigns.ws.generated</packagename>
-									<bindingFiles>
-										<bindingFile>
-											${basedir}/src/main/resources/your-binding.xjb</bindingFile>
-									</bindingFiles>
+										${basedir}/src/main/webapp/WEB-INF/xsd/CharityRegistration.xsd</xsd>
+									<packagename>com.nicordesigns.ws</packagename>
+									
 								</xsdOption>
 							</xsdOptions>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-			<!--
-			
-			
-			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>${cxf.version}</version>
-				<executions>
-					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<sourceRoot>${project.build.directory}/generated/cxf}</sourceRoot>
-							<wsdlOptions>
-								<wsdl>${project.basedir}/src/main/resources/xsd/CharityRegistration.xsd</wsdl>
-								<wsdlLocation>classpath:wsdl/CharityRegistration.xsd</wsdlLocation>
-							</wsdlOptions>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

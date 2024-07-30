@@ -1,7 +1,7 @@
-package com.nicordesigns.ws;
+package com.nicordesigns.site.ws;
 
-import com.nicordesigns.ws.generated.CharityRegistrationRequest;
-import com.nicordesigns.ws.generated.CharityRegistrationResponse;
+import com.nicordesigns.ws.CharityRegistrationRequest;
+import com.nicordesigns.ws.CharityRegistrationResponse;
 
 public interface CharityRegistrationService { //name to align with generated WSDL wsdl:portType
 	

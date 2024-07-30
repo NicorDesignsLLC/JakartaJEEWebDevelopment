@@ -47,7 +47,8 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setCacheSeconds(-1);
 		messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
-		messageSource.setBasenames("/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages", "/WEB-INF/i18n/errors",
+		messageSource.setBasenames("/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages", 
+				"/WEB-INF/i18n/errors",
 				"/WEB-INF/i18n/validation");
 		return messageSource;
 	}

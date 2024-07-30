@@ -4,7 +4,7 @@ import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.nicordesigns.ws.CharityRegistrationImpl;
+import com.nicordesigns.site.ws.CharityRegistrationImpl;
 
 
 @Configuration

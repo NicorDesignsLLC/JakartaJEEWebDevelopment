@@ -1,4 +1,4 @@
-package com.nicordesigns.ws;
+package com.nicordesigns.site.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -6,8 +6,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.nicordesigns.ws.generated.CharityRegistrationRequest;
-import com.nicordesigns.ws.generated.CharityRegistrationResponse;
+import com.nicordesigns.ws.CharityRegistrationRequest;
+import com.nicordesigns.ws.CharityRegistrationResponse;
+
 
 @Endpoint
 public class CharityRegistrationServiceEndpoint {

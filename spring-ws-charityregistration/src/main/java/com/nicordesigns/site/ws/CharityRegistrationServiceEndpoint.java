@@ -24,14 +24,6 @@ public class CharityRegistrationServiceEndpoint {
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CharityRegistrationRequest")
 	@ResponsePayload
 	public CharityRegistrationResponse charityRegistration(@RequestPayload CharityRegistrationRequest request) {
-		
 		return charityRegistrationService.charityRegistration(request);
-		
-//		CharityRegistrationResponse response = new CharityRegistrationResponse();
-//		response.setValue("Registration Successful");
-//		response.setRegistrationId((short) 1234);
-//		response.setStatusCode((short) 200);
-//		response.setStatusMessage("OK");
-//		return response;
 	}
 }

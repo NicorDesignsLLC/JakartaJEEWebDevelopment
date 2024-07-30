@@ -6,7 +6,7 @@
     <!-- C:\Users\nicok\Dropbox\JakartaJEEWebDevelopment\JakartaJEEWebDevelopment\charity-springmvc\src\main\webapp\WEB-INF\xsd -->
     <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd" node="/xs:schema">
         <jxb:schemaBindings>
-            <jxb:package name="com.nicordesigns.ws.generated"/>
+            <jxb:package name="com.nicordesigns.ws"/>
         </jxb:schemaBindings>
     </jxb:bindings>
 
