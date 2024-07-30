@@ -25,7 +25,7 @@ public class Bootstrap implements WebApplicationInitializer {
 
         // Root context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(RootContextConfiguration.class, CxfConfiguration.class);
+        rootContext.register(RootContextConfiguration.class);
         container.addListener(new ContextLoaderListener(rootContext));
         container.addListener(SessionListener.class);
 
@@ -47,11 +47,6 @@ public class Bootstrap implements WebApplicationInitializer {
         dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
         dispatcher.setLoadOnStartup(2);
         dispatcher.addMapping("/services/*");
-
-        // CXF Servlet for SOAP services
-//        ServletRegistration.Dynamic cxfServlet = container.addServlet("cxfServlet", new CXFServlet());
-//        cxfServlet.setLoadOnStartup(2);
-//        cxfServlet.addMapping("/services/*");
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
