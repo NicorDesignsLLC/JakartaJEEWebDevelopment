@@ -92,6 +92,10 @@
 					<groupId>javax.servlet.jsp.jstl</groupId>
 					<artifactId>jstl-api</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -228,6 +232,17 @@
 			<artifactId>jaxws-rt</artifactId>
 			<version>2.3.3</version>
 		</dependency>
+		<!-- JAXB Dependencies -->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 
 		<!-- SAAJ API -->
 		<dependency>
@@ -285,35 +300,40 @@
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
+			<version>2.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.1</version>
+			<version>2.3.2</version>
 			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>jakarta.activation</artifactId>
+			<version>1.2.1</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 
 	</dependencies>
 
 	<build>
-		
+
 		<finalName>charity-springmvc</finalName>
 		<plugins>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>11</source>
-					<target>11</target>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -327,7 +347,8 @@
 				<version>${cxf.xjc.plugin.version}</version>
 				<configuration>
 					<extensions>
-						<extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc.plugin.version}</extension>
+						<extension>
+							org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc.plugin.version}</extension>
 					</extensions>
 				</configuration>
 				<executions>
@@ -343,7 +364,7 @@
 									<xsd>
 										${basedir}/src/main/webapp/WEB-INF/xsd/CharityRegistration.xsd</xsd>
 									<packagename>com.nicordesigns.ws</packagename>
-									
+
 								</xsdOption>
 							</xsdOptions>
 						</configuration>
@@ -365,12 +386,6 @@
 						</resource>
 					</webResources>
 				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-install-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
 			</plugin>
 		</plugins>
 
