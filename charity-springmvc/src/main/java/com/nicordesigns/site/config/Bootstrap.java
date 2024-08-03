@@ -6,12 +6,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
@@ -37,16 +35,6 @@ public class Bootstrap implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.setMultipartConfig(new MultipartConfigElement(null, 20971520L, 41943040L, 512000));
         dispatcher.addMapping("/");
-
-        AnnotationConfigWebApplicationContext soapContext =
-                new AnnotationConfigWebApplicationContext();
-        soapContext.register(SoapServletContextConfiguration.class);
-        MessageDispatcherServlet soapServlet =
-                new MessageDispatcherServlet(soapContext);
-        soapServlet.setTransformWsdlLocations(true);
-        dispatcher = container.addServlet("springSoapDispatcher", soapServlet);
-        dispatcher.setLoadOnStartup(2);
-        dispatcher.addMapping("/services/*");
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
