@@ -1,4 +1,4 @@
-# 3. Implementing Spring Web Services for SOAP = Part 3
+# 6. Implementing Spring Web Services for SOAP
 
 ## Spring Web Services Introduction
 
@@ -56,10 +56,9 @@ public class Bootstrap implements WebApplicationInitializer {
         authenticationFilter.addMappingForUrlPatterns(null, false, "/registration", "/registration/*", "/chat", "/chat/*", "/session", "/session/*");
     }
 }
-
 ```
 
-#### ServletContextConfiguation.java
+#### ServletContextConfiguration.java
 
 ```java
 package com.nicordesigns.site.config;
@@ -221,11 +220,9 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         return new SimpleXsdSchema(new ClassPathResource("xsd/CharityRegistration.xsd"));
     }
 }
-
 ```
 
 ### Creating a SoapServletContextConfiguration 
-
 
 ```java
 package com.nicordesigns.site.config;
@@ -256,18 +253,19 @@ public class SoapServletContextConfiguration
         return factory;
     }
 }
-
 ```
-Use the XML config file soapServletContext.xml
 
-	<?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
-	       xmlns:sws="http://www.springframework.org/schema/web-services"
-	       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	       xsi:schemaLocation="http://www.springframework.org/schema/beans
-	            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-	            http://www.springframework.org/schema/web-services
-	            http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
+Use the XML config file `soapServletContext.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/web-services
+            http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
     <sws:annotation-driven marshaller="jaxb2Marshaller"
                            unmarshaller="jaxb2Marshaller" />
@@ -275,11 +273,12 @@ Use the XML config file soapServletContext.xml
                       locationUri="/services/" createSoap11Binding="false"
                       createSoap12Binding="true"
                       targetNamespace="http://nicordesigns.com/xmlns/charityregistration">
-        <sws:xsd location="/WEB-INF/xsd/CharityRegistration.xsd" />
+        <sws:xsd location="/WEB-INF/xsd/CharityRegistration
+
+.xsd" />
     </sws:dynamic-wsdl>
-
-	</beans>
-
+</beans>
+```
 
 ### References
 

@@ -1,4 +1,4 @@
-# 3. Implementing Spring Web Services for SOAP - Maven Archetype
+# 4. Implementing Spring Web Services for SOAP - Maven Archetype
 
 ## Using a Spring Web Services Archetype
 
