@@ -1,7 +1,8 @@
-#4. Testing our SOAP Web Service Endpoints
+# 7. Testing Our SOAP Web Service Endpoints
 
 ## Introduction
-In this course, you will learn how to test a SOAP endpoint effectively. SOAP (Simple Object Access Protocol) relies on a contract-first approach using XSD/XML, which can be challenging. We will guide you through the process of overcoming these challenges and ensure your testing is thorough and efficient.
+
+In this course, you will learn how to effectively test a SOAP endpoint. SOAP (Simple Object Access Protocol) relies on a contract-first approach using XSD/XML, which can be challenging. We will guide you through the process of overcoming these challenges and ensure your testing is thorough and efficient.
 
 ## 1: How to Test a SOAP Endpoint
 
@@ -69,5 +70,5 @@ In this course, you will learn how to test a SOAP endpoint effectively. SOAP (Si
    - Use the raw view to see the exact request sent and the response received for troubleshooting.
 
 ## Section 4: References
-1. SOAP UI Documentation: [https://www.soapui.org/docs/](https://www.soapui.org/docs/)
-2. W3C XML Schema Definition Language (XSD) 1.1: [https://www.w3.org/TR/xmlschema11-1/](https://www.w3.org/TR/xmlschema11-1/)
+1. [SOAP UI Documentation](https://www.soapui.org/docs/)
+2. [W3C XML Schema Definition Language (XSD) 1.1](https://www.w3.org/TR/xmlschema11-1/)

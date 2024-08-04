@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
 
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>JakartaJEEWebDevelopment</artifactId>
 		<groupId>pom-root-level</groupId>
@@ -25,9 +25,35 @@
 		<log4j.version>2.19.0</log4j.version>
 		<spring.framework.version>5.3.31</spring.framework.version>
 		<cxf.xjc.plugin.version>3.3.1</cxf.xjc.plugin.version>
+		<cxf.version>3.4.8</cxf.version>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>3.4.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.4.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
 		<!-- Jakarta JEE8 WebSocket API -->
 		<dependency>
 			<groupId>javax.websocket</groupId>
@@ -77,6 +103,14 @@
 				<exclusion>
 					<groupId>javax.servlet.jsp.jstl</groupId>
 					<artifactId>jstl-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -214,6 +248,17 @@
 			<artifactId>jaxws-rt</artifactId>
 			<version>2.3.3</version>
 		</dependency>
+		<!-- JAXB Dependencies -->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0</version>
+		</dependency>
 
 		<!-- SAAJ API -->
 		<dependency>
@@ -233,20 +278,11 @@
 					<groupId>javax.xml.stream</groupId>
 					<artifactId>stax-api</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- JAXB API -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.4.0-b180830.0359</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.3</version>
 		</dependency>
 
 		<!-- Hibernate Validator -->
@@ -263,54 +299,96 @@
 			<version>2.0.1.Final</version>
 		</dependency>
 
+		<!-- WSDL endpoint generation -->
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.messaging.saaj</groupId>
+			<artifactId>saaj-impl</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+
+		<!-- org.apache.cxf code generation dependencies -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.1</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+					<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>jakarta.activation</artifactId>
+			<version>1.2.1</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+					<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
+
 		<finalName>charity-springmvc</finalName>
 		<plugins>
 			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<argLine>--illegal-access=permit</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.opoo.maven</groupId>
-				<artifactId>tomcat9-maven-plugin</artifactId>
-				<version>3.0.1</version>
-			</plugin>
-        	<plugin>
 				<groupId>org.apache.cxf</groupId>
-                    <artifactId>cxf-xjc-plugin</artifactId>
-                    <version>${cxf.xjc.plugin.version}</version>
-                    <configuration>
-                        <extensions>
-                            <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc.plugin.version}</extension>
-                        </extensions>
-                    </configuration>
-				
-				
+				<artifactId>cxf-xjc-plugin</artifactId>
+				<version>${cxf.xjc.plugin.version}</version>
+				<configuration>
+					<extensions>
+						<extension>
+							org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc.plugin.version}</extension>
+					</extensions>
+				</configuration>
 				<executions>
 					<execution>
-						  <id>generate-sources</id>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>xsdtojava</goal>
-                            </goals>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xsdtojava</goal>
+						</goals>
 						<configuration>
-							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
 							<xsdOptions>
 								<xsdOption>
 									<xsd>
-										${project.basedir}/src/main/webapp/WEB-INF/xsd/soap/charity-registration.xsd</xsd>
+										${basedir}/src/main/webapp/WEB-INF/xsd/CharityRegistration.xsd</xsd>
 									<packagename>com.nicordesigns.ws</packagename>
+
 								</xsdOption>
 							</xsdOptions>
 						</configuration>
@@ -332,12 +410,6 @@
 						</resource>
 					</webResources>
 				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-install-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
 			</plugin>
 		</plugins>
 

@@ -10,8 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/jee8springsoapimplemantation2.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/jee8springsoapimplemantation2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-ws-charityregistration/src/main/webapp/WEB-INF/spring-ws-servlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-ws-charityregistration/src/main/webapp/WEB-INF/spring-ws-servlet.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,8 +177,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -204,6 +205,7 @@
       <workItem from="1710084227512" duration="10000" />
       <workItem from="1717842460326" duration="112000" />
       <workItem from="1717844162343" duration="926000" />
+      <workItem from="1721125465469" duration="10000" />
     </task>
     <servers />
   </component>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.FormHttpMessageConverter;
@@ -35,11 +36,16 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.ws.config.annotation.EnableWs;
+import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
+import org.springframework.xml.xsd.SimpleXsdSchema;
+import org.springframework.xml.xsd.XsdSchema;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 @EnableWebMvc
+@EnableWs
 @ComponentScan(
         basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
@@ -133,5 +139,21 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
     @Bean
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
+    }
+
+    // Spring WS Configuration
+    @Bean(name = "charityRegistration")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema charityRegistrationSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CharityRegistrationPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://nicordesigns.com/ws");
+        wsdl11Definition.setSchema(charityRegistrationSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema charityRegistrationSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("xsd/CharityRegistration.xsd"));
     }
 }

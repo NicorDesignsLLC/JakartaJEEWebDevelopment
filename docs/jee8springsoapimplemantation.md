@@ -1,4 +1,4 @@
-# 3. Implementing Spring Web Services for SOAP - Maven Dependencies
+# 5. Implementing Spring Web Services for SOAP - Maven Dependencies
 
 ## Spring Web Services Introduction
 
