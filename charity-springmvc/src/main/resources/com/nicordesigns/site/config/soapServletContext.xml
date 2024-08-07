@@ -9,11 +9,11 @@
 
     <sws:annotation-driven marshaller="jaxb2Marshaller"
                            unmarshaller="jaxb2Marshaller" />
-    <sws:dynamic-wsdl id="support" portTypeName="Support"
-                      locationUri="/services/Soap/" createSoap11Binding="false"
+    <sws:dynamic-wsdl id="charityregistration" portTypeName="CharityRegistration"
+                      locationUri="/services/" createSoap11Binding="false"
                       createSoap12Binding="true"
-                      targetNamespace="http://example.com/xmlns/support">
-        <sws:xsd location="/WEB-INF/xsd/soap/support.xsd" />
+                      targetNamespace="http://nicordesigns.com/xmlns/charityregistration">
+        <sws:xsd location="/WEB-INF/xsd/CharityRegistration.xsd" />
     </sws:dynamic-wsdl>
 
 </beans>

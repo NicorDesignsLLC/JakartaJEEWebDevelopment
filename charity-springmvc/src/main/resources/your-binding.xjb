@@ -1,0 +1,30 @@
+<jxb:bindings version="2.1"
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Customize the package name for generated classes -->
+    <!-- C:\Users\nicok\Dropbox\JakartaJEEWebDevelopment\JakartaJEEWebDevelopment\charity-springmvc\src\main\webapp\WEB-INF\xsd -->
+    <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="com.nicordesigns.ws"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <!-- Customize individual elements and types -->
+    <jxb:bindings schemaLocation="file:/C:/Users/nicok/Dropbox/JakartaJEEWebDevelopment/JakartaJEEWebDevelopment/charity-springmvc/src/main/resources/xsd/CharityRegistration.xsd">
+        <!-- Example of renaming a class -->
+        <jxb:bindings node="//xs:element[@name='CharityRegistrationRequest']">
+            <jxb:class name="CharityRegistrationRequest"/>
+        </jxb:bindings>
+        
+        <!-- Example of renaming a property -->
+        <jxb:bindings node="//xs:element[@name='userName']">
+            <jxb:property name="userIdentifier"/>
+        </jxb:bindings>
+        
+        <!-- Example of customizing the type for a specific element -->
+        <jxb:bindings node="//xs:element[@name='CharityRegistrationResponse']">
+            <jxb:class name="CharityRegistrationResponse"/>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>
