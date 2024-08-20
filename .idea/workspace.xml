@@ -2,14 +2,26 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="customer-support-v10:war" />
+      <artifact name="charity-springmvc:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="" />
+    <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-custom-tags/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-custom-tags/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-registration/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jee8mariadbsql/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/jee8mariadbsql/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jee8webapp/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/jee8webapp/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-spring-mvc/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/my-spring-mvc/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-bean-profiles/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/spring-bean-profiles/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub-module/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/sub-module/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,20 +30,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;NicorDesigns&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://NicorDesignsLLC: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@github.com/NicorDesignsLLC/JakartaJEEWebDevelopment.git&quot;,
+    &quot;accountId&quot;: &quot;0c3cda31-5b58-4ed8-bfc1-44aa96b749ae&quot;
+  }
+}</component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="KubernetesApiProvider">{
-  &quot;contexts&quot;: [
+  &quot;configuredContexts&quot;: [
     {
-      &quot;name&quot;: &quot;docker-desktop&quot;
+      &quot;name&quot;: &quot;docker-desktop&quot;,
+      &quot;kubeConfigUrl&quot;: &quot;file://C:/Users/nicok/.kube/config&quot;,
+      &quot;currentNamespace&quot;: &quot;default&quot;
     }
   ],
   &quot;isMigrated&quot;: true
 }</component>
-  <component name="KubernetesSettings">
-    <option name="contextName" value="docker-desktop" />
-  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -59,6 +82,7 @@
     &quot;Tomcat Server.Tomcat 9.0.56.executor&quot;: &quot;Debug&quot;,
     &quot;Tomcat Server.Tomcat 9.0.68.executor&quot;: &quot;Debug&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;jee8-springmvc-service-jsr349-clone&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/nicok/Dropbox/JavaWebDevUdemu&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -84,9 +108,9 @@
       <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="customer-support-v10:war">
+        <artifact name="charity-springmvc:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/customer_support_v10_war" />
+            <option name="CONTEXT_PATH" value="/charity_springmvc_war_exploded" />
           </settings>
         </artifact>
       </deployment>
@@ -166,6 +190,7 @@
         <option name="BuildArtifacts" enabled="true">
           <artifact name="charity-registration-springmvc:war" />
           <artifact name="customer-support-v10:war" />
+          <artifact name="charity-springmvc:war exploded" />
         </option>
       </method>
     </configuration>
@@ -173,7 +198,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -198,6 +224,12 @@
       <workItem from="1708444222270" duration="63000" />
       <workItem from="1708444347037" duration="366000" />
       <workItem from="1710084227512" duration="10000" />
+      <workItem from="1724170422772" duration="124000" />
+      <workItem from="1724170652056" duration="1068000" />
+      <workItem from="1724171731499" duration="158000" />
+      <workItem from="1724171896677" duration="334000" />
+      <workItem from="1724172240309" duration="373000" />
+      <workItem from="1724173097068" duration="1220000" />
     </task>
     <servers />
   </component>
