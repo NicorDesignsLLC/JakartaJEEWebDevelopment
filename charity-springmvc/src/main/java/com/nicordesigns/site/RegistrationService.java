@@ -17,4 +17,6 @@ public interface RegistrationService {
 			@Min(value = 1L, message = "{validate.registrationService.getRetrigistration.id}") long id);
 
 	void save(@NotNull(message = "{validate.registrationService.save.registration}") @Valid Registration registration);
+
+	void deleteRegistration(long id);
 }

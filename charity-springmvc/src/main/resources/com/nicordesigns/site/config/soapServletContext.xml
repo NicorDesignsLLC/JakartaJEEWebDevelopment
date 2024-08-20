@@ -3,14 +3,18 @@
        xmlns:sws="http://www.springframework.org/schema/web-services"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/web-services
-            http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
+            http://www.springframework.org/schema/web-services/web-services.xsd">
 
-    <sws:annotation-driven marshaller="jaxb2Marshaller"
-                           unmarshaller="jaxb2Marshaller" />
+    <sws:annotation-driven />
+
+    <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="com.nicordesigns.ws" />
+    </bean>
+
     <sws:dynamic-wsdl id="charityregistration" portTypeName="CharityRegistration"
-                      locationUri="/services/" createSoap11Binding="false"
+                      locationUri="/services/" createSoap11Binding="true"
                       createSoap12Binding="true"
                       targetNamespace="http://nicordesigns.com/xmlns/charityregistration">
         <sws:xsd location="/WEB-INF/xsd/CharityRegistration.xsd" />

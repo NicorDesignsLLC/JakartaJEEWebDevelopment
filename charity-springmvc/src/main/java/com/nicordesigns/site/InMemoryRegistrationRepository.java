@@ -38,4 +38,10 @@ public class InMemoryRegistrationRepository implements RegistrationRepository {
     private long getNextRegistrationId() {
         return this.REGISTRATION_ID_SEQUENCE.getAndIncrement();
     }
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		this.registrationDatabase.remove(id);
+	}
 }

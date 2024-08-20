@@ -8,4 +8,5 @@ public interface RegistrationRepository
     Registration get(long id);
     void add(Registration registration);
     void update(Registration registration);
+	void delete(long id);
 }

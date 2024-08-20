@@ -3,10 +3,13 @@ package com.nicordesigns.site;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+
+import com.nicordesigns.ws.CharityRegistrationRequest.CharityRegistrationInfo.FileAttachments.Attachment;
 
 public class Registration {
 
@@ -49,6 +52,12 @@ public class Registration {
 	public void setBody(String body) {
 		this.body = body;
 	}
+	
+	
+	public void setAttachments(List<Attachment> attachments) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public FileAttachment getAttachment(String name) {
 		return this.fileAttachments.get(name);
@@ -81,5 +90,7 @@ public class Registration {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	
 
 }

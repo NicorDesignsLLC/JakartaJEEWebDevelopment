@@ -34,4 +34,11 @@ public class DefaultRegistrationService implements RegistrationService
         else
             this.registrationRepository.update(registration);
     }
+
+	@Override
+	public void deleteRegistration(long id) {
+		// TODO Auto-generated method stub
+		this.registrationRepository.delete(id);
+		
+	}
 }

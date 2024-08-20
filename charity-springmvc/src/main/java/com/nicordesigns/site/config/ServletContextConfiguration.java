@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.FormHttpMessageConverter;
@@ -37,11 +37,9 @@ import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nicordesigns.config.annotation.WebController;
 
 @Configuration
 @EnableWebMvc
@@ -49,7 +47,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ComponentScan(
         basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
-        includeFilters = @ComponentScan.Filter(Controller.class)
+        includeFilters = @ComponentScan.Filter(WebController.class)
 )
 public class ServletContextConfiguration implements WebMvcConfigurer {
 
@@ -62,14 +60,15 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
     @Inject
     private Unmarshaller unmarshaller;
 
-    @Inject
-    private SpringValidatorAdapter validator;
-
-    @Override
-    public Validator getValidator() {
-        return this.validator;
-    }
-
+//    @Inject
+//    @Qualifier("rootValidator")
+//    private SpringValidatorAdapter validator;
+//
+//    @Override
+//    public Validator getValidator() {
+//        return this.validator;
+//    }
+    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
@@ -141,19 +140,4 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
         return new StandardServletMultipartResolver();
     }
 
-    // Spring WS Configuration
-    @Bean(name = "charityRegistration")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema charityRegistrationSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("CharityRegistrationPort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://nicordesigns.com/ws");
-        wsdl11Definition.setSchema(charityRegistrationSchema);
-        return wsdl11Definition;
-    }
-
-    @Bean
-    public XsdSchema charityRegistrationSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("xsd/CharityRegistration.xsd"));
-    }
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="http://example.com/xmlns/support"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:support="http://example.com/xmlns/support">
+    <xs:element name="charityRegistrationsRequest" type="support:charityRegistrationsRequestType" />
+    <xs:element name="charityRegistrationRequest" type="support:selectCharityRegistrationType" />
+    <xs:element name="createCharityRegistration" type="support:createCharityRegistrationType"/>
+    <xs:element name="deleteCharityRegistration" type="support:selectCharityRegistrationType"/>
+    <xs:element name="charityRegistration" type="support:charityRegistrationType" />
+    <xs:element name="charityRegistrations" type="support:charityRegistrationsType" />
+    <xs:complexType name="charityRegistrationType">
+        <xs:sequence>
+            <xs:element type="xs:long" name="id" minOccurs="0"/>
+            <xs:element type="xs:string" name="customerName" minOccurs="0"/>
+            <xs:element type="xs:dateTime" name="dateCreated" minOccurs="0"/>
+            <xs:element type="xs:string" name="subject"/>
+            <xs:element type="xs:string" name="body"/>
+            <xs:element type="support:attachmentType" name="attachment"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="charityRegistrationsRequestType">
+        <xs:sequence />
+    </xs:complexType>
+    <xs:complexType name="selectCharityRegistrationType">
+        <xs:sequence>
+            <xs:element type="xs:long" name="id"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createCharityRegistrationType">
+        <xs:sequence>
+            <xs:element type="support:charityRegistrationType" name="charityRegistration"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="charityRegistrationsType">
+        <xs:sequence>
+            <xs:element type="support:charityRegistrationType" name="charityRegistration" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="attachmentType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="mimeContentType"/>
+            <xs:element type="xs:base64Binary" name="contents"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

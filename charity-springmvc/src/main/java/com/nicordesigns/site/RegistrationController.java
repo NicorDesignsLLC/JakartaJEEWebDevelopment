@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.nicordesigns.config.annotation.WebController;
 import com.nicordesigns.site.AuthenticationController.LoginForm;
 
 import javax.validation.Valid;
@@ -30,7 +31,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Controller
+@WebController
 @RequestMapping("registration")
 public class RegistrationController {
 	private static final Logger log = LogManager.getLogger();
