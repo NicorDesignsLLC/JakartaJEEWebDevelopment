@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,11 +36,14 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.ws.config.annotation.EnableWs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nicordesigns.site.config.annotation.WebController;
 
 @Configuration
 @EnableWebMvc
+@EnableWs
 @ComponentScan(
         basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
@@ -55,7 +59,7 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
 
     @Inject
     private Unmarshaller unmarshaller;
-    
+
     @Inject SpringValidatorAdapter validator;
 
     @Override
@@ -63,7 +67,7 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
     {
         return this.validator;
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
@@ -134,4 +138,5 @@ public class ServletContextConfiguration implements WebMvcConfigurer {
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
+
 }

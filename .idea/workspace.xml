@@ -11,16 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="345590d6-68e0-4d47-8b26-733cc1ca6050" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JakartaJEEWebDevelopment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-custom-tags/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-custom-tags/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-registration/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-registration/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/RegistrationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/Bootstrap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jee8mariadbsql/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/jee8mariadbsql/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jee8webapp/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/jee8webapp/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-spring-mvc/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/my-spring-mvc/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-bean-profiles/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/spring-bean-profiles/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub-module/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/sub-module/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/ServletContextConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/charity-springmvc/src/main/java/com/nicordesigns/site/config/ServletContextConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,6 +224,10 @@
       <workItem from="1724171896677" duration="334000" />
       <workItem from="1724172240309" duration="373000" />
       <workItem from="1724173097068" duration="1220000" />
+      <workItem from="1724176763062" duration="4524000" />
+      <workItem from="1724186653896" duration="875000" />
+      <workItem from="1724235070893" duration="62000" />
+      <workItem from="1724235492260" duration="41000" />
     </task>
     <servers />
   </component>

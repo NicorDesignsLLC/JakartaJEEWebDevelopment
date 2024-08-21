@@ -30,14 +30,21 @@ public class Bootstrap implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext servletContext =
                 new AnnotationConfigWebApplicationContext();
         servletContext.register(ServletContextConfiguration.class);
-
         ServletRegistration.Dynamic webDispatcher = container.addServlet("springDispatcher", new DispatcherServlet(servletContext));
-        
         webDispatcher.setLoadOnStartup(1);  // Set load-on-startup only here
         webDispatcher.setMultipartConfig(new MultipartConfigElement(
         	    null, 20_971_520L, 41_943_040L, 512_000
         	));
         webDispatcher.addMapping("/");  // Only once
+        
+//        AnnotationConfigWebApplicationContext restContext = new AnnotationConfigWebApplicationContext();
+//        restContext.register(RestServletContextConfiguration.class);
+//        DispatcherServlet restServlet = new DispatcherServlet(restContext);
+//        restServlet.setDispatchOptionsRequest(true);
+//        ServletRegistration.Dynamic restDispatcher = container.addServlet("springRestDispatcher", restServlet);
+//        restDispatcher.setLoadOnStartup(2); // Set for REST Dispatcher
+//        restDispatcher.addMapping("/services/Rest/*");
+//       
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
