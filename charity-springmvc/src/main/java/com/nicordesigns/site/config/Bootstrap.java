@@ -37,14 +37,14 @@ public class Bootstrap implements WebApplicationInitializer {
         	));
         webDispatcher.addMapping("/");  // Only once
         
-//        AnnotationConfigWebApplicationContext restContext = new AnnotationConfigWebApplicationContext();
-//        restContext.register(RestServletContextConfiguration.class);
-//        DispatcherServlet restServlet = new DispatcherServlet(restContext);
-//        restServlet.setDispatchOptionsRequest(true);
-//        ServletRegistration.Dynamic restDispatcher = container.addServlet("springRestDispatcher", restServlet);
-//        restDispatcher.setLoadOnStartup(2); // Set for REST Dispatcher
-//        restDispatcher.addMapping("/services/Rest/*");
-//       
+        AnnotationConfigWebApplicationContext restContext = new AnnotationConfigWebApplicationContext();
+        restContext.register(RestServletContextConfiguration.class);
+        DispatcherServlet restServlet = new DispatcherServlet(restContext);
+        restServlet.setDispatchOptionsRequest(true);
+        ServletRegistration.Dynamic restDispatcher = container.addServlet("springRestDispatcher", restServlet);
+        restDispatcher.setLoadOnStartup(2); // Set for REST Dispatcher
+        restDispatcher.addMapping("/services/Rest/*");
+       
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());

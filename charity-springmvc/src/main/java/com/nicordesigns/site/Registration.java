@@ -3,6 +3,7 @@ package com.nicordesigns.site;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -80,6 +81,11 @@ public class Registration {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public void setFileAttachments(List<FileAttachment> attachments) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
