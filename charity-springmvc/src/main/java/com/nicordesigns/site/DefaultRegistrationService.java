@@ -34,4 +34,10 @@ public class DefaultRegistrationService implements RegistrationService
         else
             this.registrationRepository.update(registration);
     }
+
+	@Override
+	public void deleteRegistration(long id) {
+		this.registrationRepository.remove(id);
+		
+	}
 }
