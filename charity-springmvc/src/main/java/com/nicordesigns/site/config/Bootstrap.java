@@ -10,6 +10,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
@@ -44,6 +45,17 @@ public class Bootstrap implements WebApplicationInitializer {
         ServletRegistration.Dynamic restDispatcher = container.addServlet("springRestDispatcher", restServlet);
         restDispatcher.setLoadOnStartup(2); // Set for REST Dispatcher
         restDispatcher.addMapping("/services/Rest/*");
+        
+        AnnotationConfigWebApplicationContext soapContext =
+                new AnnotationConfigWebApplicationContext();
+        soapContext.register(SoapServletContextConfiguration.class);
+        MessageDispatcherServlet soapServlet =
+                new MessageDispatcherServlet(soapContext);
+        soapServlet.setTransformWsdlLocations(true);
+        ServletRegistration.Dynamic dispatcher = container.addServlet("springSoapDispatcher", soapServlet); // Declare dispatcher
+        dispatcher.setLoadOnStartup(3);
+        dispatcher.addMapping("/services/Soap/*");
+
        
 
         // Logging filter
