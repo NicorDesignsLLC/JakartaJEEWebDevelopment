@@ -87,17 +87,6 @@ public class RegistrationController {
 	    registration.setBody(form.getBody());
 
 	    processAttachments(form, registration);
-//	    for (MultipartFile filePart : form.getAttachments()) {
-//	        log.debug("Processing attachment for new Registration.");
-//	        FileAttachment attachment = new FileAttachment();
-//	        attachment.setName(filePart.getOriginalFilename());
-//	        attachment.setMimeContentType(filePart.getContentType());
-//	        attachment.setContents(filePart.getBytes());
-//	        if ((attachment.getName() != null && attachment.getName().length() > 0)
-//	                || (attachment.getContents() != null && attachment.getContents().length > 0)) {
-//	            registration.addAttachment(attachment);
-//	        }
-//	    }
 
 	    this.registrationService.save(registration);
 
