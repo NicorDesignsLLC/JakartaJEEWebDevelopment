@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <jackson.version>2.13.4</jackson.version>
+        <jackson.version>2.15.0</jackson.version>
         <log4j.version>2.19.0</log4j.version>
         <spring.framework.version>5.3.31</spring.framework.version>
         <cxf.xjc.plugin.version>3.3.1</cxf.xjc.plugin.version>
@@ -162,13 +162,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
