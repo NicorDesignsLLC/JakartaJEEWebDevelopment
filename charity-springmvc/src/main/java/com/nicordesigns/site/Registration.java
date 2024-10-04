@@ -85,7 +85,6 @@ public class Registration {
 
 	public void setFileAttachments(List<FileAttachment> attachments) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }
