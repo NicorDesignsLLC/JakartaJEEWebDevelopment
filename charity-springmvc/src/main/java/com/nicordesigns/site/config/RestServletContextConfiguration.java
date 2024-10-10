@@ -82,9 +82,9 @@ public class RestServletContextConfiguration implements WebMvcConfigurer {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.ignoreAcceptHeader(false)
-                  .defaultContentType(MediaType.APPLICATION_JSON)
-                  .mediaType("json", MediaType.APPLICATION_JSON)
-                  .mediaType("xml", MediaType.APPLICATION_XML);
+                  .defaultContentType(MediaType.APPLICATION_XML)
+                  .mediaType("xml", MediaType.APPLICATION_XML)
+                  .mediaType("json", MediaType.APPLICATION_JSON);
     }
 
     @Bean

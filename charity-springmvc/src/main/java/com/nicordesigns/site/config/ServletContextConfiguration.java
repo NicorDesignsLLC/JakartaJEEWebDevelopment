@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +38,6 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.ws.config.annotation.EnableWs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nicordesigns.site.config.annotation.WebController;
 
 @Configuration
 @EnableWebMvc

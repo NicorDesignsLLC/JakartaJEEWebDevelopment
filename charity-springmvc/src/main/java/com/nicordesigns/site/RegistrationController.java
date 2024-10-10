@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -70,8 +71,8 @@ public class RegistrationController {
 		model.put("registrationForm", new RegistrationForm());
 		return "registration/add";
 	}
-
-	@PostMapping(value = "create")
+	
+	@PostMapping(value = "create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ModelAndView create(Principal principal, @Valid RegistrationForm form, BindingResult bindingResult) throws IOException {
 	    ModelAndView modelAndView = new ModelAndView("registration/add");
 
@@ -93,6 +94,30 @@ public class RegistrationController {
 	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
 	    return modelAndView;
 	}
+
+
+//	@PostMapping(value = "create")
+//	public ModelAndView create(Principal principal, @Valid RegistrationForm form, BindingResult bindingResult) throws IOException {
+//	    ModelAndView modelAndView = new ModelAndView("registration/add");
+//
+//	    if (bindingResult.hasErrors()) {
+//	        bindingResult.getAllErrors().forEach(error -> log.error(error.toString()));
+//	        modelAndView.addObject("registrationForm", form);
+//	        return modelAndView;
+//	    }
+//
+//	    Registration registration = new Registration();
+//	    registration.setUserName(principal.getName());
+//	    registration.setSubject(form.getSubject());
+//	    registration.setBody(form.getBody());
+//
+//	    processAttachments(form, registration);
+//
+//	    this.registrationService.save(registration);
+//
+//	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
+//	    return modelAndView;
+//	}
 	
 	private void processAttachments(RegistrationForm form, Registration registration) throws IOException {
 	    for (MultipartFile filePart : form.getAttachments()) {
