@@ -9,6 +9,11 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+import java.util.List;
+
+@XmlRootElement(name = "registration") 
 public class Registration {
 
 	private long id;
@@ -27,6 +32,7 @@ public class Registration {
 	@Valid
 	private Map<String, FileAttachment> fileAttachments = new LinkedHashMap<>();
 
+	@XmlElement
 	public String getUserName() {
 		return userName;
 	}
@@ -35,6 +41,7 @@ public class Registration {
 		this.userName = userName;
 	}
 
+	@XmlElement
 	public String getSubject() {
 		return subject;
 	}
@@ -43,6 +50,7 @@ public class Registration {
 		this.subject = subject;
 	}
 
+	@XmlElement
 	public String getBody() {
 		return body;
 	}

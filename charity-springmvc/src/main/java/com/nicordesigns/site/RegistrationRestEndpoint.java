@@ -1,5 +1,8 @@
 package com.nicordesigns.site;
 
+import javax.inject.Inject;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,34 +11,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.nicordesigns.site.config.annotation.RestEndpoint;
-
-import javax.inject.Inject;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestEndpoint
 public class RegistrationRestEndpoint {
 	@Inject
 	RegistrationService registrationService;
 
-	@RequestMapping(value = "registration", method = RequestMethod.OPTIONS)
+	@RequestMapping(value = "registration", method = RequestMethod.OPTIONS, produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Void> discover() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Allow", "OPTIONS,HEAD,GET,POST");
 		return new ResponseEntity<>(null, headers, HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(value = "registration/{id}", method = RequestMethod.OPTIONS)
+	@RequestMapping(value = "registration/{id}", method = RequestMethod.OPTIONS, produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Void> discover(@PathVariable("id") long id) throws ResourceNotFoundException {
 		if (this.registrationService.getRegistration(id) == null)
 			throw new ResourceNotFoundException();
@@ -45,7 +39,7 @@ public class RegistrationRestEndpoint {
 		return new ResponseEntity<>(null, headers, HttpStatus.NO_CONTENT);
 	}
 
-	@RequestMapping(value = "registration", method = RequestMethod.GET)
+	@RequestMapping(value = "registration", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public RegistrationWebServiceList read() {
@@ -54,7 +48,7 @@ public class RegistrationRestEndpoint {
 		return list;
 	}
 
-	@RequestMapping(value = "registration/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "registration/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public Registration read(@PathVariable("id") long id) throws ResourceNotFoundException {
