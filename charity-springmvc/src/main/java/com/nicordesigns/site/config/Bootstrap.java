@@ -10,6 +10,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
@@ -27,14 +28,35 @@ public class Bootstrap implements WebApplicationInitializer {
         container.addListener(new ContextLoaderListener(rootContext));
         container.addListener(SessionListener.class);
 
-        // Dispatcher Servlet for web application
-        AnnotationConfigWebApplicationContext servletContext = new AnnotationConfigWebApplicationContext();
+        AnnotationConfigWebApplicationContext servletContext =
+                new AnnotationConfigWebApplicationContext();
         servletContext.register(ServletContextConfiguration.class);
-        ServletRegistration.Dynamic dispatcher = container.addServlet("springDispatcher", new DispatcherServlet(servletContext));
+        ServletRegistration.Dynamic webDispatcher = container.addServlet("springDispatcher", new DispatcherServlet(servletContext));
+        webDispatcher.setLoadOnStartup(1);  // Set load-on-startup only here
+        webDispatcher.setMultipartConfig(new MultipartConfigElement(
+        	    null, 20_971_520L, 41_943_040L, 512_000
+        	));
+        webDispatcher.addMapping("/");  // Only once
         
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.setMultipartConfig(new MultipartConfigElement(null, 20971520L, 41943040L, 512000));
-        dispatcher.addMapping("/");
+        AnnotationConfigWebApplicationContext restContext = new AnnotationConfigWebApplicationContext();
+        restContext.register(RestServletContextConfiguration.class);
+        DispatcherServlet restServlet = new DispatcherServlet(restContext);
+        restServlet.setDispatchOptionsRequest(true);
+        ServletRegistration.Dynamic restDispatcher = container.addServlet("springRestDispatcher", restServlet);
+        restDispatcher.setLoadOnStartup(2); // Set for REST Dispatcher
+        restDispatcher.addMapping("/services/Rest/*");
+        
+        AnnotationConfigWebApplicationContext soapContext =
+                new AnnotationConfigWebApplicationContext();
+        soapContext.register(SoapServletContextConfiguration.class);
+        MessageDispatcherServlet soapServlet =
+                new MessageDispatcherServlet(soapContext);
+        soapServlet.setTransformWsdlLocations(true);
+        ServletRegistration.Dynamic dispatcher = container.addServlet("springSoapDispatcher", soapServlet); // Declare dispatcher
+        dispatcher.setLoadOnStartup(3);
+        dispatcher.addMapping("/services/Soap/*");
+
+       
 
         // Logging filter
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
@@ -44,4 +66,5 @@ public class Bootstrap implements WebApplicationInitializer {
         FilterRegistration.Dynamic authenticationFilter = container.addFilter("authenticationFilter", new AuthenticationFilter());
         authenticationFilter.addMappingForUrlPatterns(null, false, "/registration", "/registration/*", "/chat", "/chat/*", "/session", "/session/*");
     }
+
 }

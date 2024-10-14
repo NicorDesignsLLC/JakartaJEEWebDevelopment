@@ -11,7 +11,7 @@ import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 @Configuration
 @ComponentScan(
-        basePackages = "com.nicordesigns.site.ws",
+        basePackages = "com.nicordesigns.site",
         useDefaultFilters = false,
         includeFilters = @ComponentScan.Filter(Endpoint.class)
 )

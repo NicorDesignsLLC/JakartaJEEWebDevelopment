@@ -1,6 +1,7 @@
 <xs:schema attributeFormDefault="unqualified" 
 	elementFormDefault="qualified" 
-	targetNamespace="http://www.nicordesigns.com/charityregistration" 
+	targetNamespace="http://nicordesigns.com/xmlns/charityregistration"
+	 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
   
   <!-- SOAP IN -->
@@ -14,7 +15,6 @@
               <xs:element type="xs:string" name="userName"/>
               <xs:element type="xs:string" name="subject"/>
               <xs:element type="xs:string" name="body"/>
-              <xs:element type="xs:dateTime" name="createdDate"/>
               <xs:element name="fileAttachments">
                 <xs:complexType>
                   <xs:sequence>

@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.nicordesigns.site.AuthenticationController.LoginForm;
+import com.nicordesigns.site.config.annotation.WebController;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Controller
+@WebController
 @RequestMapping("registration")
 public class RegistrationController {
 	private static final Logger log = LogManager.getLogger();
@@ -75,8 +71,8 @@ public class RegistrationController {
 		model.put("registrationForm", new RegistrationForm());
 		return "registration/add";
 	}
-
-	@PostMapping(value = "create")
+	
+	@PostMapping(value = "create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ModelAndView create(Principal principal, @Valid RegistrationForm form, BindingResult bindingResult) throws IOException {
 	    ModelAndView modelAndView = new ModelAndView("registration/add");
 
@@ -91,6 +87,39 @@ public class RegistrationController {
 	    registration.setSubject(form.getSubject());
 	    registration.setBody(form.getBody());
 
+	    processAttachments(form, registration);
+
+	    this.registrationService.save(registration);
+
+	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
+	    return modelAndView;
+	}
+
+
+//	@PostMapping(value = "create")
+//	public ModelAndView create(Principal principal, @Valid RegistrationForm form, BindingResult bindingResult) throws IOException {
+//	    ModelAndView modelAndView = new ModelAndView("registration/add");
+//
+//	    if (bindingResult.hasErrors()) {
+//	        bindingResult.getAllErrors().forEach(error -> log.error(error.toString()));
+//	        modelAndView.addObject("registrationForm", form);
+//	        return modelAndView;
+//	    }
+//
+//	    Registration registration = new Registration();
+//	    registration.setUserName(principal.getName());
+//	    registration.setSubject(form.getSubject());
+//	    registration.setBody(form.getBody());
+//
+//	    processAttachments(form, registration);
+//
+//	    this.registrationService.save(registration);
+//
+//	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
+//	    return modelAndView;
+//	}
+	
+	private void processAttachments(RegistrationForm form, Registration registration) throws IOException {
 	    for (MultipartFile filePart : form.getAttachments()) {
 	        log.debug("Processing attachment for new Registration.");
 	        FileAttachment attachment = new FileAttachment();
@@ -102,11 +131,6 @@ public class RegistrationController {
 	            registration.addAttachment(attachment);
 	        }
 	    }
-
-	    this.registrationService.save(registration);
-
-	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
-	    return modelAndView;
 	}
 
 	private ModelAndView getListRedirectModelAndView() {
@@ -116,7 +140,7 @@ public class RegistrationController {
 	private View getListRedirectView() {
 		return new RedirectView("/registration/list", true, false);
 	}
-	
+
 	@ModelAttribute("registrationForm")
     public RegistrationForm registrationForm() {
         return new RegistrationForm();

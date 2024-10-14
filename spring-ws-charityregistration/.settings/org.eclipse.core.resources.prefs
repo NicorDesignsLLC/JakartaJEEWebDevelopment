@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD:spring-ws-charityregistration/.settings/org.eclipse.core.resources.prefs
 encoding//src/main/java=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
+=======
+>>>>>>> jee8-springmvc-service-jsr349-clone-restandwebworking:sub-module/.settings/org.eclipse.core.resources.prefs
 encoding/<project>=UTF-8

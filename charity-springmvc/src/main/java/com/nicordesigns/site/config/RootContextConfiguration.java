@@ -30,7 +30,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableAsync(proxyTargetClass = true)
 @EnableScheduling
-@ComponentScan(basePackages = "com.nicordesigns.site", excludeFilters = @ComponentScan.Filter(Controller.class))
+@ComponentScan(basePackages = "com.nicordesigns.site", 
+			   excludeFilters = @ComponentScan.Filter(Controller.class))
 public class RootContextConfiguration implements AsyncConfigurer, SchedulingConfigurer {
 
 	private static final Logger log = LogManager.getLogger();
