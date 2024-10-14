@@ -25,7 +25,7 @@ public class RegistrationRestEndpoint {
 	@RequestMapping(value = "registration", method = RequestMethod.OPTIONS, produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Void> discover() {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Allow", "OPTIONS,HEAD,GET,POST");
+		headers.add("Allow", "OPTIONS,HEAD,GET,POST,DELETE");
 		return new ResponseEntity<>(null, headers, HttpStatus.NO_CONTENT);
 	}
 
@@ -76,47 +76,6 @@ public class RegistrationRestEndpoint {
 
 	    return new ResponseEntity<>(registration, headers, HttpStatus.CREATED);
 	}
-
-//	@RequestMapping(value = "registration", method = RequestMethod.POST, consumes = {
-//			MediaType.APPLICATION_XML_VALUE })
-//	public ResponseEntity<Registration> create(@RequestPart("form") RegistrationForm form,
-//			@RequestPart(value = "file", required = false) List<MultipartFile> files) throws IOException {
-//
-//		Registration registration = new Registration();
-//		registration.setUserName("WebServiceAnonymous");
-//		registration.setSubject(form.getSubject());
-//		registration.setBody(form.getBody());
-//
-//		// Initialize an empty list of file attachments
-//		List<FileAttachment> attachments = new ArrayList<>();
-//
-//		// Process the MultipartFiles only if they are not null and not empty
-//		if (files != null && !files.isEmpty()) {
-//			for (MultipartFile file : files) {
-//				if (!file.isEmpty()) {
-//					FileAttachment attachment = new FileAttachment();
-//					attachment.setName(file.getOriginalFilename());
-//					attachment.setMimeContentType(file.getContentType());
-//					attachment.setContents(file.getBytes());
-//					attachments.add(attachment);
-//				}
-//			}
-//		}
-//
-//		// Set the file attachments to the registration, even if it's an empty list
-//		registration.setFileAttachments(attachments);
-//
-//		// Save the registration
-//		this.registrationService.save(registration);
-//
-//		// Return the response with the created registration
-//		String uri = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/registration/{id}")
-//				.buildAndExpand(registration.getId()).toString();
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add("Location", uri);
-//
-//		return new ResponseEntity<>(registration, headers, HttpStatus.CREATED);
-//	}
 
 	@RequestMapping(value = "registration/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
