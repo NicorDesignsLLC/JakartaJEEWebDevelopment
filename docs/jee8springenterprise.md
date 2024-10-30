@@ -20,4 +20,5 @@
 
 11. [ Creating SOAP Web Services with the Spring Framework](jee8springsoap.md)
 
+11. [ Creating REST Web Services with the Spring Framework](jee8springrest.md)
 
