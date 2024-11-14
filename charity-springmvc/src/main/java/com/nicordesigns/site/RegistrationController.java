@@ -95,30 +95,6 @@ public class RegistrationController {
 	    return modelAndView;
 	}
 
-
-//	@PostMapping(value = "create")
-//	public ModelAndView create(Principal principal, @Valid RegistrationForm form, BindingResult bindingResult) throws IOException {
-//	    ModelAndView modelAndView = new ModelAndView("registration/add");
-//
-//	    if (bindingResult.hasErrors()) {
-//	        bindingResult.getAllErrors().forEach(error -> log.error(error.toString()));
-//	        modelAndView.addObject("registrationForm", form);
-//	        return modelAndView;
-//	    }
-//
-//	    Registration registration = new Registration();
-//	    registration.setUserName(principal.getName());
-//	    registration.setSubject(form.getSubject());
-//	    registration.setBody(form.getBody());
-//
-//	    processAttachments(form, registration);
-//
-//	    this.registrationService.save(registration);
-//
-//	    modelAndView.setViewName("redirect:/registration/view/" + registration.getId());
-//	    return modelAndView;
-//	}
-	
 	private void processAttachments(RegistrationForm form, Registration registration) throws IOException {
 	    for (MultipartFile filePart : form.getAttachments()) {
 	        log.debug("Processing attachment for new Registration.");
