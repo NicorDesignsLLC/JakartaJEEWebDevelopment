@@ -55,7 +55,6 @@ public class Bootstrap implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = container.addServlet("springSoapDispatcher", soapServlet); // Declare dispatcher
         dispatcher.setLoadOnStartup(3);
         dispatcher.addMapping("/services/Soap/*");
-
        
 
         // Logging filter
