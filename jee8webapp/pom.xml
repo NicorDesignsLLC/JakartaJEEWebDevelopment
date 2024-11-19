@@ -91,6 +91,39 @@
 	
 	<build>
 		<finalName>jee8webapp</finalName>
-		
+		<pluginManagement>
+			<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.2.0</version>
+				</plugin>
+				<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.2.0</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.10.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M7</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executor;
 
-import org.apache.cxf.Bus;
-import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.MessageSource;
@@ -37,30 +35,29 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
 	private static final Logger log = LogManager.getLogger();
 	private static final Logger schedulingLogger = LogManager.getLogger(log.getName() + ".[scheduling]");
 
-	@Bean(name = Bus.DEFAULT_BUS_ID)
-	// <bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus">
-	public SpringBus springBus() {
-		return new SpringBus();
-	}
-
+	
 	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setCacheSeconds(-1);
-		messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
-		messageSource.setBasenames("/WEB-INF/i18n/titles", "/WEB-INF/i18n/messages", 
-				"/WEB-INF/i18n/errors",
-				"/WEB-INF/i18n/validation");
-		return messageSource;
-	}
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setCacheSeconds(-1);
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        messageSource.setBasenames(
+            "/WEB-INF/i18n/titles", 
+            "/WEB-INF/i18n/messages",
+            "/WEB-INF/i18n/errors", 
+            "/WEB-INF/i18n/validation"
+        );
+        return messageSource;
+    }
 
-	@Bean
-	public LocalValidatorFactoryBean localValidatorFactoryBean() {
-		LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-		validator.setValidationMessageSource(this.messageSource());
-		return validator;
-	}
-
+    @Bean
+    public LocalValidatorFactoryBean localValidatorFactoryBean() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(this.messageSource());
+        return validator;
+    }
+    
+	
 	@Bean
 	public ObjectMapper objectMapper() {
 		ObjectMapper mapper = new ObjectMapper();
