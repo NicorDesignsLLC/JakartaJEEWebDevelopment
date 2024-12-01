@@ -65,7 +65,7 @@ An introduction to Java Web Development with Jakarta JEE 8:
 
 32. [Spring Framework Enterprise Development with Jakarta JEE8](jee8springenterprise.md)
 
-33. [Java Persistence API and Hibernate ORM with Jakarta JEE8](jee8jpahibernateintro.md)
+33. [Java Persistence API and Hibernate ORM with Jakarta JEE8](jee8jpahibernateoutline.md)
 
 [![About this course](https://img.youtube.com/vi/a1qQLtJ6CIc/0.jpg)](https://youtu.be/a1qQLtJ6CIc)
 [![What is the Jakarta Java Platform Enterprise Edition 8 ?](https://img.youtube.com/vi/Qrc6fWsvRAs/0.jpg)](https://youtu.be/Qrc6fWsvRAs)
