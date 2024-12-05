@@ -1,22 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>JakartaJEEWebDevelopment</artifactId>
-        <groupId>pom-root-level</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
-
-    <groupId>com.nicordesigns</groupId>
-    <artifactId>charity-springmvc</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>pom-root-level</groupId>
+    <artifactId>JakartaJEEWebDevelopment</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+        <groupId>com.nicordesigns</groupId>
+    <artifactId>spring-jpa</artifactId>
     <packaging>war</packaging>
-
-    <name>charity-springmvc</name>
+    <name>charity-jpa</name>
     <url>https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/</url>
-    <description>The Charity Registration Example with Spring MVC</description>
+    <description>The Spring JPA Example</description>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,48 +22,11 @@
         <spring.framework.version>5.3.31</spring.framework.version>
         <cxf.xjc.plugin.version>3.3.1</cxf.xjc.plugin.version>
         <cxf.version>3.4.3</cxf.version>
+        <hibernate.validator.version>5.1.2.Final</hibernate.validator.version>
     </properties>
-
+    
     <dependencies>
         <!-- Dependency Definitions -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>3.4.3</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                </exclusion>
-                <exclusion>
-				    <groupId>javax.xml</groupId>
-				    <artifactId>namespace</artifactId>
-		        </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>3.4.3</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                </exclusion>
-                <exclusion>
-				    <groupId>javax.xml</groupId>
-				    <artifactId>namespace</artifactId>
-		        </exclusion>
-            </exclusions>
-        </dependency>
         
         <dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -147,6 +105,12 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+        <!-- dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>runtime</scope>
+        </!-dependency -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -193,7 +157,12 @@
         </dependency>
 
         <!-- Other dependencies (Spring, Hibernate, JAXB, etc.) -->
-        
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		    <version>2.7.14</version> 
+		<!-- Make sure to use the latest compatible version with Spring 5.3 -->
+		</dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -265,7 +234,7 @@
     </dependencies>
 
     <build>
-        <finalName>charity-springmvc</finalName>
+        <finalName>spring-jpa</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -283,28 +252,7 @@
                     <argLine>--illegal-access=permit</argLine>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-xjc-plugin</artifactId>
-                <version>${cxf.xjc.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>xsdtojava</goal>
-                        </goals>
-                        <configuration>
-                            <xsdOptions>
-                                <xsdOption>
-                                    <xsd>${basedir}\\src\\main\\webapp\\WEB-INF\\xsd\\Registration.xsd</xsd>
-                                    <packagename>com.nicordesigns</packagename>
-                                </xsdOption>
-                            </xsdOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+      </plugins>      
     </build>
+
 </project>
