@@ -62,3 +62,12 @@ An introduction to Java Web Development with Jakarta JEE 8:
 29. [Making your Application Interactive with WebSockets](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8websockets.html)
 
 30. [Logging with log4j and slf4j in our Jakarta JEE8 Web Application](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8logging.html)
+
+31. [Spring Framework Review with Jakarta JEE8](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8springreview.html)
+
+32. [Spring Framework Enterprise Development with Jakarta JEE8](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8springenterprise.html)
+
+33. [Java Persistence API and Hibernate ORM with Jakarta JEE8](https://nicordesignsllc.github.io/JakartaJEEWebDevelopment/jee8jpahibernateintro.html)
+
+
+
