@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 class Studio {
   @Id
   private Long id;
+  
   @OneToMany(mappedBy="studio")
   private List<Movie> movies;
 }

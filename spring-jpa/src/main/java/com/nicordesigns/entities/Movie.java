@@ -11,8 +11,10 @@ import javax.persistence.ManyToOne;
 class Movie {
   @Id
   private Long id;
+  
   @ManyToOne
   private Studio studio;
+  
   @ManyToMany
   private List<Actor> actors;
 }

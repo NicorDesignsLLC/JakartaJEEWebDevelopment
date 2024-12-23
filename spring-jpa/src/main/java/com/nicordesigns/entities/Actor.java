@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 class Actor {
   @Id
   private Long id;
+  
   @ManyToMany(mappedBy="actors")
   private List<Movie> movies;
 }
