@@ -1,27 +1,33 @@
-CREATE DATABASE SpringJpa DEFAULT CHARACTER SET 'utf8'
-  DEFAULT COLLATE 'utf8_unicode_ci';
+-- Drop and recreate the database
+DROP DATABASE IF EXISTS SpringJpa;
+CREATE DATABASE SpringJpa DEFAULT CHARACTER SET 'utf8' DEFAULT COLLATE 'utf8_unicode_ci';
 
+-- Use the new database
 USE SpringJpa;
 
--- Create the STUDIO table
+-- Create the Studio table
+DROP TABLE IF EXISTS Studio;
 CREATE TABLE Studio (
     StudioId BIGINT UNSIGNED NOT NULL PRIMARY KEY,
     StudioName VARCHAR(100) NOT NULL,
     YearFounded INT,
-    StudionHeadQuarters VARCHAR(255) NOT NULL,
-    INDEX StudioNames (StudioName)
+    StudioHeadQuarters VARCHAR(255) NOT NULL,
+    INDEX StudioNames (StudioName),
+    CONSTRAINT chk_YearFounded CHECK (YearFounded BETWEEN 1800 AND YEAR(CURDATE()))
 ) ENGINE = InnoDB;
 
--- Create the ACTOR table
+-- Create the Actor table
+DROP TABLE IF EXISTS Actor;
 CREATE TABLE Actor (
-    ActorId BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ActorId BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ActorName VARCHAR(100) NOT NULL,
     ActorBirthDate DATE,
     ActorNationality VARCHAR(50) NOT NULL,
     INDEX ActorNames (ActorName)
 ) ENGINE = InnoDB;
 
--- Create the MOVIE table
+-- Create the Movie table
+DROP TABLE IF EXISTS Movie;
 CREATE TABLE Movie (
     MovieId BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     MovieTitle VARCHAR(255) NOT NULL,
@@ -29,12 +35,23 @@ CREATE TABLE Movie (
     MovieDuration INT NOT NULL,
     MovieGenre VARCHAR(50) NOT NULL,
     MovieRating DECIMAL(3,1),
-    MovieStudioId BIGINT,
-    INDEX MovieTitles (MovieTitle) 
+    MovieStudioId BIGINT UNSIGNED,
+    INDEX MovieTitles (MovieTitle),
+    CONSTRAINT FK_Movie_Studio FOREIGN KEY (MovieStudioId) REFERENCES Studio(StudioId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 ) ENGINE = InnoDB;
 
-CREATE TABLE SurrogateKeys (
-  TableName VARCHAR(64) NOT NULL PRIMARY KEY,
-  KeyValue BIGINT UNSIGNED NOT NULL,
-  INDEX SurrogateKeys_Table_Values (TableName, KeyValue)
+DROP TABLE IF EXISTS Movie_Actor;
+CREATE TABLE Movie_Actor (
+    MovieId BIGINT UNSIGNED NOT NULL,
+    ActorId BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (MovieId, ActorId),
+    CONSTRAINT FK_Movie FOREIGN KEY (MovieId) REFERENCES Movie(MovieId) ON DELETE CASCADE,
+    CONSTRAINT FK_Actor FOREIGN KEY (ActorId) REFERENCES Actor(ActorId) ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+-- Optional: Query the tables to verify
+SELECT * FROM Studio;
+SELECT * FROM Actor;
+SELECT * FROM Movie;
