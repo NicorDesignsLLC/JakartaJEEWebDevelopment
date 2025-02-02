@@ -147,24 +147,3 @@ private BigDecimal rating;
 private String actorName;
 ```
 
----
-
-## **Engagement Strategies**
-
-### 1. **Scenario-Based Learning**
-- Use movie industry examples:
-  - "How do we ensure a movie always belongs to a studio?"
-  - "What happens if an actor stars in multiple movies?"
-
-### 2. **Interactive Quizzes**
-- Include questions like:
-  - "Which annotation marks a class as a JPA entity?"
-  - "How do you define a composite key in JPA?"
-
-### 3. **Live Coding Sessions**
-- Walk through creating entities for `Movie`, `Actor`, and `Studio`.
-- Debug common errors like mismatched column names.
-
-### 4. **Pair Programming**
-- Assign students to collaborate on mapping the `Movie_Actor` relationship.
-- Encourage them to add fields (e.g., `role`) to the `Movie_Actor` table.
