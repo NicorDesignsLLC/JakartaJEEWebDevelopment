@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "Studio")
 public class Studio implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 2L;
+	
 	@Id
     @Column(name = "StudioId", nullable = false, unique = true)
     private Long id;
