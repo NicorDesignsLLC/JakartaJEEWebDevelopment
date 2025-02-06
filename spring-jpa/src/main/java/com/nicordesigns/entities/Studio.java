@@ -9,8 +9,9 @@ import javax.persistence.*;
 public class Studio implements Serializable {
 
     private static final long serialVersionUID = 2L;
-	
-	@Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generate ID
     @Column(name = "StudioId", nullable = false, unique = true)
     private Long id;
 
@@ -18,7 +19,7 @@ public class Studio implements Serializable {
     private String studioName;
 
     @Column(name = "YearFounded")
-    private Integer yearFounded;
+    private Integer yearFounded;  // Can also be java.time.Year
 
     @Column(name = "StudioHeadQuarters", nullable = false, length = 255)
     private String studioHeadquarters;
@@ -26,8 +27,17 @@ public class Studio implements Serializable {
     @OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Movie> movies;
 
-    // Getters and Setters
+    // Default Constructor
+    public Studio() {}
 
+    // Parameterized Constructor
+    public Studio(String studioName, Integer yearFounded, String studioHeadquarters) {
+        this.studioName = studioName;
+        this.yearFounded = yearFounded;
+        this.studioHeadquarters = studioHeadquarters;
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -66,5 +76,16 @@ public class Studio implements Serializable {
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
+    }
+
+    // toString() method (excluding movies to prevent infinite recursion)
+    @Override
+    public String toString() {
+        return "Studio{" +
+                "id=" + id +
+                ", studioName='" + studioName + '\'' +
+                ", yearFounded=" + yearFounded +
+                ", studioHeadquarters='" + studioHeadquarters + '\'' +
+                '}';
     }
 }

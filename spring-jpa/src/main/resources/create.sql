@@ -10,10 +10,9 @@ DROP TABLE IF EXISTS Studio;
 CREATE TABLE Studio (
     StudioId BIGINT UNSIGNED NOT NULL PRIMARY KEY,
     StudioName VARCHAR(100) NOT NULL,
-    YearFounded INT,
+    YearFounded YEAR,  -- Uses the YEAR data type (valid range: 1901-2155)
     StudioHeadQuarters VARCHAR(255) NOT NULL,
-    INDEX StudioNames (StudioName),
-    CONSTRAINT chk_YearFounded CHECK (YearFounded BETWEEN 1800 AND YEAR(CURDATE()))
+    INDEX StudioNames (StudioName)
 ) ENGINE = InnoDB;
 
 -- Create the Actor table
@@ -34,7 +33,7 @@ CREATE TABLE Movie (
     MovieReleaseDate DATE,
     MovieDuration INT NOT NULL,
     MovieGenre VARCHAR(50) NOT NULL,
-    MovieRating DECIMAL(3,1),
+    MovieRating DECIMAL(4,1),
     MovieStudioId BIGINT UNSIGNED,
     INDEX MovieTitles (MovieTitle),
     CONSTRAINT FK_Movie_Studio FOREIGN KEY (MovieStudioId) REFERENCES Studio(StudioId)

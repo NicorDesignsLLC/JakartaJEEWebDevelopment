@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Actor")
 public class Actor implements Serializable {
-    
-	private static final long serialVersionUID = 1L;
 
-	@Id
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ActorId", nullable = false, unique = true)
     private Long id;
@@ -25,11 +25,20 @@ public class Actor implements Serializable {
     @Column(name = "ActorNationality", nullable = false, length = 50)
     private String nationality;
 
-    @ManyToMany(mappedBy = "actors")
+    @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
     private List<Movie> movies;
 
-    // Getters and Setters
+    // Default Constructor
+    public Actor() {}
 
+    // Parameterized Constructor
+    public Actor(String name, LocalDate birthDate, String nationality) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.nationality = nationality;
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -68,5 +77,16 @@ public class Actor implements Serializable {
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
+    }
+
+    // toString() method (excluding movies to prevent infinite recursion)
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", nationality='" + nationality + '\'' +
+                '}';
     }
 }

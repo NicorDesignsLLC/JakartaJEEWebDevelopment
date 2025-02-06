@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +12,7 @@ public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MovieId", nullable = false, unique = true)
     private Long id;
@@ -30,14 +29,14 @@ public class Movie implements Serializable {
     @Column(name = "MovieGenre", nullable = false, length = 50)
     private String genre;
 
-    @Column(name = "MovieRating", precision = 3, scale = 1)
+    @Column(name = "MovieRating", precision = 4, scale = 2)  // Supports 10.0
     private BigDecimal rating;
 
     @ManyToOne
     @JoinColumn(name = "MovieStudioId", nullable = false)
     private Studio studio;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Movie_Actor",
         joinColumns = @JoinColumn(name = "MovieId"),
@@ -45,8 +44,20 @@ public class Movie implements Serializable {
     )
     private List<Actor> actors;
 
-    // Getters and Setters
+    // Default Constructor
+    public Movie() {}
 
+    // Parameterized Constructor
+    public Movie(String title, LocalDate releaseDate, Integer duration, String genre, BigDecimal rating, Studio studio) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.duration = duration;
+        this.genre = genre;
+        this.rating = rating;
+        this.studio = studio;
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -109,5 +120,19 @@ public class Movie implements Serializable {
 
     public void setActors(List<Actor> actors) {
         this.actors = actors;
+    }
+
+    // toString() method (excluding actors to prevent infinite recursion)
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", duration=" + duration +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                ", studio=" + (studio != null ? studio.getStudioName() : "null") +
+                '}';
     }
 }
