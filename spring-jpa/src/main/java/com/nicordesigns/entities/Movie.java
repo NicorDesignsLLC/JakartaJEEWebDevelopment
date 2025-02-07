@@ -3,6 +3,7 @@ package com.nicordesigns.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -42,7 +43,8 @@ public class Movie implements Serializable {
         joinColumns = @JoinColumn(name = "MovieId"),
         inverseJoinColumns = @JoinColumn(name = "ActorId")
     )
-    private List<Actor> actors;
+    private List<Actor> actors = new ArrayList<Actor>(); // Explicit type
+
 
     // Default Constructor
     public Movie() {}

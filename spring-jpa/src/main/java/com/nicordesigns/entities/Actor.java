@@ -2,6 +2,7 @@ package com.nicordesigns.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -26,8 +27,8 @@ public class Actor implements Serializable {
     private String nationality;
 
     @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
-    private List<Movie> movies;
-
+    private List<Movie> movies = new ArrayList<Movie>();
+    
     // Default Constructor
     public Actor() {}
 

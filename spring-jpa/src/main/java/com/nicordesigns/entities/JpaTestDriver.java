@@ -1,39 +1,46 @@
 package com.nicordesigns.entities;
 
-
 import com.nicordesigns.config.SpringConfig;
-import com.nicordesigns.entities.Actor;
-import com.nicordesigns.entities.Movie;
-import com.nicordesigns.entities.Studio;
-
-import javax.persistence.*;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public class JpaTestDriver {
 
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("MoviePersistenceUnit");
+    private static EntityManagerFactory emf;
 
     public static void main(String[] args) {
-    	
-    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        // Retrieve beans as needed
-        try {
+        // Load Spring Context and Retrieve EntityManagerFactory Bean
+    	 // Load Spring Context
+        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class)) {
+            // Retrieve EntityManagerFactory from Spring
+            emf = context.getBean(EntityManagerFactory.class);
+
+            if (emf == null) {
+                throw new IllegalStateException("❌ EntityManagerFactory bean not found! Check SpringConfig.");
+            }
+
             createEntities();
             readEntities();
             updateEntity();
             deleteEntity();
-        } finally {
-            emf.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+    
 
     // 1. CREATE (Insert new data)
     private static void createEntities() {
+    	
+    	 if (emf == null) {
+             throw new IllegalStateException("❌ EntityManagerFactory is null! Cannot create entities.");
+         }
+
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
@@ -63,7 +70,7 @@ public class JpaTestDriver {
         actor.getMovies().add(movie);
 
         // Persist Data
-        em.persist(studio); // Studio saved first due to foreign key reference
+        em.persist(studio);
         em.persist(actor);
         em.persist(movie);
 

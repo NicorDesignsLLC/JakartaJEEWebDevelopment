@@ -8,7 +8,7 @@ USE SpringJpa;
 -- Create the Studio table
 DROP TABLE IF EXISTS Studio;
 CREATE TABLE Studio (
-    StudioId BIGINT UNSIGNED NOT NULL PRIMARY KEY,
+    StudioId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     StudioName VARCHAR(100) NOT NULL,
     YearFounded YEAR,  -- Uses the YEAR data type (valid range: 1901-2155)
     StudioHeadQuarters VARCHAR(255) NOT NULL,
@@ -54,3 +54,6 @@ CREATE TABLE Movie_Actor (
 SELECT * FROM Studio;
 SELECT * FROM Actor;
 SELECT * FROM Movie;
+
+SHOW CREATE TABLE Studio;
+
