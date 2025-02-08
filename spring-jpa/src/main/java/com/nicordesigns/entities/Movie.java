@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "Movie")
 public class Movie implements Serializable {
@@ -35,6 +37,7 @@ public class Movie implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "MovieStudioId", nullable = false)
+    @JsonBackReference
     private Studio studio;
 
     @ManyToMany(fetch = FetchType.LAZY)

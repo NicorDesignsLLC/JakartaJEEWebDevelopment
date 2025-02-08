@@ -29,6 +29,22 @@
         
         <!-- Dependency Definitions -->
         
+        <!-- JPA API -->
+    <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>javax.persistence-api</artifactId>
+        <version>2.2</version>
+    </dependency>
+
+    <!-- Hibernate Core -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.6.15.Final</version>
+    </dependency>
+
+    
+    
         <!-- Movie Actor DB Code demo-->
         <dependency>
 			    <groupId>org.mariadb.jdbc</groupId>
@@ -131,12 +147,6 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-        <!-- dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-jcl</artifactId>
-            <version>${log4j.version}</version>
-            <scope>runtime</scope>
-        </!-dependency -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -175,6 +185,12 @@
 		    <artifactId>jackson-dataformat-xml</artifactId>
 		    <version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -197,8 +213,7 @@
 		    </exclusions>
 		</dependency>
 		
-		
-        <!-- Make sure to use the latest compatible version with Spring 5.3 -->
+		<!-- Make sure to use the latest compatible version with Spring 5.3 -->
 		<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -272,6 +287,15 @@
 
     <build>
         <finalName>spring-jpa</finalName>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <includes>
+                <include>META-INF/persistence.xml</include>
+            </includes>
+        </resource>
+    </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

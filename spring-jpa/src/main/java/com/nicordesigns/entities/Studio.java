@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "Studio")
 public class Studio implements Serializable {
@@ -25,6 +27,7 @@ public class Studio implements Serializable {
     private String studioHeadquarters;
 
     @OneToMany(mappedBy = "studio", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference 
     private List<Movie> movies;
 
     // Default Constructor
