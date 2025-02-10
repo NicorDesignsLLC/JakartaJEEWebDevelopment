@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "Actor")
 public class Actor implements Serializable {
@@ -26,8 +28,11 @@ public class Actor implements Serializable {
     @Column(name = "ActorNationality", nullable = false, length = 50)
     private String nationality;
 
+    
     @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
-    private List<Movie> movies = new ArrayList<Movie>();
+    @JsonBackReference // Prevents recursion
+    private List<Movie> movies = new ArrayList<>();
+    
     
     // Default Constructor
     public Actor() {}

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.nicordesigns.enums.Rating;
 
 @Entity
@@ -40,15 +41,18 @@ public class Movie implements Serializable {
     @JoinColumn(name = "MovieStudioId", nullable = false)
     @JsonBackReference
     private Studio studio;
-
+    
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Movie_Actor",
         joinColumns = @JoinColumn(name = "MovieId"),
         inverseJoinColumns = @JoinColumn(name = "ActorId")
     )
+    @JsonManagedReference // Prevents recursion
     private List<Actor> actors = new ArrayList<>();
 
+    
     // Default Constructor
     public Movie() {}
 
