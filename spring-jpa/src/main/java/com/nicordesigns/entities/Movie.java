@@ -1,13 +1,13 @@
 package com.nicordesigns.entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.nicordesigns.enums.Rating;
 
 @Entity
 @Table(name = "Movie")
@@ -32,8 +32,9 @@ public class Movie implements Serializable {
     @Column(name = "MovieGenre", nullable = false, length = 50)
     private String genre;
 
-    @Column(name = "MovieRating", precision = 4, scale = 2)  // Supports 10.0
-    private BigDecimal rating;
+    @Enumerated(EnumType.STRING)  //Store Enum as String in DB
+    @Column(name = "MovieRating", length = 10)  // Adjust DB column for text storage
+    private Rating rating;
 
     @ManyToOne
     @JoinColumn(name = "MovieStudioId", nullable = false)
@@ -46,14 +47,13 @@ public class Movie implements Serializable {
         joinColumns = @JoinColumn(name = "MovieId"),
         inverseJoinColumns = @JoinColumn(name = "ActorId")
     )
-    private List<Actor> actors = new ArrayList<Actor>(); // Explicit type
-
+    private List<Actor> actors = new ArrayList<>();
 
     // Default Constructor
     public Movie() {}
 
-    // Parameterized Constructor
-    public Movie(String title, LocalDate releaseDate, Integer duration, String genre, BigDecimal rating, Studio studio) {
+    // Updated Constructor using Rating Enum
+    public Movie(String title, LocalDate releaseDate, Integer duration, String genre, Rating rating, Studio studio) {
         this.title = title;
         this.releaseDate = releaseDate;
         this.duration = duration;
@@ -103,11 +103,11 @@ public class Movie implements Serializable {
         this.genre = genre;
     }
 
-    public BigDecimal getRating() {
+    public Rating getRating() {
         return rating;
     }
 
-    public void setRating(BigDecimal rating) {
+    public void setRating(Rating rating) {
         this.rating = rating;
     }
 
@@ -136,7 +136,7 @@ public class Movie implements Serializable {
                 ", releaseDate=" + releaseDate +
                 ", duration=" + duration +
                 ", genre='" + genre + '\'' +
-                ", rating=" + rating +
+                ", rating=" + rating +  // ✅ Now prints ENUM instead of BigDecimal
                 ", studio=" + (studio != null ? studio.getStudioName() : "null") +
                 '}';
     }

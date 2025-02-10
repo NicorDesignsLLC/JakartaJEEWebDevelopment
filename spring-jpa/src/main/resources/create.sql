@@ -25,15 +25,17 @@ CREATE TABLE Actor (
     INDEX ActorNames (ActorName)
 ) ENGINE = InnoDB;
 
--- Create the Movie table
+-- Drop table if exists to avoid conflicts
 DROP TABLE IF EXISTS Movie;
+
+-- Create Movie table with ENUM-compatible Rating field
 CREATE TABLE Movie (
     MovieId BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     MovieTitle VARCHAR(255) NOT NULL,
     MovieReleaseDate DATE,
     MovieDuration INT NOT NULL,
     MovieGenre VARCHAR(50) NOT NULL,
-    MovieRating DECIMAL(4,1),
+    MovieRating VARCHAR(10),  -- Updated from DECIMAL to VARCHAR to store EnumType.STRING
     MovieStudioId BIGINT UNSIGNED,
     INDEX MovieTitles (MovieTitle),
     CONSTRAINT FK_Movie_Studio FOREIGN KEY (MovieStudioId) REFERENCES Studio(StudioId)
