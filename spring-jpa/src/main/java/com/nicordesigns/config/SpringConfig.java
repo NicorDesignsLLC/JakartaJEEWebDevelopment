@@ -1,6 +1,7 @@
 package com.nicordesigns.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -53,5 +54,11 @@ public class SpringConfig {
     @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
+    }
+
+    // Add ModelMapper Bean
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
