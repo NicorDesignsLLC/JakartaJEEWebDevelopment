@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface ActorRepository extends JpaRepository<Actor, Long> {
 
     // Find Actor by name (ensures uniqueness if ActorName is unique)
-    Optional<Actor> findByActorName(String actorName);
+    Optional<Actor> findByName(String name);
 }

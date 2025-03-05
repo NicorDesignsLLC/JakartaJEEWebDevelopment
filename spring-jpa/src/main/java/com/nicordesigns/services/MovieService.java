@@ -61,19 +61,40 @@ public class MovieService {
         Movie movie = movieRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Movie not found with ID: " + id));
 
-        movie.setTitle(newTitle);
+        movie.setTitle(newTitle);  
         movieRepository.save(movie);
     }
+
+    /**
+     * Fetch all movies and return as DTOs.
+     */
+    @Transactional(readOnly = true) // ✅ Keeps session open while retrieving actors
+    public List<MovieDTO> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return movies.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
 
     /**
      * Convert Movie entity to MovieDTO.
      */
     private MovieDTO convertToDTO(Movie movie) {
         MovieDTO dto = modelMapper.map(movie, MovieDTO.class);
-        dto.setStudioName(movie.getStudio().getStudioName());
-        dto.setActorNames(movie.getActors().stream()
-                .map(Actor::getName)
-                .collect(Collectors.toList()));
+
+        dto.setTitle(movie.getTitle());
+
+        // ✅ Ensure Studio is initialized
+        if (movie.getStudio() != null) {
+            dto.setStudioName(movie.getStudio().getStudioName());  // Studio is now loaded
+        } else {
+            dto.setStudioName("Unknown Studio");
+        }
+
+        // ✅ Ensure Actors are initialized
+        dto.setActorNames(movie.getActors() != null
+                ? movie.getActors().stream().map(Actor::getName).collect(Collectors.toList())
+                : List.of());
+
         return dto;
     }
 
@@ -92,15 +113,17 @@ public class MovieService {
                 });
         movie.setStudio(studio);
 
-        // Handle Actors
-        List<Actor> actors = dto.getActorNames().stream()
-                .map(name -> actorRepository.findByActorName(name)
-                        .orElseGet(() -> {
-                            Actor newActor = new Actor();
-                            newActor.setName(name);
-                            return actorRepository.save(newActor);
-                        }))
-                .collect(Collectors.toList());
+        // Handle Actors (FIXED: Check for null actorNames)
+        List<Actor> actors = dto.getActorNames() != null
+                ? dto.getActorNames().stream()
+                        .map(name -> actorRepository.findByName(name)
+                                .orElseGet(() -> {
+                                    Actor newActor = new Actor();
+                                    newActor.setName(name);
+                                    return actorRepository.save(newActor);
+                                }))
+                        .collect(Collectors.toList())
+                : List.of();
         movie.setActors(actors);
 
         return movie;

@@ -13,8 +13,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 @Configuration
-@ComponentScan(basePackages = "com.nicordesigns.repositories") // Scans for repositories and components
+@ComponentScan(basePackages = {"com.nicordesigns.repositories", "com.nicordesigns.services"})
+@EnableJpaRepositories(basePackages = "com.nicordesigns.repositories")  
 public class SpringConfig {
 
     @Bean

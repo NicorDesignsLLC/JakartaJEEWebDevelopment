@@ -140,7 +140,7 @@ public class Movie implements Serializable {
                 ", releaseDate=" + releaseDate +
                 ", duration=" + duration +
                 ", genre='" + genre + '\'' +
-                ", rating=" + rating +  // ✅ Now prints ENUM instead of BigDecimal
+                ", rating=" + rating +  
                 ", studio=" + (studio != null ? studio.getStudioName() : "null") +
                 '}';
     }
