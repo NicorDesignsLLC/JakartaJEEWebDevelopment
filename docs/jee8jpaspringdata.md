@@ -6,15 +6,21 @@
 Introduce Spring Data repositories and transaction management for efficient data access and consistency.
 
 ### Example
+
 ```java
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    List<Movie> findByMovieTitleContaining(String titleFragment);
+    @EntityGraph(attributePaths = {"actors", "studio"})
+    List<Movie> findAll();
+    
+    List<Movie> findByTitleContaining(String titleFragment);
     
     @Query("SELECT m FROM Movie m WHERE m.studio.studioName = ?1")
     List<Movie> findByStudioName(String studioName);
 }
+```
 
+```java
 @Service
 public class MovieService {
     @Autowired
@@ -24,21 +30,23 @@ public class MovieService {
     public void updateMovieTitle(Long id, String newTitle) {
         Movie movie = movieRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Movie not found"));
-        movie.setMovieTitle(newTitle);
+        movie.setTitle(newTitle);
         // Changes are persisted automatically due to @Transactional
     }
 }
 ```
 
 ### Explanation
-- The `MovieRepository` includes a derived query method (`findByMovieTitleContaining`) and a custom `@Query` to find movies by studio name.
+- The `MovieRepository` includes a derived query method (`findByTitleContaining`) and a custom `@Query` to find movies by studio name.
+- The `@EntityGraph(attributePaths = {"actors", "studio"})` ensures actors and studio are fetched eagerly.
 - The `@Transactional` annotation ensures the update operation is atomic.
 
 ---
 
 ## 2. Configuring Persistence with the Spring Framework
 
-### Reworked Configuration (`persistence.xml`)
+### Configuration (`persistence.xml`)
+
 ```xml
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="MovieDBPU" transaction-type="RESOURCE_LOCAL">
@@ -62,31 +70,32 @@ public class MovieService {
 ```
 
 ### Explanation
-- This configuration sets up a MariaDB database for your movie-related entities (Studio, Movie, Actor), aligning with Jakarta EE 8 JPA requirements.
+- This configuration sets up a MariaDB database for your movie-related entities (`Studio`, `Movie`, `Actor`), aligning with Jakarta EE 8 JPA requirements.
 - The `persistence-unit` defines the necessary JPA configurations for resource-local transactions.
 
 ---
 
 ## 3. Creating and Using JPA Repositories
 
-### Reworked Example
+### Example
+
 ```java
 @Entity
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long movieId;
-    private String movieTitle;
-    private Date movieReleaseDate;
-    private int movieDuration;
-    private String movieGenre;
-    private String movieRating;
+    private Long id;
+    private String title;
+    private LocalDate releaseDate;
+    private int duration;
+    private String genre;
+    private Rating rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MovieStudioId")
     private Studio studio;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Movie_Actor",
         joinColumns = @JoinColumn(name = "MovieId"),
@@ -94,7 +103,9 @@ public class Movie {
     )
     private List<Actor> actors = new ArrayList<>();
 }
+```
 
+```java
 @Entity
 public class Studio {
     @Id
@@ -107,7 +118,9 @@ public class Studio {
     @OneToMany(mappedBy = "studio", cascade = CascadeType.ALL)
     private List<Movie> movies = new ArrayList<>();
 }
+```
 
+```java
 @Entity
 public class Actor {
     @Id
@@ -120,37 +133,34 @@ public class Actor {
     @ManyToMany(mappedBy = "actors")
     private List<Movie> movies = new ArrayList<>();
 }
-
-@Repository
-public interface MovieRepository extends JpaRepository<Movie, Long> {
-    List<Movie> findByStudioStudioId(Long studioId);
-    List<Movie> findByActorsActorName(String actorName);
-}
 ```
 
 ### Explanation
 - The `Movie` entity has a `@ManyToOne` relationship with `Studio` and a `@ManyToMany` relationship with `Actor`.
-- The `MovieRepository` provides methods to query movies by studio ID or actor name.
+- The `@EntityGraph` ensures relationships are eagerly loaded when needed while keeping default fetch types as `LAZY`.
 
 ---
 
 ## 4. Converting Data with DTOs and Entities
 
-### Reworked Example
+### Example
+
 ```java
 public class MovieDTO {
-    private Long movieId;
-    private String movieTitle;
-    private Date movieReleaseDate;
-    private int movieDuration;
-    private String movieGenre;
-    private String movieRating;
+    private Long id;
+    private String title;
+    private LocalDate releaseDate;
+    private int duration;
+    private String genre;
+    private Rating rating;
     private String studioName;
     private List<String> actorNames;
-
+    
     // Constructors, getters, setters
 }
+```
 
+```java
 @Service
 public class MovieService {
     @Autowired
@@ -158,44 +168,43 @@ public class MovieService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public MovieDTO getMovieById(Long id) {
-        Movie movie = movieRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Movie not found"));
-        MovieDTO dto = modelMapper.map(movie, MovieDTO.class);
-        dto.setStudioName(movie.getStudio().getStudioName());
-        dto.setActorNames(movie.getActors().stream()
-            .map(Actor::getActorName)
-            .collect(Collectors.toList()));
-        return dto;
+    @Transactional(readOnly = true)
+    public List<MovieDTO> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return movies.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    @Transactional
-    public MovieDTO createMovie(MovieDTO dto) {
-        Movie movie = modelMapper.map(dto, Movie.class);
-        // Assume Studio and Actors are set separately or fetched by name
-        Studio studio = new Studio();
-        studio.setStudioName(dto.getStudioName());
-        movie.setStudio(studio);
-        movie = movieRepository.save(movie);
-        return modelMapper.map(movie, MovieDTO.class);
+    private MovieDTO convertToDTO(Movie movie) {
+        MovieDTO dto = modelMapper.map(movie, MovieDTO.class);
+        dto.setStudioName(movie.getStudio() != null ? movie.getStudio().getStudioName() : "Unknown Studio");
+        dto.setActorNames(movie.getActors() != null
+                ? movie.getActors().stream().map(Actor::getActorName).collect(Collectors.toList())
+                : List.of());
+        return dto;
     }
 }
 ```
 
 ### Explanation
 - The `MovieDTO` flattens the entity relationships (e.g., `Studio` and `Actor`) into simple fields like `studioName` and `actorNames`.
-- The `MovieService` handles conversion between `Movie` entities and `MovieDTO` using `ModelMapper`, with custom logic to populate related fields.
+- The `MovieService` handles conversion between `Movie` entities and `MovieDTO` using `ModelMapper`, ensuring actors and studio are fully initialized.
+- The `@Transactional(readOnly = true)` in `getAllMovies()` keeps the session open while fetching movies, avoiding `LazyInitializationException`.
 
 ---
 
 ## Notes on Integration
 
 ### Entity Relationships
-- `Studio → Movie` as `@OneToMany` and `Movie ↔ Actor` as `@ManyToMany`, consistent with the provided database design.
+- `Studio → Movie` as `@OneToMany`
+- `Movie ↔ Actor` as `@ManyToMany`, consistent with the provided database design.
 
 ### OpenJDK 11 & Jakarta EE 8
 - The examples use JPA 2.2 annotations (part of Jakarta EE 8) and are compatible with OpenJDK 11’s runtime.
 
 ### DTO Simplification
 - The `MovieDTO` avoids exposing full `Studio` or `Actor` objects, aligning with your database structure.
+
+### Performance Optimizations
+- `@EntityGraph(attributePaths = {"actors", "studio"})` ensures relationships are loaded efficiently.
+- `@Transactional(readOnly = true)` prevents `LazyInitializationException` while keeping transactions read-only for better performance.
 
