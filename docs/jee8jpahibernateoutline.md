@@ -7,6 +7,4 @@
 4. [Eliminating Boilerplate JDBC code with Spring Data JPA](jee8boilerjdbc.md) 
 
 5. [Data search with Spring Data JPA and Hibernate](jee8datasearch.md)
-
-6. [Custom Data Types and Advanced Mappings](jee8customedata.md)
  
