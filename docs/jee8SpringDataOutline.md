@@ -1,3 +1,4 @@
+### Eliminating Boilerplate JDBC code with Spring Data JPA
 ### ✅ **1. Updated Maven Dependencies**
 
 Replace your current dependencies with the following:
@@ -54,10 +55,10 @@ Replace your current dependencies with the following:
 ---
 
 ### ✅ **2. Configuring and Creating Spring Data Repositories**
-[View File](jee8jpaspringdata.md)
+[View File](jee8jpaspringconfcrt.md)
 
 ### ✅ **3. Spring Data's Unified Data Access**
-[View File](jee8boilerjdbc.md)
+[View File](jee8udac.md)
 
 ### ✅ **4. Refactoring our Charity Registration Application**
 [View File](jee8SpringDataCharity.md)
