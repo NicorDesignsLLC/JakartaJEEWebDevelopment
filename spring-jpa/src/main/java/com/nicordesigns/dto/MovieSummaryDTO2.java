@@ -1,15 +1,20 @@
 package com.nicordesigns.dto;
 
+import java.time.LocalDate; // Assuming releaseDate is a date type in your Movie entity
+
 public class MovieSummaryDTO2 {
     private String title;
     private String studioName;
+    private LocalDate releaseDate; // Added field
 
-    public MovieSummaryDTO2(String title, String studioName) {
+    // Updated constructor to include releaseDate
+    public MovieSummaryDTO2(String title, String studioName, LocalDate releaseDate) {
         this.title = title;
         this.studioName = studioName;
+        this.releaseDate = releaseDate;
     }
 
-    // Getters (required for projection or printing)
+    // Getters
     public String getTitle() {
         return title;
     }
@@ -18,12 +23,17 @@ public class MovieSummaryDTO2 {
         return studioName;
     }
 
-    // Optional: toString() for logging/debugging
+    public LocalDate getReleaseDate() { // New getter
+        return releaseDate;
+    }
+
+    // Updated toString() to include releaseDate
     @Override
     public String toString() {
-        return "MovieSummaryDTO{" +
+        return "MovieSummaryDTO2{" +
                 "title='" + title + '\'' +
                 ", studioName='" + studioName + '\'' +
+                ", releaseDate=" + releaseDate +
                 '}';
     }
 }
