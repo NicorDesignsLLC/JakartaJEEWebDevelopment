@@ -60,6 +60,3 @@ Replace your current dependencies with the following:
 ### ✅ **3. Spring Data's Unified Data Access**
 [View File](jee8udac.md)
 
-### ✅ **4. Refactoring our Charity Registration Application**
-[View File](jee8SpringDataCharity.md)
-
