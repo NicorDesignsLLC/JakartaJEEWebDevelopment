@@ -2,7 +2,6 @@
 
 This section demonstrates how to eliminate DAO boilerplate using **Spring Data JPA**'s `CrudRepository`. You’ll see how to configure persistence, define real repositories, and use them in services — all with your **Movie, Actor, Studio** domain model.
 
----
 
 ### 🔧 1. Spring JPA Configuration (Jakarta EE 8 Compatible)
 
@@ -38,11 +37,11 @@ public class JpaConfig {
 
 ### 📁 2. Define Real `CrudRepository` Interfaces
 
-#### 🎬 MovieRepository
+#### 🎬 MovieRepository2
 
 ```java
 @Repository
-public interface MovieRepository extends CrudRepository<Movie, Long> {
+public interface MovieRepository2 extends CrudRepository<Movie, Long> {
 
     List<Movie> findByTitleContainingIgnoreCase(String titleFragment);
 
@@ -74,28 +73,28 @@ public interface StudioRepository extends CrudRepository<Studio, Long> {
 
 ### 🧪 3. Using the Repositories in Service Classes
 
-#### 🎬 MovieService
+#### 🎬 MovieService2
 
 ```java
 @Service
-public class MovieService {
+public class MovieService2 {
 
     @Autowired
-    private MovieRepository movieRepository;
+    private MovieRepository2 movieRepository2;
 
     @Transactional
     public Movie saveMovie(Movie movie) {
-        return movieRepository.save(movie);
+        return movieRepository2.save(movie);
     }
 
     @Transactional(readOnly = true)
     public List<Movie> getAllMoviesWithDetails() {
-        return movieRepository.findAllWithActorsAndStudio();
+        return movieRepository2.findAllWithActorsAndStudio();
     }
 
     @Transactional(readOnly = true)
     public List<Movie> searchByTitle(String keyword) {
-        return movieRepository.findByTitleContainingIgnoreCase(keyword);
+        return movieRepository2.findByTitleContainingIgnoreCase(keyword);
     }
 }
 ```

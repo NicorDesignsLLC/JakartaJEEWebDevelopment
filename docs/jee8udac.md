@@ -16,38 +16,34 @@ This section builds on your existing `CrudRepository` and `JpaRepository` interf
 
 Spring Data allows you to pass a `Sort` parameter directly into query methods:
 
-```java
-public interface MovieRepository extends CrudRepository<Movie, Long> {
-
-    List<Movie> findByGenre(String genre, Sort sort);
-}
-```
-
-#### Example Usage
-
-```java
-Sort sort = Sort.by(Sort.Direction.DESC, "releaseDate");
-List<Movie> movies = movieRepository.findByGenre("Sci-Fi", sort);
-```
+	```java
+	public interface MovieRepository2 extends PagingAndSortingRepository<Movie, Long> {
+	
+	    List<Movie> findByGenre(String genre, Sort sort);
+	}
+	
+	Sort sort = Sort.by(Sort.Direction.DESC, "releaseDate");
+	List<Movie> movies = movieRepository2.findByGenre("Sci-Fi", sort);```
 
 ---
 
-### 📌 **2. Pagination Support**
+#### 📌 **2. Pagination Support**
 
 You can use `PagingAndSortingRepository` or extend `JpaRepository` to get pagination:
 
 ```java
-public interface MovieRepository extends PagingAndSortingRepository<Movie, Long> {
+public interface MovieRepository2 extends PagingAndSortingRepository<Movie, Long> {
 
     Page<Movie> findByGenre(String genre, Pageable pageable);
 }
+
 ```
 
 #### Example Usage
 
 ```java
 Pageable pageable = PageRequest.of(0, 5, Sort.by("releaseDate").descending());
-Page<Movie> page = movieRepository.findByGenre("Action", pageable);
+Page<Movie> page = movieRepository2.findByGenre("Action", pageable);
 List<Movie> movies = page.getContent();
 ```
 
@@ -62,24 +58,27 @@ You can fetch flattened data using **DTO projections**, either via JPQL or Sprin
 #### DTO Class
 
 ```java
-public class MovieSummaryDTO {
+package com.nicordesigns.dto;
+
+public class MovieSummaryDTO2 {
     private String title;
     private String studioName;
 
-    public MovieSummaryDTO(String title, String studioName) {
+    public MovieSummaryDTO2(String title, String studioName) {
         this.title = title;
         this.studioName = studioName;
     }
 
-    // Getters
+    public String getTitle() { return title; }
+    public String getStudioName() { return studioName; }
 }
 ```
 
 #### JPQL-based Projection
 
 ```java
-@Query("SELECT new com.nicordesigns.dto.MovieSummaryDTO(m.title, m.studio.studioName) FROM Movie m")
-List<MovieSummaryDTO> fetchMovieSummaries();
+@Query("SELECT new com.nicordesigns.dto.MovieSummaryDTO2(m.title, m.studio.studioName) FROM Movie m")
+List<MovieSummaryDTO2> fetchMovieSummaries();
 ```
 
 ---
@@ -89,11 +88,9 @@ List<MovieSummaryDTO> fetchMovieSummaries();
 You’re not limited to derived method names. You can write expressive JPQL or even native SQL if needed:
 
 ```java
-@Query("SELECT m FROM Movie m WHERE YEAR(m.releaseDate) = ?1")
-List<Movie> findByReleaseYear(int year);
+@Query("SELECT new com.nicordesigns.dto.MovieSummaryDTO2(m.title, m.studio.studioName) FROM Movie m")
+List<MovieSummaryDTO2> fetchMovieSummaries();
 
-@Query(value = "SELECT * FROM movie WHERE duration > ?1", nativeQuery = true)
-List<Movie> findMoviesLongerThan(int minutes);
 ```
 
 ---
@@ -104,7 +101,7 @@ For dynamic filter criteria, QBE can be powerful:
 
 ```java
 Example<Movie> example = Example.of(new Movie(null, "Avatar", null, 0, null, null, null, null));
-List<Movie> results = movieRepository.findAll(example);
+List<Movie> results = movieRepository2.findAll(example);
 ```
 
 ---
