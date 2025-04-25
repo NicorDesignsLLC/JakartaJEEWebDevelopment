@@ -4,3 +4,5 @@ SELECT user FROM mysql.user;
 GRANT ALL PRIVILEGES ON charityDB.* TO jee8webapp@localhost;
 FLUSH PRIVILEGES;
 SHOW GRANTS FOR jee8webapp@localhost;
+
+SELECT user, host FROM mysql.user;
