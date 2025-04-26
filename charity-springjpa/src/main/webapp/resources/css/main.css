@@ -1,0 +1,114 @@
+/* General page styles */
+.test-style {
+    border: 2px solid red; /* Distinctive border for testing */
+}
+
+html, body {
+    height: 100%;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f0f0f0; /* Light gray background to easily see if the stylesheet is applied */
+}
+
+/* Link styles */
+a, a:active, a:hover, a:visited {
+    color: #070;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Heading styles */
+h1, h2, h3 {
+    text-rendering: optimizeLegibility;
+    line-height: 1.3;
+    margin: 0 0 10px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+/* Table layout styles */
+#bodyTable {
+    border: 0;
+    padding: 0;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#bodyTable .sidebarCell {
+    vertical-align: top;
+    padding: 10px;
+    width: 200px;
+    border-right: 1px dashed #070;
+}
+
+#bodyTable .contentCell {
+    vertical-align: top;
+    padding: 10px;
+}
+
+/* Error message styles */
+.errors, .help-inline.text-error, .alert.alert-error {
+    color: #CC0000;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+button, input[type="submit"], input[type="reset"], input[type="button"] {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Form styles */
+form {
+    margin: 0;
+    padding: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input[type="text"], form input[type="password"], form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+

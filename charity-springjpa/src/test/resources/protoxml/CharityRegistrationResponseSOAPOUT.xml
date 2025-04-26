@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://www.nicordesigns.com/site">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:RegisterResponse>
+         <tns:registrationId>12345</tns:registrationId>
+         <tns:statusCode>200</tns:statusCode>
+         <tns:statusMessage>Registration successful</tns:statusMessage>
+      </tns:RegisterResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
