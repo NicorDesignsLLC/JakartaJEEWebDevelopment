@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,17 +41,18 @@ public class RegistrationController {
 		model.put("registrations", this.registrationService.getAllRegistrations());
 		return "registration/list";
 	}
-
+	
+	
 	@GetMapping(value = "view/{registrationId}")
-	public ModelAndView view(Map<String, Object> model, @PathVariable("registrationId") long registrationId) {
-		Registration registration = this.registrationService.getRegistration(registrationId);
-		if (registration == null)
-			return this.getListRedirectModelAndView();
-		model.put("registrationId", Long.toString(registrationId));
-		model.put("registration", registration);
-		return new ModelAndView("registration/view");
-	}
-
+    public ModelAndView view(Map<String, Object> model, @PathVariable("registrationId") long registrationId) {
+        Registration registration = this.registrationService.getRegistration(registrationId);
+        if (registration == null)
+            return this.getListRedirectModelAndView();
+        model.put("registrationId", Long.toString(registrationId));
+        model.put("registration", registration);
+        return new ModelAndView("registration/view");
+    }
+	
 	@GetMapping(value = "/{registrationId}/attachment/{attachment:.+}")
 	public View download(@PathVariable("registrationId") long registrationId, @PathVariable("attachment") String name) {
 		Registration registration = this.registrationService.getRegistration(registrationId);

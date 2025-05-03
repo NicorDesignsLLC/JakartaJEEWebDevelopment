@@ -59,12 +59,12 @@ public class RootContextConfiguration implements AsyncConfigurer, SchedulingConf
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
-        emf.setPackagesToScan("com.nicordesigns"); // Scan for JPA entities
+        emf.setPackagesToScan("com.nicordesigns"); // Updated from "com.nicordesigns"
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "validate"); // Validate schema against entities
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "validate");
         jpaProperties.setProperty("hibernate.show_sql", "true");
         jpaProperties.setProperty("hibernate.format_sql", "true");
         emf.setJpaProperties(jpaProperties);

@@ -203,7 +203,58 @@ FROM charitydb.CHARITY c
 JOIN charitydb.CHARITY_PROGRAM cp ON c.CHARITY_ID = cp.CHARITY_ID
 JOIN charitydb.PROGRAM p ON cp.PROGRAM_ID = p.PROGRAM_ID;
 
-  
+
+-- Ensure the database is selected
+USE charitydb;
+
+-- 📁 Drop and create the REGISTRATION table (unchanged from previous)
+DROP TABLE IF EXISTS charitydb.REGISTRATION;
+
+CREATE TABLE charitydb.REGISTRATION (
+    REGISTRATION_ID BIGINT NOT NULL AUTO_INCREMENT,
+    USER_NAME VARCHAR(50) NOT NULL,
+    SUBJECT VARCHAR(255) NOT NULL,
+    BODY VARCHAR(255) NOT NULL,
+    CREATED_DATE DATETIME NOT NULL,
+    PRIMARY KEY (REGISTRATION_ID)
+) ENGINE = InnoDB;
+
+-- 📁 Drop and create the FILE_ATTACHMENT table
+DROP TABLE IF EXISTS charitydb.FILE_ATTACHMENT;
+
+CREATE TABLE charitydb.FILE_ATTACHMENT (
+    ATTACHMENT_ID BIGINT NOT NULL AUTO_INCREMENT,
+    REGISTRATION_ID BIGINT NOT NULL,
+    ATTACHMENT_NAME VARCHAR(255) NOT NULL,
+    MIME_CONTENT_TYPE VARCHAR(100) NOT NULL,
+    CONTENTS LONGBLOB NOT NULL,
+    PRIMARY KEY (ATTACHMENT_ID),
+    FOREIGN KEY (REGISTRATION_ID) REFERENCES charitydb.REGISTRATION(REGISTRATION_ID)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+-- 📜 Grant privileges to the jee8webapp user
+GRANT ALL PRIVILEGES ON charitydb.REGISTRATION TO 'jee8webapp'@'localhost';
+GRANT ALL PRIVILEGES ON charitydb.FILE_ATTACHMENT TO 'jee8webapp'@'localhost';
+FLUSH PRIVILEGES;
+
+-- 🔢 Seed sample registration data
+INSERT INTO charitydb.REGISTRATION (USER_NAME, SUBJECT, BODY, CREATED_DATE) VALUES
+    ('Nicolaas', 'Event Registration', 'Registered for Bright Futures Foundation event', '2025-04-28 10:00:00'),
+    ('Danette', 'Volunteer Application', 'Volunteer registration for Green Paws Alliance', '2025-04-28 12:00:00'),
+    ('Tom', 'Sponsor Registration', 'Sponsor registration for Hope Haven Orphanage', '2025-04-28 14:00:00');
+
+-- 🔢 Seed sample file attachment data (use UNHEX for BLOB content in MariaDB)
+INSERT INTO charitydb.FILE_ATTACHMENT (REGISTRATION_ID, ATTACHMENT_NAME, MIME_CONTENT_TYPE, CONTENTS) VALUES
+    (1, 'event_details.pdf', 'application/pdf', UNHEX('255044462D312E340A25E2E3CFD30A')), -- Sample PDF header
+    (1, 'photo.jpg', 'image/jpeg', UNHEX('FFD8FFE000104A464946')), -- Sample JPEG header
+    (2, 'volunteer_form.doc', 'application/msword', UNHEX('D0CF11E0A1B11AE1')), -- Sample DOC header
+    (3, 'sponsor_agreement.pdf', 'application/pdf', UNHEX('255044462D312E340A25E2E3CFD30A')); -- Sample PDF header
+    
+    
+-- Verify the data
+SELECT REGISTRATION_ID, USER_NAME, SUBJECT, BODY, CREATED_DATE FROM charitydb.REGISTRATION;
+SELECT ATTACHMENT_ID, REGISTRATION_ID, ATTACHMENT_NAME, MIME_CONTENT_TYPE, LENGTH(CONTENTS) AS CONTENT_LENGTH FROM charitydb.FILE_ATTACHMENT;  
   
   
   

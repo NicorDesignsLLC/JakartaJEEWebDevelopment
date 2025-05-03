@@ -34,7 +34,7 @@
 		<javax.persistence.version>2.2</javax.persistence.version>
 		<hikaricp.version>5.0.1</hikaricp.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- New Dependencies for Spring Data JPA and MariaDB -->
 		<dependency>
@@ -53,9 +53,20 @@
 			<version>${javax.persistence.version}</version>
 		</dependency>
 		<dependency>
-			    <groupId>org.mariadb.jdbc</groupId>
-			    <artifactId>mariadb-java-client</artifactId>
-			    <version>${mariadb.version}</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>${mariadb.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-impl</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
 		</dependency>
 		<!-- Optional: Connection pool for better performance -->
 		<!--
