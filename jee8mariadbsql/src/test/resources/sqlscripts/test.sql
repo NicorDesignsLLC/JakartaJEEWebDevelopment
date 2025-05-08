@@ -136,8 +136,19 @@ SELECT * FROM charitydb.CHARITY_CATEGORY;
 INSERT INTO charitydb.CHARITY 
   (CHARITY_TAX_ID, CHARITY_NAME, CHARITY_MISSION, CHARITY_WEB_ADDRESS, CHARITY_FACEBOOK_ADDRESS, CHARITY_TWITTER_ADDRESS)
 VALUES
-  ('TAX123456', 'Bright Futures Foundation', 'Empowering youth through education and preschool programs.', 'https://brightfutures.org', 'https://facebook.com/brightfutures', '@brightfutures'),
-  ('TAX654321', 'Green Paws Alliance', 'Protecting animals and promoting sustainable environments.', 'https://greenpaws.org', 'https://facebook.com/greenpaws', '@greenpaws');
+  ('TAX_TUINSIG_001', 
+   'Tuinsig Gardenview Centre for the Aged', 
+   'Providing Christian-based residential care and support services to the elderly in Durban, South Africa.', 
+   'https://rsa.worldorgs.com/catalog/durban/retirement-home/garden-view-tuinsig-retirement-centre', 
+   'https://www.facebook.com/tuinsig/', 
+   '@tuinsig_eldercare'),
+
+  ('TAX_OBED_001', 
+   'Obed Ministries', 
+   'Faith-driven outreach providing shelter, nourishment, and Gospel ministry to the homeless and vulnerable in Cape Town, South Africa.', 
+   'https://obed.co.za/Home/', 
+   'https://www.facebook.com/matthee.danie', 
+   '@obed_ministries');
 
 -- Accociate Charities with Categories
  
@@ -176,8 +187,14 @@ INSERT INTO charitydb.CHARITY_PROGRAM (CHARITY_ID, PROGRAM_ID) VALUES
 INSERT INTO charitydb.CHARITY 
   (CHARITY_TAX_ID, CHARITY_NAME, CHARITY_MISSION, CHARITY_WEB_ADDRESS, CHARITY_FACEBOOK_ADDRESS, CHARITY_TWITTER_ADDRESS)
 VALUES
-  ('TAX777777', 'Hope Haven Orphanage', 'Christian-based care and shelter for orphaned and vulnerable children.', 'https://hopehaven.org', 'https://facebook.com/hopehaven', '@hopehaven');
-
+  ('TAX_MALVERN_001', 
+   'Malvern Child and Youth Care Centre', 
+   'Christian-based residential care for vulnerable, orphaned, and abandoned children in Durban, South Africa.', 
+   'https://mchome.co.za/', 
+   'https://www.facebook.com/MalvernChildandYouthCareCentre/', 
+   '@malvern_home');
+   
+   
 INSERT INTO charitydb.CHARITY_CATEGORY (CHARITY_ID, CATEGORY_ID) VALUES
   (3, 9),  -- RELIGION
   (3, 7),  -- HUMAN SERVICES

@@ -6,5 +6,5 @@
 
 4. [Eliminating Boilerplate JDBC code with Spring Data JPA](jee8SpringDataOutline.md) 
 
-5. [Data search with Spring Data JPA and Hibernate](jee8datasearch.md)
+5. [Refactoring Charity Registration MVC Application to use JPA ](jee8SpringDataCharity.md)
  
