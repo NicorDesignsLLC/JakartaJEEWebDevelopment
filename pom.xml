@@ -27,6 +27,7 @@
 		<module>jee8mariadbsql</module>
 		<module>charity-registration</module>
 		<module>charity-springmvc</module>
+		<module>charity-springjpa</module>
 		<module>my-spring-mvc</module>
 		<module>my-spring-bootstrap</module>
 		<module>spring-bean-profiles</module>
@@ -35,10 +36,17 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
+		    <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.10.1</version>
+			    <configuration>
+			        <source>11</source>
+			        <target>11</target>
+			        <compilerArgs>
+			            <arg>-Xlint:deprecation</arg>
+			        </compilerArgs>
+			    </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
