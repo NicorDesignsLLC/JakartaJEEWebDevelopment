@@ -2,6 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/charity-custom-tags/charity-custom-tags.iml" filepath="$PROJECT_DIR$/charity-custom-tags/charity-custom-tags.iml" />
+      <module fileurl="file://$PROJECT_DIR$/charity-registration/charity-registration.iml" filepath="$PROJECT_DIR$/charity-registration/charity-registration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/charity-springjpa/charity-springjpa.iml" filepath="$PROJECT_DIR$/charity-springjpa/charity-springjpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/charity-springmvc/charity-springmvc.iml" filepath="$PROJECT_DIR$/charity-springmvc/charity-springmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jee8mariadbsql/jee8mariadbsql.iml" filepath="$PROJECT_DIR$/jee8mariadbsql/jee8mariadbsql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jee8webapp/jee8webapp.iml" filepath="$PROJECT_DIR$/jee8webapp/jee8webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-spring-bootstrap/my-spring-bootstrap.iml" filepath="$PROJECT_DIR$/my-spring-bootstrap/my-spring-bootstrap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-spring-mvc/my-spring-mvc.iml" filepath="$PROJECT_DIR$/my-spring-mvc/my-spring-mvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-bean-profiles/spring-bean-profiles.iml" filepath="$PROJECT_DIR$/spring-bean-profiles/spring-bean-profiles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa/spring-jpa.iml" filepath="$PROJECT_DIR$/spring-jpa/spring-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-ws-charityregistration/spring-ws-charityregistration.iml" filepath="$PROJECT_DIR$/spring-ws-charityregistration/spring-ws-charityregistration.iml" />
       <module fileurl="file://$PROJECT_DIR$/sub-module/sub-module.iml" filepath="$PROJECT_DIR$/sub-module/sub-module.iml" />
     </modules>
   </component>
