@@ -18,4 +18,16 @@
       <src_folder value="file://$MODULE_DIR$/target/generated/src/main/java" expected_position="6" />
     </src_description>
   </component>
+  <component name="FacetManager">
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
 </module>
