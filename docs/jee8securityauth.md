@@ -280,9 +280,13 @@ http.csrf().disable();
 ## 🛠️ Hands-On Exercise
 
 ✅ Set up a Spring MVC project with Spring Security using the dependencies above.
+
 ✅ Configure form-based login with an in-memory user.
+
 ✅ Extend the configuration to use JDBC authentication with a sample `users` table.
+
 ✅ Enable "Remember Me" and test session persistence across browser restarts.
+
 ✅ Implement a custom `AuthenticationProvider` to validate credentials against a mock external API.
 
 ---
