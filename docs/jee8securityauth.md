@@ -7,9 +7,13 @@
 By the end of this lesson, you will be able to:
 
 ✅ Understand your current custom authentication flow
+
 ✅ Identify how user login, logout, and session management are handled
+
 ✅ Recognize the role of `AuthenticationFilter` and `UserAdminPrincipal`
+
 ✅ Appreciate the importance of login form validation
+
 ✅ Prepare for modernizing authentication with Spring Security
 
 ---
