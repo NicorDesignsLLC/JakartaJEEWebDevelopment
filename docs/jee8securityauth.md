@@ -26,7 +26,7 @@ Our current application uses **custom authentication logic** to protect resource
 
 ### 📦 1.1 Bootstrap Configuration
 
-`com.nicordesigns.site.config.Bootstrap` configures Our **servlet contexts and filters**, including:
+`com.nicordesigns.site.config.Bootstrap` configures our **servlet contexts and filters**, including:
 
 * **Authentication Filter**:
   Ensures protected URLs (like `/registration`, `/chat`, `/session`) are accessible only by authenticated users.
@@ -225,7 +225,7 @@ public ModelAndView login(@ModelAttribute("loginForm") @Valid LoginForm form,
 
 ## 🚀 Next Steps
 
-Now that we have fully documented Our **existing login and authentication approach**, we’re ready to:
+Now that we have fully documented our **existing login and authentication approach**, we’re ready to:
 
 ✅ Identify **gaps** in security (e.g., CSRF protection, concurrent sessions)
 
