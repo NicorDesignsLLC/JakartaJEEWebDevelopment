@@ -6,7 +6,7 @@
 
 By the end of this lesson, you will be able to:
 
-✅ Understand your current custom authentication flow
+✅ Understand Our current custom authentication flow
 
 ✅ Identify how user login, logout, and session management are handled
 
@@ -20,13 +20,13 @@ By the end of this lesson, you will be able to:
 
 ## 1️⃣ Current Authentication Architecture
 
-Your current application uses **custom authentication logic** to protect resources and manage user sessions. Let’s break it down.
+Our current application uses **custom authentication logic** to protect resources and manage user sessions. Let’s break it down.
 
 ---
 
 ### 📦 1.1 Bootstrap Configuration
 
-`com.nicordesigns.site.config.Bootstrap` configures your **servlet contexts and filters**, including:
+`com.nicordesigns.site.config.Bootstrap` configures Our **servlet contexts and filters**, including:
 
 * **Authentication Filter**:
   Ensures protected URLs (like `/registration`, `/chat`, `/session`) are accessible only by authenticated users.
@@ -49,7 +49,9 @@ authenticationFilter.addMappingForUrlPatterns(null, false,
 `com.nicordesigns.site.filters.AuthenticationFilter` is a **servlet filter** that:
 
 ✅ Checks if the session contains a valid `Principal`
+
 ✅ Redirects unauthenticated users to the login page (`/login`)
+
 ✅ Wraps the request to expose the authenticated principal
 
 ✅ **Code Snippet:**
@@ -80,8 +82,11 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 `com.nicordesigns.site.UserAdminPrincipal` manages the **user identity**:
 
 ✅ Implements `Principal`
+
 ✅ Stores username
+
 ✅ Provides static helpers to store/retrieve from `HttpSession`
+
 
 ✅ **Code Snippet:**
 
@@ -99,10 +104,12 @@ public static void setPrincipal(HttpSession session, Principal principal) {
 
 ### 🔑 1.4 Login Form (JSP)
 
-Your `login.jsp` uses **Spring tags** for:
+Our `login.jsp` uses **Spring tags** for:
 
 ✅ Username and password input
+
 ✅ Field-level and general error messages
+
 ✅ Validation error display
 
 ✅ **Example Snippet:**
@@ -128,9 +135,13 @@ Your `login.jsp` uses **Spring tags** for:
 The `AuthenticationController` (`com.nicordesigns.site.AuthenticationController`) manages:
 
 ✅ **Login**
+
 ✅ **Logout**
+
 ✅ **Login form validation**
+
 ✅ **Session creation & management**
+
 
 ✅ **Key Features:**
 
@@ -214,7 +225,7 @@ public ModelAndView login(@ModelAttribute("loginForm") @Valid LoginForm form,
 
 ## 🚀 Next Steps
 
-Now that we have fully documented your **existing login and authentication approach**, we’re ready to:
+Now that we have fully documented Our **existing login and authentication approach**, we’re ready to:
 
 ✅ Identify **gaps** in security (e.g., CSRF protection, concurrent sessions)
 
