@@ -6,13 +6,13 @@
 
 By the end of this section, you will be able to:
 
-✅ Identify **security gaps** in your existing authentication approach
+✅ Identify **security gaps** in our existing authentication approach
 
 ✅ Gradually integrate **Spring Security** with `SecurityFilterChain` and JDBC-based authentication
 
 ✅ **Migrate** the custom login flow (`AuthenticationController`) to Spring Security’s form login
 
-✅ Use your existing `USER_ADMIN` table as the data source
+✅ Use our existing `USER_ADMIN` table as the data source
 
 ✅ Understand the code updates and test them incrementally
 
@@ -20,7 +20,7 @@ By the end of this section, you will be able to:
 
 ## 1️⃣ Current Security Gaps
 
-Before diving in, here are some potential gaps in your custom approach:
+Before diving in, here are some potential gaps in our custom approach:
 
 ❌ **CSRF Protection**: No CSRF tokens in forms—Spring Security can automatically handle this.
 
@@ -126,8 +126,8 @@ public class SecurityConfig {
 
 **Test**:
 
-* Visit `/login`—Spring Security will **reuse your existing `login.jsp`** (since it’s mapped to `/login`).
-* Use credentials from your `USER_ADMIN` table:
+* Visit `/login`—Spring Security will **reuse our existing `login.jsp`** (since it’s mapped to `/login`).
+* Use credentials from our `USER_ADMIN` table:
 
   * `Nicolaas / Black`
   * `Danette / White`
@@ -137,7 +137,7 @@ public class SecurityConfig {
 
 ---
 
-## 4️⃣ Step 3: Update Your `USER_ADMIN` Table with BCrypt Passwords
+## 4️⃣ Step 3: Update our `USER_ADMIN` Table with BCrypt Passwords
 
 Currently, passwords in `USER_ADMIN` are stored in plaintext. Let’s **update them to BCrypt**:
 
