@@ -24,7 +24,10 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<jackson.version>2.17.2</jackson.version>
 		<log4j.version>2.24.0</log4j.version>
+		
 		<spring.framework.version>5.3.39</spring.framework.version>
+		
+		
 		<cxf.xjc.plugin.version>3.3.2</cxf.xjc.plugin.version>
 		<cxf.version>3.6.5</cxf.version>
 		<!-- New properties for JPA and MariaDB -->
@@ -137,6 +140,7 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
@@ -147,6 +151,12 @@
 		    <artifactId>spring-security-config</artifactId>
 		      <version>5.7.10</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-crypto</artifactId>
+		    <version>5.7.10</version>
+		</dependency>
+
 
 		<!-- Jakarta JEE8 and Spring Framework Dependencies -->
 		<dependency>
