@@ -25,6 +25,14 @@ CREATE TABLE charitydb.USER_ADMIN (
   PRIMARY KEY (USER_ID)
 ) ENGINE = InnoDB;
 
+-- 🔢 Seed encrypted user passwords
+
+UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$ufPuhYZQx6e4CQMHRUwqV.SdcihhzwQBkiVeFKx.aB2Ivplu6qjZW' WHERE USERNAME = 'Nicolaas';
+
+--UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$...' WHERE USERNAME = 'Danette';
+--UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$...' WHERE USERNAME = 'Tom';
+
+
 -- 🔢 Seed user data
 INSERT INTO charitydb.USER_ADMIN (USERNAME, PASSWORD) VALUES
   ('Nicolaas', 'Black'),

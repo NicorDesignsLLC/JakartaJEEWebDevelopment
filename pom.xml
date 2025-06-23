@@ -21,17 +21,21 @@
 	</properties>
 
 	<modules>
+	    <!-- 
 		<module>charity-custom-tags</module>
 		<module>sub-module</module>
 		<module>jee8webapp</module>
 		<module>jee8mariadbsql</module>
 		<module>charity-registration</module>
 		<module>charity-springmvc</module>
+		--> 
 		<module>charity-springjpa</module>
+		<!-- 
 		<module>my-spring-mvc</module>
 		<module>my-spring-bootstrap</module>
 		<module>spring-bean-profiles</module>
 		<module>spring-jpa</module>
+		-->
 	</modules>
 
 	<build>

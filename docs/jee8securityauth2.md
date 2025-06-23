@@ -76,6 +76,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean

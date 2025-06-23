@@ -12,7 +12,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
-import com.nicordesigns.site.filters.AuthenticationFilter;
 import com.nicordesigns.site.filters.LoggingFilter;
 import com.nicordesigns.site.SessionListener;
 
@@ -24,7 +23,9 @@ public class Bootstrap implements WebApplicationInitializer {
 
         // Root context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(RootContextConfiguration.class);
+        rootContext.register(RootContextConfiguration.class, SecurityConfig.class);
+        //rootContext.register(RootContextConfiguration.class);
+        //rootContext.register(SecurityConfig.class);
         container.addListener(new ContextLoaderListener(rootContext));
         container.addListener(SessionListener.class);
 
@@ -61,9 +62,6 @@ public class Bootstrap implements WebApplicationInitializer {
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
         loggingFilter.addMappingForUrlPatterns(null, false, "/*");
 
-        // Authentication filter
-        FilterRegistration.Dynamic authenticationFilter = container.addFilter("authenticationFilter", new AuthenticationFilter());
-        authenticationFilter.addMappingForUrlPatterns(null, false, "/registration", "/registration/*", "/chat", "/chat/*", "/session", "/session/*");
     }
 
 }
