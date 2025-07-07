@@ -18,7 +18,6 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
         <script type="text/javascript">
             var postInvisibleForm = function(url, fields) {
                 var form = $('<form id="mapForm" method="post"></form>')
@@ -36,7 +35,9 @@
                 postInvisibleForm('<c:url value="/chat/new" />', { });
             };
         </script>
+
         <jsp:invoke fragment="headContent" />
+
     </head>
     <body>
         <div class="container test-style">

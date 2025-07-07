@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN">
+<configuration status="DEBUG">
     <!-- Configuration status set to WARN -->
 
     <appenders>
@@ -20,11 +20,11 @@
     </appenders>
     
     <loggers>
-        <root level="warn">
+        <root level="debug">
             <appender-ref ref="Console" />
             <appender-ref ref="nicordesignsFileAppender" />
         </root>
-        <logger name="com.nicordesigns" level="info" />
+        <logger name="com.nicordesigns" level="debug" />
         <logger name="org.apache" level="info" />
         <logger name="org.springframework" level="info" />
     </loggers>

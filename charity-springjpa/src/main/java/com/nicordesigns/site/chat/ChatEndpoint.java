@@ -35,7 +35,7 @@ import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
 import java.util.function.Consumer;
 
-@ServerEndpoint(value = "/chat/{sessionId}",
+@ServerEndpoint(value = "/charityRegistrationChat/{sessionId}",
         encoders = ChatMessageCodec.class,
         decoders = ChatMessageCodec.class,
         configurator = ChatEndpoint.EndpointConfigurator.class)

@@ -1,5 +1,7 @@
 package com.nicordesigns.site.chat;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +25,15 @@ public class ChatController
     }
 
     @RequestMapping(value = "new", method = RequestMethod.POST)
-    public String newChat(Map<String, Object> model, HttpServletResponse response)
-    {
+    public String newChat(Map<String, Object> model, HttpServletResponse response, 
+                         @AuthenticationPrincipal UserDetails user) {
         this.setNoCacheHeaders(response);
-        model.put("chatSessionId", 0);
+        if (user != null) {
+            CreateResult result = chatService.createSession(user.getUsername());
+            model.put("chatSessionId", result.getChatSession().getSessionId());
+        } else {
+            model.put("chatSessionId", 0);
+        }
         return "chat/chat";
     }
 

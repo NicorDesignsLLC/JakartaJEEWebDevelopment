@@ -9,6 +9,7 @@ import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
@@ -61,9 +62,12 @@ public class Bootstrap implements WebApplicationInitializer {
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new LoggingFilter());
         loggingFilter.addMappingForUrlPatterns(null, false, "/*");
 
+        FilterRegistration.Dynamic securityFilter = container.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class);
+        securityFilter.addMappingForUrlPatterns(null, false, "/*");
+        
         // Authentication filter
-        FilterRegistration.Dynamic authenticationFilter = container.addFilter("authenticationFilter", new AuthenticationFilter());
-        authenticationFilter.addMappingForUrlPatterns(null, false, "/registration", "/registration/*", "/chat", "/chat/*", "/session", "/session/*");
+        //FilterRegistration.Dynamic authenticationFilter = container.addFilter("authenticationFilter", new AuthenticationFilter());
+        //authenticationFilter.addMappingForUrlPatterns(null, false, "/registration", "/registration/*", "/chat", "/chat/*", "/session", "/session/*");
     }
 
 }

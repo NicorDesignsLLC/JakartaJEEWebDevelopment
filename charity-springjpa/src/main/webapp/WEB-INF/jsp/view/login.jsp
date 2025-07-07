@@ -24,6 +24,7 @@
 	</c:if>
 
 	<form:form method="post" modelAttribute="loginForm">
+	    
 		<form:label path="username">
 			<spring:message code="field.login.username" />
 		</form:label>
@@ -41,6 +42,7 @@
 		<br />
 		<form:errors path="password" cssClass="errors" />
 		<br />
+		<sec:csrfInput />
 		<spring:message code="field.login.submit" var="submitMessage" />
 		<input type="submit" value="${submitMessage}" />
 	</form:form>

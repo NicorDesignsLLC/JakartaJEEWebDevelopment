@@ -10,6 +10,8 @@
 <%@ taglib prefix="nicordesigns" uri="http://www.nicordesigns.com/jsp/tld/nicordesigns" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags/template" %>
 
+<
+
 <c:set var="registrationDatabase" value="${empty requestScope.charityRegistrationDatabase ? null : requestScope.charityRegistrationDatabase}" />
 
 <!DOCTYPE html>
