@@ -54,6 +54,11 @@ Before diving in, here are some potential gaps in our custom approach:
     <artifactId>spring-security-crypto</artifactId>
     <version>5.8.0</version>
 </dependency>
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>5.7.10</version>
+</dependency>
 ```
 
 ---
