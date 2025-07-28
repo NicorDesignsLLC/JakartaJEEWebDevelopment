@@ -36,7 +36,7 @@ public class SecurityConfig {
             .logoutSuccessUrl("/login?logout")
             .permitAll()
 	        .and()
-	        .csrf().disable()  // ✅ CSRF protection enabled by default
+	        //.csrf().disable()  // ✅ CSRF protection enabled by default
 	        .sessionManagement()
 	            .maximumSessions(1); // ✅ Limit concurrent sessions
 

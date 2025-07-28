@@ -1,217 +1,222 @@
-# Lesson 2: Step-by-Step Integration of Spring Security for Authentication
+# 🧠 Lesson 2: Securing a Legacy Jakarta EE Web App with Spring Security Authorization (Spring 5.3.x)
+
+### 🚨 Builds on: Lesson 1 — Authenticating Users in a Legacy Spring Web Application
 
 ---
 
 ## 🎯 Lesson Objectives
 
-By the end of this section, you will be able to:
+By the end of this lesson, participants will:
 
-✅ Identify **security gaps** in our existing authentication approach
+✅ Replace custom authentication filters with Spring Security’s standard form login
 
-✅ Gradually integrate **Spring Security** with `SecurityFilterChain` and JDBC-based authentication
+✅ Enable URL and method-level authorization using Java config and annotations
 
-✅ **Migrate** the custom login flow (`AuthenticationController`) to Spring Security’s form login
+✅ Apply Spring Security tags to JSP views
 
-✅ Use our existing `USER_ADMIN` table as the data source
+✅ Understand how Spring Security makes authorization decisions
 
-✅ Understand the code updates and test them incrementally
-
----
-
-## 1️⃣ Current Security Gaps
-
-Before diving in, here are some potential gaps in our custom approach:
-
-❌ **CSRF Protection**: No CSRF tokens in forms—Spring Security can automatically handle this.
-
-❌ **Session Fixation**: Although you’re already using `request.changeSessionId()`, Spring Security offers a standard, configurable approach.
-
-❌ **Concurrent Sessions**: Not limited—Spring Security can manage maximum sessions per user.
-
-❌ **Password Storage**: Currently stored in plaintext—Spring Security uses password hashing (e.g., BCrypt) out-of-the-box.
-
-❌ **Role-based Authorization**: Not covered yet—Spring Security supports roles/authorities.
+✅ Configure ACLs for fine-grained access (optional advanced section)
 
 ---
 
-## 2️⃣ Step 1: Add Spring Security Dependencies
+## 🧑‍💻 Assumptions
 
-✅ **Maven `pom.xml` dependencies**:
+The application currently uses:
 
-```xml
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-web</artifactId>
-    <version>5.8.0</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-config</artifactId>
-    <version>5.8.0</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-crypto</artifactId>
-    <version>5.8.0</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-taglibs</artifactId>
-    <version>5.7.10</version>
-</dependency>
-```
+* Custom login via `AuthenticationController`
+* Servlet `AuthenticationFilter`
+* Session-bound `UserAdminPrincipal`
+* JSP-based UI with Spring form tags
+* No CSRF, no concurrent session protection
+
+We will **replace these with Spring Security equivalents**.
 
 ---
 
-## 3️⃣ Step 2: Basic Spring Security Setup
+## 🧭 1. Introduction (15 minutes)
 
-✅ **Create a Spring Security configuration class**:
+### 🧩 Bridge from Lesson 1:
+
+* Recap: Custom filter validates session principal and redirects to `/login`
+* Transition: Migrate to `SecurityFilterChain` with Spring-managed login/logout/session policies
+
+### ✅ Key Shifts:
+
+| Before (Lesson 1)                    | Now (Lesson 2)                        |
+| ------------------------------------ | ------------------------------------- |
+| `AuthenticationFilter`               | `springSecurityFilterChain` bean      |
+| Session-managed `UserAdminPrincipal` | Spring Security Authentication object |
+| Manual login controller              | Spring Security form login flow       |
+
+---
+
+## 🔐 2. Spring Security Authentication Flow (20 minutes)
+
+### 🔧 Configuration: `SecurityConfig.java`
 
 ```java
-package com.nicordesigns.site.config;
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeRequests()
+            .antMatchers("/login", "/resources/**").permitAll()
+            .antMatchers("/registration/**", "/chat/**", "/session/**").authenticated()
+            .anyRequest().authenticated()
+        .and()
+        .formLogin()
+            .loginPage("/login")
+            .defaultSuccessUrl("/registration/list", true)
+            .failureUrl("/login?error")
+        .and()
+        .logout()
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login?logout")
+        .and()
+        .csrf()
+        .and()
+        .sessionManagement().maximumSessions(1);
 
-import javax.sql.DataSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-@Configuration
-public class SecurityConfig {
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/login", "/resources/**").permitAll()
-                .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/registration/list")
-                .failureUrl("/login?error")
-                .permitAll()
-            .and()
-            .logout()
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-            .and()
-            .csrf()  // ✅ CSRF protection enabled by default
-            .and()
-            .sessionManagement()
-                .maximumSessions(1); // ✅ Limit concurrent sessions
-
-        return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.setUsersByUsernameQuery(
-            "SELECT USERNAME, PASSWORD, true as enabled FROM USER_ADMIN WHERE USERNAME = ?");
-        users.setAuthoritiesByUsernameQuery(
-            "SELECT USERNAME, 'ROLE_USER' FROM USER_ADMIN WHERE USERNAME = ?");
-        return users;
-    }
+    return http.build();
 }
 ```
 
----
+### 🧠 Notes:
 
-### ✅ Immediate **Demonstration**
-
-**Test**:
-
-* Visit `/login`—Spring Security will **reuse our existing `login.jsp`** (since it’s mapped to `/login`).
-* Use credentials from our `USER_ADMIN` table:
-
-  * `Nicolaas / Black`
-  * `Danette / White`
-  * `Tom / Green`
-
-✅ You’ll be **redirected** to `/registration/list` on success!
+* No more need for `AuthenticationFilter` servlet class
+* Spring handles session, CSRF, and concurrent logins automatically
+* Principal is accessed via `SecurityContextHolder`
 
 ---
 
-## 4️⃣ Step 3: Update our `USER_ADMIN` Table with BCrypt Passwords
+## 🧱 3. URL-Based Authorization Rules (20 minutes)
 
-Currently, passwords in `USER_ADMIN` are stored in plaintext. Let’s **update them to BCrypt**:
+### Goal:
 
-✅ Use an online tool (e.g., [bcrypt-generator.com](https://bcrypt-generator.com/)) or Java code to hash them:
+Replace hardcoded role checks and servlet filter protection with declarative config.
+
+### Exercise:
+
+Modify `SecurityConfig` to restrict:
 
 ```java
-public static void main(String[] args) {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    System.out.println(encoder.encode("Black")); // example output: $2a$10$...
-}
+http
+    .authorizeRequests()
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/registration/**").hasRole("USER")
+        .anyRequest().authenticated();
 ```
 
-✅ **SQL Update**:
+---
 
-```sql
-UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$...' WHERE USERNAME = 'Nicolaas';
-UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$...' WHERE USERNAME = 'Danette';
-UPDATE charitydb.USER_ADMIN SET PASSWORD = '$2a$10$...' WHERE USERNAME = 'Tom';
+## 🏷 4. Securing Business Logic with Annotations (35 minutes)
+
+### Enable Method Security:
+
+```java
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 ```
 
-✅ **Demonstration**:
-Try logging in again using the **hashed** passwords.
+### Sample Service:
+
+```java
+@PreAuthorize("hasRole('ADMIN')")
+public void deleteRegistration(Long id) { ... }
+
+@PreAuthorize("hasRole('USER') and #userId == authentication.name")
+public void updateProfile(String userId, ...) { ... }
+```
+
+### Exercise:
+
+* Annotate existing service methods from `/registration/list` or `/chat` flow
+* Add authorization checks inside `AuthenticationController` alternatives (refactor where applicable)
 
 ---
 
-## 5️⃣ Step 4: Retire the Custom `AuthenticationController` Logic
+## 🧩 5. JSP View Security with `<sec:authorize>` (20 minutes)
 
-Now that Spring Security’s **form login** and JDBC authentication are working:
+### Taglib Use:
 
-✅ **Comment out** or **remove** the `AuthenticationController` `POST /login` logic—it’s no longer needed!
-✅ Spring Security automatically handles:
+```jsp
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-* Validating credentials against `USER_ADMIN` (via JDBC)
-* Redirecting to the success URL or back to `/login?error`
-* Creating the `Principal` in the `HttpSession`
+<sec:authorize access="hasRole('ADMIN')">
+    <a href="/admin/panel">Admin Panel</a>
+</sec:authorize>
+```
 
-✅ **Your `login.jsp` form** remains unchanged—it’s **automatically** handled by Spring Security.
+### Exercise:
 
----
+* Secure the “Delete” and “Edit” buttons in JSP views
+* Add logout button:
 
-## 6️⃣ Recap and Next Steps
-
-✅ **Gaps filled**:
-
-* CSRF protection (auto by Spring Security)
-* Session fixation protection (`sessionManagement()` & `changeSessionId()`)
-* Concurrent sessions limited to 1
-* Passwords **securely stored** with BCrypt
-
-✅ **Future tasks**:
-
-* Migrate other filters (like `AuthenticationFilter`) to Spring Security’s filter chain
-* Add role-based access control (e.g., `/admin/**` requires `ROLE_ADMIN`)
-* Externalize LDAP/OIDC integration for corporate logins
+```jsp
+<form action="${pageContext.request.contextPath}/logout" method="post">
+  <input type="submit" value="Logout"/>
+</form>
+```
 
 ---
 
-### 🚀 Final Demonstration
+## 🧠 6. Authorization Decision Flow (25 minutes)
 
-🔎 Test the new Spring Security flow:
+### Concepts:
 
-1️⃣ Visit `/login`
+* Spring Security's decision flow: `AccessDecisionManager` → voters
+* Roles: `RoleVoter`, `WebExpressionVoter`
+* Custom voters for contextual decisions (e.g., time of day)
 
-2️⃣ Log in with an updated **hashed** password from `USER_ADMIN`
+### Optional Exercise:
 
-3️⃣ Access `/registration/list`—✅ protected!
+Implement `BusinessHoursVoter` to restrict `/chat` access outside 9–5.
 
-4️⃣ Test `/logout`—✅ redirects back to `/login`
+---
 
-5️⃣ Confirm `session fixation` protection (`changeSessionId()` logs confirm new session)
+## 🗂 7. (Advanced) ACLs and Object-Level Security (Optional – 30 minutes)
 
+### Concepts:
+
+* ACLs: User-specific permissions on entities
+* Useful for per-resource permissions (e.g., only the owner can edit a registration)
+
+### Exercise:
+
+* Add a dummy ACL config using `MutableAclService`
+* Annotate a method with:
+
+```java
+@PreAuthorize("hasPermission(#registration, 'WRITE')")
+```
+
+---
+
+## ✅ 8. Wrap-Up and Q\&A (15 minutes)
+
+### Recap:
+
+| Feature            | Legacy (Lesson 1)      | Spring Security (Lesson 2) |
+| ------------------ | ---------------------- | -------------------------- |
+| Login Filter       | `AuthenticationFilter` | `formLogin()`              |
+| Session Management | Manual                 | Spring-managed             |
+| Logout             | Manual controller      | `.logout()`                |
+| Authorization      | Manual `if` checks     | Annotations, expressions   |
+| View Security      | N/A                    | `<sec:authorize>`          |
+
+---
+
+## 📦 Instructor Notes
+
+* **Base project**: `charity-springjpa` (includes full `SecurityConfig`)
+* **Dependencies**: already defined in provided `pom.xml`
+* **JDBC Auth**: `USER_ADMIN` table, queried via `JdbcUserDetailsManager`
+* **Form Login**: overrides `/login`, redirects to `/registration/list`
+
+---
+
+## 📘 Bonus Reading / Follow-Up
+
+* Spring Security Reference: [https://docs.spring.io/spring-security/reference/](https://docs.spring.io/spring-security/reference/)
+* Jakarta EE 8 Specs: [https://jakarta.ee/specifications/](https://jakarta.ee/specifications/)
+* ACL Module: [https://docs.spring.io/spring-security/site/docs/current/reference/html5/#domain-acls](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#domain-acls)
 
