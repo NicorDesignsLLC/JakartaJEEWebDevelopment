@@ -6,22 +6,22 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DefaultRegistrationService implements RegistrationService {
-    
-	@Inject
+
+    @Inject
     @Qualifier("registrationRepositoryJPA")
-	RegistrationRepositoryJPA registrationRepositoryJPA;
-    
-	
-	@Transactional(readOnly = true)
+    RegistrationRepositoryJPA registrationRepositoryJPA;
+
+    @Transactional(readOnly = true)
     public Registration getRegistration(long registrationId) {
         return registrationRepositoryJPA.findByIdWithAttachments(registrationId).orElse(null);
     }
-	
+
     @Override
     public List<Registration> getAllRegistrations() {
         return this.registrationRepositoryJPA.getAll();
@@ -38,7 +38,13 @@ public class DefaultRegistrationService implements RegistrationService {
     }
 
     @Override
-    public void deleteRegistration(long id) {
-        this.registrationRepositoryJPA.remove(id);
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteRegistration(long registrationId) {
+        if (registrationRepositoryJPA.existsById(registrationId)) {
+            registrationRepositoryJPA.remove(registrationId);
+        } else {
+            throw new IllegalArgumentException("Registration with ID " + registrationId + " not found");
+        }
     }
 }

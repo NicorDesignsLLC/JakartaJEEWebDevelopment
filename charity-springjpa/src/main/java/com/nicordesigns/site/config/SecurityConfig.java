@@ -3,6 +3,7 @@ package com.nicordesigns.site.config;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
 	
 	
@@ -23,6 +25,7 @@ public class SecurityConfig {
 	        .authorizeRequests()
 	            .antMatchers("/login", "/resources/**").permitAll()
 	            .antMatchers("/chat", "/chat/**", "/registration", "/registration/**", "/session", "/session/**").authenticated() // Add this line for chat, registration, and session
+	            .antMatchers("/registration/delete/**").hasRole("ADMIN")
 	            .anyRequest().authenticated()
 	        .and()
 	        .formLogin()
