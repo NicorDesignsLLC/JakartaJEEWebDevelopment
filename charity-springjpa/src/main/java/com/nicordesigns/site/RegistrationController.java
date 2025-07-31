@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.nicordesigns.site.config.annotation.WebController;
@@ -95,9 +96,33 @@ public class RegistrationController {
         return modelAndView;
     }
 
+//    @PostMapping(value = "delete/{registrationId}")
+//    public String deleteRegistration(@PathVariable("registrationId") long registrationId) {
+//        registrationService.deleteRegistration(registrationId);
+//        return "redirect:/registration/list";
+//    }
+    
     @PostMapping(value = "delete/{registrationId}")
-    public String deleteRegistration(@PathVariable("registrationId") long registrationId) {
-        registrationService.deleteRegistration(registrationId);
+    public String deleteRegistration(@PathVariable("registrationId") long registrationId, 
+                                   RedirectAttributes redirectAttributes) {
+        try {
+            registrationService.deleteRegistration(registrationId);
+            redirectAttributes.addFlashAttribute("successMessage", 
+                "Registration #" + registrationId + " has been successfully deleted.");
+            log.info("Registration {} successfully deleted.", registrationId);
+        } catch (IllegalArgumentException e) {
+            log.error("Registration {} not found for deletion: {}", registrationId, e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        } catch (org.springframework.security.access.AccessDeniedException e) {
+            log.warn("Access denied for deleting registration {}: {}", registrationId, e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", 
+                "You do not have permission to delete registrations.");
+        } catch (Exception e) {
+            log.error("Error deleting registration {}: {}", registrationId, e.getMessage(), e);
+            redirectAttributes.addFlashAttribute("errorMessage", 
+                "An error occurred while deleting the registration.");
+        }
+        
         return "redirect:/registration/list";
     }
 
