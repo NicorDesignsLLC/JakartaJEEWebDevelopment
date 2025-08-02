@@ -1,6 +1,4 @@
-Your updated strategy replaces the `deleteTask()` method with `deleteRegistration()` to align with your `charity-springjpa` WAR project, which uses `Registration` entities instead of `Task` entities. Below is the revised lesson plan, updated to reflect this change while preserving the original structure and learning objectives. The updates focus on modifying references to `deleteTask()` to `deleteRegistration()`, adjusting the JSP and security configurations to use `/registration/delete/{registrationId}`, and ensuring consistency with your `RegistrationController`, `DefaultRegistrationService`, and `RegistrationRepositoryJPA`. The core concepts (URL-based security, method-level security, JSP tags, custom voters, and ACLs) remain intact, but the hands-on exercises now use the `Registration` entity.
-
-# 🧠 Finalized Lesson Plan: Authorization with Spring Security (Spring 5.3.x + Jakarta EE 8, Legacy WAR)
+# 🧠 Authorization with Spring Security (Spring 5.3.x + Jakarta EE 8, Legacy WAR)
 
 **Audience**: Intermediate-to-Advanced Java Developers  
 **Duration**: ~3 hours (Lecture + Hands-on)  
@@ -352,8 +350,3 @@ protected MethodSecurityExpressionHandler createExpressionHandler() {
 - **Security Issues**: If non-admin users can delete, check `SecurityFilterChain` and `@EnableGlobalMethodSecurity`.
 - **Database Errors**: Ensure the `registrations` table matches the `Registration` entity and that `hibernate.hbm2ddl.auto=validate` doesn’t fail.
 - **Repository Errors**: Confirm `RegistrationRepositoryJPA` is correctly wired with `@Qualifier("registrationRepositoryJPA")`.
-
-### Next Steps
-- If you need assistance implementing the ACL section or `BusinessHoursVoter`, let me know.
-- If you have the `Registration` entity or other related code, sharing them can ensure full compatibility.
-- Confirm if any additional updates are needed for your project or lesson plan.

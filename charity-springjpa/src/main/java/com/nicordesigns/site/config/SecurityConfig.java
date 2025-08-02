@@ -48,17 +48,24 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-    	//return NoOpPasswordEncoder.getInstance();
-        return new BCryptPasswordEncoder();
+    	return NoOpPasswordEncoder.getInstance();
+        //return new BCryptPasswordEncoder();
     }
 
     @Bean
     public UserDetailsService userDetailsService(DataSource dataSource) {
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+
         users.setUsersByUsernameQuery(
-            "SELECT USERNAME, PASSWORD, true as enabled FROM USER_ADMIN WHERE USERNAME = ?");
+            "SELECT USERNAME, PASSWORD, ENABLED FROM USER_ADMIN WHERE USERNAME = ?"
+        );
+
         users.setAuthoritiesByUsernameQuery(
-            "SELECT USERNAME, 'ROLE_USER' FROM USER_ADMIN WHERE USERNAME = ?");
+            "SELECT USERNAME, AUTHORITY FROM USER_ADMIN_ROLES WHERE USERNAME = ?"
+        );
+
         return users;
     }
+
+
 }
