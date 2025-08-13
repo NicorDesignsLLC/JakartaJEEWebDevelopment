@@ -1,7 +1,7 @@
 # 🧠 Authorization with Spring Security (Spring 5.3.x + Jakarta EE 8, Legacy WAR)
 
 **Audience**: Intermediate-to-Advanced Java Developers  
-**Duration**: ~3 hours (Lecture + Hands-on)  
+**Duration**: ~3 hours (Lecture + Hands-on exercises)  
 **Stack**:
 
 - Spring Framework 5.3.x (no Spring Boot)
@@ -24,18 +24,7 @@ By the end of this session, participants will:
 4. Configure a database-backed `UserDetailsService`.
 5. Implement fine-grained object-level authorization with ACLs.
 
----
-
-## 🔧 Required Materials
-
-- Prebuilt legacy WAR project (`charity-springjpa`)
-- Preconfigured `web.xml`, `applicationContext.xml`, `applicationContext-security.xml`, and `SecurityConfig`
-- MariaDB or H2 + test schema with `USER_ADMIN` and `registrations` tables
-- Slides or cheatsheet (Spring Security annotations, taglibs, ACL concepts)
-
----
-
-## 🧭 1. Introduction (15 minutes)
+## 🧭 1. Introduction
 
 ### Goals:
 
@@ -49,7 +38,7 @@ By the end of this session, participants will:
 
 ---
 
-## 🔐 2. Checking Authorization Rules in Code (30 minutes)
+## 🔐 2. Checking Authorization Rules in Code
 
 ### Topics:
 
@@ -81,7 +70,7 @@ public void deleteRegistration(long registrationId) {
 
 ---
 
-## 🧱 3. Declaring URL and Method Security (40 minutes)
+## 🧱 3. Declaring URL and Method Security
 
 ### Use actual `SecurityConfig`:
 
@@ -119,7 +108,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 ---
 
-## 🏷 4. Using Spring Security Annotations (40 minutes)
+## 🏷 4. Using Spring Security Annotations
 
 ### Concepts:
 
@@ -207,7 +196,7 @@ public class BusinessHoursVoter implements AccessDecisionVoter<Object> {
 
 ---
 
-## 🗂 6. Access Control Lists (ACLs) for Object Security (40 minutes)
+## 🗂 6. Access Control Lists (ACLs) for Object Security
 
 ### Concepts:
 
@@ -263,7 +252,7 @@ protected MethodSecurityExpressionHandler createExpressionHandler() {
 
 ---
 
-## ✅ 7. Wrap-Up and Q&A (15 minutes)
+## ✅ 7. Wrap-Up
 
 ### Recap:
 
@@ -319,23 +308,6 @@ protected MethodSecurityExpressionHandler createExpressionHandler() {
   ```
 - `USER_ADMIN` table for JDBC authentication, as configured in `JdbcUserDetailsManager`
 
----
-
-### Key Updates in the Lesson Plan
-1. **Replaced `deleteTask()` with `deleteRegistration()`**:
-   - Updated Section 2 to modify `deleteRegistration()` in `DefaultRegistrationService` using `SecurityContextHolder`.
-   - Updated Section 4 to apply `@PreAuthorize("hasRole('ADMIN')")` to `deleteRegistration()`.
-   - Updated JSP in Section 4 to use `/registration/delete/${registration.id}`.
-2. **Adjusted SecurityConfig**:
-   - Added `/registration/delete/**` pattern in Section 3 to require `ROLE_ADMIN`.
-3. **Updated ACL Section**:
-   - Changed `TaskAclService` to `RegistrationAclService` in Section 6.
-   - Modified `@PreAuthorize` to use `Registration` entity for ACL-based security.
-4. **Updated Hands-On Tasks**:
-   - Ensured all hands-on tasks use `Registration` entities, `RegistrationController`, and `RegistrationRepositoryJPA`.
-5. **Database and File References**:
-   - Added `registrations` table schema to Instructor Notes.
-   - Included `RegistrationController.java`, `DefaultRegistrationService.java`, and `RegistrationRepositoryJPA.java` in Core Files.
 
 ### Testing Instructions
 - **Deploy**: Deploy the WAR to Tomcat 9.x or Jetty 10+.
